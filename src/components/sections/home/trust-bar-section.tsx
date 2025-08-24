@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils/animations"
 
 const clientLogos = [
   { name: "TechCorp", width: 120, height: 40 },
