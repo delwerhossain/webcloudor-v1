@@ -1,40 +1,42 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
 
 const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
-});
+  preload: true,
+})
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | WebCloudor",
-    default: "WebCloudor - Ship Faster, Scale Better",
-  },
-  description: "Modern web solutions for ambitious businesses. Ship faster with expert development, convert more with optimized experiences, scale with confidence.",
-  keywords: ["web development", "Next.js", "React", "cloud architecture", "e-commerce"],
-  authors: [
-    {
-      name: "WebCloudor Team",
-      url: "https://webcloudor.com",
-    },
-  ],
+  title: "WebCloudor | AI-First Web Development Agency",
+  description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward. 50+ projects delivered, 99% on-time, tier-1/2 clients served.",
+  keywords: ["web development", "AI-first", "Next.js", "React", "conversion optimization", "web agency"],
+  authors: [{ name: "WebCloudor" }],
   creator: "WebCloudor",
+  publisher: "WebCloudor",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://webcloudor.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    title: "WebCloudor | AI-First Web Development Agency",
+    description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward.",
     url: "https://webcloudor.com",
     siteName: "WebCloudor",
-    title: "WebCloudor - Ship Faster, Scale Better",
-    description: "Modern web solutions for ambitious businesses",
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WebCloudor - Ship Faster, Scale Better",
-    description: "Modern web solutions for ambitious businesses",
-    creator: "@webcloudor",
+    title: "WebCloudor | AI-First Web Development Agency", 
+    description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward.",
   },
   robots: {
     index: true,
@@ -47,21 +49,27 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased">
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <meta name="theme-color" content="#1B365D" />
+        <meta name="color-scheme" content="light" />
+      </head>
+      <body
+        className={`${inter.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}
+        style={{ fontFeatureSettings: '"rlig" 1, "calt" 1' }}
+      >
         {children}
       </body>
     </html>
-  );
+  )
 }
