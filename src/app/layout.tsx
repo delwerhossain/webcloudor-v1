@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import { Navigation, Footer } from "@/components/layout"
 import { GoogleTagManager } from "@/components/analytics/GoogleTagManager"
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics"
+import { Toaster } from 'sonner'
 import "./globals.css"
 
 const inter = Inter({
@@ -13,7 +14,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "WebCloudor | AI-First Web Development Agency",
+  title: {
+    default: "WebCloudor | AI-First Web Development Agency",
+    template: '%s | WebCloudor'
+  },
   description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward. 50+ projects delivered, 99% on-time, tier-1/2 clients served.",
   keywords: ["web development", "AI-first", "Next.js", "React", "conversion optimization", "web agency"],
   authors: [{ name: "WebCloudor" }],
@@ -35,11 +39,20 @@ export const metadata: Metadata = {
     siteName: "WebCloudor",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'WebCloudor - AI-First Web Development Agency',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "WebCloudor | AI-First Web Development Agency", 
     description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward.",
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -52,6 +65,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 }
 
 export default function RootLayout({
@@ -60,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <GoogleAnalytics />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -78,6 +94,13 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Toaster 
+          position="bottom-right" 
+          expand={false}
+          richColors
+          closeButton
+          theme="system"
+        />
       </body>
     </html>
   )
