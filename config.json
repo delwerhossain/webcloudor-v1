@@ -1,0 +1,197 @@
+{
+  "name": "webcloudor-git-commit-manager",
+  "version": "1.0.0",
+  "description": "Intelligent Git commit management system with human-like messages and chunk-by-chunk processing",
+  "author": "WebCloudor Team",
+  "
+": "MIT",
+  
+  "commit_manager": {
+    "default_mode": "chunked",
+    "max_files_per_commit": 10,
+    "enable_auto_formatting": true,
+    "enable_pre_commit_hooks": true,
+    "commit_message_style": "conventional",
+    
+    "file_categories": {
+      "component": {
+        "patterns": ["src/components/**", "components/**", "*.component.*"],
+        "commit_prefix": "feat",
+        "description": "React/UI components"
+      },
+      "api": {
+        "patterns": ["src/app/api/**", "api/**", "*.api.*", "**/route.ts"],
+        "commit_prefix": "feat",
+        "description": "API endpoints and backend logic"
+      },
+      "page": {
+        "patterns": ["src/app/**/page.*", "app/**/page.*", "pages/**"],
+        "commit_prefix": "feat",
+        "description": "Application pages and routing"
+      },
+      "style": {
+        "patterns": ["**/*.css", "**/*.scss", "**/*.sass", "**/globals.css"],
+        "commit_prefix": "style",
+        "description": "Styling and visual design"
+      },
+      "config": {
+        "patterns": ["*.config.*", "*.json", "*.js", "*.ts", "**/tsconfig.json"],
+        "commit_prefix": "chore",
+        "description": "Configuration and tooling"
+      },
+      "docs": {
+        "patterns": ["**/*.md", "**/*.txt", "docs/**", "README*"],
+        "commit_prefix": "docs",
+        "description": "Documentation and guides"
+      },
+      "test": {
+        "patterns": ["**/*.test.*", "**/*.spec.*", "tests/**", "__tests__/**"],
+        "commit_prefix": "test",
+        "description": "Testing and quality assurance"
+      },
+      "lib": {
+        "patterns": ["src/lib/**", "lib/**", "utils/**", "helpers/**"],
+        "commit_prefix": "refactor",
+        "description": "Utilities and helper functions"
+      }
+    },
+    
+    "message_templates": {
+      "component": [
+        "{prefix}: enhance {fileName} component with improved functionality",
+        "{prefix}: add {fileName} component with better user experience",
+        "{prefix}: refactor {fileName} component for better performance",
+        "{prefix}: optimize {fileName} component architecture",
+        "{prefix}: improve {fileName} component accessibility and design"
+      ],
+      "api": [
+        "{prefix}: implement {fileName} endpoint with robust validation",
+        "{prefix}: enhance {fileName} API with comprehensive error handling",
+        "{prefix}: add {fileName} endpoint with security improvements",
+        "{prefix}: optimize {fileName} API performance and reliability",
+        "{prefix}: refactor {fileName} endpoint architecture"
+      ],
+      "style": [
+        "{prefix}: improve visual consistency in {fileName}",
+        "{prefix}: enhance responsive design for {fileName}",
+        "{prefix}: optimize styling architecture in {fileName}",
+        "{prefix}: refine visual components in {fileName}",
+        "{prefix}: improve accessibility in {fileName}"
+      ],
+      "config": [
+        "{prefix}: update {fileName} for better development workflow",
+        "{prefix}: enhance {fileName} configuration and tooling",
+        "{prefix}: optimize {fileName} build and performance settings",
+        "{prefix}: improve {fileName} developer experience",
+        "{prefix}: streamline {fileName} project configuration"
+      ],
+      "docs": [
+        "{prefix}: update {fileName} with clearer explanations",
+        "{prefix}: enhance documentation in {fileName}",
+        "{prefix}: improve {fileName} with practical examples",
+        "{prefix}: refine {fileName} structure and clarity",
+        "{prefix}: add comprehensive guidance to {fileName}"
+      ],
+      "page": [
+        "{prefix}: create optimized {fileName} with enhanced SEO",
+        "{prefix}: improve {fileName} performance and accessibility",
+        "{prefix}: enhance {fileName} user experience",
+        "{prefix}: optimize {fileName} for better Core Web Vitals",
+        "{prefix}: refactor {fileName} architecture"
+      ]
+    },
+    
+    "commit_body_templates": [
+      "\\n\\n- Implemented with modern best practices and clean architecture\\n- Enhanced user experience and maintainability\\n- Added proper error handling and TypeScript support",
+      "\\n\\n- Optimized for performance and accessibility\\n- Improved code organization and readability\\n- Follows WebCloudor development standards",
+      "\\n\\n- Enhanced functionality with careful attention to detail\\n- Improved development workflow and code quality\\n- Maintained consistency with existing codebase",
+      "\\n\\n- Refined implementation with focus on user experience\\n- Added comprehensive error handling and validation\\n- Optimized for better performance and maintainability"
+    ]
+  },
+  
+  "analyzer": {
+    "default_analysis_period_days": 30,
+    "max_commits_to_analyze": 100,
+    "enable_recommendations": true,
+    "track_file_patterns": true,
+    "generate_reports": true,
+    
+    "metrics": {
+      "target_commits_per_day": 3,
+      "ideal_files_per_commit": 3,
+      "max_files_per_commit": 8,
+      "min_commit_message_length": 20
+    },
+    
+    "report_sections": [
+      "frequency_analysis",
+      "commit_type_distribution", 
+      "file_change_patterns",
+      "productivity_metrics",
+      "recommendations"
+    ]
+  },
+  
+  "pre_commit": {
+    "enabled": true,
+    "run_linting": true,
+    "run_formatting": true,
+    "check_commit_size": true,
+    "suggest_chunking": true,
+    "enhance_commit_messages": true,
+    
+    "linting": {
+      "command": "npm run lint",
+      "auto_fix_command": "npm run format",
+      "file_patterns": ["*.ts", "*.tsx", "*.js", "*.jsx"]
+    },
+    
+    "size_limits": {
+      "warn_at_files": 5,
+      "suggest_chunking_at_files": 10,
+      "max_recommended_files": 15
+    }
+  },
+  
+  "interactive_mode": {
+    "default_auto_approve": false,
+    "show_file_preview": true,
+    "allow_custom_messages": true,
+    "remember_preferences": false
+  },
+  
+  "git_integration": {
+    "use_global_git_config": true,
+    "auto_stage_formatted_files": true,
+    "create_backup_branch": false,
+    "push_after_commit": false,
+    
+    "hooks": {
+      "pre_commit": "hooks/pre-commit.js",
+      "commit_msg": null,
+      "post_commit": null
+    }
+  },
+  
+  "output": {
+    "use_colors": true,
+    "verbose_logging": false,
+    "show_progress": true,
+    "log_file": null,
+    
+    "colors": {
+      "success": "green",
+      "info": "blue", 
+      "warning": "yellow",
+      "error": "red",
+      "highlight": "cyan"
+    }
+  },
+  
+  "automation": {
+    "schedule_enabled": false,
+    "schedule_cron": "0 */2 * * *",
+    "auto_commit_threshold_files": 5,
+    "smart_commit_grouping": true
+  }
+}
