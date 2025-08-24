@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { Search, Palette, Code2, Rocket, TrendingUp } from "lucide-react"
 import { useRef } from "react"
 import { SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils/animations"
 
 const processSteps = [
   {
