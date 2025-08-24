@@ -7,10 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
+    "x": "pnpm i && pnpm dev",
     "format": "biome format --write",
     "sanity": "sanity",
     "sanity:deploy": "sanity deploy",
-    "sanity:start": "sanity start"
+    "sanity:start": "sanity start",
+    "commit": "node scripts/auto-commit-manager.js auto 5",
+    "commit-all": "node scripts/auto-commit-manager.js chunked",
+    "commit-check": "node scripts/commit-analyzer.js recommendations",
+    "commit-interactive": "node scripts/chunk-commit.sh --interactive || powershell -ExecutionPolicy Bypass -File scripts/chunk-commit.ps1 interactive",
+    "commit-analyze": "node scripts/commit-analyzer.js"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
