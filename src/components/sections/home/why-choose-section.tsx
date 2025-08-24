@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Zap, Bot, Shield, Globe } from "lucide-react"
 import { SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, cardHoverVariants, EASE_CURVE } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, cardHoverVariants, EASE_CURVE } from "@/lib/utils/animations"
 
 const differentiators = [
   {
