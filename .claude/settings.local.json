@@ -87,7 +87,9 @@
       "Bash(git fetch:*)",
       "Bash(git add:*)",
       "Bash(sanity:*)",
-      "WebFetch(domain:aibud.ca)"
+      "WebFetch(domain:aibud.ca)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
