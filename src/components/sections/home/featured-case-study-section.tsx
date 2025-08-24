@@ -4,7 +4,7 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import { ArrowRight, Smartphone } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { Button, SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils/animations"
 
 const AnimatedCounter = ({ 
   value, 
