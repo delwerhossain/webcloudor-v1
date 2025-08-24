@@ -19,7 +19,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./"]
+      "@/*": ["./"],
+      "@/lib/*": ["./lib/*"],
+      "@/sanity/*": ["./sanity/*"],
+      "@/components/*": ["./components/*"],
+      "@/app/*": ["./app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
