@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui'
 import { cn } from '@/lib/utils'
 
@@ -57,39 +57,47 @@ const MobileNavItem = ({
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border-b border-[#E2E8F0] last:border-b-0">
+    <div className="mb-2">
       {item.dropdown ? (
         <>
-          <button
+          <motion.button
+            whileTap={{ scale: 0.98 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-between w-full px-6 py-4 text-left text-lg font-medium text-[#0A0A0B] hover:text-[#00A8E8] transition-colors"
+            className="flex items-center justify-between w-full px-4 py-3 text-left text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200 group"
           >
-            {item.name}
+            <span className="font-medium">{item.name}</span>
             <ChevronDown 
               className={cn(
-                "w-5 h-5 transition-transform duration-200",
+                "w-4 h-4 transition-transform duration-300 text-white/60 group-hover:text-white/80",
                 isOpen && "rotate-180"
               )}
             />
-          </button>
+          </motion.button>
           <AnimatePresence>
             {isOpen && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="overflow-hidden bg-[#F8FAFC]"
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                className="overflow-hidden ml-4 mt-2 space-y-1"
               >
-                {item.dropdown.map((subItem) => (
-                  <Link
+                {item.dropdown.map((subItem, index) => (
+                  <motion.div
                     key={subItem.href}
-                    href={subItem.href}
-                    onClick={onClose}
-                    className="block px-8 py-3 text-[#64748B] hover:text-[#00A8E8] transition-colors"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {subItem.name}
-                  </Link>
+                    <Link
+                      href={subItem.href}
+                      onClick={onClose}
+                      className="flex items-center px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 group"
+                    >
+                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                      <span className="text-sm">{subItem.name}</span>
+                    </Link>
+                  </motion.div>
                 ))}
               </motion.div>
             )}
@@ -99,9 +107,10 @@ const MobileNavItem = ({
         <Link
           href={item.href}
           onClick={onClose}
-          className="block px-6 py-4 text-lg font-medium text-[#0A0A0B] hover:text-[#00A8E8] transition-colors"
+          className="flex items-center px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200 group"
         >
-          {item.name}
+          <span className="font-medium">{item.name}</span>
+          <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
         </Link>
       )}
     </div>
@@ -151,183 +160,288 @@ export const Navigation = () => {
 
   return (
     <>
-      {/* Main Navigation Header */}
+      {/* Enhanced Navigation Header with Theme Colors */}
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-[#E2E8F0]"
-            : "bg-white border-b border-transparent"
-        )}
+        className="fixed top-0 left-0 right-0 z-50"
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            
-            {/* Logo */}
-            <Link 
-              href="/" 
-              className="flex items-center space-x-3 group"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative w-10 h-10 rounded-lg overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] p-1"
+        {/* Navigation Container with WebCloudor Theme */}
+        <motion.nav
+          animate={{
+            marginLeft: scrolled ? 24 : 0,
+            marginRight: scrolled ? 24 : 0,
+            marginTop: scrolled ? 12 : 0,
+            borderRadius: scrolled ? 16 : 0,
+          }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          className={cn(
+            "transition-all duration-400 ease-out relative",
+            scrolled
+              ? "bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl shadow-[#00A8E8]/5"
+              : "bg-transparent backdrop-blur-sm"
+          )}
+        >
+          {/* Gradient Background Overlay */}
+          <div 
+            className={cn(
+              "absolute inset-0 rounded-2xl transition-opacity duration-400",
+              scrolled ? "opacity-100" : "opacity-0"
+            )}
+            style={{
+              background: `
+                linear-gradient(135deg, 
+                  rgba(0, 168, 232, 0.08) 0%, 
+                  rgba(0, 119, 199, 0.06) 50%, 
+                  rgba(27, 54, 93, 0.04) 100%
+                )
+              `
+            }}
+          />
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={cn(
+              "flex items-center justify-between transition-all duration-300",
+              scrolled ? "h-14" : "h-16"
+            )}>
+              
+              {/* Logo */}
+              <Link 
+                href="/" 
+                className="flex items-center space-x-3 group relative z-10"
               >
-                <Image
-                  src="/logo.png"
-                  alt="WebCloudor Logo"
-                  width={32}
-                  height={32}
-                  className="w-full h-full object-contain"
-                />
-              </motion.div>
-              <div className="hidden sm:block">
-                <span className="text-xl font-bold text-[#0A0A0B] group-hover:text-[#00A8E8] transition-colors">
-                  WebCloudor
-                </span>
-              </div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {navigationItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="relative group"
-                  onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <Link
-                    href={item.href}
-                    className="flex items-center space-x-1 px-3 py-2 text-[#64748B] hover:text-[#00A8E8] font-medium transition-colors duration-200"
-                  >
-                    <span>{item.name}</span>
-                    {item.dropdown && (
-                      <ChevronDown 
-                        className={cn(
-                          "w-4 h-4 transition-transform duration-200",
-                          activeDropdown === item.name && "rotate-180"
-                        )}
-                      />
-                    )}
-                  </Link>
-
-                  {/* Desktop Dropdown */}
-                  {item.dropdown && (
-                    <AnimatePresence>
-                      {activeDropdown === item.name && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-                          className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-[#E2E8F0] overflow-hidden z-50"
-                        >
-                          <div className="p-2">
-                            {item.dropdown.map((subItem, index) => (
-                              <Link
-                                key={subItem.href}
-                                href={subItem.href}
-                                className="block px-4 py-3 text-[#64748B] hover:text-[#00A8E8] hover:bg-[#F8FAFC] rounded-lg transition-colors duration-150"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={cn(
+                    "relative rounded-xl overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] shadow-lg transition-all duration-300",
+                    scrolled ? "w-8 h-8 p-1" : "w-9 h-9 p-1.5"
                   )}
+                >
+                  <Image
+                    src="/logo.png"
+                    alt="WebCloudor Logo"
+                    width={scrolled ? 20 : 24}
+                    height={scrolled ? 20 : 24}
+                    className="w-full h-full object-contain"
+                  />
+                </motion.div>
+                <div className="hidden sm:block">
+                  <span className={cn(
+                    "font-bold transition-all duration-300 group-hover:text-[#00A8E8]",
+                    scrolled 
+                      ? "text-base text-[#0A0A0B]" 
+                      : "text-lg text-white drop-shadow-sm"
+                  )}>
+                    WebCloudor
+                  </span>
                 </div>
-              ))}
-            </div>
+              </Link>
 
-            {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center space-x-4">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="hover:scale-105 transition-transform"
-              >
-                <Link href="/contact">Get Quote</Link>
-              </Button>
-              <Button 
-                variant="primary"
-                size="sm" 
-                className="hover:scale-105 transition-transform"
-              >
-                <Link href="/consultation">Free Consultation</Link>
-              </Button>
-            </div>
+              {/* Enhanced Desktop Navigation */}
+              <div className={cn(
+                "hidden lg:flex items-center transition-all duration-300",
+                scrolled ? "space-x-1" : "space-x-2"
+              )}>
+                {navigationItems.map((item, index) => (
+                  <div
+                    key={item.name}
+                    className="relative group"
+                    onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex items-center space-x-2 rounded-full font-medium transition-all duration-300 hover:scale-105",
+                        scrolled 
+                          ? "px-3 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/30 backdrop-blur-sm text-sm"
+                          : "px-4 py-2.5 text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm text-sm"
+                      )}
+                    >
+                      <span>{item.name}</span>
+                      {item.dropdown && (
+                        <ChevronDown 
+                          className={cn(
+                            "w-3.5 h-3.5 transition-transform duration-300",
+                            activeDropdown === item.name && "rotate-180"
+                          )}
+                        />
+                      )}
+                    </Link>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-[#F8FAFC] transition-colors"
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            >
-              <AnimatePresence mode="wait">
-                {isMobileMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <X className="w-6 h-6 text-[#64748B]" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <Menu className="w-6 h-6 text-[#64748B]" />
-                  </motion.div>
+                    {/* Enhanced Dropdown with Better Spacing */}
+                    {item.dropdown && (
+                      <AnimatePresence>
+                        {activeDropdown === item.name && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 12, scale: 0.95 }}
+                            transition={{ 
+                              type: "spring",
+                              damping: 25,
+                              stiffness: 400,
+                              duration: 0.15 
+                            }}
+                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 z-50"
+                          >
+                            {/* Dropdown Arrow */}
+                            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
+                              <div 
+                                className="w-3 h-3 rotate-45 border-l border-t"
+                                style={{
+                                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
+                                  borderColor: 'rgba(0, 168, 232, 0.1)'
+                                }}
+                              />
+                            </div>
+                            
+                            {/* Dropdown Content */}
+                            <div 
+                              className="bg-white/95 backdrop-blur-2xl rounded-xl border border-[#00A8E8]/10 shadow-2xl shadow-[#00A8E8]/5 overflow-hidden"
+                            >
+                              <div className="p-1">
+                                {item.dropdown.map((subItem, subIndex) => (
+                                  <motion.div
+                                    key={subItem.href}
+                                    initial={{ opacity: 0, x: -8 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: subIndex * 0.03 }}
+                                  >
+                                    <Link
+                                      href={subItem.href}
+                                      className="group flex items-center px-3 py-2.5 text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-gradient-to-r hover:from-[#00A8E8]/5 hover:to-[#0077C7]/5 rounded-lg transition-all duration-200 relative"
+                                    >
+                                      <div className="flex items-center space-x-2.5 w-full">
+                                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-200" />
+                                        <span className="font-medium text-sm flex-1">{subItem.name}</span>
+                                        <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-70 group-hover:translate-x-0.5 transition-all duration-200 text-[#00A8E8]" />
+                                      </div>
+                                    </Link>
+                                  </motion.div>
+                                ))}
+                              </div>
+                              
+                              {/* Dropdown Footer */}
+                              <div className="border-t border-[#00A8E8]/10 px-3 py-2 bg-gradient-to-r from-[#00A8E8]/3 to-[#0077C7]/3">
+                                <p className="text-xs text-[#0A0A0B]/60 text-center">
+                                  Explore our {item.name.toLowerCase()} solutions
+                                </p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Enhanced Desktop CTAs */}
+              <div className={cn(
+                "hidden lg:flex items-center transition-all duration-300",
+                scrolled ? "space-x-2" : "space-x-3"
+              )}>
+                <Link
+                  href="/contact"
+                  className={cn(
+                    "rounded-full font-medium transition-all duration-300 hover:scale-105",
+                    scrolled
+                      ? "px-3 py-2 text-xs text-[#0A0A0B]/70 hover:text-[#00A8E8] border border-[#00A8E8]/20 hover:border-[#00A8E8] hover:bg-white/50"
+                      : "px-4 py-2.5 text-sm text-white/80 hover:text-white border border-white/30 hover:border-white hover:bg-white/10"
+                  )}
+                >
+                  Get Quote
+                </Link>
+                <Link
+                  href="/consultation"
+                  className={cn(
+                    "bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/25",
+                    scrolled ? "px-4 py-2 text-xs" : "px-6 py-2.5 text-sm"
+                  )}
+                >
+                  Free Consultation
+                </Link>
+              </div>
+
+              {/* Enhanced Mobile Menu Button */}
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={cn(
+                  "lg:hidden p-2 rounded-full transition-all duration-300",
+                  scrolled 
+                    ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30" 
+                    : "text-white/80 hover:text-white hover:bg-white/10"
                 )}
-              </AnimatePresence>
-            </motion.button>
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              >
+                <AnimatePresence mode="wait">
+                  {isMobileMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
           </div>
-        </nav>
+        </motion.nav>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Modern Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
+            {/* Enhanced Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-md z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Mobile Menu */}
+            {/* Modern Mobile Menu */}
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 lg:hidden overflow-y-auto"
+              initial={{ x: '100%', opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: '100%', opacity: 0 }}
+              transition={{ 
+                type: 'spring', 
+                damping: 25, 
+                stiffness: 200,
+                duration: 0.4 
+              }}
+              className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-black/95 backdrop-blur-xl border-l border-white/10 shadow-2xl z-50 lg:hidden overflow-y-auto"
             >
-              {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between p-6 border-b border-[#E2E8F0]">
+              {/* Modern Mobile Menu Header */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <Link 
                   href="/" 
-                  className="flex items-center space-x-3"
+                  className="flex items-center space-x-3 group"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <div className="w-8 h-8 rounded-lg overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] p-1">
+                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] p-2 shadow-lg">
                     <Image
                       src="/logo.png"
                       alt="WebCloudor"
@@ -336,43 +450,64 @@ export const Navigation = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <span className="text-lg font-bold text-[#0A0A0B]">WebCloudor</span>
+                  <span className="text-lg font-bold text-white group-hover:text-[#00A8E8] transition-colors">
+                    WebCloudor
+                  </span>
                 </Link>
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 hover:bg-[#F8FAFC] rounded-lg transition-colors"
+                  className="p-2.5 hover:bg-white/10 rounded-xl transition-colors text-white"
                 >
-                  <X className="w-5 h-5 text-[#64748B]" />
-                </button>
+                  <X className="w-5 h-5" />
+                </motion.button>
               </div>
 
-              {/* Mobile Menu Items */}
-              <div className="py-4">
-                {navigationItems.map((item) => (
-                  <MobileNavItem
+              {/* Modern Mobile Menu Items */}
+              <div className="py-6 px-4">
+                {navigationItems.map((item, index) => (
+                  <motion.div
                     key={item.name}
-                    item={item}
-                    onClose={() => setIsMobileMenuOpen(false)}
-                  />
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <MobileNavItem
+                      item={item}
+                      onClose={() => setIsMobileMenuOpen(false)}
+                    />
+                  </motion.div>
                 ))}
               </div>
 
-              {/* Mobile CTAs */}
-              <div className="p-6 border-t border-[#E2E8F0] space-y-4">
-                <Button 
-                  variant="outline" 
-                  className="w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
+              {/* Modern Mobile CTAs */}
+              <div className="p-6 border-t border-white/10 space-y-4 mt-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
                 >
-                  <Link href="/contact" className="w-full">Get Quote</Link>
-                </Button>
-                <Button 
-                  variant="primary"
-                  className="w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full px-6 py-3 text-center text-white/80 hover:text-white border border-white/20 hover:bg-white/5 rounded-full font-medium transition-all duration-200"
+                  >
+                    Get Quote
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
                 >
-                  <Link href="/consultation" className="w-full">Free Consultation</Link>
-                </Button>
+                  <Link
+                    href="/consultation"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105"
+                  >
+                    Free Consultation
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </>

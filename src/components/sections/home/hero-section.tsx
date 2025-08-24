@@ -10,7 +10,7 @@ import {
 
 export const HeroSection = () => {
   return (
-    <section className="relative h-screen max-h-[1000px] min-h-[700px] flex items-center justify-center overflow-hidden bg-white pt-20">
+    <section className="relative h-screen max-h-[1000px] min-h-[700px] flex items-center justify-center overflow-hidden bg-white pt-16">
       {/* Enhanced multi-layer gradient background */}
       <div className="absolute inset-0 z-0">
         {/* Base gradient layer */}
