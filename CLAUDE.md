@@ -256,7 +256,7 @@ doc/
 ## Rules
 
 ### PREVENT DUPLICATION
-Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations.
+Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. and avoid the doc\old this files 
 
 ### Success Criteria
 1. Design compliance with `/doc/` specs
