@@ -89,7 +89,10 @@
       "Bash(sanity:*)",
       "WebFetch(domain:aibud.ca)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(yarn add:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm build:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
