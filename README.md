@@ -110,11 +110,17 @@ CALENDLY_ACCESS_TOKEN=your-calendly-token
 npm run dev              # Start development server with Turbopack
 npm run build           # Build for production
 npm run start           # Start production server
+npm run x               # Quick start (pnpm i && pnpm dev)
 
 # Code Quality
 npm run lint            # Run Biome linter
 npm run format          # Format code with Biome
-npm run type-check      # TypeScript type checking
+
+# Git Commit Management
+npm run commit          # Auto-commit up to 5 files with smart messages
+npm run commit-all      # Commit all files organized by category  
+npm run commit-check    # Analyze repository and get recommendations
+npm run commit-interactive  # Interactive file-by-file commits
 
 # Database
 npm run db:seed         # Seed database with sample data
@@ -135,14 +141,63 @@ git checkout -b feat/consultation-booking
 # Develop with hot reload
 npm run dev
 
-# Check code quality
-npm run lint
-npm run type-check
+# During development - commit frequently with smart messages
+npm run commit              # Auto-commit recent changes
 
-# Commit changes
-git add .
-git commit -m "feat: add consultation booking system"
+# End of session - organize remaining changes
+npm run commit-all         # Commit all files by category
+
+# Check repository health
+npm run commit-check       # Get recommendations
 ```
+
+## 🚀 Git Commit Manager
+
+This project includes an intelligent Git commit management system that creates human-like commit messages and handles chunk-by-chunk commits automatically.
+
+### Quick Start
+
+```bash
+# Auto-commit files with intelligent messages
+node scripts/auto-commit-manager.js auto 10
+
+# Chunked commits organized by file type
+node scripts/auto-commit-manager.js chunked
+
+# Interactive file-by-file commits (Windows)
+.\scripts\chunk-commit.ps1 interactive
+
+# Interactive file-by-file commits (Linux/Mac)  
+./scripts/chunk-commit.sh --interactive
+
+# Analyze your repository
+node scripts/commit-analyzer.js
+```
+
+### Features
+- 🤖 **Human-like commit messages** - Natural, contextual commit messages
+- 📁 **Chunk-by-chunk commits** - Individual file commits for better granularity  
+- 🎯 **Category organization** - Groups files by type (components, API, styles, etc.)
+- 👤 **Profile integration** - Uses your Git configuration automatically
+- 📊 **Repository analysis** - Insights into commit patterns and recommendations
+- 🔧 **Pre-commit hooks** - Automated code quality checks
+
+### Usage Examples
+
+```bash
+# You have 15 files changed across different categories
+npm run commit-all
+
+# Result: Creates separate commits like:
+# ✅ feat: enhance BlogCard component with improved functionality
+# ✅ style: improve visual consistency in globals.css  
+# ✅ feat: implement user authentication endpoint
+# ✅ docs: update README with usage examples
+```
+
+For detailed usage examples and advanced features, see [AGENT_INTEGRATION.md](AGENT_INTEGRATION.md) and [examples/usage.md](examples/usage.md).
+
+### Enhanced Development Workflow
 
 ### 2. Component Development
 ```bash
