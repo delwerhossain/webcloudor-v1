@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
 import { SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, scaleVariants, EASE_CURVE } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, scaleVariants, EASE_CURVE } from "@/lib/utils/animations"
 
 const testimonial = {
   quote: "WebCloudor delivered exactly what they promised, on time and on budget. Our new platform increased conversions by 45% in the first month.",
