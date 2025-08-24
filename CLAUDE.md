@@ -230,20 +230,27 @@ FROM_EMAIL=hello@webcloudor.com
 ## Critical Docs (Always Reference)
 ```
 doc/
-├── prd.md                    → Product requirements
-├── design_system.md          → Colors, typography
-├── api-instruction.md        → API patterns
-├── database-instruction.md   → DB schema
-├── frontend-instruction.md   → Frontend optimization
-├── seo-config.md            → SEO strategy
-└── pages-details/           → Page specifications
+├── prd.md                        → Product requirements
+├── api-instruction.md            → API patterns
+├── content-instruction.md        → Content guidelines
+├── database-instruction.md       → DB schema
+├── deployment-instruction.md     → Deployment guides
+├── design_system-instruction.md  → Colors, typography
+├── frontend-instruction.md       → Frontend optimization
+├── security-instruction.md       → Security protocols
+├── seo-config-instruction.md     → SEO strategy
+├── tech-stack-instruction.md     → Technology stack
+├── testing-instruction.md        → Testing guidelines
+└── pages-details/               → Page specifications
     ├── homepage.md
     ├── services_page.md
     ├── portfolio_page.md
     ├── about_page.md
     ├── team_page.md
     ├── blog_pages.md
-    └── [legal pages].md
+    ├── cookie_policy.md
+    ├── privacy_policy.md
+    └── terms_conditions.md
 ```
 
 ## Rules
