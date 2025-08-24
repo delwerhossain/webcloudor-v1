@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Clock, Eye, User, ArrowRight } from 'lucide-react'
+import { Calendar, Clock, Eye, User, ArrowRight, Bookmark, Heart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -26,109 +26,183 @@ export const BlogCard = ({
     : '/placeholder-blog.jpg'
 
   const cardClasses = {
-    default: 'h-full',
-    featured: 'h-full bg-gradient-to-br from-card to-card/50 border-2',
-    compact: 'h-full'
+    default: 'h-full group/card',
+    featured: 'h-full group/card border-2 border-primary/20 bg-gradient-to-br from-background via-background/98 to-primary/[0.02]',
+    compact: 'h-full group/card'
   }
 
   const imageClasses = {
     default: 'aspect-[3/2]',
-    featured: 'aspect-[16/9]',
+    featured: 'aspect-[16/10]',
     compact: 'aspect-[4/3]'
   }
 
   return (
-    <Card className={`group hover:shadow-lg transition-all duration-300 ${cardClasses[variant]}`}>
-      <div className="relative overflow-hidden rounded-t-lg">
-        <Link href={`/blog/${post.slug.current}`}>
-          <div className={`relative ${imageClasses[variant]} overflow-hidden bg-muted`}>
+    <Card className={`${cardClasses[variant]} border border-border/50 hover:border-border transition-all duration-500 hover:shadow-xl hover:shadow-black/[0.04] dark:hover:shadow-black/[0.2] overflow-hidden`}>
+      {/* Image Section */}
+      <div className="relative overflow-hidden">
+        <Link 
+          href={`/blog/${post.slug.current}`}
+          className="block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-t-lg"
+          aria-label={`Read article: ${post.title}`}
+        >
+          <div className={`relative ${imageClasses[variant]} bg-muted/50 overflow-hidden`}>
             <Image
               src={imageUrl}
               alt={post.featuredImage?.alt || post.title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover transition-all duration-700 group-hover/card:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={variant === 'featured'}
             />
-            {post.pinned && (
-              <div className="absolute top-3 left-3">
-                <Badge variant="secondary" className="bg-primary/90 text-primary-foreground">
+            
+            {/* Overlay Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+            
+            {/* Status Badges */}
+            <div className="absolute top-4 left-4 flex gap-2">
+              {post.pinned && (
+                <Badge 
+                  variant="secondary" 
+                  className="bg-primary text-primary-foreground shadow-sm animate-in fade-in-0 slide-in-from-top-2"
+                >
                   Pinned
                 </Badge>
-              </div>
-            )}
-            {post.featured && (
-              <div className="absolute top-3 right-3">
-                <Badge variant="secondary" className="bg-orange-500/90 text-white">
+              )}
+              {post.featured && (
+                <Badge 
+                  variant="secondary" 
+                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-sm animate-in fade-in-0 slide-in-from-top-2 delay-100"
+                >
                   Featured
                 </Badge>
+              )}
+            </div>
+
+            {/* Reading Time Badge */}
+            {post.readingTime && variant !== 'compact' && (
+              <div className="absolute bottom-4 right-4 opacity-0 group-hover/card:opacity-100 transition-all duration-500 delay-200">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-black/70 backdrop-blur-sm text-white text-sm rounded-full">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>{post.readingTime} min</span>
+                </div>
               </div>
             )}
           </div>
         </Link>
       </div>
 
-      <CardContent className="p-6">
+      <CardContent className="p-6 pb-4 space-y-4">
+        {/* Categories */}
         {post.categories && post.categories.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-3">
-            {post.categories.slice(0, 2).map((category) => (
-              <CategoryBadge key={category._id} category={category} />
+          <div className="flex flex-wrap gap-2">
+            {post.categories.slice(0, variant === 'featured' ? 3 : 2).map((category) => (
+              <CategoryBadge key={category._id} category={category} size="sm" />
             ))}
           </div>
         )}
 
-        <Link href={`/blog/${post.slug.current}`}>
-          <h3 className={`font-bold mb-3 line-clamp-2 group-hover:text-primary transition-colors
-            ${variant === 'featured' ? 'text-2xl' : 'text-xl'}
-          `}>
+        {/* Title */}
+        <Link 
+          href={`/blog/${post.slug.current}`}
+          className="block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md"
+        >
+          <h3 className={`font-bold leading-tight line-clamp-2 group-hover/card:text-primary transition-colors duration-300 ${
+            variant === 'featured' 
+              ? 'text-2xl lg:text-3xl mb-3' 
+              : variant === 'compact' 
+                ? 'text-lg mb-2'
+                : 'text-xl mb-3'
+          }`}>
             {post.title}
           </h3>
         </Link>
 
-        <p className="text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
+        {/* Excerpt */}
+        <p className={`text-muted-foreground leading-relaxed ${
+          variant === 'featured' 
+            ? 'line-clamp-3 text-base' 
+            : 'line-clamp-2 text-sm'
+        }`}>
           {post.excerpt}
         </p>
 
-        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+        {/* Meta Information */}
+        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/80">
           {showAuthor && post.author && (
             <Link 
               href={`/blog/author/${post.author.slug.current}`}
-              className="flex items-center gap-2 hover:text-primary transition-colors"
+              className="flex items-center gap-2 hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 rounded-sm"
             >
+              {post.author.avatar && (
+                <div className="relative w-5 h-5 rounded-full overflow-hidden bg-muted">
+                  <Image
+                    src={urlFor(post.author.avatar).width(20).height(20).url()}
+                    alt={post.author.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
               <User className="w-4 h-4" />
-              <span>{post.author.name}</span>
+              <span className="font-medium">{post.author.name}</span>
             </Link>
           )}
           
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <Calendar className="w-4 h-4" />
-            <time dateTime={post.publishedAt}>
+            <time dateTime={post.publishedAt} className="font-medium">
               {formatDate(post.publishedAt)}
             </time>
           </div>
 
-          {post.readingTime && (
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              <span>{post.readingTime} min read</span>
-            </div>
-          )}
-
           {showStats && post.viewCount > 0 && (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5">
               <Eye className="w-4 h-4" />
-              <span>{post.viewCount.toLocaleString()}</span>
+              <span className="font-medium">{post.viewCount.toLocaleString()}</span>
             </div>
           )}
         </div>
       </CardContent>
 
-      <CardFooter className="p-6 pt-0">
-        <Button variant="ghost" className="w-full group/btn" asChild>
-          <Link href={`/blog/${post.slug.current}`}>
-            Read Article
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-          </Link>
-        </Button>
+      <CardFooter className="p-6 pt-2">
+        <div className="flex items-center justify-between w-full">
+          <Button 
+            variant="ghost" 
+            className="flex-1 justify-start group/btn hover:bg-primary/5 transition-all duration-300" 
+            asChild
+          >
+            <Link 
+              href={`/blog/${post.slug.current}`}
+              className="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              <span className="font-medium">Read Article</span>
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/card:translate-x-2" />
+            </Link>
+          </Button>
+
+          {/* Action Buttons - Only show on hover for featured */}
+          {variant === 'featured' && (
+            <div className="flex items-center gap-1 opacity-0 group-hover/card:opacity-100 transition-all duration-500 delay-200">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-8 h-8 p-0 hover:bg-primary/10 hover:text-primary transition-colors"
+                aria-label="Bookmark article"
+              >
+                <Bookmark className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-8 h-8 p-0 hover:bg-red-500/10 hover:text-red-500 transition-colors"
+                aria-label="Like article"
+              >
+                <Heart className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
+        </div>
       </CardFooter>
     </Card>
   )
