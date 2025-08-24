@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { Navigation, Footer } from "@/components/layout"
 import "./globals.css"
 
 const inter = Inter({
@@ -68,7 +69,11 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}
         style={{ fontFeatureSettings: '"rlig" 1, "calt" 1' }}
       >
-        {children}
+        <Navigation />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   )
