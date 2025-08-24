@@ -63,12 +63,12 @@ const MobileNavItem = ({
           <motion.button
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-between w-full px-4 py-3 text-left text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200 group"
+            className="flex items-center justify-between w-full px-4 py-3 text-left text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5 rounded-xl transition-all duration-200 group"
           >
             <span className="font-medium">{item.name}</span>
             <ChevronDown 
               className={cn(
-                "w-4 h-4 transition-transform duration-300 text-white/60 group-hover:text-white/80",
+                "w-4 h-4 transition-transform duration-300 text-[#0A0A0B]/60 group-hover:text-[#00A8E8]",
                 isOpen && "rotate-180"
               )}
             />
@@ -92,7 +92,7 @@ const MobileNavItem = ({
                     <Link
                       href={subItem.href}
                       onClick={onClose}
-                      className="flex items-center px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 group"
+                      className="flex items-center px-4 py-2.5 text-[#0A0A0B]/60 hover:text-[#00A8E8] hover:bg-gradient-to-r hover:from-[#00A8E8]/5 hover:to-[#0077C7]/3 rounded-lg transition-all duration-200 group"
                     >
                       <div className="w-1.5 h-1.5 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></div>
                       <span className="text-sm">{subItem.name}</span>
@@ -107,10 +107,10 @@ const MobileNavItem = ({
         <Link
           href={item.href}
           onClick={onClose}
-          className="flex items-center px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200 group"
+          className="flex items-center px-4 py-3 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5 rounded-xl transition-all duration-200 group"
         >
           <span className="font-medium">{item.name}</span>
-          <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
+          <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-70 group-hover:translate-x-1 transition-all duration-200 text-[#00A8E8]" />
         </Link>
       )}
     </div>
@@ -407,35 +407,49 @@ export const Navigation = () => {
         </motion.nav>
       </motion.header>
 
-      {/* Modern Mobile Menu Overlay */}
+      {/* Enhanced Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Enhanced Backdrop */}
+            {/* Enhanced Backdrop with WebCloudor Theme */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-md z-40 lg:hidden"
+              className="fixed inset-0 bg-[#0A0A0B]/60 backdrop-blur-md z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Modern Mobile Menu */}
+            {/* Enhanced Mobile Menu with Theme Colors */}
             <motion.div
-              initial={{ x: '100%', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: '100%', opacity: 0 }}
+              initial={{ x: '100%', opacity: 0, scale: 0.95 }}
+              animate={{ x: 0, opacity: 1, scale: 1 }}
+              exit={{ x: '100%', opacity: 0, scale: 0.95 }}
               transition={{ 
                 type: 'spring', 
                 damping: 25, 
-                stiffness: 200,
+                stiffness: 250,
                 duration: 0.4 
               }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-black/95 backdrop-blur-xl border-l border-white/10 shadow-2xl z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white/95 backdrop-blur-2xl border-l border-[#00A8E8]/10 shadow-2xl shadow-[#00A8E8]/5 z-50 lg:hidden overflow-y-auto"
             >
-              {/* Modern Mobile Menu Header */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
+              {/* Gradient Background Overlay */}
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: `
+                    linear-gradient(135deg, 
+                      rgba(0, 168, 232, 0.03) 0%, 
+                      rgba(0, 119, 199, 0.02) 50%, 
+                      rgba(255, 255, 255, 0.95) 100%
+                    )
+                  `
+                }}
+              />
+
+              {/* Enhanced Mobile Menu Header */}
+              <div className="relative z-10 flex items-center justify-between p-6 border-b border-[#00A8E8]/10">
                 <Link 
                   href="/" 
                   className="flex items-center space-x-3 group"
@@ -450,21 +464,21 @@ export const Navigation = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <span className="text-lg font-bold text-white group-hover:text-[#00A8E8] transition-colors">
+                  <span className="text-lg font-bold text-[#0A0A0B] group-hover:text-[#00A8E8] transition-colors">
                     WebCloudor
                   </span>
                 </Link>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2.5 hover:bg-white/10 rounded-xl transition-colors text-white"
+                  className="p-2.5 hover:bg-[#00A8E8]/10 rounded-xl transition-colors text-[#0A0A0B]/70 hover:text-[#00A8E8]"
                 >
                   <X className="w-5 h-5" />
                 </motion.button>
               </div>
 
-              {/* Modern Mobile Menu Items */}
-              <div className="py-6 px-4">
+              {/* Enhanced Mobile Menu Items */}
+              <div className="relative z-10 py-6 px-4">
                 {navigationItems.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -480,8 +494,8 @@ export const Navigation = () => {
                 ))}
               </div>
 
-              {/* Modern Mobile CTAs */}
-              <div className="p-6 border-t border-white/10 space-y-4 mt-auto">
+              {/* Enhanced Mobile CTAs */}
+              <div className="relative z-10 p-6 border-t border-[#00A8E8]/10 space-y-4 mt-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -490,7 +504,7 @@ export const Navigation = () => {
                   <Link
                     href="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full px-6 py-3 text-center text-white/80 hover:text-white border border-white/20 hover:bg-white/5 rounded-full font-medium transition-all duration-200"
+                    className="block w-full px-6 py-3 text-center text-[#0A0A0B]/70 hover:text-[#00A8E8] border border-[#00A8E8]/20 hover:border-[#00A8E8] hover:bg-[#00A8E8]/5 rounded-full font-medium transition-all duration-200"
                   >
                     Get Quote
                   </Link>
@@ -503,7 +517,7 @@ export const Navigation = () => {
                   <Link
                     href="/consultation"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105"
+                    className="block w-full px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105 shadow-lg shadow-[#FFD700]/25"
                   >
                     Free Consultation
                   </Link>
