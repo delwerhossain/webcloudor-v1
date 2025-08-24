@@ -215,15 +215,15 @@ export const Navigation = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={cn(
-                    "relative rounded-xl overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] shadow-lg transition-all duration-300",
+                    "relative rounded-xl overflow-hidden bg-gradient-to-br from-[#89deff] to-[#9ad7ff] shadow-lg transition-all duration-300",
                     scrolled ? "w-8 h-8 p-1" : "w-9 h-9 p-1.5"
                   )}
                 >
                   <Image
                     src="/logo.png"
                     alt="WebCloudor Logo"
-                    width={scrolled ? 20 : 24}
-                    height={scrolled ? 20 : 24}
+                    width={scrolled ? 24 : 24}
+                    height={scrolled ? 24 : 28}
                     className="w-full h-full object-contain"
                   />
                 </motion.div>
@@ -232,7 +232,7 @@ export const Navigation = () => {
                     "font-bold transition-all duration-300 group-hover:text-[#00A8E8]",
                     scrolled 
                       ? "text-base text-[#0A0A0B]" 
-                      : "text-lg text-white drop-shadow-sm"
+                      : "text-lg text-[#0A0A0B] drop-shadow-sm"
                   )}>
                     WebCloudor
                   </span>
@@ -257,7 +257,7 @@ export const Navigation = () => {
                         "flex items-center space-x-2 rounded-full font-medium transition-all duration-300 hover:scale-105",
                         scrolled 
                           ? "px-3 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/30 backdrop-blur-sm text-sm"
-                          : "px-4 py-2.5 text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm text-sm"
+                          : "px-4 py-2.5 [#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/10 backdrop-blur-sm text-sm"
                       )}
                     >
                       <span>{item.name}</span>
@@ -350,7 +350,7 @@ export const Navigation = () => {
                     "rounded-full font-medium transition-all duration-300 hover:scale-105",
                     scrolled
                       ? "px-3 py-2 text-xs text-[#0A0A0B]/70 hover:text-[#00A8E8] border border-[#00A8E8]/20 hover:border-[#00A8E8] hover:bg-white/50"
-                      : "px-4 py-2.5 text-sm text-white/80 hover:text-white border border-white/30 hover:border-white hover:bg-white/10"
+                      : "px-4 py-2.5 text-sm text-black/80 hover:text-black border border-white/30 hover:border-white hover:bg-white/10"
                   )}
                 >
                   Get Quote
