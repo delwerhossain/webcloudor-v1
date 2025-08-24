@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Navigation, Footer } from "@/components/layout"
+import { GoogleTagManager } from "@/components/analytics/GoogleTagManager"
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics"
 import "./globals.css"
 
 const inter = Inter({
@@ -60,6 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <GoogleAnalytics />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <meta name="theme-color" content="#1B365D" />
@@ -69,6 +72,7 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}
         style={{ fontFeatureSettings: '"rlig" 1, "calt" 1' }}
       >
+        <GoogleTagManager />
         <Navigation />
         <main className="min-h-screen">
           {children}
