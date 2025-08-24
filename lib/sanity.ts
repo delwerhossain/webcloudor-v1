@@ -1,141 +1,98 @@
-import { client } from '../sanity/lib/client'
-import {
-  servicesQuery,
-  serviceBySlugQuery,
-  projectsQuery,
-  featuredProjectsQuery,
-  projectBySlugQuery,
-  blogPostsQuery,
-  featuredBlogPostsQuery,
-  blogPostBySlugQuery,
-  blogPostsByAuthorQuery,
-  blogPostsByCategoryQuery,
-  blogPostsByTagQuery,
-  relatedBlogPostsQuery,
-  popularBlogPostsQuery,
-  authorsQuery,
-  authorBySlugQuery,
-  categoriesQuery,
-  categoryBySlugQuery,
-  featuredCategoriesQuery,
-  teamMembersQuery,
-  teamMemberBySlugQuery,
-  testimonialsQuery,
-  featuredTestimonialsQuery,
-  pageBySlugQuery,
-  homepageQuery
-} from '../sanity/lib/queries'
-import {
-  type Service,
-  type Project,
-  type BlogPost,
-  type Author,
-  type Category,
-  type TeamMember,
-  type Testimonial,
-  type Page
-} from '../sanity/lib/types'
+import { client } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
 
-// Services
-export const getServices = async (): Promise<Service[]> => {
-  return await client.fetch(servicesQuery)
+export const getBlogPosts = async () => {
+  const query = groq`*[_type == "blogPost" && status == "published"] | order(publishedAt desc) {
+    ...,
+    "author": author->{name, slug, avatar},
+    "categories": categories[]->{title, slug}
+  }`
+  return await client.fetch(query)
 }
 
-export const getServiceBySlug = async (slug: string): Promise<Service | null> => {
-  return await client.fetch(serviceBySlugQuery, { slug })
+export const getFeaturedBlogPosts = async () => {
+  const query = groq`*[_type == "blogPost" && status == "published" && featured == true] | order(publishedAt desc) {
+    ...,
+    "author": author->{name, slug, avatar},
+    "categories": categories[]->{title, slug}
+  }`
+  return await client.fetch(query)
 }
 
-// Projects
-export const getProjects = async (): Promise<Project[]> => {
-  return await client.fetch(projectsQuery)
+export const getBlogPostBySlug = async (slug: string) => {
+  const query = groq`*[_type == "blogPost" && slug.current == $slug][0]{
+    ...,
+    "author": author->{name, slug, avatar, bio},
+    "categories": categories[]->{title, slug},
+    "content": content[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "url": asset->url
+      }
+    }
+  }`
+  return await client.fetch(query, { slug })
 }
 
-export const getFeaturedProjects = async (): Promise<Project[]> => {
-  return await client.fetch(featuredProjectsQuery)
+export const getRelatedBlogPosts = async (currentPostSlug: string, categories: string[]) => {
+  const query = groq`*[_type == "blogPost" && status == "published" && slug.current != $currentPostSlug && references($categories)] | order(publishedAt desc) [0...3] {
+    ...,
+    "author": author->{name, slug, avatar},
+    "categories": categories[]->{title, slug}
+  }`
+  return await client.fetch(query, { 
+    currentPostSlug, 
+    categories: categories.map(cat => cat._id) 
+  })
 }
 
-export const getProjectBySlug = async (slug: string): Promise<Project | null> => {
-  return await client.fetch(projectBySlugQuery, { slug })
+export const getCategories = async () => {
+  const query = groq`*[_type == "category"] | order(title asc) {
+    _id,
+    title,
+    slug,
+    "postCount": count(*[_type == "blogPost" && references(^._id)])
+  }`
+  return await client.fetch(query)
 }
 
-// Blog posts
-export const getBlogPosts = async (): Promise<BlogPost[]> => {
-  return await client.fetch(blogPostsQuery)
+export const getCategoryBySlug = async (slug: string) => {
+  const query = groq`*[_type == "category" && slug.current == $slug][0]{
+    _id,
+    title,
+    slug,
+    description
+  }`
+  return await client.fetch(query, { slug })
 }
 
-export const getFeaturedBlogPosts = async (): Promise<BlogPost[]> => {
-  return await client.fetch(featuredBlogPostsQuery)
+export const getBlogPostsByCategory = async (categorySlug: string) => {
+  const query = groq`*[_type == "blogPost" && status == "published" && references(*[_type == "category" && slug.current == $categorySlug]._id)] | order(publishedAt desc) {
+    ...,
+    "author": author->{name, slug, avatar},
+    "categories": categories[]->{title, slug}
+  }`
+  return await client.fetch(query, { categorySlug })
 }
 
-export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
-  return await client.fetch(blogPostBySlugQuery, { slug })
+export const getAuthorBySlug = async (slug: string) => {
+  const query = groq`*[_type == "teamMember" && slug.current == $slug][0]{
+    name,
+    slug,
+    avatar,
+    bio,
+    position,
+    socials
+  }`
+  return await client.fetch(query, { slug })
 }
 
-export const getBlogPostsByAuthor = async (authorId: string): Promise<BlogPost[]> => {
-  return await client.fetch(blogPostsByAuthorQuery, { authorId })
-}
-
-export const getBlogPostsByCategory = async (categoryId: string): Promise<BlogPost[]> => {
-  return await client.fetch(blogPostsByCategoryQuery, { categoryId })
-}
-
-export const getBlogPostsByTag = async (tag: string): Promise<BlogPost[]> => {
-  return await client.fetch(blogPostsByTagQuery, { tag })
-}
-
-export const getRelatedBlogPosts = async (currentId: string, categoryIds: string[], tags: string[]): Promise<BlogPost[]> => {
-  return await client.fetch(relatedBlogPostsQuery, { currentId, categoryIds, tags })
-}
-
-export const getPopularBlogPosts = async (): Promise<BlogPost[]> => {
-  return await client.fetch(popularBlogPostsQuery)
-}
-
-// Authors
-export const getAuthors = async (): Promise<Author[]> => {
-  return await client.fetch(authorsQuery)
-}
-
-export const getAuthorBySlug = async (slug: string): Promise<Author | null> => {
-  return await client.fetch(authorBySlugQuery, { slug })
-}
-
-// Categories
-export const getCategories = async (): Promise<Category[]> => {
-  return await client.fetch(categoriesQuery)
-}
-
-export const getCategoryBySlug = async (slug: string): Promise<Category | null> => {
-  return await client.fetch(categoryBySlugQuery, { slug })
-}
-
-export const getFeaturedCategories = async (): Promise<Category[]> => {
-  return await client.fetch(featuredCategoriesQuery)
-}
-
-// Team members
-export const getTeamMembers = async (): Promise<TeamMember[]> => {
-  return await client.fetch(teamMembersQuery)
-}
-
-export const getTeamMemberBySlug = async (slug: string): Promise<TeamMember | null> => {
-  return await client.fetch(teamMemberBySlugQuery, { slug })
-}
-
-// Testimonials
-export const getTestimonials = async (): Promise<Testimonial[]> => {
-  return await client.fetch(testimonialsQuery)
-}
-
-export const getFeaturedTestimonials = async (): Promise<Testimonial[]> => {
-  return await client.fetch(featuredTestimonialsQuery)
-}
-
-// Pages
-export const getPageBySlug = async (slug: string): Promise<Page | null> => {
-  return await client.fetch(pageBySlugQuery, { slug })
-}
-
-export const getHomepage = async (): Promise<Page | null> => {
-  return await client.fetch(homepageQuery)
+export const getBlogPostsByAuthor = async (authorSlug: string) => {
+  const query = groq`*[_type == "blogPost" && status == "published" && author->slug.current == $authorSlug] | order(publishedAt desc) {
+    ...,
+    "author": author->{name, slug, avatar},
+    "categories": categories[]->{title, slug}
+  }`
+  return await client.fetch(query, { authorSlug })
 }
