@@ -3,7 +3,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { Code, ShoppingCart, Cloud } from "lucide-react"
 import { SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, cardHoverVariants, EASE_CURVE, createCounterVariant } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, cardHoverVariants, EASE_CURVE, createCounterVariant } from "@/lib/utils/animations"
 
 const services = [
   {
