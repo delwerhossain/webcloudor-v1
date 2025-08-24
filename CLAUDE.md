@@ -36,6 +36,20 @@ lib/api/         → Backend architecture
 
 ## Code Patterns
 
+### Build Error Prevention
+**CRITICAL**: Never use single quotes (') in JSX/TSX files as they cause build errors. Always use double quotes (") or template literals (`).
+
+```typescript
+// ❌ BAD: Causes build errors
+const text = 'Don't use single quotes'
+const message = 'Can't build with this'
+
+// ✅ GOOD: Use double quotes or alternatives
+const text = "Do not use single quotes"
+const message = "Cannot build with this"
+const template = `Won't cause issues in template literals`
+```
+
 ### Components (Arrow Functions Only)
 ```typescript
 // ✅ Page Component
