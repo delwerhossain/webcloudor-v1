@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Mail, Clock } from "lucide-react"
 import { useRef } from "react"
 import { Button, SectionContainer } from "@/components/ui"
-import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils"
+import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils/animations"
 
 export const StartProjectSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
