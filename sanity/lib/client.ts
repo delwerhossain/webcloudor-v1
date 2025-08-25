@@ -10,17 +10,26 @@ const config = {
 }
 
 if (!config.projectId) {
-  throw new Error('Missing NEXT_PUBLIC_SANITY_PROJECT_ID environment variable')
+  console.warn('Missing NEXT_PUBLIC_SANITY_PROJECT_ID environment variable - Sanity CMS will not be available')
 }
 
 if (!config.dataset) {
-  throw new Error('Missing NEXT_PUBLIC_SANITY_DATASET environment variable')
+  console.warn('Missing NEXT_PUBLIC_SANITY_DATASET environment variable - Sanity CMS will not be available')
 }
 
-export const client: SanityClient = createClient(config)
+// Create a fallback client configuration
+const fallbackConfig = {
+  projectId: 'fallback',
+  dataset: 'production',
+  apiVersion: '2024-01-01',
+  useCdn: false,
+  perspective: 'published' as const,
+}
+
+export const client: SanityClient = createClient(config.projectId && config.dataset ? config : fallbackConfig)
 
 export const previewClient: SanityClient = createClient({
-  ...config,
+  ...(config.projectId && config.dataset ? config : fallbackConfig),
   useCdn: false,
   perspective: 'previewDrafts',
   token: process.env.SANITY_API_TOKEN,
