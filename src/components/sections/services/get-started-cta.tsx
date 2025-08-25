@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { SectionContainer } from "@/components/ui/section-container"
 import { fadeUpVariants, EASE_CURVE } from "@/lib/utils/animations"
@@ -109,16 +110,22 @@ export const GetStartedCTA = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button
-                size="lg"
-                className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-semibold px-8 py-6 text-lg shadow-2xl hover:shadow-[0_20px_40px_rgba(255,215,0,0.3)] transition-all duration-300"
+              <Link
+                href="https://calendly.com/ahsanhabibakik/webcloudor"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="mr-2">
-                  <path d="M15 3h4a2 2 0 0 1 2 2v4m-6 9l4 4 4-4M2 12h10m8 0h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
-                </svg>
-                Book Free Consultation
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-semibold px-8 py-6 text-lg shadow-2xl hover:shadow-[0_20px_40px_rgba(255,215,0,0.3)] transition-all duration-300"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="mr-2">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v4m-6 9l4 4 4-4M2 12h10m8 0h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                  Book Free Consultation
+                </Button>
+              </Link>
               <p className="text-sm text-[#E2E8F0] mt-2">30-minute strategy call</p>
             </motion.div>
 
