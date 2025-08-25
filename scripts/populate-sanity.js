@@ -131,7 +131,7 @@ const authors = [
     expertise: ['AWS', 'Cloud Architecture', 'DevOps', 'Kubernetes', 'Infrastructure as Code'],
     socialLinks: {
       website: 'https://webcloudor.com',
-      linkedin: 'https://linkedin.com/in/ahsanhabibakik'
+      linkedin: 'https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ahsanhabibakik'
     },
     isActive: true,
     featured: true

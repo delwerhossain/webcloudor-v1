@@ -218,7 +218,7 @@ const mockAuthors = [
     isActive: true,
     featured: true,
     socials: {
-      linkedin: "https://linkedin.com/in/ahsan-habib-akik",
+      linkedin: "https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ahsanhabibakik",
       twitter: "https://twitter.com/ahsanhabibakik",
       github: "https://github.com/ahsanhabibakik"
     }
