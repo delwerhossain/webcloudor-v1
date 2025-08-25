@@ -491,7 +491,7 @@ const CookiePolicyPage = () => {
         <ul>
           <li><strong>Email:</strong> cookies@webcloudor.com</li>
           <li><strong>Response Time:</strong> Within 2 business days</li>
-          <li><strong>Phone:</strong> +1 (555) 123-4567 (business hours)</li>
+          <li><strong>Phone:</strong> +8801571060479 (business hours)</li>
         </ul>
 
         <h4>Technical Support</h4>
