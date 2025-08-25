@@ -32,9 +32,9 @@ const teamMembers = [
     }
   },
   {
-    name: "Syed Mir Habib",
+    name: "Ahsan Habib Akik",
     role: "Founder & Strategy Lead",
-    image: "/images/about/syed-mir-habib.jpg",
+    image: "/images/about/ahsan-habib-akik.jpg",
     bio: "Habib shapes client strategy, messaging, and user experience. He bridges the gap between business objectives and technical execution, ensuring every project delivers measurable outcomes. His background in growth strategy and user psychology helps clients not just build better products, but understand their markets deeply.",
     expertise: [
       "Digital strategy and positioning",
@@ -51,7 +51,7 @@ const teamMembers = [
     ],
     quote: "Great technology means nothing without clear strategy. I ensure every solution we build moves our clients closer to their biggest goals.",
     links: {
-      linkedin: "https://linkedin.com/in/syed-mir-habib",
+      linkedin: "https://linkedin.com/in/ahsan-habib-akik",
       email: "habib@webcloudor.com"
     }
   }
