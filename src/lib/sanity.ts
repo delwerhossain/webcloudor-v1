@@ -480,3 +480,62 @@ export const getBlogPostsByAuthor = async (authorSlug: string) => {
     return mockPosts
   }
 }
+
+export const getBlogPostNavigation = async (currentSlug: string, categoryIds: string[] = []) => {
+  if (!isSanityConfigured()) {
+    // For mock data, find previous and next posts
+    const currentIndex = mockBlogPosts.findIndex(post => post.slug.current === currentSlug)
+    const previous = currentIndex > 0 ? mockBlogPosts[currentIndex - 1] : null
+    const next = currentIndex < mockBlogPosts.length - 1 ? mockBlogPosts[currentIndex + 1] : null
+    
+    return { previous, next }
+  }
+  
+  try {
+    // Get current post date for ordering
+    const currentPostQuery = groq`*[_type == "blogPost" && slug.current == $slug && status == "published"][0] {
+      publishedAt
+    }`
+    const currentPost = await client.fetch(currentPostQuery, { slug: currentSlug })
+    
+    if (!currentPost) {
+      return { previous: null, next: null }
+    }
+    
+    // Get previous post (older)
+    const previousQuery = groq`*[_type == "blogPost" && status == "published" && publishedAt < $publishedAt] | order(publishedAt desc)[0] {
+      _id,
+      title,
+      slug,
+      publishedAt,
+      excerpt
+    }`
+    
+    // Get next post (newer)
+    const nextQuery = groq`*[_type == "blogPost" && status == "published" && publishedAt > $publishedAt] | order(publishedAt asc)[0] {
+      _id,
+      title,
+      slug,
+      publishedAt,
+      excerpt
+    }`
+    
+    const [previous, next] = await Promise.all([
+      client.fetch(previousQuery, { publishedAt: currentPost.publishedAt }),
+      client.fetch(nextQuery, { publishedAt: currentPost.publishedAt })
+    ])
+    
+    return { 
+      previous: previous || null, 
+      next: next || null 
+    }
+  } catch (error) {
+    console.error('Error fetching blog post navigation from Sanity:', error)
+    // Fallback to mock data
+    const currentIndex = mockBlogPosts.findIndex(post => post.slug.current === currentSlug)
+    const previous = currentIndex > 0 ? mockBlogPosts[currentIndex - 1] : null
+    const next = currentIndex < mockBlogPosts.length - 1 ? mockBlogPosts[currentIndex + 1] : null
+    
+    return { previous, next }
+  }
+}
