@@ -231,7 +231,8 @@
       "mcp__filesystem__list_directory",
       "mcp__filesystem__read_multiple_files",
       "Bash(npm run lint)",
-      "Bash(npx biome check:*)"
+      "Bash(npx biome check:*)",
+      "Bash(timeout 10 npm run dev)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
