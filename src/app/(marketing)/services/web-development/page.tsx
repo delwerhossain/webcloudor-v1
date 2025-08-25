@@ -264,7 +264,7 @@ const WebDevelopmentPage = () => {
           </div>
 
           <div className="mt-8 text-white/80 px-4">
-            <p className="text-sm sm:text-base">hello@webcloudor.com • Response guaranteed within 24 hours</p>
+            <p className="text-sm sm:text-base">webcloudor@gmail.com • Response guaranteed within 24 hours</p>
           </div>
         </div>
       </section>
