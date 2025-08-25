@@ -11,11 +11,11 @@ import { TeamFAQ } from "@/components/sections/team/team-faq"
 
 export const metadata: Metadata = {
   title: "Meet Our Team - WebCloudor | Expert Founders Delwer & Habib",
-  description: "Meet WebCloudor's founding team: Delwer Hossain (Technical Lead) and Syed Mir Habib (Strategy Lead). 15+ years combined experience, 50+ projects delivered, and direct founder involvement in every project.",
-  keywords: "WebCloudor team, Delwer Hossain, Syed Mir Habib, founders, technical lead, strategy lead, web development experts, business strategy, startup founders",
+  description: "Meet WebCloudor's founding team: Delwer Hossain (Technical Lead) and Ahsan Habib Akik (Strategy Lead). 15+ years combined experience, 50+ projects delivered, and direct founder involvement in every project.",
+  keywords: "WebCloudor team, Delwer Hossain, Ahsan Habib Akik, founders, technical lead, strategy lead, web development experts, business strategy, startup founders",
   openGraph: {
     title: "Meet Our Team - WebCloudor Founders",
-    description: "Personal involvement from day one. Meet Delwer Hossain and Syed Mir Habib, the founders behind WebCloudor's success with 50+ projects and 99% client retention.",
+    description: "Personal involvement from day one. Meet Delwer Hossain and Ahsan Habib Akik, the founders behind WebCloudor's success with 50+ projects and 99% client retention.",
     url: "https://webcloudor.com/team",
     siteName: "WebCloudor",
     images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: "/images/team/team-og.jpg",
         width: 1200,
         height: 630,
-        alt: "WebCloudor Team - Founders Delwer Hossain and Syed Mir Habib",
+        alt: "WebCloudor Team - Founders Delwer Hossain and Ahsan Habib Akik",
       },
     ],
     locale: "en_US",
