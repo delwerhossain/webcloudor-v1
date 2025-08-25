@@ -1,6 +1,5 @@
 # WebCloudor Agency Website
 
-.
 
 Premium web agency website built with Next.js 15, TypeScript, and MongoDB. Designed to convert tier-1/2 clients through professional presentation and streamlined consultation booking.
 
