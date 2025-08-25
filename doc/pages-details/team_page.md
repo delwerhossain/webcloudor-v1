@@ -115,7 +115,7 @@ should serve a business purpose."
 
 ---
 
-### Syed Mir Habib Profile
+### Ahsan Habib Akik Profile
 
 **Role Badge**: "Co-Founder & Strategy Lead"
 
