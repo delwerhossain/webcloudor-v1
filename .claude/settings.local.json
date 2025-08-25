@@ -178,7 +178,10 @@
       "mcp__digitalocean__*",
       "mcp__cloudflare__*",
       "Bash(find:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(grep:*)",
+      "Bash(timeout 30 pnpm build)",
+      "Bash(timeout 60 pnpm build)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
