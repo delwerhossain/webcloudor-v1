@@ -234,7 +234,9 @@
       "Bash(npx biome check:*)",
       "Bash(timeout 10 npm run dev)",
       "Bash(git pull:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git stash:*)",
+      "Bash(pnpm commit-all:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
