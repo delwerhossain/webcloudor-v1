@@ -186,7 +186,7 @@ export const ServicesFAQ = () => {
               </motion.button>
               
               <motion.a
-                href="mailto:hello@webcloudor.com"
+                href="mailto:webcloudor@gmail.com"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="border-2 border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8] hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
@@ -203,7 +203,7 @@ export const ServicesFAQ = () => {
               <p className="text-sm text-[#64748B]">
                 <span className="font-medium text-[#0A0A0B]">Response guaranteed within 24 hours</span>
                 <br />
-                hello@webcloudor.com • +1 (555) 123-4567
+                webcloudor@gmail.com • +8801571060479
               </p>
             </div>
           </div>
