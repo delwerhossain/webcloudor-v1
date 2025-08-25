@@ -270,7 +270,7 @@ doc/
 ## Rules
 
 ### PREVENT DUPLICATION
-Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. and avoid the doc\old this files 
+Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. and avoid the doc\old this files. if u create any .md for guideline then this file create on this location doc\others. same as testing script for use the location scripts\test.
 
 ### Success Criteria
 1. Design compliance with `/doc/` specs
