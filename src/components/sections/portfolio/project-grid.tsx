@@ -148,7 +148,7 @@ const projects: Project[] = [
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
 
   return (
     <motion.div
@@ -278,7 +278,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
 export const ProjectGrid = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.05 })
+  const isInView = useInView(ref, { once: true, margin: "-5%" })
 
   return (
     <SectionContainer padding="large" background="gray">
