@@ -143,6 +143,15 @@ button:focus-visible,
     transform: none;
   }
   
+  /* Disable hover transforms on touch devices */
+  .group:hover .group-hover\:translate-x-1 {
+    transform: none;
+  }
+  
+  .group:hover .group-hover\:scale-150 {
+    transform: none;
+  }
+  
   /* Larger touch targets on touch devices */
   button, 
   [role="button"],
@@ -152,6 +161,12 @@ button:focus-visible,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 12px 16px;
+  }
+  
+  /* Ensure proper spacing for mobile touch */
+  .hero-cta-buttons button {
+    margin-bottom: 12px;
   }
 }
 
@@ -180,13 +195,13 @@ img {
 
 /* Better selection colors */
 ::selection {
-  background: var(--signal-yellow);
-  color: var(--ink-black);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
 
 ::-moz-selection {
-  background: var(--signal-yellow);
-  color: var(--ink-black);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
 
 /* Custom responsive utilities */
@@ -194,6 +209,29 @@ img {
   .text-responsive {
     font-size: 14px;
     line-height: 1.4;
+  }
+  
+  /* Extra small screen optimizations */
+  .hero-section {
+    padding-top: 60px !important;
+  }
+  
+  .hero-section h1 {
+    font-size: 28px !important;
+    line-height: 1.1 !important;
+  }
+  
+  .hero-section .subheading {
+    font-size: 16px !important;
+  }
+  
+  .hero-section .description {
+    font-size: 14px !important;
+  }
+  
+  /* Reduce spacing on very small screens */
+  .hero-section .space-y-4 > * + * {
+    margin-top: 12px !important;
   }
 }
 
@@ -230,20 +268,26 @@ img {
 
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--paper-gray);
+  background: var(--color-muted);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--mist-gray);
-  border-radius: 4px;
+  background: var(--color-primary);
+  border-radius: 6px;
+  border: 2px solid var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--slate-gray);
+  background: var(--color-deep-blue);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-dark-blue);
 }
 
 /* Floating animation for hero elements */
