@@ -22,12 +22,12 @@ export const PolicySection = ({
     <SectionContainer
       background={background}
       padding="large"
-      className={cn("scroll-mt-24", className)}
+      className={cn("scroll-mt-20 sm:scroll-mt-24", className)}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
           id={id}
-          className="text-3xl font-bold text-[#1B365D] mb-8 scroll-mt-24"
+          className="text-2xl sm:text-3xl font-bold text-[#1B365D] mb-6 sm:mb-8 scroll-mt-20 sm:scroll-mt-24 leading-tight"
         >
           {title}
         </h2>
