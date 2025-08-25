@@ -155,7 +155,7 @@ export const ContactForm = ({ source = "contact-page", className = "" }: Contact
             id="phone"
             type="tel"
             {...register("phone")}
-            placeholder="+1 (555) 123-4567"
+            placeholder="+8801571060479"
             className="h-12"
           />
           {errors.phone && (
