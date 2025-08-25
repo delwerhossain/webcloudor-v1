@@ -314,7 +314,7 @@ const OurStoryPage = () => {
           </div>
 
           <div className="mt-6 sm:mt-8 text-sm sm:text-base text-foreground/60">
-            <p className="px-4 text-center">hello@webcloudor.com • Response guaranteed within 24 hours</p>
+            <p className="px-4 text-center">webcloudor@gmail.com • Response guaranteed within 24 hours</p>
           </div>
         </div>
       </section>
