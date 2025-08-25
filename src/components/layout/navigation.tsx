@@ -356,7 +356,9 @@ export const Navigation = () => {
                   Get Quote
                 </Link>
                 <Link
-                  href="/consultation"
+                  href="https://calendly.com/ahsanhabibakik/webcloudor"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     "bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/25",
                     scrolled ? "px-4 py-2 text-xs" : "px-6 py-2.5 text-sm"
@@ -515,7 +517,9 @@ export const Navigation = () => {
                   transition={{ delay: 0.5 }}
                 >
                   <Link
-                    href="/consultation"
+                    href="https://calendly.com/ahsanhabibakik/webcloudor"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block w-full px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105 shadow-lg shadow-[#FFD700]/25"
                   >
