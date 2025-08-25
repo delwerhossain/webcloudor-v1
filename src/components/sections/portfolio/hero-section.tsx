@@ -222,7 +222,11 @@ export const PortfolioHero = () => {
 
           {/* CTA */}
           <motion.div variants={fadeUpVariants}>
-            <Link href="/consultation">
+            <Link 
+              href="https://calendly.com/ahsanhabibakik/webcloudor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button 
                 size="lg"
                 className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-xl hover:shadow-[#FFC300]/25 hover:scale-105 transition-all duration-300 font-semibold px-8 py-4"
