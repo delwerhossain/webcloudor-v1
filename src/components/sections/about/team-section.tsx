@@ -51,7 +51,7 @@ const teamMembers = [
     ],
     quote: "Great technology means nothing without clear strategy. I ensure every solution we build moves our clients closer to their biggest goals.",
     links: {
-      linkedin: "https://linkedin.com/in/ahsan-habib-akik",
+      linkedin: "https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ahsanhabibakik",
       email: "habib@webcloudor.com"
     }
   }
