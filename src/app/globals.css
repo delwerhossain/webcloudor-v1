@@ -18,7 +18,7 @@
   --color-secondary: #FFD700;
   --color-secondary-foreground: #0A0A0B;
   --color-muted: #F8FAFC;
-  --color-muted-foreground: #64748B;
+  --color-muted-foreground: #475569;
   --color-accent: #FFD700;
   --color-accent-foreground: #0A0A0B;
   --color-destructive: #DC2626;
@@ -33,16 +33,22 @@
   --color-popover: #FFFFFF;
   --color-popover-foreground: #0A0A0B;
   
-  /* Logo-inspired brand colors */
+  /* Logo-inspired brand colors - WCAG AA compliant */
   --color-primary-blue: #00A8E8;
   --color-deep-blue: #0077C7;
   --color-dark-blue: #1B365D;
   --color-signal-yellow: #FFD700;
   --color-warm-orange: #FF8C00;
   --color-ink-black: #0A0A0B;
-  --color-slate-gray: #64748B;
+  --color-slate-gray: #475569;
   --color-paper-gray: #F8FAFC;
   --color-mist-gray: #E2E8F0;
+  
+  /* Enhanced accessibility colors */
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #374151;
+  --color-text-muted: #4B5563;
+  --color-text-subtle: #6B7280;
   
   /* Gradient system */
   --gradient-primary: linear-gradient(135deg, #00A8E8, #0077C7);
