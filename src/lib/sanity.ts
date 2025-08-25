@@ -43,7 +43,7 @@ export const getRelatedBlogPosts = async (currentPostSlug: string, categories: s
   }`
   return await client.fetch(query, { 
     currentPostSlug, 
-    categories: categories.map(cat => cat._id) 
+    categories 
   })
 }
 

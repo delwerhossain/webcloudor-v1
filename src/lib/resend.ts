@@ -20,13 +20,16 @@ export const sendEmail = async ({
   from?: string
 }) => {
   try {
-    const result = await resend.emails.send({
+    const emailPayload: any = {
       from,
       to,
       subject,
-      html,
-      text,
-    })
+    }
+    
+    if (html) emailPayload.html = html
+    if (text) emailPayload.text = text
+    
+    const result = await resend.emails.send(emailPayload)
 
     return result
   } catch (error) {

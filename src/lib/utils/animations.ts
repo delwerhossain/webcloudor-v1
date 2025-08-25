@@ -74,7 +74,7 @@ export const staggerContainer: Variants = {
 export const createCounterVariant = (
   finalValue: number,
   duration: number = 1.2
-): Variants => ({
+): any => ({
   initial: { value: 0 },
   animate: {
     value: finalValue,
