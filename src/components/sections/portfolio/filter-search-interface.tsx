@@ -118,12 +118,12 @@ const FilterDropdown = ({
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "flex items-center gap-1.5 px-3 py-2 bg-white border border-[#E2E8F0] rounded-md text-sm font-medium transition-all duration-200",
+          "flex items-center gap-1.5 px-3 py-2 bg-white border border-[#E2E8F0] rounded-md text-sm font-medium transition-all duration-200 min-h-[44px]",
           "hover:border-[#FFC300] hover:shadow-sm",
           isOpen && "border-[#FFC300] shadow-sm"
         )}
       >
-        <span className="text-[#64748B] truncate max-w-[80px] sm:max-w-[100px] lg:max-w-[120px]">{displayText}</span>
+        <span className="text-[#64748B] truncate max-w-[60px] xs:max-w-[80px] sm:max-w-[100px] lg:max-w-[120px]">{displayText}</span>
         <ChevronDown 
           className={cn(
             "w-4 h-4 text-[#64748B] transition-transform duration-200",
@@ -147,7 +147,7 @@ const FilterDropdown = ({
                   key={option}
                   onClick={() => toggleOption(option)}
                   className={cn(
-                    "w-full text-left px-3 py-2 rounded-md text-sm transition-colors duration-150",
+                    "w-full text-left px-3 py-2 rounded-md text-sm transition-colors duration-150 min-h-[44px] flex items-center",
                     selected.includes(option)
                       ? "bg-[#FFC300]/10 text-[#0A0A0B] font-medium"
                       : "text-[#64748B] hover:bg-[#F8FAFC] hover:text-[#0A0A0B]"
@@ -245,7 +245,7 @@ export const FilterSearchInterface = ({
         isSticky ? "sticky top-16 shadow-lg" : ""
       )}
     >
-      <SectionContainer padding="none" className="bg-[#F8FAFC] py-3">
+      <SectionContainer padding="small" className="bg-[#F8FAFC] !py-3">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Filters */}
           <div className="hidden md:block">
@@ -314,7 +314,7 @@ export const FilterSearchInterface = ({
                     value={searchTerm}
                     onChange={(e) => handleSearchChange(e.target.value)}
                     placeholder="Search projects by technology, outcome..."
-                    className="w-full pl-10 pr-4 py-2 border border-[#E2E8F0] rounded-md text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none transition-colors duration-200"
+                    className="w-full pl-10 pr-4 py-2 border border-[#E2E8F0] rounded-md text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none transition-colors duration-200 min-h-[44px]"
                   />
                   {searchTerm && (
                     <button
@@ -333,7 +333,7 @@ export const FilterSearchInterface = ({
                     <select
                       value={sortBy}
                       onChange={(e) => handleSortChange(e.target.value)}
-                      className="border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white"
+                      className="border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white min-h-[44px]"
                     >
                       {sortOptions.map(option => (
                         <option key={option.value} value={option.value}>
@@ -363,7 +363,7 @@ export const FilterSearchInterface = ({
                     value={searchTerm}
                     onChange={(e) => handleSearchChange(e.target.value)}
                     placeholder="Search projects..."
-                    className="w-full pl-10 pr-4 py-2 border border-[#E2E8F0] rounded-md text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none"
+                    className="w-full pl-10 pr-4 py-2 border border-[#E2E8F0] rounded-md text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none min-h-[44px]"
                   />
                   {searchTerm && (
                     <button
@@ -377,7 +377,7 @@ export const FilterSearchInterface = ({
 
                 <button
                   onClick={() => setShowMobileFilters(!showMobileFilters)}
-                  className="flex items-center gap-1.5 px-3 py-2 border border-[#E2E8F0] rounded-md bg-white text-[#64748B] hover:border-[#FFC300] transition-colors duration-200 whitespace-nowrap flex-shrink-0"
+                  className="flex items-center gap-1.5 px-3 py-2 border border-[#E2E8F0] rounded-md bg-white text-[#64748B] hover:border-[#FFC300] transition-colors duration-200 whitespace-nowrap flex-shrink-0 min-h-[44px]"
                 >
                   <Filter className="w-4 h-4" />
                   <span className="hidden xs:inline">Filter</span>
@@ -394,7 +394,7 @@ export const FilterSearchInterface = ({
                   <select
                     value={sortBy}
                     onChange={(e) => handleSortChange(e.target.value)}
-                    className="border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white"
+                    className="border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white min-h-[44px]"
                   >
                     {sortOptions.map(option => (
                       <option key={option.value} value={option.value}>
@@ -421,7 +421,7 @@ export const FilterSearchInterface = ({
                   className="overflow-hidden mt-3 bg-white rounded-md border border-[#E2E8F0] shadow-lg"
                 >
                   <div className="p-3 sm:p-4 space-y-3">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-3">
                       {Object.entries(filterOptions).map(([key, options]) => (
                         <FilterDropdown
                           key={key}
@@ -437,7 +437,7 @@ export const FilterSearchInterface = ({
                     <div className="flex items-center justify-between pt-3 border-t border-[#E2E8F0]">
                       <button
                         onClick={clearAllFilters}
-                        className="text-[#64748B] hover:text-[#FFC300] text-sm font-medium"
+                        className="text-[#64748B] hover:text-[#FFC300] text-sm font-medium min-h-[44px] flex items-center"
                       >
                         Clear All
                       </button>
