@@ -301,7 +301,7 @@ export const WorkWithTeam = () => {
               className="text-[#FFD700] text-sm font-medium text-center lg:text-right"
             >
               Direct access to the founders, always
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </div>
