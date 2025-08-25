@@ -10,6 +10,8 @@ import {
   ClientTestimonialSection,
   StartProjectSection
 } from "@/components/sections/home"
+import StructuredData from '@/components/seo/StructuredData'
+import { schemas } from '@/lib/seo/schema'
 
 export const metadata: Metadata = {
   title: "WebCloudor | AI-First Web Development Agency",
@@ -74,9 +76,17 @@ const DynamicClientTestimonial = dynamic(
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
-      {/* Hero Section - Above the fold, highest priority */}
-      <HeroSection />
+    <>
+      <StructuredData data={[
+        schemas.organization,
+        schemas.website,
+        schemas.webDevelopment,
+        schemas.cloudServices,
+        schemas.mobileDev
+      ]} />
+      <main className="min-h-screen bg-background">
+        {/* Hero Section - Above the fold, highest priority */}
+        <HeroSection />
       
       {/* Trust Bar - Immediate credibility */}
       <TrustBarSection />
@@ -108,5 +118,6 @@ export default function HomePage() {
       {/* Start Your Project - Final conversion CTA */}
       <StartProjectSection />
     </main>
+    </>
   )
 }

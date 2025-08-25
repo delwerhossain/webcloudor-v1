@@ -5,6 +5,7 @@ import { Navigation, Footer } from "@/components/layout"
 import { GoogleTagManager } from "@/components/analytics/GoogleTagManager"
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics"
 import { Hotjar } from "@/components/analytics/Hotjar"
+import { WebVitals } from "@/components/analytics/WebVitals"
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity"
 import { Toaster } from 'sonner'
 import "./globals.css"
@@ -95,6 +96,7 @@ export default function RootLayout({
         style={{ fontFeatureSettings: '"rlig" 1, "calt" 1' }}
       >
         <GoogleTagManager />
+        <WebVitals />
         <Navigation />
         <main className="min-h-screen">
           {children}
