@@ -113,17 +113,17 @@ export const StartTogether = () => {
         >
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-white/80">
             <Link 
-              href="mailto:hello@webcloudor.com"
+              href="mailto:webcloudor@gmail.com"
               className="hover:text-[#FFD700] transition-colors duration-300"
             >
-              hello@webcloudor.com
+              webcloudor@gmail.com
             </Link>
             <span className="hidden sm:inline">•</span>
             <Link 
               href="tel:+15551234567"
               className="hover:text-[#FFD700] transition-colors duration-300"
             >
-              +1 (555) 123-4567
+              +8801571060479
             </Link>
           </div>
           <p className="text-[#FFD700] font-semibold">
