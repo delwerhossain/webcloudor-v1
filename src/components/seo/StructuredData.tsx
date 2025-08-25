@@ -3,10 +3,8 @@
  * Injects JSON-LD structured data into page head for SEO
  */
 
-import { Thing } from 'schema-dts'
-
 interface StructuredDataProps {
-  data: Thing | Thing[]
+  data: any | any[]
 }
 
 export const StructuredData = ({ data }: StructuredDataProps) => {
@@ -19,10 +17,7 @@ export const StructuredData = ({ data }: StructuredDataProps) => {
           key={index}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              ...schema as object
-            }, null, 0) // Minified for production
+            __html: JSON.stringify(schema, null, 0) // Minified for production
           }}
         />
       ))}
@@ -31,12 +26,12 @@ export const StructuredData = ({ data }: StructuredDataProps) => {
 }
 
 // Convenience wrapper for multiple schemas
-export const MultipleStructuredData = ({ schemas }: { schemas: Thing[] }) => {
+export const MultipleStructuredData = ({ schemas }: { schemas: any[] }) => {
   return <StructuredData data={schemas} />
 }
 
 // SEO utility hooks and functions
-export const injectStructuredData = (data: Thing | Thing[]) => {
+export const injectStructuredData = (data: any | any[]) => {
   return <StructuredData data={data} />
 }
 

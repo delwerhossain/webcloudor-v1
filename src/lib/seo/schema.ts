@@ -3,10 +3,9 @@
  * Implements JSON-LD structured data for better SEO
  */
 
-import { Organization, WebSite, Service, Article, Person, BreadcrumbList, FAQPage, LocalBusiness } from 'schema-dts'
-
 // Base organization schema
-export const organizationSchema: Organization = {
+export const organizationSchema = {
+  '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'WebCloudor',
   alternateName: 'WebCloudor Agency',
@@ -60,7 +59,8 @@ export const organizationSchema: Organization = {
 }
 
 // Website schema
-export const websiteSchema: WebSite = {
+export const websiteSchema = {
+  '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'WebCloudor',
   alternateName: 'WebCloudor - Ship Faster, Scale Better',
@@ -75,7 +75,8 @@ export const websiteSchema: WebSite = {
 }
 
 // Service schemas
-export const webDevelopmentService: Service = {
+export const webDevelopmentService = {
+  '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Web Development Services',
   description: 'Custom web development using Next.js, React, and modern JavaScript frameworks.',
@@ -89,7 +90,8 @@ export const webDevelopmentService: Service = {
   }
 }
 
-export const cloudServicesService: Service = {
+export const cloudServicesService = {
+  '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Cloud Architecture Services',
   description: 'Scalable cloud infrastructure setup using AWS, Azure, and modern DevOps practices.',
@@ -103,7 +105,8 @@ export const cloudServicesService: Service = {
   }
 }
 
-export const mobileDevService: Service = {
+export const mobileDevService = {
+  '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Mobile Development Services',
   description: 'Cross-platform mobile applications using React Native and modern mobile technologies.',
@@ -118,7 +121,8 @@ export const mobileDevService: Service = {
 }
 
 // Person schemas for team
-export const delwerHossainSchema: Person = {
+export const delwerHossainSchema = {
+  '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Delwer Hossain',
   jobTitle: 'Founder & CEO',
@@ -133,7 +137,8 @@ export const delwerHossainSchema: Person = {
   ]
 }
 
-export const ahsanHabibSchema: Person = {
+export const ahsanHabibSchema = {
+  '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Ahsan Habib Akik',
   jobTitle: 'Co-Founder & CTO',
@@ -156,7 +161,8 @@ export const generateArticleSchema = (
   publishedDate: string,
   modifiedDate: string,
   slug: string
-): Article => ({
+) => ({
+  '@context': 'https://schema.org',
   '@type': 'Article',
   headline: title,
   description,
@@ -179,7 +185,8 @@ export const generateArticleSchema = (
 })
 
 // Breadcrumb schema generator
-export const generateBreadcrumbSchema = (breadcrumbs: Array<{ name: string; url: string }>): BreadcrumbList => ({
+export const generateBreadcrumbSchema = (breadcrumbs: Array<{ name: string; url: string }>) => ({
+  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: breadcrumbs.map((crumb, index) => ({
     '@type': 'ListItem',
@@ -190,7 +197,8 @@ export const generateBreadcrumbSchema = (breadcrumbs: Array<{ name: string; url:
 })
 
 // FAQ schema generator
-export const generateFAQSchema = (faqs: Array<{ question: string; answer: string }>): FAQPage => ({
+export const generateFAQSchema = (faqs: Array<{ question: string; answer: string }>) => ({
+  '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: faqs.map(faq => ({
     '@type': 'Question',
@@ -203,7 +211,8 @@ export const generateFAQSchema = (faqs: Array<{ question: string; answer: string
 })
 
 // LocalBusiness schema (if needed for specific location services)
-export const localBusinessSchema: LocalBusiness = {
+export const localBusinessSchema = {
+  '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': 'https://webcloudor.com/#localbusiness',
   name: 'WebCloudor',
