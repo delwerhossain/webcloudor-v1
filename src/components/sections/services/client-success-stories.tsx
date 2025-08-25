@@ -265,7 +265,7 @@ export const ClientSuccessStories = () => {
               </div>
             </motion.button>
           ))}
-        </div>
+        </motion.div>
       </div>
     </SectionContainer>
   )
