@@ -86,9 +86,8 @@ const nextConfig = {
   // Compression
   compress: true,
 
-  // Experimental features for performance
+  // Experimental features for performance  
   experimental: {
-    optimizeCss: true,
     scrollRestoration: true,
   },
 
