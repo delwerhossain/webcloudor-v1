@@ -99,7 +99,7 @@ export default function FAQPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-slate-50 to-blue-50/30">
+      <section className="pt-20 pb-16 sm:pt-24 md:pt-28 lg:pt-24 bg-gradient-to-br from-slate-50 to-blue-50/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 text-blue-700 rounded-full mb-4 sm:mb-6">

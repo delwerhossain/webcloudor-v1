@@ -80,7 +80,7 @@ export default function DevOpsServicesPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-purple-50/30">
+      <section className="pt-20 pb-16 sm:pt-24 md:pt-28 lg:pt-24 bg-gradient-to-br from-slate-50 to-purple-50/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-4">DevOps & Deployment</Badge>
