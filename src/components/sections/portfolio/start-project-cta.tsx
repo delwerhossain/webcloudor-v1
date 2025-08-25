@@ -294,14 +294,14 @@ export const StartProjectCTA = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="flex items-center justify-center gap-3 text-white">
                 <Mail className="w-5 h-5 text-[#FFC300]" />
-                <a href="mailto:hello@webcloudor.com" className="hover:text-[#FFC300] transition-colors">
-                  hello@webcloudor.com
+                <a href="mailto:webcloudor@gmail.com" className="hover:text-[#FFC300] transition-colors">
+                  webcloudor@gmail.com
                 </a>
               </div>
               <div className="flex items-center justify-center gap-3 text-white">
                 <Phone className="w-5 h-5 text-[#FFC300]" />
                 <a href="tel:+15551234567" className="hover:text-[#FFC300] transition-colors">
-                  +1 (555) 123-4567
+                  +8801571060479
                 </a>
               </div>
             </div>
