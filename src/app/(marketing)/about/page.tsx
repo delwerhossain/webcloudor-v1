@@ -12,8 +12,8 @@ import { StartTogether } from "@/components/sections/about/start-together-sectio
 
 export const metadata: Metadata = {
   title: "About Us - WebCloudor | Built by Experts Who Understand Business",
-  description: "Meet the WebCloudor team: Delwer Hossain and Syed Mir Habib. 50+ projects, 99% client retention, and $25M+ revenue generated. Learn how we help ambitious businesses ship faster and grow sustainably.",
-  keywords: "WebCloudor team, web development experts, Delwer Hossain, Syed Mir Habib, professional web agency, client success, business growth",
+  description: "Meet the WebCloudor team: Delwer Hossain and Ahsan Habib Akik. 50+ projects, 99% client retention, and $25M+ revenue generated. Learn how we help ambitious businesses ship faster and grow sustainably.",
+  keywords: "WebCloudor team, web development experts, Delwer Hossain, Ahsan Habib Akik, professional web agency, client success, business growth",
   openGraph: {
     title: "About WebCloudor - Built by Experts Who Understand Business",
     description: "Meet the team behind WebCloudor. 50+ projects delivered, 99% client retention rate, and a proven track record of helping businesses achieve breakthrough results.",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "/images/about/team-og.jpg",
         width: 1200,
         height: 630,
-        alt: "WebCloudor Team - Delwer Hossain and Syed Mir Habib",
+        alt: "WebCloudor Team - Delwer Hossain and Ahsan Habib Akik",
       },
     ],
     locale: "en_US",
