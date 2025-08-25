@@ -44,7 +44,7 @@ export const ServicesFAQ = () => {
 
   return (
     <SectionContainer 
-      id="services-faq"
+      
       background="gray" 
       padding="large"
     >
