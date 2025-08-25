@@ -10,10 +10,33 @@ const mockBlogPosts = [
     excerpt: "Explore the latest features in Next.js 15 and how they're shaping the future of modern web development.",
     publishedAt: "2024-12-15",
     featured: true,
+    pinned: false,
     tags: ["Next.js", "Web Development", "React", "Frontend"],
-    author: { name: "Delwer Hossain", slug: { current: "delwer-hossain" } },
-    categories: [{ title: "Web Development", slug: { current: "web-development" } }],
-    status: "published"
+    author: { 
+      _id: "author-1",
+      name: "Delwer Hossain", 
+      slug: { current: "delwer-hossain" },
+      isActive: true,
+      featured: true
+    },
+    categories: [{ 
+      _id: "cat-1",
+      title: "Web Development", 
+      slug: { current: "web-development" },
+      color: "blue",
+      featured: true,
+      isActive: true
+    }],
+    featuredImage: {
+      _type: "image",
+      asset: {
+        _ref: "image-mock-1",
+        _type: "reference"
+      },
+      alt: "Next.js 15 development workflow"
+    },
+    status: "published",
+    viewCount: 0
   },
   {
     _id: "mock-2", 
@@ -22,10 +45,33 @@ const mockBlogPosts = [
     excerpt: "Learn essential cloud architecture patterns and best practices for building scalable, reliable applications.",
     publishedAt: "2024-12-10",
     featured: true,
+    pinned: false,
     tags: ["Cloud", "Architecture", "AWS", "Scalability"],
-    author: { name: "Ahsan Habib Akik", slug: { current: "ahsan-habib-akik" } },
-    categories: [{ title: "Cloud Computing", slug: { current: "cloud-computing" } }],
-    status: "published"
+    author: { 
+      _id: "author-2",
+      name: "Ahsan Habib Akik", 
+      slug: { current: "ahsan-habib-akik" },
+      isActive: true,
+      featured: true
+    },
+    categories: [{ 
+      _id: "cat-2",
+      title: "Cloud Computing", 
+      slug: { current: "cloud-computing" },
+      color: "purple",
+      featured: true,
+      isActive: true
+    }],
+    featuredImage: {
+      _type: "image",
+      asset: {
+        _ref: "image-mock-2",
+        _type: "reference"
+      },
+      alt: "Cloud architecture diagram"
+    },
+    status: "published",
+    viewCount: 0
   },
   {
     _id: "mock-3",
@@ -34,17 +80,64 @@ const mockBlogPosts = [
     excerpt: "Discover how to effectively integrate AI capabilities into your web applications with practical examples.",
     publishedAt: "2024-12-05",
     featured: false,
+    pinned: false,
     tags: ["AI", "Machine Learning", "Integration", "APIs"],
-    author: { name: "Delwer Hossain", slug: { current: "delwer-hossain" } },
-    categories: [{ title: "AI & Technology", slug: { current: "ai-technology" } }],
-    status: "published"
+    author: { 
+      _id: "author-1",
+      name: "Delwer Hossain", 
+      slug: { current: "delwer-hossain" },
+      isActive: true,
+      featured: true
+    },
+    categories: [{ 
+      _id: "cat-3",
+      title: "AI & Technology", 
+      slug: { current: "ai-technology" },
+      color: "green",
+      featured: true,
+      isActive: true
+    }],
+    featuredImage: {
+      _type: "image",
+      asset: {
+        _ref: "image-mock-3",
+        _type: "reference"
+      },
+      alt: "AI integration concept"
+    },
+    status: "published",
+    viewCount: 0
   }
 ]
 
 const mockCategories = [
-  { _id: "cat-1", title: "Web Development", slug: { current: "web-development" }, postCount: 1 },
-  { _id: "cat-2", title: "Cloud Computing", slug: { current: "cloud-computing" }, postCount: 1 },
-  { _id: "cat-3", title: "AI & Technology", slug: { current: "ai-technology" }, postCount: 1 }
+  { 
+    _id: "cat-1", 
+    title: "Web Development", 
+    slug: { current: "web-development" }, 
+    color: "blue",
+    featured: true,
+    isActive: true,
+    postCount: 1 
+  },
+  { 
+    _id: "cat-2", 
+    title: "Cloud Computing", 
+    slug: { current: "cloud-computing" }, 
+    color: "purple",
+    featured: true,
+    isActive: true,
+    postCount: 1 
+  },
+  { 
+    _id: "cat-3", 
+    title: "AI & Technology", 
+    slug: { current: "ai-technology" }, 
+    color: "green",
+    featured: true,
+    isActive: true,
+    postCount: 1 
+  }
 ]
 
 // Check if Sanity is properly configured
