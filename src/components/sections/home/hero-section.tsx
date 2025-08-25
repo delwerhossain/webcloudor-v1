@@ -228,7 +228,7 @@ export const HeroSection = () => {
               {/* Secondary Cards */}
               <FloatingCard 
                 delay={0.5}
-                className="absolute -top-4 -left-8 z-20 w-32"
+                className="absolute -top-4 -left-8  z-30 w-32"
               >
                 <div 
                   className="rounded-xl p-4 lg:p-5 shadow-xl backdrop-blur-sm"
@@ -243,7 +243,7 @@ export const HeroSection = () => {
 
               <FloatingCard
                 delay={1}
-                className="absolute -bottom-4 -right-8 z-20 w-28"
+                className="absolute -bottom-4 -right-8  z-30 w-28"
               >
                 <div 
                   className="rounded-xl p-4 lg:p-5 shadow-xl backdrop-blur-sm text-white"
