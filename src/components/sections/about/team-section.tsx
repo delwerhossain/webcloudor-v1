@@ -62,8 +62,8 @@ export const TeamSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <SectionContainer id="team-section" background="white" padding="large">
-      <div ref={ref} className="space-y-16">
+    <SectionContainer background="white" padding="large">
+      <div id="team-section" ref={ref} className="space-y-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
