@@ -6,7 +6,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals'
+import { onCLS, onFCP, onLCP, onTTFB, onINP } from 'web-vitals'
 
 interface VitalsMetric {
   name: string
@@ -21,7 +21,8 @@ const sendToAnalytics = (metric: VitalsMetric) => {
   const { name, value, id, delta, rating } = metric
   
   // Google Analytics 4
-  if (typeof gtag !== 'undefined') {
+  if (typeof window !== 'undefined' && 'gtag' in window) {
+    const gtag = (window as any).gtag
     gtag('event', name, {
       value: Math.round(name === 'CLS' ? delta * 1000 : delta),
       metric_id: id,
@@ -29,7 +30,7 @@ const sendToAnalytics = (metric: VitalsMetric) => {
       metric_delta: delta,
       metric_rating: rating,
       custom_parameter_1: window.location.pathname,
-      custom_parameter_2: navigator.connection?.effectiveType || 'unknown'
+      custom_parameter_2: (navigator as any).connection?.effectiveType || 'unknown'
     })
   }
 
@@ -67,8 +68,8 @@ const getVitalsRating = (name: string, value: number): 'good' | 'needs-improveme
   switch (name) {
     case 'LCP':
       return value <= 2500 ? 'good' : value <= 4000 ? 'needs-improvement' : 'poor'
-    case 'FID':
-      return value <= 100 ? 'good' : value <= 300 ? 'needs-improvement' : 'poor'
+    case 'INP':
+      return value <= 200 ? 'good' : value <= 500 ? 'needs-improvement' : 'poor'
     case 'CLS':
       return value <= 0.1 ? 'good' : value <= 0.25 ? 'needs-improvement' : 'poor'
     case 'FCP':
@@ -95,12 +96,12 @@ const trackMetric = (metric: any) => {
 
 export const WebVitals = () => {
   useEffect(() => {
-    // Track Core Web Vitals
-    getCLS(trackMetric)
-    getFID(trackMetric) 
-    getFCP(trackMetric)
-    getLCP(trackMetric)
-    getTTFB(trackMetric)
+    // Track Core Web Vitals (FID replaced by INP in web-vitals v5)
+    onCLS(trackMetric)
+    onINP(trackMetric) 
+    onFCP(trackMetric)
+    onLCP(trackMetric)
+    onTTFB(trackMetric)
 
     // Track additional performance metrics
     if (typeof window !== 'undefined' && window.performance) {
