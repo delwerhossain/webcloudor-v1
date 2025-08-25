@@ -2,6 +2,7 @@
 
 import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion"
 import { useRef, useState } from "react"
+import Link from "next/link"
 import { SectionContainer } from "@/components/ui/section-container"
 import { Card } from "@/components/ui/card"
 
@@ -217,14 +218,20 @@ export const TeamFAQ = () => {
                   Email Us Directly
                 </motion.a>
                 
-                <motion.button
-                  whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-                  className="inline-flex items-center gap-2 border-2 border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8] hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300"
+                <Link
+                  href="https://calendly.com/ahsanhabibakik/webcloudor"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <span>📞</span>
-                  Schedule a Call
-                </motion.button>
+                  <motion.button
+                    whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+                    whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+                    className="inline-flex items-center gap-2 border-2 border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8] hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300"
+                  >
+                    <span>📞</span>
+                    Schedule a Call
+                  </motion.button>
+                </Link>
               </div>
               
               <div className="flex justify-center items-center gap-6 pt-6 text-sm text-[#64748B]">
