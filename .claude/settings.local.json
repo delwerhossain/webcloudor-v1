@@ -194,7 +194,10 @@
       "Bash(npm run dev:*)",
       "Bash(node:*)",
       "Bash(git add:*)",
-      "Bash(npm run sanity:populate:*)"
+      "Bash(npm run sanity:populate:*)",
+      "Bash(npm run build:*)",
+      "Bash(where convert)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
