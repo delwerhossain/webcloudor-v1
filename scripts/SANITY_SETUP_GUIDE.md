@@ -11,18 +11,22 @@
 
 ## 🎯 Solution Options
 
-### Option 1: Use Sanity Studio (Recommended)
+### Option 1: Standalone Sanity Studio (Recommended)
 
-**Easiest approach - No API token issues**
+**Easiest approach - No build conflicts or API token issues**
 
-1. **Start your development server:**
+1. **Start Sanity Studio separately:**
    ```bash
-   npm run dev
+   npm run sanity:start
    ```
+   - This starts the studio at `http://localhost:3333`
+   - Uses browser authentication (no API token required)
+   - No Next.js build conflicts
 
-2. **Access Sanity Studio:**
-   - Open: `http://localhost:3000/studio`
-   - This bypasses API token issues as it uses browser auth
+2. **Alternative: Access via Next.js route:**
+   - Start dev server: `npm run dev`
+   - Visit: `http://localhost:3000/studio`
+   - You'll see instructions for both options
 
 3. **Create content in this order:**
 
