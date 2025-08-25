@@ -101,7 +101,7 @@ const logoGroups: LogoGroup[] = [
 
 const LogoCard = ({ company, delay }: { company: string; delay: number }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
 
   return (
     <motion.div
@@ -134,7 +134,7 @@ const LogoCard = ({ company, delay }: { company: string; delay: number }) => {
 
 const LogoSection = ({ group, groupIndex }: { group: LogoGroup; groupIndex: number }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
 
   return (
     <motion.div
@@ -182,7 +182,7 @@ const LogoSection = ({ group, groupIndex }: { group: LogoGroup; groupIndex: numb
 
 export const ClientLogoWall = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.05 })
+  const isInView = useInView(ref, { once: true, margin: "-5%" })
 
   const totalCompanies = logoGroups.reduce((sum, group) => sum + group.companies.length, 0)
 
