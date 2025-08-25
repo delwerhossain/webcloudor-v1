@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 import { usePathname } from 'next/navigation'
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui'
@@ -389,7 +389,7 @@ export const Navigation = () => {
                     scrolled ? "w-8 h-8 p-1" : "w-9 h-9 p-1.5"
                   )}
                 >
-                  <Image
+                  <OptimizedImage
                     src="/logo.png"
                     alt="WebCloudor Logo"
                     width={scrolled ? 24 : 24}
@@ -690,7 +690,7 @@ export const Navigation = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] p-2 shadow-lg">
-                    <Image
+                    <OptimizedImage
                       src="/logo.png"
                       alt="WebCloudor"
                       width={24}
