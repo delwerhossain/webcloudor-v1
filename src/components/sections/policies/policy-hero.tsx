@@ -7,9 +7,6 @@ interface PolicyHeroProps {
   lastUpdated: string
   keyPoints: string[]
   showControls?: boolean
-  onManagePreferences?: () => void
-  onAcceptAll?: () => void
-  onAcceptEssential?: () => void
 }
 
 export const PolicyHero = ({
@@ -18,9 +15,6 @@ export const PolicyHero = ({
   lastUpdated,
   keyPoints,
   showControls = false,
-  onManagePreferences,
-  onAcceptAll,
-  onAcceptEssential,
 }: PolicyHeroProps) => {
   return (
     <SectionContainer
@@ -34,9 +28,6 @@ export const PolicyHero = ({
         lastUpdated={lastUpdated}
         keyPoints={keyPoints}
         showControls={showControls}
-        onManagePreferences={onManagePreferences}
-        onAcceptAll={onAcceptAll}
-        onAcceptEssential={onAcceptEssential}
       />
     </SectionContainer>
   )
