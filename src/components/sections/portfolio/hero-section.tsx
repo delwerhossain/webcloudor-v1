@@ -86,7 +86,7 @@ const FloatingProjectCard = ({ project, index }: { project: ProjectPreview; inde
           ease: "easeInOut",
           delay: index * 0.5
         }}
-        className={`bg-gradient-to-r ${project.color} rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur-sm border border-white/20 min-w-[140px] sm:min-w-[180px]`}
+        className={`bg-gradient-to-r ${project.color} rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 shadow-lg backdrop-blur-sm border border-white/20 min-w-[120px] sm:min-w-[140px] lg:min-w-[180px] hidden sm:block`}
       >
         <div className="flex items-center gap-2 sm:gap-3 text-white">
           <div className="w-5 h-5 flex-shrink-0">{project.icon}</div>
@@ -130,10 +130,10 @@ const CounterMetric = ({ value, label, delay }: { value: string; label: string; 
       transition={{ duration: 0.6, ease: EASE_CURVE, delay }}
       className="text-center"
     >
-      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1B365D]">
+      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1B365D]">
         {value.includes("+") ? "+" : ""}{count}{value.includes("M") ? "M+" : "+"}
       </div>
-      <div className="text-xs sm:text-sm text-slate-600">{label}</div>
+      <div className="text-xs sm:text-sm text-slate-600 mt-1">{label}</div>
     </motion.div>
   )
 }
@@ -144,7 +144,7 @@ export const PortfolioHero = () => {
   const yParallax = useTransform(scrollY, [0, 800], [0, -100])
 
   return (
-    <SectionContainer className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-24">
+    <SectionContainer className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20 lg:pt-24">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-[#1B365D] via-transparent to-[#FFC300]" />
@@ -177,13 +177,13 @@ export const PortfolioHero = () => {
         >
           {/* Main Headline */}
           <motion.div variants={fadeUpVariants} className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#0A0A0B] leading-tight px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#0A0A0B] leading-tight px-2 sm:px-4">
               Results that speak{" "}
               <span className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] bg-clip-text text-transparent">
                 louder than words
               </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-4">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-2 sm:px-4">
               Real projects, real outcomes, real growth. See how we have helped 50+ clients achieve breakthrough results.
             </p>
           </motion.div>
@@ -191,13 +191,13 @@ export const PortfolioHero = () => {
           {/* Filter Pills */}
           <motion.div 
             variants={fadeUpVariants}
-            className="flex flex-wrap justify-center gap-2 sm:gap-3 py-4 px-4"
+            className="flex flex-wrap justify-center gap-1 sm:gap-2 md:gap-3 py-4 px-2 sm:px-4 max-w-3xl mx-auto"
           >
             {filterCategories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
-                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 min-h-[44px] flex items-center ${
+                className={`px-2 sm:px-3 md:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 min-h-[44px] flex items-center whitespace-nowrap ${
                   activeFilter === category
                     ? "bg-[#FFC300] text-[#0A0A0B] shadow-lg shadow-[#FFC300]/25"
                     : "bg-white/80 text-slate-700 hover:bg-[#FFC300]/20 hover:text-[#0A0A0B] border border-slate-200"
@@ -211,9 +211,9 @@ export const PortfolioHero = () => {
           {/* Trust Metrics Bar */}
           <motion.div 
             variants={fadeUpVariants}
-            className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 shadow-lg mx-4"
+            className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-white/20 shadow-lg mx-2 sm:mx-4"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
               <CounterMetric value="50+" label="Projects Delivered" delay={0.3} />
               <CounterMetric value="25M+" label="Client Revenue Generated" delay={0.5} />
               <CounterMetric value="99%" label="Client Retention" delay={0.7} />
