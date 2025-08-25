@@ -319,7 +319,7 @@ const PrivacyPolicyPage = () => {
         <p>To exercise any of these rights, contact us at:</p>
         <ul>
           <li><strong>Email:</strong> privacy@webcloudor.com</li>
-          <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+          <li><strong>Phone:</strong> +8801571060479</li>
           <li><strong>Mail:</strong> WebCloudor Privacy Team, [Business Address]</li>
         </ul>
         <p>
@@ -552,7 +552,7 @@ const PrivacyPolicyPage = () => {
 
         <h4>Phone Support</h4>
         <ul>
-          <li><strong>Number:</strong> +1 (555) 123-4567</li>
+          <li><strong>Number:</strong> +8801571060479</li>
           <li><strong>Hours:</strong> Monday-Friday, 9 AM - 5 PM EST</li>
           <li><strong>Languages:</strong> English, [Additional languages if applicable]</li>
         </ul>
