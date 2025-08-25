@@ -2,7 +2,7 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/ui/optimized-image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { SectionContainer } from "@/components/ui/section-container"
@@ -103,12 +103,14 @@ const FounderProfile = ({ data, imagePosition, delay = 0 }: FounderProfileProps)
         className={`relative order-first lg:order-none ${imagePosition === "right" ? "lg:col-start-2" : ""}`}
       >
         <div className="aspect-square relative rounded-2xl overflow-hidden shadow-xl max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-          <Image
+          <OptimizedImage
             src={`/images/team/${data.name.toLowerCase().replace(" ", "-")}.jpg`}
             alt={`${data.name} - ${data.role} at WebCloudor`}
             fill
             className="object-cover"
             sizes="(max-width: 640px) 80vw, (max-width: 768px) 60vw, (max-width: 1200px) 50vw, 400px"
+            quality={90}
+            priority={imagePosition === "left"}
           />
         </div>
       </motion.div>
