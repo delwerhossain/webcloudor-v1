@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -67,17 +67,17 @@ const MobileNavItem = ({
   }
 
   return (
-    <div className="mb-2">
+    <div className="mb-1">
       {item.dropdown ? (
         <>
           <motion.button
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
-              "flex items-center justify-between w-full px-4 py-3 text-left rounded-xl transition-all duration-200 group",
+              "flex items-center justify-between w-full min-h-[48px] px-4 py-3 text-left rounded-xl transition-all duration-200 group touch-manipulation",
               isActiveItem(item.href)
-                ? "text-[#00A8E8] bg-[#00A8E8]/10 border-l-4 border-[#00A8E8]"
-                : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5"
+                ? "text-[#00A8E8] bg-[#00A8E8]/15 border-l-4 border-[#00A8E8] font-semibold"
+                : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/8 hover:scale-105"
             )}
           >
             <span className="font-medium">{item.name}</span>
@@ -123,10 +123,10 @@ const MobileNavItem = ({
           href={item.href}
           onClick={onClose}
           className={cn(
-            "flex items-center px-4 py-3 rounded-xl transition-all duration-200 group",
+            "flex items-center min-h-[48px] px-4 py-3 rounded-xl transition-all duration-200 group touch-manipulation",
             isActiveItem(item.href)
-              ? "text-[#00A8E8] bg-[#00A8E8]/10 border-l-4 border-[#00A8E8]"
-              : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5"
+              ? "text-[#00A8E8] bg-[#00A8E8]/15 border-l-4 border-[#00A8E8] font-semibold"
+              : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/8 hover:scale-105"
           )}
         >
           <span className="font-medium">{item.name}</span>
@@ -142,6 +142,7 @@ export const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [isHomePageLoaded, setIsHomePageLoaded] = useState(false)
   const pathname = usePathname()
 
   // Helper function to check if a menu item is active
@@ -157,7 +158,10 @@ export const Navigation = () => {
     return false
   }
 
-  // Handle scroll effect with better mobile detection and error handling
+  // Debounce ref for scroll handling
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Initialize mobile detection and home page load state
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -165,54 +169,119 @@ export const Navigation = () => {
       setIsMobile(window.innerWidth < 1024)
     }
 
+    // Initial setup
+    handleResize()
+    window.addEventListener('resize', handleResize, { passive: true })
+    
+    // Set home page loaded state with delay to ensure DOM is ready
+    if (pathname === '/') {
+      const timer = setTimeout(() => {
+        setIsHomePageLoaded(true)
+      }, 100)
+      return () => {
+        clearTimeout(timer)
+        window.removeEventListener('resize', handleResize)
+      }
+    } else {
+      setIsHomePageLoaded(false)
+    }
+    
+    return () => window.removeEventListener('resize', handleResize)
+  }, [pathname])
+
+  // Enhanced scroll detection with intersection observer for home page
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const isHomePage = pathname === '/'
+    let intersectionObserver: IntersectionObserver | null = null
+    
     const handleScroll = () => {
       const scrollY = window.scrollY
-      const isHomePage = pathname === '/'
       
-      // Special handling for home page - more sensitive detection
-      const scrollThreshold = isHomePage 
-        ? (isMobile ? 5 : 10) 
-        : (isMobile ? 10 : 20)
+      // Different thresholds based on page and device
+      let scrollThreshold
       
-      setScrolled(scrollY > scrollThreshold)
+      if (isHomePage && isHomePageLoaded) {
+        // More sensitive for home page after it's loaded
+        scrollThreshold = isMobile ? 8 : 15
+      } else if (isHomePage) {
+        // Very sensitive during home page loading
+        scrollThreshold = isMobile ? 3 : 8
+      } else {
+        // Normal threshold for other pages
+        scrollThreshold = isMobile ? 10 : 20
+      }
+      
+      const shouldBeScrolled = scrollY > scrollThreshold
+      
+      // Only update if state actually changes
+      setScrolled(prev => {
+        if (prev !== shouldBeScrolled) {
+          return shouldBeScrolled
+        }
+        return prev
+      })
       
       // Close dropdowns when scrolling
-      if (activeDropdown) {
+      if (activeDropdown && scrollY > 5) {
         setActiveDropdown(null)
       }
     }
 
-    let ticking = false
-    const handleScrollThrottled = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          try {
-            handleScroll()
-          } catch (error) {
-            console.warn('Navigation scroll handler error:', error)
+    // Use intersection observer for home page hero section detection
+    if (isHomePage && isHomePageLoaded) {
+      const heroSection = document.querySelector('.hero-section')
+      if (heroSection) {
+        intersectionObserver = new IntersectionObserver(
+          (entries) => {
+            const heroEntry = entries[0]
+            if (heroEntry) {
+              // When hero section is less than 80% visible, consider scrolled
+              setScrolled(!heroEntry.isIntersecting || heroEntry.intersectionRatio < 0.8)
+            }
+          },
+          { 
+            threshold: [0, 0.8, 1],
+            rootMargin: '-60px 0px 0px 0px' // Account for nav height
           }
-          ticking = false
-        })
-        ticking = true
+        )
+        
+        intersectionObserver.observe(heroSection)
       }
     }
 
-    // Initial setup with safety checks
-    try {
-      handleResize()
-      handleScroll()
-    } catch (error) {
-      console.warn('Navigation initial setup error:', error)
+    // Debounced scroll handler
+    const debouncedScroll = () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+      
+      scrollTimeoutRef.current = setTimeout(() => {
+        handleScroll()
+      }, 10)
+    }
+    
+    // Also use scroll for fallback
+    const handleScrollThrottled = () => {
+      requestAnimationFrame(debouncedScroll)
     }
 
+    // Initial call
+    handleScroll()
+    
     window.addEventListener('scroll', handleScrollThrottled, { passive: true })
-    window.addEventListener('resize', handleResize, { passive: true })
     
     return () => {
       window.removeEventListener('scroll', handleScrollThrottled)
-      window.removeEventListener('resize', handleResize)
+      if (intersectionObserver) {
+        intersectionObserver.disconnect()
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
     }
-  }, [isMobile])
+  }, [pathname, isMobile, isHomePageLoaded, activeDropdown])
 
   // Close mobile menu on escape and handle outside clicks
   useEffect(() => {
@@ -269,9 +338,16 @@ export const Navigation = () => {
             marginTop: scrolled ? (!isMobile ? 12 : 8) : 0,
             borderRadius: scrolled ? (!isMobile ? 16 : 12) : 0,
           }}
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ 
+            duration: 0.4, 
+            ease: [0.4, 0, 0.2, 1],
+            type: "tween"
+          }}
+          style={{
+            willChange: scrolled ? 'margin, border-radius' : 'auto'
+          }}
           className={cn(
-            "transition-all duration-300 ease-out relative",
+            "transition-all duration-400 ease-out relative",
             scrolled
               ? "bg-white/95 backdrop-blur-2xl border border-white/30 shadow-2xl shadow-[#00A8E8]/10"
               : "bg-transparent backdrop-blur-sm"
@@ -294,10 +370,10 @@ export const Navigation = () => {
             }}
           />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
             <div className={cn(
               "flex items-center justify-between transition-all duration-300",
-              scrolled ? "h-12 sm:h-14" : "h-14 sm:h-16"
+              scrolled ? "h-14 sm:h-14" : "h-16 sm:h-16"
             )}>
               
               {/* Logo */}
@@ -333,19 +409,20 @@ export const Navigation = () => {
                 </div>
               </Link>
 
-              {/* Mobile Quick Menu Items */}
-              <div className="flex items-center space-x-1 lg:hidden">
+              {/* Mobile Quick Menu Items - Improved Layout */}
+              <div className="flex items-center space-x-2 lg:hidden">
+                {/* Only show on tablet+ sizes to avoid crowding */}
                 <Link
                   href="/services"
                   className={cn(
-                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block relative",
+                    "hidden md:flex items-center justify-center min-w-[60px] min-h-[44px] px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 relative touch-manipulation",
                     isActiveItem("/services", "Services")
                       ? scrolled
-                        ? "text-[#00A8E8] bg-[#00A8E8]/10 border-b-2 border-[#00A8E8]"
-                        : "text-[#00A8E8] bg-white/20 border-b-2 border-[#00A8E8]"
+                        ? "text-[#00A8E8] bg-[#00A8E8]/15 ring-1 ring-[#00A8E8]/30"
+                        : "text-[#00A8E8] bg-white/25 ring-1 ring-[#00A8E8]/40"
                       : scrolled 
-                        ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
-                        : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                        ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/40 hover:scale-105"
+                        : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/15 hover:scale-105"
                   )}
                 >
                   Services
@@ -353,14 +430,14 @@ export const Navigation = () => {
                 <Link
                   href="/portfolio"
                   className={cn(
-                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block relative",
+                    "hidden md:flex items-center justify-center min-w-[64px] min-h-[44px] px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 relative touch-manipulation",
                     isActiveItem("/portfolio", "Portfolio")
                       ? scrolled
-                        ? "text-[#00A8E8] bg-[#00A8E8]/10 border-b-2 border-[#00A8E8]"
-                        : "text-[#00A8E8] bg-white/20 border-b-2 border-[#00A8E8]"
+                        ? "text-[#00A8E8] bg-[#00A8E8]/15 ring-1 ring-[#00A8E8]/30"
+                        : "text-[#00A8E8] bg-white/25 ring-1 ring-[#00A8E8]/40"
                       : scrolled 
-                        ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
-                        : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                        ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/40 hover:scale-105"
+                        : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/15 hover:scale-105"
                   )}
                 >
                   Portfolio
@@ -504,57 +581,60 @@ export const Navigation = () => {
                 </Link>
               </div>
 
-              {/* Enhanced Mobile Menu Button */}
-              <div className="flex items-center space-x-2 lg:hidden">
-                
-                {/* Mobile CTA Button */}
-                <Link
-                  href="https://calendly.com/ahsanhabibakik/webcloudor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    "hidden sm:block px-2.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] hover:scale-105 hover:shadow-md hover:shadow-[#FFD700]/25",
-                    scrolled ? "shadow-sm" : "shadow-md"
-                  )}
-                >
-                  Consult
-                </Link>
-
-                <motion.button
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className={cn(
-                    "p-2 rounded-lg transition-all duration-300 relative",
-                    scrolled 
-                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30" 
-                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
-                  )}
-                  aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                >
-                  <AnimatePresence mode="wait">
-                    {isMobileMenuOpen ? (
-                      <motion.div
-                        key="close"
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <X className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="menu"
-                        initial={{ rotate: 90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: -90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Menu className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
-                      </motion.div>
+              {/* Enhanced Mobile Menu Button Area */}
+              <div className="flex items-center lg:hidden">
+                <div className="flex items-center space-x-3">
+                  {/* Mobile CTA Button - Better Touch Target */}
+                  <Link
+                    href="https://calendly.com/ahsanhabibakik/webcloudor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "hidden sm:flex items-center justify-center min-h-[44px] px-4 py-2.5 text-xs font-semibold rounded-full transition-all duration-200 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/30 touch-manipulation",
+                      scrolled ? "shadow-md min-w-[72px]" : "shadow-lg min-w-[80px]"
                     )}
-                  </AnimatePresence>
-                </motion.button>
+                  >
+                    <span className="whitespace-nowrap">Consult</span>
+                  </Link>
+
+                  {/* Improved Menu Button */}
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className={cn(
+                      "flex items-center justify-center min-h-[44px] min-w-[44px] p-3 rounded-xl transition-all duration-300 relative touch-manipulation",
+                      scrolled 
+                        ? "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/40 hover:scale-110" 
+                        : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/15 hover:scale-110",
+                      isMobileMenuOpen && "bg-[#00A8E8]/10 text-[#00A8E8]"
+                    )}
+                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                  >
+                    <AnimatePresence mode="wait">
+                      {isMobileMenuOpen ? (
+                        <motion.div
+                          key="close"
+                          initial={{ rotate: -45, opacity: 0 }}
+                          animate={{ rotate: 0, opacity: 1 }}
+                          exit={{ rotate: 45, opacity: 0 }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <X className="w-5 h-5" />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="menu"
+                          initial={{ rotate: 45, opacity: 0 }}
+                          animate={{ rotate: 0, opacity: 1 }}
+                          exit={{ rotate: -45, opacity: 0 }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <Menu className="w-5 h-5" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+                </div>
               </div>
             </div>
           </div>
@@ -577,16 +657,16 @@ export const Navigation = () => {
 
             {/* Enhanced Mobile Menu with Theme Colors */}
             <motion.div
-              initial={{ x: '100%', opacity: 0, scale: 0.95 }}
+              initial={{ x: '100%', opacity: 0, scale: 0.98 }}
               animate={{ x: 0, opacity: 1, scale: 1 }}
-              exit={{ x: '100%', opacity: 0, scale: 0.95 }}
+              exit={{ x: '100%', opacity: 0, scale: 0.98 }}
               transition={{ 
                 type: 'spring', 
-                damping: 25, 
-                stiffness: 250,
-                duration: 0.4 
+                damping: 30, 
+                stiffness: 300,
+                duration: 0.35 
               }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] sm:max-w-[75vw] bg-white/98 backdrop-blur-2xl border-l border-[#00A8E8]/20 shadow-2xl shadow-[#00A8E8]/10 z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-full max-w-[320px] sm:max-w-[360px] bg-white/98 backdrop-blur-2xl border-l border-[#00A8E8]/20 shadow-2xl shadow-[#00A8E8]/15 z-50 lg:hidden overflow-y-auto"
             >
               {/* Gradient Background Overlay */}
               <div 
@@ -603,7 +683,7 @@ export const Navigation = () => {
               />
 
               {/* Enhanced Mobile Menu Header */}
-              <div className="relative z-10 flex items-center justify-between p-6 border-b border-[#00A8E8]/10">
+              <div className="relative z-10 flex items-center justify-between p-4 sm:p-6 border-b border-[#00A8E8]/10">
                 <Link 
                   href="/" 
                   className="flex items-center space-x-3 group"
@@ -623,34 +703,36 @@ export const Navigation = () => {
                   </span>
                 </Link>
                 <motion.button
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2.5 hover:bg-[#00A8E8]/10 rounded-xl transition-colors text-[#0A0A0B]/70 hover:text-[#00A8E8]"
+                  className="flex items-center justify-center min-h-[44px] min-w-[44px] p-2.5 hover:bg-[#00A8E8]/10 rounded-xl transition-colors text-[#0A0A0B]/70 hover:text-[#00A8E8] touch-manipulation"
                 >
                   <X className="w-5 h-5" />
                 </motion.button>
               </div>
 
               {/* Enhanced Mobile Menu Items */}
-              <div className="relative z-10 py-6 px-4">
-                {navigationItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <MobileNavItem
-                      item={item}
-                      onClose={() => setIsMobileMenuOpen(false)}
-                      pathname={pathname}
-                    />
-                  </motion.div>
-                ))}
+              <div className="relative z-10 py-4 px-3 sm:px-4">
+                <nav className="space-y-1">
+                  {navigationItems.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08, duration: 0.3 }}
+                    >
+                      <MobileNavItem
+                        item={item}
+                        onClose={() => setIsMobileMenuOpen(false)}
+                        pathname={pathname}
+                      />
+                    </motion.div>
+                  ))}
+                </nav>
               </div>
 
               {/* Enhanced Mobile CTAs */}
-              <div className="relative z-10 p-6 border-t border-[#00A8E8]/10 space-y-3 mt-auto">
+              <div className="relative z-10 p-4 sm:p-6 border-t border-[#00A8E8]/10 mt-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -661,9 +743,9 @@ export const Navigation = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105 shadow-lg shadow-[#FFD700]/25"
+                    className="flex items-center justify-center w-full min-h-[52px] px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105 shadow-lg shadow-[#FFD700]/25 touch-manipulation"
                   >
-                    Free Consultation
+                    <span>Free Consultation</span>
                   </Link>
                 </motion.div>
               </div>
