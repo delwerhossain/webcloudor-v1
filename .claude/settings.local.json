@@ -205,7 +205,12 @@
       "Bash(pnpm add:*)",
       "Bash(npm run dev:*)",
       "Bash(npm install:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(timeout 300 pnpm build)",
+      "Read(/E:\\e\\1code\\portfolios/**)",
+      "Read(/E:\\e\\1code\\portfolios\\webcloudor-v1/**)",
+      "Bash(ls:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
