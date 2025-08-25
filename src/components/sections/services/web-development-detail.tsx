@@ -20,11 +20,10 @@ export const WebDevelopmentDetail = () => {
 
   return (
     <SectionContainer 
-      id="web-development"
       background="white" 
       padding="large"
     >
-      <div ref={ref} className="grid lg:grid-cols-5 gap-16 items-center">
+      <div id="web-development" ref={ref} className="grid lg:grid-cols-5 gap-16 items-center">
         {/* Content Left - 60% */}
         <div className="lg:col-span-3 space-y-8">
           <motion.div
