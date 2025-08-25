@@ -1,9 +1,10 @@
+'use client'
+
+import { NextStudio } from 'next-sanity/studio'
+import config from '../../../../sanity.config'
+
 const StudioPage = () => {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <p>Studio page temporarily disabled - install next-sanity package to enable</p>
-    </div>
-  )
+  return <NextStudio config={config} />
 }
 
 export default StudioPage
