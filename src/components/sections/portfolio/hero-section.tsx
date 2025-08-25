@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
-import { Zap, ShoppingCart, Cloud, Bot, Rocket, Layers, TrendingUp, Users, Award } from "lucide-react"
+import { Zap, ShoppingCart, Cloud, Bot, Send, Layers, TrendingUp, Users, Award } from "lucide-react"
 import { SectionContainer } from "@/components/ui"
 import { Button } from "@/components/ui"
 import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils/animations"
@@ -31,7 +31,7 @@ const projectPreviews: ProjectPreview[] = [
     title: "SaaS MVP",
     metric: "$5M Series A",
     color: "from-blue-400 to-blue-600",
-    icon: <Rocket className="w-5 h-5" />,
+    icon: <Send className="w-5 h-5" />,
     position: { x: "80%", y: "15%" }
   },
   {
