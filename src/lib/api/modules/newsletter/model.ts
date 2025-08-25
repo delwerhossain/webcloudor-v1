@@ -74,8 +74,7 @@ const newsletterSchema = new Schema<INewsletter>({
   timestamps: true
 })
 
-// Indexes for performance
-newsletterSchema.index({ email: 1 })
+// Indexes for performance (email index is already created by unique: true)
 newsletterSchema.index({ isActive: 1, subscribedAt: -1 })
 newsletterSchema.index({ interests: 1 })
 
