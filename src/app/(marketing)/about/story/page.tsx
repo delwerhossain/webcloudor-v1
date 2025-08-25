@@ -45,18 +45,18 @@ const OurStoryPage = () => {
               belief that every business deserves exceptional digital experiences.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-8 text-sm text-foreground/60">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">2019</div>
-                <div>Founded</div>
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 text-sm text-foreground/60 max-w-lg mx-auto">
+              <div className="text-center min-w-0">
+                <div className="text-xl sm:text-2xl font-bold text-primary">2019</div>
+                <div className="text-xs sm:text-sm leading-tight">Founded</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">50+</div>
-                <div>Projects Completed</div>
+              <div className="text-center min-w-0">
+                <div className="text-xl sm:text-2xl font-bold text-primary">50+</div>
+                <div className="text-xs sm:text-sm leading-tight">Projects Completed</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">15+</div>
-                <div>Team Members</div>
+              <div className="text-center min-w-0">
+                <div className="text-xl sm:text-2xl font-bold text-primary">15+</div>
+                <div className="text-xs sm:text-sm leading-tight">Team Members</div>
               </div>
             </div>
           </div>
@@ -90,13 +90,13 @@ const OurStoryPage = () => {
                   with deep business understanding to create digital experiences that truly drive results.
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-primary/10 to-signal-yellow/10 rounded-lg p-8">
-                <div className="text-4xl font-bold text-primary mb-4">The Vision</div>
-                <blockquote className="text-lg italic text-foreground/80">
+              <div className="bg-gradient-to-br from-primary/10 to-signal-yellow/10 rounded-lg p-6 sm:p-8">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-3 sm:mb-4">The Vision</div>
+                <blockquote className="text-base sm:text-lg italic text-foreground/80 leading-relaxed">
                   "To bridge the gap between beautiful design and business results, creating 
                   digital experiences that do not just look good, but actually work."
                 </blockquote>
-                <div className="text-foreground/60 mt-4">- Ahsan Habib Akik, Founder</div>
+                <div className="text-sm sm:text-base text-foreground/60 mt-3 sm:mt-4">- Ahsan Habib Akik, Founder</div>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@ const OurStoryPage = () => {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
+            <div className="space-y-4 sm:space-y-6">
               {[
                 {
                   year: "2019",
@@ -156,17 +156,17 @@ const OurStoryPage = () => {
                 }
               ].map((milestone, index) => (
                 <Card key={index} className="bg-background border-border/60 hover:border-primary/30 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                      <div className="flex-shrink-0 self-start">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-primary to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
                           {milestone.year}
                         </div>
                       </div>
-                      <div className="flex-grow">
-                        <h3 className="text-xl font-bold text-foreground mb-2">{milestone.title}</h3>
-                        <p className="text-foreground/70 mb-2">{milestone.description}</p>
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
+                      <div className="flex-grow min-w-0">
+                        <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 leading-tight">{milestone.title}</h3>
+                        <p className="text-sm sm:text-base text-foreground/70 mb-3 leading-relaxed">{milestone.description}</p>
+                        <Badge variant="secondary" className="bg-primary/10 text-primary text-xs sm:text-sm">
                           {milestone.metric}
                         </Badge>
                       </div>
@@ -191,7 +191,7 @@ const OurStoryPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {[
               {
                 icon: <Target className="w-6 h-6" />,
@@ -225,14 +225,14 @@ const OurStoryPage = () => {
               }
             ].map((value, index) => (
               <Card key={index} className="bg-gradient-to-br from-background to-muted/20 border-border/60 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02]">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-3">
+                <CardHeader className="pb-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-2 sm:mb-3">
                     {value.icon}
                   </div>
-                  <CardTitle className="text-lg">{value.title}</CardTitle>
+                  <CardTitle className="text-base sm:text-lg leading-tight">{value.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">{value.description}</p>
+                <CardContent className="pt-0">
+                  <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{value.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -240,14 +240,14 @@ const OurStoryPage = () => {
 
           {/* Mission Statement */}
           <Card className="bg-gradient-to-br from-primary via-primary-blue to-dark-blue text-white max-w-4xl mx-auto">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-xl leading-relaxed opacity-90 mb-6">
+            <CardContent className="p-6 sm:p-8 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4">Our Mission</h3>
+              <p className="text-base sm:text-lg lg:text-xl leading-relaxed opacity-90 mb-4 sm:mb-6">
                 To empower businesses with exceptional digital experiences that drive growth, 
                 enhance customer satisfaction, and create lasting competitive advantages in an 
                 increasingly digital world.
               </p>
-              <div className="text-signal-yellow font-medium">
+              <div className="text-signal-yellow font-medium text-sm sm:text-base">
                 Building the future, one project at a time.
               </div>
             </CardContent>
@@ -272,15 +272,15 @@ const OurStoryPage = () => {
               your digital presence, we are here to turn your ideas into reality.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                   Start Your Journey With Us
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/about/team">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+              <Link href="/about/team" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                   Meet Our Team
                 </Button>
               </Link>
@@ -299,22 +299,22 @@ const OurStoryPage = () => {
             Let us help you write the next chapter of your digital success
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                 Get Started Today
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio">
-              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+            <Link href="/portfolio" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                 View Our Work
               </Button>
             </Link>
           </div>
 
-          <div className="mt-8 text-foreground/60">
-            <p>hello@webcloudor.com • Response guaranteed within 24 hours</p>
+          <div className="mt-6 sm:mt-8 text-sm sm:text-base text-foreground/60">
+            <p className="px-4 text-center">hello@webcloudor.com • Response guaranteed within 24 hours</p>
           </div>
         </div>
       </section>
