@@ -113,7 +113,7 @@ export const AboutHero = () => {
             <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/about/team-hero.jpg"
-                alt="WebCloudor founders Delwer Hossain and Syed Mir Habib working together"
+                alt="WebCloudor founders Delwer Hossain and Ahsan Habib Akik working together"
                 fill
                 className="object-cover"
                 priority
