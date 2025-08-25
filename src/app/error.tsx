@@ -58,10 +58,10 @@ export default function Error({
             <p className="text-sm text-[#64748B]">
               Need help? Contact us at{' '}
               <a 
-                href="mailto:hello@webcloudor.com"
+                href="mailto:webcloudor@gmail.com"
                 className="text-[#1B365D] hover:underline font-medium"
               >
-                hello@webcloudor.com
+                webcloudor@gmail.com
               </a>
             </p>
           </div>
