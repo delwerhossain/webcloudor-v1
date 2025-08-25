@@ -47,7 +47,7 @@ export default function NotFound() {
             <p className="text-sm text-[#64748B]">
               Need help finding something?{' '}
               <a 
-                href="mailto:hello@webcloudor.com"
+                href="mailto:webcloudor@gmail.com"
                 className="text-[#1B365D] hover:underline font-medium"
               >
                 Contact us
