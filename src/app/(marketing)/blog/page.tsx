@@ -78,22 +78,22 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
   const showFeaturedSection = currentPage === 1 && !resolvedSearchParams.category && !resolvedSearchParams.tag && !resolvedSearchParams.search && !resolvedSearchParams.featured
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
       <BlogHeader />
       
       {/* Main Content Container */}
-      <div className="container mx-auto px-4 py-12 lg:py-16">
+      <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
         {/* Featured Posts Section */}
         {showFeaturedSection && featuredPosts.length > 0 && (
-          <section className="mb-20">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          <section className="mb-12 sm:mb-16 lg:mb-20">
+            <div className="text-center mb-8 sm:mb-12">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-primary/10 to-signal-yellow/10 border border-primary/20 text-primary text-sm font-medium mb-4">
                 ✨ Featured Content
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance text-foreground">
                 Featured Articles
               </h2>
-              <p className="text-muted-foreground/80 max-w-2xl mx-auto text-lg leading-relaxed">
+              <p className="text-foreground/75 max-w-2xl mx-auto text-lg leading-relaxed">
                 Our most popular and insightful articles on web development, cloud solutions, and digital innovation.
               </p>
             </div>
@@ -104,16 +104,16 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
         )}
 
         {/* Main Blog Grid Layout */}
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           {/* Articles Content */}
-          <div className="xl:col-span-3">
+          <div className="lg:col-span-3 xl:col-span-3">
             {/* Section Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
               <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance text-foreground">
                   {getPageTitle()}
                 </h1>
-                <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex items-center gap-4 text-foreground/70">
                   <p>
                     {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} found
                   </p>
@@ -128,10 +128,10 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                 </div>
               </div>
               
-              {/* Sort Options - Mobile Hidden, Desktop Visible */}
-              <div className="hidden sm:flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Sort by:</span>
-                <select className="text-sm bg-background border border-border rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50">
+              {/* Sort Options - Hidden on mobile, visible on larger screens */}
+              <div className="hidden md:flex items-center gap-2">
+                <span className="text-sm text-foreground/60">Sort by:</span>
+                <select className="text-sm bg-background border border-border rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground">
                   <option value="latest">Latest</option>
                   <option value="popular">Most Popular</option>
                   <option value="oldest">Oldest</option>
@@ -148,7 +148,7 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="mt-16 flex justify-center">
+                  <div className="mt-12 sm:mt-16 flex justify-center">
                     <BlogPagination
                       currentPage={currentPage}
                       totalPages={totalPages}
@@ -166,8 +166,8 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">No articles found</h3>
-                  <p className="text-muted-foreground mb-6">
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">No articles found</h3>
+                  <p className="text-foreground/70 mb-6">
                     {resolvedSearchParams.search 
                       ? `No articles match "${resolvedSearchParams.search}". Try different keywords.`
                       : 'No articles found matching your filters. Try adjusting your criteria.'
@@ -185,8 +185,8 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
           </div>
 
           {/* Sidebar */}
-          <aside className="xl:col-span-1">
-            <div className="sticky top-8">
+          <aside className="lg:col-span-1 xl:col-span-1 order-first lg:order-last">
+            <div className="sticky top-4 lg:top-8">
               <Suspense fallback={<SidebarLoading />}>
                 <BlogSidebar categories={categories} />
               </Suspense>
