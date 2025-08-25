@@ -718,7 +718,7 @@ const TermsConditionsPage = () => {
         <ul>
           <li><strong>Email:</strong> legal@webcloudor.com</li>
           <li><strong>Response Time:</strong> Within 3 business days</li>
-          <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+          <li><strong>Phone:</strong> +8801571060479</li>
         </ul>
 
         <h4>Contract and Terms Questions</h4>
