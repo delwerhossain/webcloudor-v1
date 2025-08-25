@@ -104,7 +104,7 @@ const FloatingElement = ({
         ease: "easeInOut",
         delay
       }}
-      className="absolute opacity-20"
+      className="absolute opacity-10 sm:opacity-20 hidden sm:block"
     >
       {children}
     </motion.div>
@@ -144,25 +144,25 @@ export const StartProjectCTA = () => {
 
       {/* Floating Elements */}
       <FloatingElement delay={0} direction={1}>
-        <div className="w-16 h-16 bg-[#FFC300] rounded-full flex items-center justify-center top-20 left-10">
-          <Zap className="w-8 h-8 text-[#1B365D]" />
+        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#FFC300] rounded-full flex items-center justify-center top-10 sm:top-20 left-4 sm:left-10">
+          <Zap className="w-5 h-5 sm:w-8 sm:h-8 text-[#1B365D]" />
         </div>
       </FloatingElement>
 
       <FloatingElement delay={2} direction={-1}>
-        <div className="w-12 h-12 bg-[#FF8C00] rounded-full flex items-center justify-center top-32 right-20">
-          <Star className="w-6 h-6 text-white" />
+        <div className="w-8 h-8 sm:w-12 sm:h-12 bg-[#FF8C00] rounded-full flex items-center justify-center top-16 sm:top-32 right-4 sm:right-20">
+          <Star className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
         </div>
       </FloatingElement>
 
       <FloatingElement delay={1} direction={1}>
-        <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center bottom-32 left-20">
-          <Users className="w-10 h-10 text-[#FFC300]" />
+        <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-full flex items-center justify-center bottom-16 sm:bottom-32 left-4 sm:left-20">
+          <Users className="w-6 h-6 sm:w-10 sm:h-10 text-[#FFC300]" />
         </div>
       </FloatingElement>
 
       <FloatingElement delay={3} direction={-1}>
-        <div className="w-8 h-8 bg-[#FFC300] rounded-full bottom-20 right-32" />
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#FFC300] rounded-full bottom-10 sm:bottom-20 right-6 sm:right-32" />
       </FloatingElement>
 
       <motion.div
@@ -173,22 +173,22 @@ export const StartProjectCTA = () => {
         className="relative z-10 max-w-5xl mx-auto text-center"
       >
         {/* Main Headline */}
-        <motion.div variants={fadeUpVariants} className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        <motion.div variants={fadeUpVariants} className="mb-8 sm:mb-12 px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             Ready to join our{" "}
             <span className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] bg-clip-text text-transparent">
               success stories?
             </span>
           </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             Get a free consultation and see how we can deliver similar results for your business. 
             No obligation, just clear next steps and transparent project planning.
           </p>
         </motion.div>
 
         {/* Value Propositions */}
-        <motion.div variants={fadeUpVariants} className="mb-12">
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <motion.div variants={fadeUpVariants} className="mb-8 sm:mb-12 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {valuePropositions.map((item, index) => (
               <motion.div
                 key={index}
@@ -200,16 +200,16 @@ export const StartProjectCTA = () => {
                   delay: 0.3 + index * 0.1 
                 }}
               >
-                <Card className="p-6 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 text-left">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#FFC300] rounded-xl flex items-center justify-center text-[#1B365D] flex-shrink-0">
+                <Card className="p-4 sm:p-6 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 text-left">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFC300] rounded-xl flex items-center justify-center text-[#1B365D] flex-shrink-0">
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-white mb-2">
+                      <h3 className="text-base sm:text-lg font-semibold text-white mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-white/80 text-sm leading-relaxed">
+                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -221,8 +221,8 @@ export const StartProjectCTA = () => {
         </motion.div>
 
         {/* CTA Buttons */}
-        <motion.div variants={fadeUpVariants} className="mb-12">
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <motion.div variants={fadeUpVariants} className="mb-8 sm:mb-12 px-4">
+          <div className="flex flex-col gap-4 sm:gap-6 justify-center items-center">
             {/* Primary CTA */}
             <motion.div
               variants={buttonHoverVariants}
@@ -233,19 +233,19 @@ export const StartProjectCTA = () => {
               <Link href="/consultation">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-2xl hover:shadow-[#FFC300]/25 font-semibold px-10 py-5 text-lg rounded-full"
+                  className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-2xl hover:shadow-[#FFC300]/25 font-semibold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-base sm:text-lg rounded-full w-full sm:w-auto min-h-[44px]"
                 >
-                  <Calendar className="w-6 h-6 mr-3" />
+                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                   Book Free Consultation
                 </Button>
               </Link>
-              <div className="text-xs text-white/70 mt-2 text-center">
+              <div className="text-xs text-white/70 mt-2 text-center hidden sm:block">
                 Available this week
               </div>
             </motion.div>
 
             {/* Secondary CTAs */}
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
               <motion.div
                 variants={buttonHoverVariants}
                 initial="rest"
@@ -256,7 +256,7 @@ export const StartProjectCTA = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#1B365D] font-semibold px-8 py-5 rounded-full"
+                    className="border-2 border-white text-white hover:bg-white hover:text-[#1B365D] font-semibold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 rounded-full w-full sm:w-auto min-h-[44px] text-sm sm:text-base"
                   >
                     <FileText className="w-5 h-5 mr-2" />
                     Get Project Quote
@@ -274,7 +274,7 @@ export const StartProjectCTA = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#1B365D] font-semibold px-8 py-5 rounded-full"
+                    className="border-2 border-white text-white hover:bg-white hover:text-[#1B365D] font-semibold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 rounded-full w-full sm:w-auto min-h-[44px] text-sm sm:text-base"
                   >
                     <ArrowRight className="w-5 h-5 mr-2" />
                     Download Case Studies
