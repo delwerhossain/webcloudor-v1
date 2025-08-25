@@ -91,30 +91,30 @@ const TestimonialSlide = ({ testimonial, isActive }: { testimonial: Testimonial;
         !isActive && "pointer-events-none"
       )}
     >
-      <div className="w-full max-w-4xl mx-auto px-6">
-        <Card className="bg-white/95 backdrop-blur-sm border border-white/20 shadow-2xl p-8 lg:p-12">
-          <div className="grid lg:grid-cols-3 gap-8 items-center">
+      <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 lg:px-6">
+        <Card className="bg-white/95 backdrop-blur-sm border border-white/20 shadow-2xl p-4 sm:p-6 lg:p-8 xl:p-12">
+          <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-center">
             {/* Quote Section */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3 sm:space-y-4 lg:space-y-6">
               {/* Large Quote Mark */}
-              <div className="text-6xl text-[#FFC300] leading-none">
-                <Quote className="w-16 h-16" />
+              <div className="text-4xl sm:text-5xl lg:text-6xl text-[#FFC300] leading-none">
+                <Quote className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16" />
               </div>
 
               {/* Quote Text */}
-              <blockquote className="text-xl lg:text-2xl text-[#0A0A0B] leading-relaxed font-medium">
+              <blockquote className="text-base sm:text-lg lg:text-xl xl:text-2xl text-[#0A0A0B] leading-relaxed font-medium">
                 {testimonial.quote}
               </blockquote>
 
               {/* Result Highlight */}
-              <div className="inline-block bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-white px-4 py-2 rounded-full text-sm font-semibold">
+              <div className="inline-block bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold">
                 {testimonial.result}
               </div>
 
               {/* Metrics */}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {testimonial.metrics.map((metric, index) => (
-                  <div key={index} className="flex items-center gap-2 text-sm text-[#64748B]">
+                  <div key={index} className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-[#64748B]">
                     <Star className="w-4 h-4 fill-[#FFC300] text-[#FFC300]" />
                     {metric}
                   </div>
@@ -123,19 +123,19 @@ const TestimonialSlide = ({ testimonial, isActive }: { testimonial: Testimonial;
             </div>
 
             {/* Client Section */}
-            <div className="text-center lg:text-right space-y-6">
+            <div className="text-center lg:text-right space-y-3 sm:space-y-4 lg:space-y-6">
               {/* Client Photo */}
               <div className="flex justify-center lg:justify-end">
                 <div className="relative">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#E2E8F0] via-[#CBD5E0] to-[#94A3B8] flex items-center justify-center">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-[#E2E8F0] via-[#CBD5E0] to-[#94A3B8] flex items-center justify-center">
                     {/* Placeholder for client photo */}
                     <div className="text-[#64748B] text-center">
-                      <div className="w-16 h-16 mx-auto mb-2 bg-[#64748B]/20 rounded-full flex items-center justify-center">
-                        <span className="text-2xl font-bold">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mx-auto mb-1 sm:mb-2 bg-[#64748B]/20 rounded-full flex items-center justify-center">
+                        <span className="text-sm sm:text-lg lg:text-2xl font-bold">
                           {testimonial.client.name.split(" ").map(n => n[0]).join("")}
                         </span>
                       </div>
-                      <div className="text-xs">Photo</div>
+                      <div className="text-xs hidden sm:block">Photo</div>
                     </div>
                   </div>
                   
@@ -146,10 +146,10 @@ const TestimonialSlide = ({ testimonial, isActive }: { testimonial: Testimonial;
 
               {/* Client Info */}
               <div className="space-y-2">
-                <div className="text-lg font-semibold text-[#0A0A0B]">
+                <div className="text-base sm:text-lg font-semibold text-[#0A0A0B]">
                   {testimonial.client.name}
                 </div>
-                <div className="text-[#64748B]">
+                <div className="text-sm sm:text-base text-[#64748B]">
                   {testimonial.client.title}
                 </div>
                 <div className="text-sm font-medium text-[#1B365D]">
@@ -225,12 +225,12 @@ export const ClientTestimonialCarousel = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EASE_CURVE, delay: 0.2 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0A0A0B] mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0A0A0B] mb-3 sm:mb-4">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-[#64748B] max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-[#64748B] max-w-2xl mx-auto px-4">
             Trusted by businesses that demand excellence. Here&apos;s what our clients 
             say about working with WebCloudor.
           </p>
@@ -239,7 +239,7 @@ export const ClientTestimonialCarousel = () => {
         {/* Carousel Container */}
         <div className="relative">
           {/* Carousel Slides */}
-          <div className="relative h-96 lg:h-80 overflow-hidden">
+          <div className="relative min-h-[400px] sm:min-h-[350px] lg:h-80 overflow-hidden">
             <AnimatePresence mode="wait">
               {testimonials.map((testimonial, index) => (
                 <TestimonialSlide
@@ -252,36 +252,36 @@ export const ClientTestimonialCarousel = () => {
           </div>
 
           {/* Navigation Arrows */}
-          <div className="absolute inset-y-0 left-0 flex items-center">
+          <div className="absolute inset-y-0 left-0 flex items-center hidden sm:flex">
             <Button
               variant="ghost"
               size="sm"
               onClick={goToPrevious}
-              className="ml-4 w-12 h-12 rounded-full bg-white/80 hover:bg-white shadow-lg border border-white/20 text-[#0A0A0B] hover:text-[#FFC300]"
+              className="ml-2 sm:ml-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/80 hover:bg-white shadow-lg border border-white/20 text-[#0A0A0B] hover:text-[#FFC300]"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
             </Button>
           </div>
 
-          <div className="absolute inset-y-0 right-0 flex items-center">
+          <div className="absolute inset-y-0 right-0 flex items-center hidden sm:flex">
             <Button
               variant="ghost"
               size="sm"
               onClick={goToNext}
-              className="mr-4 w-12 h-12 rounded-full bg-white/80 hover:bg-white shadow-lg border border-white/20 text-[#0A0A0B] hover:text-[#FFC300]"
+              className="mr-2 sm:mr-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/80 hover:bg-white shadow-lg border border-white/20 text-[#0A0A0B] hover:text-[#FFC300]"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
             </Button>
           </div>
 
           {/* Dot Navigation */}
-          <div className="flex justify-center mt-8 gap-3">
+          <div className="flex justify-center mt-6 sm:mt-8 gap-2 sm:gap-3">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={cn(
-                  "w-3 h-3 rounded-full transition-all duration-300",
+                  "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center",
                   index === currentIndex
                     ? "bg-[#FFC300] scale-125"
                     : "bg-[#E2E8F0] hover:bg-[#CBD5E0]"
@@ -292,7 +292,7 @@ export const ClientTestimonialCarousel = () => {
           </div>
 
           {/* Progress Bar */}
-          <div className="mt-6 w-full max-w-md mx-auto">
+          <div className="mt-4 sm:mt-6 w-full max-w-sm sm:max-w-md mx-auto px-4">
             <div className="h-1 bg-[#E2E8F0] rounded-full overflow-hidden">
               <motion.div
                 key={currentIndex}
@@ -305,7 +305,7 @@ export const ClientTestimonialCarousel = () => {
                 className="h-full bg-gradient-to-r from-[#FFC300] to-[#FF8C00]"
               />
             </div>
-            <div className="flex justify-between text-xs text-[#64748B] mt-2">
+            <div className="flex justify-between text-xs text-[#64748B] mt-2 hidden sm:flex">
               <span>Auto-advancing testimonials</span>
               <span>{currentIndex + 1} of {testimonials.length}</span>
             </div>
@@ -317,19 +317,19 @@ export const ClientTestimonialCarousel = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EASE_CURVE, delay: 0.4 }}
-          className="text-center mt-12 pt-12 border-t border-[#E2E8F0]"
+          className="text-center mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-[#E2E8F0]"
         >
-          <div className="text-sm text-[#64748B] mb-4">
+          <div className="text-xs sm:text-sm text-[#64748B] mb-3 sm:mb-4">
             Join the growing list of satisfied clients
           </div>
           <div className="flex items-center justify-center gap-2 text-[#FFC300]">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-5 h-5 fill-current" />
             ))}
-            <span className="text-[#0A0A0B] font-semibold ml-2">
+            <span className="text-sm sm:text-base text-[#0A0A0B] font-semibold ml-2">
               4.9/5 average rating
             </span>
-            <span className="text-[#64748B] ml-1">
+            <span className="text-xs sm:text-sm text-[#64748B] ml-1">
               from 50+ clients
             </span>
           </div>
