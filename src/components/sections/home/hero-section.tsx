@@ -41,69 +41,40 @@ export const HeroSection = () => {
               linear-gradient(90deg, rgba(0, 168, 232, 0.3) 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px',
-            maskImage: 'radial-gradient(ellipse 80% 50% at 50% 20%, black 40%, transparent 70%)',
-            animation: 'gridShift 20s ease-in-out infinite alternate'
+            maskImage: 'radial-gradient(ellipse 80% 50% at 50% 20%, black 40%, transparent 70%)'
           }}
         />
         
         {/* Enhanced floating background orbs with better gradients */}
-        <div className="absolute top-[10%] left-[10%] w-96 h-96 rounded-full opacity-30 blur-3xl">
+        <div className="absolute top-[10%] left-[10%] w-96 h-96 rounded-full opacity-30 blur-3xl animate-pulse">
           <div
-            style={{ 
-              background: 'radial-gradient(circle, #00A8E8 0%, #0077C7 40%, #1B365D 80%, transparent 100%)',
-              animation: 'floatSlow 8s ease-in-out infinite'
-            }}
-            className="w-full h-full"
+            className="w-full h-full bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800"
           />
         </div>
         
-        <div className="absolute top-[50%] right-[15%] w-72 h-72 rounded-full opacity-25 blur-3xl">
+        <div className="absolute top-[50%] right-[15%] w-72 h-72 rounded-full opacity-25 blur-3xl animate-pulse">
           <div
-            style={{ 
-              background: 'radial-gradient(circle, #FFD700 0%, #FF8C00 50%, #FF4500 80%, transparent 100%)',
-              animation: 'floatSlow 10s ease-in-out infinite reverse',
-              animationDelay: '3s'
-            }}
-            className="w-full h-full"
+            className="w-full h-full bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400"
+            style={{ animationDelay: '3s' }}
           />
         </div>
         
-        <div className="absolute top-[20%] right-[5%] w-48 h-48 rounded-full opacity-20 blur-2xl">
+        <div className="absolute top-[20%] right-[5%] w-48 h-48 rounded-full opacity-20 blur-2xl animate-pulse">
           <div
-            style={{ 
-              background: 'radial-gradient(circle, #0077C7 0%, #1B365D 60%, transparent 100%)',
-              animation: 'floatSlow 12s ease-in-out infinite',
-              animationDelay: '6s'
-            }}
-            className="w-full h-full"
+            className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-900"
+            style={{ animationDelay: '6s' }}
           />
         </div>
         
         {/* Additional ambient orbs */}
-        <div className="absolute bottom-[30%] left-[5%] w-32 h-32 rounded-full opacity-15 blur-xl">
+        <div className="absolute bottom-[30%] left-[5%] w-32 h-32 rounded-full opacity-15 blur-xl animate-bounce">
           <div
-            style={{ 
-              background: 'radial-gradient(circle, #00A8E8 0%, transparent 100%)',
-              animation: 'floatSlow 15s ease-in-out infinite',
-              animationDelay: '1s'
-            }}
-            className="w-full h-full"
+            className="w-full h-full bg-gradient-to-br from-blue-400 to-transparent"
+            style={{ animationDelay: '1s' }}
           />
         </div>
       </div>
       
-      {/* Add custom CSS animations */}
-      <style jsx>{`
-        @keyframes floatSlow {
-          0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-          33% { transform: translateY(-20px) translateX(10px) scale(1.05); }
-          66% { transform: translateY(10px) translateX(-15px) scale(0.95); }
-        }
-        @keyframes gridShift {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(30px, 30px); }
-        }
-      `}</style>
       
       {/* Main content container with proper responsive padding */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
