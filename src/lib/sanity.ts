@@ -28,6 +28,32 @@ const mockBlogPosts = [
       isActive: true
     }],
     featuredImage: null as any,
+    content: [
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Next.js 15 introduces revolutionary changes that are reshaping how we think about modern web development. From enhanced server components to improved performance optimizations, this latest version sets new standards for React-based applications." }
+        ],
+        markDefs: [],
+        style: "normal"
+      },
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Key Features in Next.js 15" }
+        ],
+        markDefs: [],
+        style: "h2"
+      },
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "The new App Router brings unprecedented flexibility and performance improvements. Server components now offer better data fetching patterns, while the enhanced middleware system provides more granular control over request handling." }
+        ],
+        markDefs: [],
+        style: "normal"
+      }
+    ],
     status: "published",
     viewCount: 0
   },
@@ -56,6 +82,32 @@ const mockBlogPosts = [
       isActive: true
     }],
     featuredImage: null as any,
+    content: [
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Building scalable cloud applications requires careful consideration of architecture patterns and best practices. This comprehensive guide explores proven strategies for designing robust, maintainable cloud solutions." }
+        ],
+        markDefs: [],
+        style: "normal"
+      },
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Essential Cloud Architecture Principles" }
+        ],
+        markDefs: [],
+        style: "h2"
+      },
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Microservices architecture, containerization, and serverless computing form the foundation of modern cloud applications. Understanding when and how to implement these patterns is crucial for success." }
+        ],
+        markDefs: [],
+        style: "normal"
+      }
+    ],
     status: "published",
     viewCount: 0
   },
@@ -84,6 +136,32 @@ const mockBlogPosts = [
       isActive: true
     }],
     featuredImage: null as any,
+    content: [
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Artificial Intelligence is transforming web applications across industries. From chatbots to personalized recommendations, AI integration has become essential for creating engaging user experiences." }
+        ],
+        markDefs: [],
+        style: "normal"
+      },
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Getting Started with AI APIs" }
+        ],
+        markDefs: [],
+        style: "h2"
+      },
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Modern AI services provide powerful APIs that can be easily integrated into web applications. This guide covers practical implementation strategies and common patterns." }
+        ],
+        markDefs: [],
+        style: "normal"
+      }
+    ],
     status: "published",
     viewCount: 0
   }
@@ -178,31 +256,89 @@ export const getFeaturedBlogPosts = async () => {
 }
 
 export const getBlogPostBySlug = async (slug: string) => {
-  const query = groq`*[_type == "blogPost" && slug.current == $slug][0]{
-    ...,
-    "author": author->{name, slug, avatar, bio},
-    "categories": categories[]->{title, slug},
-    "content": content[]{
+  if (!isSanityConfigured()) {
+    const mockPost = mockBlogPosts.find(post => post.slug.current === slug)
+    return mockPost || null
+  }
+  
+  try {
+    const query = groq`*[_type == "blogPost" && slug.current == $slug][0]{
       ...,
-      _type == "image" => {
+      "author": author->{name, slug, avatar, bio},
+      "categories": categories[]->{title, slug},
+      "content": content[]{
         ...,
-        "url": asset->url
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
       }
+    }`
+    const post = await client.fetch(query, { slug })
+    
+    // If Sanity returns empty data, use mock data
+    if (!post) {
+      console.warn(`Sanity CMS returned no post for slug: ${slug}, checking mock data`)
+      const mockPost = mockBlogPosts.find(post => post.slug.current === slug)
+      return mockPost || null
     }
-  }`
-  return await client.fetch(query, { slug })
+    
+    return post
+  } catch (error) {
+    console.error(`Error fetching blog post by slug ${slug} from Sanity:`, error)
+    const mockPost = mockBlogPosts.find(post => post.slug.current === slug)
+    return mockPost || null
+  }
 }
 
 export const getRelatedBlogPosts = async (currentPostSlug: string, categories: string[]) => {
-  const query = groq`*[_type == "blogPost" && status == "published" && slug.current != $currentPostSlug && references($categories)] | order(publishedAt desc) [0...3] {
-    ...,
-    "author": author->{name, slug, avatar},
-    "categories": categories[]->{title, slug}
-  }`
-  return await client.fetch(query, { 
-    currentPostSlug, 
-    categories 
-  })
+  if (!isSanityConfigured()) {
+    const categoryIds = categories.map(cat => typeof cat === 'string' ? cat : cat._id || cat)
+    const relatedPosts = mockBlogPosts
+      .filter(post => 
+        post.slug.current !== currentPostSlug && 
+        post.categories?.some(postCat => categoryIds.includes(postCat._id))
+      )
+      .slice(0, 3)
+    return relatedPosts
+  }
+  
+  try {
+    const query = groq`*[_type == "blogPost" && status == "published" && slug.current != $currentPostSlug && references($categories)] | order(publishedAt desc) [0...3] {
+      ...,
+      "author": author->{name, slug, avatar},
+      "categories": categories[]->{title, slug}
+    }`
+    const posts = await client.fetch(query, { 
+      currentPostSlug, 
+      categories 
+    })
+    
+    // If Sanity returns empty data, use mock data
+    if (!posts || posts.length === 0) {
+      console.warn(`Sanity CMS returned no related posts for ${currentPostSlug}, using mock data`)
+      const categoryIds = categories.map(cat => typeof cat === 'string' ? cat : cat._id || cat)
+      const relatedPosts = mockBlogPosts
+        .filter(post => 
+          post.slug.current !== currentPostSlug && 
+          post.categories?.some(postCat => categoryIds.includes(postCat._id))
+        )
+        .slice(0, 3)
+      return relatedPosts
+    }
+    
+    return posts
+  } catch (error) {
+    console.error(`Error fetching related posts for ${currentPostSlug} from Sanity:`, error)
+    const categoryIds = categories.map(cat => typeof cat === 'string' ? cat : cat._id || cat)
+    const relatedPosts = mockBlogPosts
+      .filter(post => 
+        post.slug.current !== currentPostSlug && 
+        post.categories?.some(postCat => categoryIds.includes(postCat._id))
+      )
+      .slice(0, 3)
+    return relatedPosts
+  }
 }
 
 export const getCategories = async () => {
