@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/ui/optimized-image"
 import Link from "next/link"
 import { SectionContainer } from "@/components/ui/section-container"
 
@@ -95,12 +95,14 @@ export const TeamSection = () => {
               <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                 <div className="relative group">
                   <div className="aspect-[4/5] sm:aspect-square relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
-                    <Image
+                    <OptimizedImage
                       src={member.image}
                       alt={`${member.name} - ${member.role}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      quality={90}
+                      priority={index === 0}
                     />
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00A8E8]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

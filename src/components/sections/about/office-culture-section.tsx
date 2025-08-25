@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/ui/optimized-image"
 import { SectionContainer } from "@/components/ui/section-container"
 
 const workspaceFeatures = [
@@ -177,32 +177,35 @@ export const OfficeCulture = () => {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-square relative rounded-xl overflow-hidden shadow-lg">
-                <Image
+                <OptimizedImage
                   src="/images/about/office-workspace.jpg"
                   alt="Modern development workspace"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
                 />
               </div>
               <div className="aspect-square relative rounded-xl overflow-hidden shadow-lg">
-                <Image
+                <OptimizedImage
                   src="/images/about/office-collaboration.jpg"
                   alt="Team collaboration area"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  quality={85}
                 />
               </div>
             </div>
             
             <div className="aspect-[2/1] relative rounded-xl overflow-hidden shadow-lg">
-              <Image
+              <OptimizedImage
                 src="/images/about/office-overview.jpg"
                 alt="WebCloudor office overview"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                quality={85}
               />
             </div>
           </motion.div>

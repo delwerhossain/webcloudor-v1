@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/ui/optimized-image"
 import { Button } from "@/components/ui/button"
 import { SectionContainer } from "@/components/ui/section-container"
 import { AnimatedCounter } from "./animated-counter"
@@ -111,13 +111,14 @@ export const AboutHero = () => {
             className="relative"
           >
             <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl">
-              <Image
+              <OptimizedImage
                 src="/images/about/team-hero.jpg"
                 alt="WebCloudor founders Delwer Hossain and Ahsan Habib Akik working together"
                 fill
                 className="object-cover"
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                quality={90}
               />
               {/* Overlay gradient for better text contrast if needed */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
