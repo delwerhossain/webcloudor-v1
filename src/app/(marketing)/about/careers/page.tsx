@@ -93,15 +93,15 @@ const CareersPage = () => {
               Help us create exceptional digital experiences for clients worldwide.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="#positions">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+              <Link href="#positions" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                   View Open Positions
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/contact">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                   Get in Touch
                 </Button>
               </Link>
@@ -122,15 +122,15 @@ const CareersPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {benefits.map((benefit, index) => (
               <Card key={index} className="bg-gradient-to-br from-background to-muted/20 border-border/60 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02]">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mx-auto mb-4">
+                <CardContent className="p-4 sm:p-6 text-center">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mx-auto mb-3 sm:mb-4">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-foreground/70 text-sm">{benefit.description}</p>
+                  <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 leading-tight">{benefit.title}</h3>
+                  <p className="text-foreground/70 text-xs sm:text-sm leading-relaxed">{benefit.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -153,38 +153,38 @@ const CareersPage = () => {
           <div className="max-w-4xl mx-auto space-y-6">
             {openPositions.map((position, index) => (
               <Card key={index} className={`bg-background border-border/60 hover:border-primary/30 transition-colors ${position.featured ? 'border-primary/40 shadow-lg' : ''}`}>
-                <CardContent className="p-6">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col gap-4 sm:gap-6">
                     <div className="flex-grow">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-xl font-bold text-foreground">{position.title}</h3>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
+                        <h3 className="text-lg sm:text-xl font-bold text-foreground leading-tight">{position.title}</h3>
                         {position.featured && (
-                          <Badge className="bg-signal-yellow text-ink-black">Featured</Badge>
+                          <Badge className="bg-signal-yellow text-ink-black self-start sm:self-auto">Featured</Badge>
                         )}
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-foreground/70">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mb-4 text-xs sm:text-sm text-foreground/70">
                         <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          {position.type}
+                          <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span className="truncate">{position.type}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          {position.location}
+                          <MapPin className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span className="truncate">{position.location}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <DollarSign className="w-4 h-4" />
-                          {position.salary}
+                          <DollarSign className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span className="truncate text-xs sm:text-sm">{position.salary}</span>
                         </div>
                       </div>
 
-                      <p className="text-foreground/80 mb-4">{position.description}</p>
+                      <p className="text-sm sm:text-base text-foreground/80 mb-4 leading-relaxed">{position.description}</p>
 
-                      <div>
-                        <div className="text-sm font-medium text-foreground mb-2">Requirements:</div>
-                        <div className="flex flex-wrap gap-2">
+                      <div className="mb-4">
+                        <div className="text-xs sm:text-sm font-medium text-foreground mb-2">Requirements:</div>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {position.requirements.map((req, reqIndex) => (
-                            <Badge key={reqIndex} variant="secondary" className="bg-primary/10 text-primary text-xs">
+                            <Badge key={reqIndex} variant="secondary" className="bg-primary/10 text-primary text-xs leading-tight">
                               {req}
                             </Badge>
                           ))}
@@ -193,7 +193,7 @@ const CareersPage = () => {
                     </div>
 
                     <div className="flex-shrink-0">
-                      <Button className="bg-primary hover:bg-primary/90 w-full lg:w-auto">
+                      <Button className="bg-primary hover:bg-primary/90 w-full min-h-[44px]">
                         Apply Now
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
@@ -205,10 +205,10 @@ const CareersPage = () => {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-foreground/70 mb-6">
+            <p className="text-sm sm:text-base text-foreground/70 mb-6">
               Do not see a position that fits? We are always looking for talented individuals.
             </p>
-            <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+            <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 min-h-[44px]">
               Send Us Your Resume
             </Button>
           </div>
@@ -227,7 +227,7 @@ const CareersPage = () => {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               {
                 step: "1",
@@ -251,11 +251,11 @@ const CareersPage = () => {
               }
             ].map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl mx-auto mb-3 sm:mb-4">
                   {step.step}
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
-                <p className="text-foreground/70 text-sm">{step.description}</p>
+                <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 leading-tight">{step.title}</h3>
+                <p className="text-foreground/70 text-xs sm:text-sm leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
@@ -272,18 +272,18 @@ const CareersPage = () => {
             Take the next step in your career and help us build exceptional digital experiences
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-signal-yellow text-ink-black hover:bg-signal-yellow/90">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <Button size="lg" className="bg-signal-yellow text-ink-black hover:bg-signal-yellow/90 w-full sm:w-auto min-h-[44px]">
               Apply Today
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
+            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto min-h-[44px]">
               Learn More About Us
             </Button>
           </div>
 
-          <div className="mt-8 text-white/80">
-            <p>careers@webcloudor.com • We respond to all applications</p>
+          <div className="mt-6 sm:mt-8 text-sm sm:text-base text-white/80">
+            <p className="px-4 text-center">careers@webcloudor.com • We respond to all applications</p>
           </div>
         </div>
       </section>
