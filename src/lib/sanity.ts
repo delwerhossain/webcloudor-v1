@@ -14,8 +14,8 @@ const mockBlogPosts = [
     tags: ["Next.js", "Web Development", "React", "Frontend"],
     author: { 
       _id: "author-1",
-      name: "Delwer Hossain", 
-      slug: { current: "delwer-hossain" },
+      name: "Ahsan Habib Akik", 
+      slug: { current: "ahsan-habib-akik" },
       isActive: true,
       featured: true
     },
@@ -27,14 +27,7 @@ const mockBlogPosts = [
       featured: true,
       isActive: true
     }],
-    featuredImage: {
-      _type: "image",
-      asset: {
-        _ref: "image-mock-1",
-        _type: "reference"
-      },
-      alt: "Next.js 15 development workflow"
-    },
+    featuredImage: null as any,
     status: "published",
     viewCount: 0
   },
@@ -62,14 +55,7 @@ const mockBlogPosts = [
       featured: true,
       isActive: true
     }],
-    featuredImage: {
-      _type: "image",
-      asset: {
-        _ref: "image-mock-2",
-        _type: "reference"
-      },
-      alt: "Cloud architecture diagram"
-    },
+    featuredImage: null as any,
     status: "published",
     viewCount: 0
   },
@@ -84,8 +70,8 @@ const mockBlogPosts = [
     tags: ["AI", "Machine Learning", "Integration", "APIs"],
     author: { 
       _id: "author-1",
-      name: "Delwer Hossain", 
-      slug: { current: "delwer-hossain" },
+      name: "Ahsan Habib Akik", 
+      slug: { current: "ahsan-habib-akik" },
       isActive: true,
       featured: true
     },
@@ -97,14 +83,7 @@ const mockBlogPosts = [
       featured: true,
       isActive: true
     }],
-    featuredImage: {
-      _type: "image",
-      asset: {
-        _ref: "image-mock-3",
-        _type: "reference"
-      },
-      alt: "AI integration concept"
-    },
+    featuredImage: null as any,
     status: "published",
     viewCount: 0
   }
@@ -157,7 +136,15 @@ export const getBlogPosts = async () => {
       "author": author->{name, slug, avatar},
       "categories": categories[]->{title, slug}
     }`
-    return await client.fetch(query)
+    const posts = await client.fetch(query)
+    
+    // If Sanity returns empty data, use mock data
+    if (!posts || posts.length === 0) {
+      console.warn('Sanity CMS returned empty data, using mock data for blog posts')
+      return mockBlogPosts
+    }
+    
+    return posts
   } catch (error) {
     console.error('Error fetching blog posts from Sanity:', error)
     return mockBlogPosts
@@ -175,7 +162,15 @@ export const getFeaturedBlogPosts = async () => {
       "author": author->{name, slug, avatar},
       "categories": categories[]->{title, slug}
     }`
-    return await client.fetch(query)
+    const posts = await client.fetch(query)
+    
+    // If Sanity returns empty data, use mock data
+    if (!posts || posts.length === 0) {
+      console.warn('Sanity CMS returned empty featured posts, using mock data')
+      return mockBlogPosts.filter(post => post.featured)
+    }
+    
+    return posts
   } catch (error) {
     console.error('Error fetching featured blog posts from Sanity:', error)
     return mockBlogPosts.filter(post => post.featured)
@@ -222,7 +217,15 @@ export const getCategories = async () => {
       slug,
       "postCount": count(*[_type == "blogPost" && references(^._id)])
     }`
-    return await client.fetch(query)
+    const categories = await client.fetch(query)
+    
+    // If Sanity returns empty data, use mock data
+    if (!categories || categories.length === 0) {
+      console.warn('Sanity CMS returned empty categories, using mock data')
+      return mockCategories
+    }
+    
+    return categories
   } catch (error) {
     console.error('Error fetching categories from Sanity:', error)
     return mockCategories
