@@ -112,7 +112,7 @@ export const ConsultationCTA = ({
     animate: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any }
     }
   }
 
@@ -121,7 +121,7 @@ export const ConsultationCTA = ({
     hover: { 
       scale: 1.02, 
       boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1)',
-      transition: { duration: 0.2 }
+      transition: { duration: 0.2 as any }
     }
   }
 

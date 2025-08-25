@@ -31,6 +31,7 @@ interface OptimizedImageProps {
   unoptimized?: boolean
   onLoad?: () => void
   onError?: () => void
+  style?: React.CSSProperties
 }
 
 const OptimizedImage = ({
@@ -51,6 +52,7 @@ const OptimizedImage = ({
   unoptimized = false,
   onLoad,
   onError,
+  style,
   ...props
 }: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(true)
@@ -126,7 +128,7 @@ const OptimizedImage = ({
     ),
     style: {
       objectPosition,
-      ...props.style
+      ...(style || {})
     },
     ...props
   }
