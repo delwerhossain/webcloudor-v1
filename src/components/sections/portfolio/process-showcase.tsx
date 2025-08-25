@@ -238,7 +238,7 @@ export const ProcessShowcase = () => {
   const [activePhase, setActivePhase] = useState(0)
   const [isTimelineView, setIsTimelineView] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
 
   const currentPhase = timelinePhases[activePhase]
 
