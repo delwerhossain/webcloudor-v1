@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+// Enhanced layout with improved performance
 import { Navigation, Footer } from "@/components/layout"
 import { GoogleTagManager } from "@/components/analytics/GoogleTagManager"
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics"

@@ -170,6 +170,183 @@ class AutoCommitManager {
     return title + randomBody;
   }
 
+  groupFilesIntelligently(files) {
+    const groups = [];
+    const processedFiles = new Set();
+
+    // Group by feature/functionality
+    const featureGroups = this.groupByFeature(files);
+    
+    for (const [feature, featureFiles] of Object.entries(featureGroups)) {
+      if (featureFiles.length > 1) {
+        groups.push({
+          files: featureFiles,
+          type: 'feature',
+          name: feature,
+          description: `${feature} feature implementation`
+        });
+        featureFiles.forEach(f => processedFiles.add(f));
+      }
+    }
+
+    // Group remaining files by category and proximity
+    const remainingFiles = files.filter(f => !processedFiles.has(f));
+    const categoryGroups = this.groupByCategory(remainingFiles);
+
+    for (const [category, categoryFiles] of Object.entries(categoryGroups)) {
+      if (categoryFiles.length > 0) {
+        // Further group by directory proximity
+        const dirGroups = this.groupByDirectoryProximity(categoryFiles);
+        
+        for (const dirGroup of dirGroups) {
+          groups.push({
+            files: dirGroup.files,
+            type: 'category',
+            name: category,
+            description: dirGroup.description
+          });
+        }
+      }
+    }
+
+    return groups;
+  }
+
+  groupByFeature(files) {
+    const features = {};
+    
+    files.forEach(file => {
+      let feature = 'general';
+      
+      // Detect feature based on file path patterns
+      if (file.includes('blog/')) feature = 'blog';
+      else if (file.includes('portfolio/')) feature = 'portfolio';
+      else if (file.includes('services/')) feature = 'services';
+      else if (file.includes('about/')) feature = 'about';
+      else if (file.includes('team/')) feature = 'team';
+      else if (file.includes('contact/')) feature = 'contact';
+      else if (file.includes('auth/')) feature = 'authentication';
+      else if (file.includes('api/')) feature = 'api';
+      else if (file.includes('layout/') || file.includes('navigation/')) feature = 'layout';
+      else if (file.includes('policies/')) feature = 'policies';
+      
+      if (!features[feature]) features[feature] = [];
+      features[feature].push(file);
+    });
+
+    return features;
+  }
+
+  groupByCategory(files) {
+    const categories = {};
+    
+    files.forEach(file => {
+      const category = this.categorizeFile(file);
+      if (!categories[category]) categories[category] = [];
+      categories[category].push(file);
+    });
+
+    return categories;
+  }
+
+  groupByDirectoryProximity(files) {
+    const dirGroups = {};
+    
+    files.forEach(file => {
+      const dir = path.dirname(file);
+      const parentDir = path.dirname(dir);
+      
+      // Group by immediate parent directory
+      const groupKey = dir.includes('src/') ? dir : parentDir;
+      
+      if (!dirGroups[groupKey]) {
+        dirGroups[groupKey] = [];
+      }
+      dirGroups[groupKey].push(file);
+    });
+
+    return Object.entries(dirGroups).map(([dir, groupFiles]) => ({
+      files: groupFiles,
+      description: `${path.basename(dir)} improvements`
+    }));
+  }
+
+  generateGroupCommitMessage(group) {
+    const { type, name, files, description } = group;
+    const fileCount = files.length;
+    
+    let title = '';
+    let body = '';
+    
+    if (type === 'feature') {
+      title = `feat: enhance ${name} with ${fileCount} component improvements`;
+      body = `\n\n- Implemented comprehensive ${name} functionality\n- Updated ${fileCount} related files with consistent patterns\n- Enhanced user experience and maintainability`;
+    } else {
+      const category = name;
+      const primaryFile = path.basename(files[0]).replace(/\.(tsx?|jsx?|css|scss|md)$/, '');
+      
+      if (fileCount === 1) {
+        return this.generateHumanCommitMessage(category, primaryFile);
+      }
+      
+      const actions = {
+        component: 'refactor',
+        api: 'enhance',
+        page: 'update',
+        style: 'polish',
+        config: 'chore',
+        docs: 'docs',
+        test: 'test'
+      };
+      
+      const action = actions[category] || 'update';
+      title = `${action}: improve ${description} (${fileCount} files)`;
+      body = `\n\n- Updated ${fileCount} ${category} files with consistent improvements\n- Enhanced functionality and code organization\n- Maintained WebCloudor development standards`;
+    }
+    
+    // Add file list for multi-file commits
+    if (fileCount > 1) {
+      body += `\n\nFiles updated:\n${files.map(f => `- ${path.basename(f)}`).join('\n')}`;
+    }
+    
+    return title + body;
+  }
+
+  async commitFileGroup(group) {
+    const { files, description } = group;
+    const commitMessage = this.generateGroupCommitMessage(group);
+    
+    this.log(`\n📂 Processing ${description} (${files.length} files):`, 'cyan');
+    files.forEach(file => this.log(`  - ${file}`, 'blue'));
+    
+    // Add all files in the group
+    for (const file of files) {
+      const addResult = this.execGit(`git add "${file}"`);
+      if (addResult === null) {
+        this.log(`❌ Failed to add ${file}`, 'red');
+        return false;
+      }
+    }
+    
+    // Check if there are changes to commit
+    const diffCached = this.execGit('git diff --cached --name-only');
+    if (!diffCached) {
+      this.log(`⏭️  No changes to commit for this group`, 'yellow');
+      return false;
+    }
+    
+    // Commit the group
+    const commitResult = this.execGit(`git commit -m "${commitMessage}"`);
+    if (commitResult) {
+      this.log(`✅ Committed: ${description}`, 'green');
+      this.log(`💬 Message: ${commitMessage.split('\n')[0]}`, 'cyan');
+      return true;
+    } else {
+      this.log(`❌ Failed to commit group: ${description}`, 'red');
+      return false;
+    }
+  }
+
   async commitSingleFile(filePath) {
     const fileName = path.basename(filePath);
     const category = this.categorizeFile(filePath);
@@ -257,31 +434,32 @@ class AutoCommitManager {
       return;
     }
 
-    // Group files by category for better commit organization
-    const filesByCategory = {};
-    files.forEach(file => {
-      const category = this.categorizeFile(file);
-      if (!filesByCategory[category]) filesByCategory[category] = [];
-      filesByCategory[category].push(file);
-    });
-
+    // Group files intelligently by function and location
+    const intelligentGroups = this.groupFilesIntelligently(files);
     let totalCommits = 0;
     
-    // Process each category
-    for (const [category, categoryFiles] of Object.entries(filesByCategory)) {
-      this.log(`\n📂 Processing ${category} files (${categoryFiles.length} files):`, 'cyan');
-      
-      for (const file of categoryFiles) {
-        const success = await this.commitSingleFile(file);
-        if (success) {
-          totalCommits++;
-          // Small delay between commits
-          await new Promise(resolve => setTimeout(resolve, 150));
-        }
+    // Process each group as a single commit
+    for (const group of intelligentGroups) {
+      const success = await this.commitFileGroup(group);
+      if (success) {
+        totalCommits++;
+        // Small delay between commits
+        await new Promise(resolve => setTimeout(resolve, 200));
       }
     }
     
     this.log(`\n🎯 Chunked commits completed! Created ${totalCommits} commits`, 'green');
+    
+    // Auto-push if there are commits
+    if (totalCommits > 0) {
+      this.log('\n🚀 Auto-pushing changes to remote...', 'yellow');
+      const pushResult = this.execGit('git push');
+      if (pushResult !== null) {
+        this.log('✅ Successfully pushed to remote repository', 'green');
+      } else {
+        this.log('⚠️  Failed to push - you may need to push manually', 'yellow');
+      }
+    }
     
     // Show final status
     this.log('\n📊 Final repository status:', 'yellow');
@@ -305,6 +483,12 @@ switch (command) {
     manager.runChunkedCommits();
     break;
     
+  case 'smart':
+  case 'intelligent':
+    // Default to intelligent chunked commits with auto-push
+    manager.runChunkedCommits();
+    break;
+    
   case 'single':
     const filePath = args[1];
     if (filePath) {
@@ -317,12 +501,15 @@ switch (command) {
   default:
     manager.log('📖 WebCloudor Auto-Commit Manager Usage:', 'yellow');
     console.log('');
-    console.log('  node scripts/auto-commit-manager.js auto [maxCommits]     # Auto-commit up to N files');
-    console.log('  node scripts/auto-commit-manager.js chunked              # Chunked commits by category');  
+    console.log('  node scripts/auto-commit-manager.js chunked              # 🔥 Intelligent chunked commits + auto-push');
+    console.log('  node scripts/auto-commit-manager.js smart                # Same as chunked (recommended)');  
+    console.log('  node scripts/auto-commit-manager.js auto [maxCommits]     # Auto-commit up to N files individually');
     console.log('  node scripts/auto-commit-manager.js single <file>        # Commit single file');
     console.log('');
     manager.log('💡 Examples:', 'yellow');
-    console.log('  node scripts/auto-commit-manager.js auto 5               # Commit up to 5 files');
-    console.log('  node scripts/auto-commit-manager.js chunked              # Commit all files by category');
+    console.log('  node scripts/auto-commit-manager.js chunked              # Group related files + push (recommended)');
+    console.log('  node scripts/auto-commit-manager.js auto 5               # Commit up to 5 files individually');
+    console.log('');
+    manager.log('🎯 Recommended: Use "chunked" for intelligent grouping and auto-push', 'green');
     console.log('');
 }
