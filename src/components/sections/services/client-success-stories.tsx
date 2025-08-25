@@ -61,11 +61,10 @@ export const ClientSuccessStories = () => {
 
   return (
     <SectionContainer 
-      id="client-success-stories"
       background="gray" 
       padding="large"
     >
-      <div ref={ref} className="space-y-12">
+      <div id="client-success-stories" ref={ref} className="space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
           <motion.h2
