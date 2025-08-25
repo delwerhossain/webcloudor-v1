@@ -13,7 +13,7 @@ export const FeaturedPosts = ({ posts }: FeaturedPostsProps) => {
   const [mainPost, ...otherPosts] = posts
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
       {/* Main featured post */}
       <div className="lg:row-span-2">
         <BlogCard 
@@ -25,7 +25,7 @@ export const FeaturedPosts = ({ posts }: FeaturedPostsProps) => {
       </div>
       
       {/* Secondary featured posts */}
-      <div className="space-y-6">
+      <div className="space-y-4 lg:space-y-6">
         {otherPosts.slice(0, 2).map((post) => (
           <BlogCard
             key={post._id}
