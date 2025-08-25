@@ -82,37 +82,26 @@ export const StartTogether = () => {
           transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button 
-            size="lg"
-            className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-semibold px-8 py-4 text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-            asChild
+          <Link 
+            href="/contact?type=consultation"
+            className="inline-flex items-center justify-center bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-semibold px-8 py-4 text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 h-14 rounded-xl"
           >
-            <Link href="/contact?type=consultation">
-              Book Free Consultation
-            </Link>
-          </Button>
+            Book Free Consultation
+          </Link>
           
-          <Button 
-            size="lg"
-            variant="outline"
-            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1B365D] font-semibold px-8 py-4 text-lg transition-all duration-300"
-            asChild
+          <Link 
+            href="/contact"
+            className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1B365D] font-semibold px-8 py-4 text-lg transition-all duration-300 h-14 rounded-xl"
           >
-            <Link href="/contact">
-              Email Us Directly
-            </Link>
-          </Button>
+            Email Us Directly
+          </Link>
           
-          <Button 
-            size="lg"
-            variant="ghost"
-            className="text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg transition-all duration-300"
-            asChild
+          <Link 
+            href="/portfolio"
+            className="inline-flex items-center justify-center text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg transition-all duration-300 h-14 rounded-xl"
           >
-            <Link href="/portfolio">
-              View Our Work
-            </Link>
-          </Button>
+            View Our Work
+          </Link>
         </motion.div>
 
         {/* Contact Information */}
