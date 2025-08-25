@@ -195,7 +195,7 @@ export const ClientTestimonialSection = () => {
               opacity: [0.3, 0.6, 0.3],
             }}
             transition={{ duration: 4, repeat: Infinity, ease: EASE_CURVE, delay: 1 }}
-            className="absolute -top-16 -right-12 w-3 h-3 bg-[#1B365D] rounded-full"
+            className="absolute -top-16 -right-6 w-3 h-3 bg-[#1B365D] rounded-full"
           />
           
           <motion.div
