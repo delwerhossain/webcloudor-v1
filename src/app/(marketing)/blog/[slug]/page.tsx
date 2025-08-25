@@ -13,6 +13,9 @@ import { RelatedPosts } from '@/components/blog/RelatedPosts'
 import { CommentSection } from '@/components/blog/CommentSection'
 import { TableOfContents } from '@/components/blog/TableOfContents'
 import { BlogLoading } from '@/components/blog/BlogLoading'
+import { ReadingProgressIndicator } from '@/components/blog/ReadingProgressIndicator'
+import { PostNavigation } from '@/components/blog/PostNavigation'
+import { BlogSidebarContent } from '@/components/blog/BlogSidebarContent'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -99,54 +102,86 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
+      <ReadingProgressIndicator />
+      
       <main className="min-h-screen bg-background">
         <BlogHeader />
         
-        <article className="container mx-auto px-4 py-6 sm:py-8">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          {/* Blog Post Header */}
+          <div className="max-w-4xl mx-auto mb-8">
             <BlogPostHeader post={post} />
-            
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8">
-              {post.tableOfContents && (
-                <aside className="lg:col-span-1 order-2 lg:order-1">
-                  <div className="sticky top-4 sm:top-8 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg p-4 border border-border/50">
-                    <Suspense fallback={<div className="animate-pulse bg-muted h-48 sm:h-64 rounded-lg" />}>
+          </div>
+          
+          {/* Three Column Layout */}
+          <div className="relative max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+              
+              {/* Left Sidebar - Floating TOC (Hidden on mobile/tablet) */}
+              <aside className="hidden xl:block xl:col-span-2">
+                <div className="sticky top-24 space-y-6">
+                  <Suspense fallback={<div className="animate-pulse bg-muted h-64 rounded-lg" />}>
+                    <TableOfContents content={post.content} />
+                  </Suspense>
+                </div>
+              </aside>
+              
+              {/* Main Content */}
+              <article className="xl:col-span-7">
+                <div className="max-w-none">
+                  <BlogPostContent content={post.content} />
+                  
+                  {/* Mobile TOC */}
+                  <div className="xl:hidden mt-8 p-4 bg-muted/30 rounded-lg">
+                    <Suspense fallback={<div className="animate-pulse bg-muted h-32 rounded" />}>
                       <TableOfContents content={post.content} />
                     </Suspense>
                   </div>
-                </aside>
-              )}
-              
-              <div className={`${post.tableOfContents ? 'lg:col-span-3' : 'lg:col-span-4'} order-1 lg:order-2`}>
-                <BlogPostContent content={post.content} />
-                
-                <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t">
-                  <ShareButtons 
-                    title={post.title}
-                    url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`}
-                  />
-                </div>
-                
-                <div className="mt-6 sm:mt-8">
-                  <AuthorCard author={post.author} />
-                </div>
-                
-                {relatedPosts.length > 0 && (
-                  <div className="mt-12 sm:mt-16">
-                    <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 px-2 sm:px-0">Related Articles</h2>
-                    <Suspense fallback={<BlogLoading />}>
-                      <RelatedPosts posts={relatedPosts} />
+                  
+                  {/* Share Buttons */}
+                  <div className="mt-12 pt-8 border-t">
+                    <ShareButtons 
+                      title={post.title}
+                      url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`}
+                    />
+                  </div>
+                  
+                  {/* Author Card */}
+                  <div className="mt-8">
+                    <AuthorCard author={post.author} />
+                  </div>
+                  
+                  {/* Post Navigation */}
+                  <div className="mt-12">
+                    <Suspense fallback={<div className="animate-pulse bg-muted h-20 rounded-lg" />}>
+                      <PostNavigation currentSlug={slug} categoryIds={categoryIds} />
                     </Suspense>
                   </div>
-                )}
-                
-                <div className="mt-12 sm:mt-16">
-                  <CommentSection postSlug={slug} postTitle={post.title} />
+                  
+                  {/* Comments */}
+                  <div className="mt-16">
+                    <CommentSection postSlug={slug} postTitle={post.title} />
+                  </div>
                 </div>
-              </div>
+              </article>
+              
+              {/* Right Sidebar */}
+              <aside className="xl:col-span-3">
+                <div className="sticky top-24 space-y-6">
+                  <Suspense fallback={<BlogLoading />}>
+                    <BlogSidebarContent 
+                      post={post}
+                      relatedPosts={relatedPosts}
+                      author={post.author}
+                      postUrl={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`}
+                      postTitle={post.title}
+                    />
+                  </Suspense>
+                </div>
+              </aside>
             </div>
           </div>
-        </article>
+        </div>
       </main>
     </>
   )
