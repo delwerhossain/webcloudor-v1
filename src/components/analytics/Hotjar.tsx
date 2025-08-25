@@ -1,30 +1,43 @@
 'use client'
 
-import Script from 'next/script'
+import { useEffect } from 'react'
 
 export const Hotjar = () => {
   const hjid = process.env.NEXT_PUBLIC_HOTJAR_ID
 
-  if (!hjid) {
-    return null
-  }
+  useEffect(() => {
+    if (!hjid || typeof window === 'undefined') return
 
-  return (
-    <Script
-      id="hotjar-script"
-      strategy="afterInteractive"
-      dangerouslySetInnerHTML={{
-        __html: `
-          (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:${hjid},hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        `,
-      }}
-    />
-  )
+    // Check if Hotjar is already loaded
+    if ((window as any).hj) return
+
+    // Load Hotjar script
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://static.hotjar.com/c/hotjar-${hjid}.js?sv=6`
+    
+    // Initialize Hotjar
+    const initScript = document.createElement('script')
+    initScript.innerHTML = `
+      (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:${hjid},hjsv:6};
+      })(window,document);
+    `
+
+    document.head.appendChild(initScript)
+    document.head.appendChild(script)
+
+    return () => {
+      // Cleanup function
+      if (document.head.contains(script)) {
+        document.head.removeChild(script)
+      }
+      if (document.head.contains(initScript)) {
+        document.head.removeChild(initScript)
+      }
+    }
+  }, [hjid])
+
+  return null
 }
