@@ -35,7 +35,7 @@ const OurStoryPage = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               From vision to{' '}
-              <span className="bg-gradient-to-r from-primary to-signal-yellow bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 reality
               </span>
             </h1>
@@ -159,7 +159,7 @@ const OurStoryPage = () => {
                   <CardContent className="p-6">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-6">
                       <div className="flex-shrink-0">
-                        <div className="w-20 h-20 bg-gradient-to-br from-primary to-signal-yellow rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg">
                           {milestone.year}
                         </div>
                       </div>
@@ -274,7 +274,7 @@ const OurStoryPage = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-signal-yellow hover:shadow-lg">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
                   Start Your Journey With Us
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
