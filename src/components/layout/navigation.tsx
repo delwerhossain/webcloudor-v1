@@ -121,34 +121,60 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
-  // Handle scroll effect with better mobile detection
+  // Handle scroll effect with better mobile detection and error handling
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+
     const handleScroll = () => {
       const scrollY = window.scrollY
-      const isMobile = window.innerWidth < 1024
       // More sensitive scroll detection for mobile
       setScrolled(scrollY > (isMobile ? 10 : 20))
+      
+      // Close dropdowns when scrolling
+      if (activeDropdown) {
+        setActiveDropdown(null)
+      }
     }
 
     let ticking = false
     const handleScrollThrottled = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          handleScroll()
+          try {
+            handleScroll()
+          } catch (error) {
+            console.warn('Navigation scroll handler error:', error)
+          }
           ticking = false
         })
         ticking = true
       }
     }
 
-    window.addEventListener('scroll', handleScrollThrottled, { passive: true })
-    handleScroll() // Initial call
-    
-    return () => window.removeEventListener('scroll', handleScrollThrottled)
-  }, [])
+    // Initial setup with safety checks
+    try {
+      handleResize()
+      handleScroll()
+    } catch (error) {
+      console.warn('Navigation initial setup error:', error)
+    }
 
-  // Close mobile menu on escape
+    window.addEventListener('scroll', handleScrollThrottled, { passive: true })
+    window.addEventListener('resize', handleResize, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleScrollThrottled)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [isMobile])
+
+  // Close mobile menu on escape and handle outside clicks
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -157,9 +183,21 @@ export const Navigation = () => {
       }
     }
 
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (activeDropdown && !target.closest('[data-dropdown-container]')) {
+        setActiveDropdown(null)
+      }
+    }
+
     document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [])
+    document.addEventListener('mousedown', handleClickOutside)
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [activeDropdown])
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -186,10 +224,10 @@ export const Navigation = () => {
         {/* Navigation Container with WebCloudor Theme */}
         <motion.nav
           animate={{
-            marginLeft: scrolled ? (window.innerWidth >= 1024 ? 24 : 8) : 0,
-            marginRight: scrolled ? (window.innerWidth >= 1024 ? 24 : 8) : 0,
-            marginTop: scrolled ? (window.innerWidth >= 1024 ? 12 : 8) : 0,
-            borderRadius: scrolled ? (window.innerWidth >= 1024 ? 16 : 12) : 0,
+            marginLeft: scrolled ? (!isMobile ? 24 : 8) : 0,
+            marginRight: scrolled ? (!isMobile ? 24 : 8) : 0,
+            marginTop: scrolled ? (!isMobile ? 12 : 8) : 0,
+            borderRadius: scrolled ? (!isMobile ? 16 : 12) : 0,
           }}
           transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className={cn(
@@ -290,6 +328,7 @@ export const Navigation = () => {
                   <div
                     key={item.name}
                     className="relative group"
+                    data-dropdown-container
                     onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
@@ -389,7 +428,7 @@ export const Navigation = () => {
                 "hidden lg:flex items-center transition-all duration-300",
                 scrolled ? "space-x-2" : "space-x-3"
               )}>
-                <Link
+                    <Link
                   href="/contact"
                   className={cn(
                     "rounded-full font-medium transition-all duration-300 hover:scale-105",
@@ -415,17 +454,18 @@ export const Navigation = () => {
 
               {/* Enhanced Mobile Menu Button */}
               <div className="flex items-center space-x-2 lg:hidden">
+                
                 {/* Mobile CTA Button */}
                 <Link
-                  href="/contact"
+                  href="https://calendly.com/ahsanhabibakik/webcloudor"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
-                    "hidden md:block px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 border",
-                    scrolled
-                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] border-[#00A8E8]/20 hover:border-[#00A8E8] hover:bg-white/50"
-                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] border-white/30 hover:border-white hover:bg-white/10"
+                    "hidden sm:block px-2.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] hover:scale-105 hover:shadow-md hover:shadow-[#FFD700]/25",
+                    scrolled ? "shadow-sm" : "shadow-md"
                   )}
                 >
-                  Quote
+                  Consult
                 </Link>
 
                 <motion.button
@@ -557,24 +597,11 @@ export const Navigation = () => {
               </div>
 
               {/* Enhanced Mobile CTAs */}
-              <div className="relative z-10 p-6 border-t border-[#00A8E8]/10 space-y-4 mt-auto">
+              <div className="relative z-10 p-6 border-t border-[#00A8E8]/10 space-y-3 mt-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                >
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full px-6 py-3 text-center text-[#0A0A0B]/70 hover:text-[#00A8E8] border border-[#00A8E8]/20 hover:border-[#00A8E8] hover:bg-[#00A8E8]/5 rounded-full font-medium transition-all duration-200"
-                  >
-                    Get Quote
-                  </Link>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
                 >
                   <Link
                     href="https://calendly.com/ahsanhabibakik/webcloudor"
