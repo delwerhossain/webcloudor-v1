@@ -176,7 +176,8 @@
       "mcp__netlify__*",
       "mcp__heroku__*",
       "mcp__digitalocean__*",
-      "mcp__cloudflare__*"
+      "mcp__cloudflare__*",
+      "Bash(find:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
