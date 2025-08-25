@@ -204,7 +204,8 @@
       "Bash(npx sanity:*)",
       "Bash(pnpm add:*)",
       "Bash(npm run dev:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
