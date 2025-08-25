@@ -55,7 +55,7 @@ const AuthorPage = async ({ params, searchParams }: AuthorPageProps) => {
     notFound()
   }
 
-  const posts = await getBlogPostsByAuthor(author._id)
+  const posts = await getBlogPostsByAuthor(author.slug.current)
   
   const totalPages = Math.ceil(posts.length / postsPerPage)
   const paginatedPosts = posts.slice(
