@@ -245,7 +245,7 @@ export const FilterSearchInterface = ({
         isSticky ? "sticky top-16 shadow-lg" : ""
       )}
     >
-      <SectionContainer padding="small" className="bg-[#F8FAFC] !py-3">
+      <SectionContainer padding="small" className="bg-[#F8FAFC] !py-2">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Filters */}
           <div className="hidden md:block">
@@ -253,11 +253,11 @@ export const FilterSearchInterface = ({
               variants={fadeUpVariants}
               initial="initial"
               animate="animate"
-              className="space-y-3"
+              className="space-y-2"
             >
               {/* Filter Categories Row */}
               <div className="flex flex-wrap items-center gap-2 lg:gap-3">
-                <div className="text-sm font-medium text-[#0A0A0B] mr-1">Filter:</div>
+                <div className="text-sm font-medium text-[#0A0A0B] mr-2">Filter:</div>
                 
                 <FilterDropdown
                   title="Service Type"
@@ -304,10 +304,10 @@ export const FilterSearchInterface = ({
                 )}
               </div>
 
-              {/* Search and Sort Row */}
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                {/* Search Bar */}
-                <div className="flex-1 max-w-lg relative">
+              {/* Compact Search and Sort Row */}
+              <div className="flex items-center gap-3 lg:gap-4">
+                {/* Search Bar - Left Side */}
+                <div className="flex-1 max-w-sm relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
                   <input
                     type="text"
@@ -326,8 +326,8 @@ export const FilterSearchInterface = ({
                   )}
                 </div>
 
-                {/* Sort and Results */}
-                <div className="flex items-center justify-between md:justify-start gap-3 md:gap-4">
+                {/* Right Side - Sort and Results */}
+                <div className="flex items-center gap-3 lg:gap-4">
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-[#64748B] whitespace-nowrap">Sort:</span>
                     <select
@@ -353,7 +353,7 @@ export const FilterSearchInterface = ({
 
           {/* Mobile/Tablet Filter Toggle */}
           <div className="md:hidden">
-            <div className="space-y-3">
+            <div className="space-y-2">
               {/* Search and Filter Toggle Row */}
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="flex-1 relative">
