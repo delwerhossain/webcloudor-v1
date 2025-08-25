@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/ui/optimized-image"
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react"
 import { SectionContainer } from "@/components/ui"
 import { Button } from "@/components/ui"
@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
       name: "Dr. Michael Thompson",
       title: "CEO",
       company: "MedSupply Co",
-      photo: "/testimonials/michael-thompson.jpg",
+      photo: "/images/testimonials/jennifer-liu.jpg",
       logo: "/logos/medsupply-logo.png"
     },
     result: "+127% online sales growth",
@@ -45,7 +45,7 @@ const testimonials: Testimonial[] = [
       name: "Jennifer Rodriguez",
       title: "Founder",
       company: "TechStartup Inc",
-      photo: "/testimonials/jennifer-rodriguez.jpg",
+      photo: "/images/testimonials/marcus-rodriguez.jpg",
       logo: "/logos/techstartup-logo.png"
     },
     result: "$5M Series A funding secured",
@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
       name: "David Kim",
       title: "CTO", 
       company: "ScaleUp Corp",
-      photo: "/testimonials/david-kim.jpg",
+      photo: "/images/testimonials/sarah-chen.jpg",
       logo: "/logos/scaleup-logo.png"
     },
     result: "10x traffic growth, 99.9% uptime",
@@ -71,7 +71,7 @@ const testimonials: Testimonial[] = [
       name: "Lisa Johnson",
       title: "Director of Technology",
       company: "EduTech Solutions", 
-      photo: "/testimonials/lisa-johnson.jpg",
+      photo: "/images/testimonials/jennifer-liu.jpg",
       logo: "/logos/edutech-logo.png"
     },
     result: "+156% student engagement",
@@ -127,16 +127,17 @@ const TestimonialSlide = ({ testimonial, isActive }: { testimonial: Testimonial;
               {/* Client Photo */}
               <div className="flex justify-center lg:justify-end">
                 <div className="relative">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-[#E2E8F0] via-[#CBD5E0] to-[#94A3B8] flex items-center justify-center">
-                    {/* Placeholder for client photo */}
-                    <div className="text-[#64748B] text-center">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mx-auto mb-1 sm:mb-2 bg-[#64748B]/20 rounded-full flex items-center justify-center">
-                        <span className="text-sm sm:text-lg lg:text-2xl font-bold">
-                          {testimonial.client.name.split(" ").map(n => n[0]).join("")}
-                        </span>
-                      </div>
-                      <div className="text-xs hidden sm:block">Photo</div>
-                    </div>
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden">
+                    <OptimizedImage
+                      src={testimonial.client.photo}
+                      alt={`${testimonial.client.name} - ${testimonial.client.title} at ${testimonial.client.company}`}
+                      width={128}
+                      height={128}
+                      className="object-cover w-full h-full"
+                      quality={90}
+                      priority={isActive}
+                      sizes="128px"
+                    />
                   </div>
                   
                   {/* Decorative Ring */}
