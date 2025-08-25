@@ -197,6 +197,34 @@ const mockCategories = [
   }
 ]
 
+const mockAuthors = [
+  {
+    _id: "author-1",
+    name: "Ahsan Habib Akik",
+    slug: { current: "ahsan-habib-akik" },
+    avatar: null as any,
+    bio: [
+      {
+        _type: "block",
+        children: [
+          { _type: "span", text: "Experienced web developer and AI enthusiast with over 8 years of experience building scalable web applications and cloud solutions." }
+        ],
+        markDefs: [],
+        style: "normal"
+      }
+    ],
+    shortBio: "Web Developer & AI Enthusiast",
+    position: "Senior Full-Stack Developer",
+    isActive: true,
+    featured: true,
+    socials: {
+      linkedin: "https://linkedin.com/in/ahsan-habib-akik",
+      twitter: "https://twitter.com/ahsanhabibakik",
+      github: "https://github.com/ahsanhabibakik"
+    }
+  }
+]
+
 // Check if Sanity is properly configured
 const isSanityConfigured = () => {
   return !!(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && process.env.NEXT_PUBLIC_SANITY_DATASET)
@@ -293,11 +321,11 @@ export const getBlogPostBySlug = async (slug: string) => {
 
 export const getRelatedBlogPosts = async (currentPostSlug: string, categories: string[]) => {
   if (!isSanityConfigured()) {
-    const categoryIds = categories.map(cat => typeof cat === 'string' ? cat : cat._id || cat)
+    // Since categories parameter is string[], we can use it directly
     const relatedPosts = mockBlogPosts
       .filter(post => 
         post.slug.current !== currentPostSlug && 
-        post.categories?.some(postCat => categoryIds.includes(postCat._id))
+        post.categories?.some(postCat => categories.includes(postCat._id))
       )
       .slice(0, 3)
     return relatedPosts
@@ -317,11 +345,10 @@ export const getRelatedBlogPosts = async (currentPostSlug: string, categories: s
     // If Sanity returns empty data, use mock data
     if (!posts || posts.length === 0) {
       console.warn(`Sanity CMS returned no related posts for ${currentPostSlug}, using mock data`)
-      const categoryIds = categories.map(cat => typeof cat === 'string' ? cat : cat._id || cat)
       const relatedPosts = mockBlogPosts
         .filter(post => 
           post.slug.current !== currentPostSlug && 
-          post.categories?.some(postCat => categoryIds.includes(postCat._id))
+          post.categories?.some(postCat => categories.includes(postCat._id))
         )
         .slice(0, 3)
       return relatedPosts
@@ -330,11 +357,10 @@ export const getRelatedBlogPosts = async (currentPostSlug: string, categories: s
     return posts
   } catch (error) {
     console.error(`Error fetching related posts for ${currentPostSlug} from Sanity:`, error)
-    const categoryIds = categories.map(cat => typeof cat === 'string' ? cat : cat._id || cat)
     const relatedPosts = mockBlogPosts
       .filter(post => 
         post.slug.current !== currentPostSlug && 
-        post.categories?.some(postCat => categoryIds.includes(postCat._id))
+        post.categories?.some(postCat => categories.includes(postCat._id))
       )
       .slice(0, 3)
     return relatedPosts
@@ -388,22 +414,69 @@ export const getBlogPostsByCategory = async (categorySlug: string) => {
 }
 
 export const getAuthorBySlug = async (slug: string) => {
-  const query = groq`*[_type == "teamMember" && slug.current == $slug][0]{
-    name,
-    slug,
-    avatar,
-    bio,
-    position,
-    socials
-  }`
-  return await client.fetch(query, { slug })
+  if (!isSanityConfigured()) {
+    const author = mockAuthors.find(author => author.slug.current === slug)
+    return author || null
+  }
+  
+  try {
+    const query = groq`*[_type == "teamMember" && slug.current == $slug][0]{
+      name,
+      slug,
+      avatar,
+      bio,
+      position,
+      socials
+    }`
+    const author = await client.fetch(query, { slug })
+    
+    // If Sanity returns empty data, use mock data
+    if (!author) {
+      console.warn(`Sanity CMS returned no author for slug: ${slug}, checking mock data`)
+      const mockAuthor = mockAuthors.find(author => author.slug.current === slug)
+      return mockAuthor || null
+    }
+    
+    return author
+  } catch (error) {
+    console.error(`Error fetching author by slug ${slug} from Sanity:`, error)
+    const mockAuthor = mockAuthors.find(author => author.slug.current === slug)
+    return mockAuthor || null
+  }
 }
 
 export const getBlogPostsByAuthor = async (authorSlug: string) => {
-  const query = groq`*[_type == "blogPost" && status == "published" && author->slug.current == $authorSlug] | order(publishedAt desc) {
-    ...,
-    "author": author->{name, slug, avatar},
-    "categories": categories[]->{title, slug}
-  }`
-  return await client.fetch(query, { authorSlug })
+  if (!isSanityConfigured()) {
+    // For mock data, filter by author slug
+    const posts = mockBlogPosts.filter(post => 
+      post.author?.slug.current === authorSlug
+    )
+    return posts
+  }
+  
+  try {
+    const query = groq`*[_type == "blogPost" && status == "published" && author->slug.current == $authorSlug] | order(publishedAt desc) {
+      ...,
+      "author": author->{name, slug, avatar},
+      "categories": categories[]->{title, slug}
+    }`
+    const posts = await client.fetch(query, { authorSlug })
+    
+    // If Sanity returns empty data, use mock data
+    if (!posts || posts.length === 0) {
+      console.warn(`Sanity CMS returned no posts for author ${authorSlug}, using mock data`)
+      const mockPosts = mockBlogPosts.filter(post => 
+        post.author?.slug.current === authorSlug
+      )
+      return mockPosts
+    }
+    
+    return posts
+  } catch (error) {
+    console.error(`Error fetching posts by author ${authorSlug} from Sanity:`, error)
+    const mockPosts = mockBlogPosts.filter(post => 
+      post.author?.slug.current === authorSlug
+    )
+    return mockPosts
+  }
 }
