@@ -152,7 +152,7 @@ export const ClientSuccessStories = () => {
                         className="relative mx-auto md:mx-0 w-24 h-24"
                       >
                         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#00A8E8] to-[#0077C7] flex items-center justify-center text-white text-2xl font-bold">
-                          {currentTestimonial.client.split(" ").map(n => n[0]).join("")}
+                          {currentTestimonial.client.split(" ").map((n) => n[0]).join("")}
                         </div>
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#10B981] rounded-full flex items-center justify-center">
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
@@ -251,7 +251,7 @@ export const ClientSuccessStories = () => {
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00A8E8] to-[#0077C7] flex items-center justify-center text-white text-xs font-bold">
-                    {testimonial.client.split(" ").map(n => n[0]).join("")}
+                    {testimonial.client.split(" ").map((n) => n[0]).join("")}
                   </div>
                   <div>
                     <div className="text-sm font-semibold text-[#0A0A0B]">
