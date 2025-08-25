@@ -71,6 +71,21 @@ const FilterDropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest(`[data-dropdown="${filterKey}"]`)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen, filterKey])
+
   const toggleOption = (option: string) => {
     if (option.startsWith("All")) {
       onSelect(filterKey, [option])
@@ -82,7 +97,13 @@ const FilterDropdown = ({
       ? selected.filter(item => item !== option)
       : [...selected.filter(item => !item.startsWith("All")), option]
 
-    onSelect(filterKey, newSelected.length === 0 ? [options[0]] : newSelected)
+    const finalSelection = newSelected.length === 0 ? [options[0]] : newSelected
+    onSelect(filterKey, finalSelection)
+    
+    // Auto-close for single selections, keep open for multi-select
+    if (finalSelection.length === 1 || option.startsWith("All")) {
+      setIsOpen(false)
+    }
   }
 
   const displayText = selected[0]?.startsWith("All") 
@@ -92,17 +113,17 @@ const FilterDropdown = ({
       : `${selected.length} selected`
 
   return (
-    <div className="relative">
+    <div className="relative" data-dropdown={filterKey}>
       <motion.button
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E2E8F0] rounded-lg text-sm font-medium transition-all duration-200",
+          "flex items-center gap-1.5 px-3 py-2 bg-white border border-[#E2E8F0] rounded-md text-sm font-medium transition-all duration-200",
           "hover:border-[#FFC300] hover:shadow-sm",
           isOpen && "border-[#FFC300] shadow-sm"
         )}
       >
-        <span className="text-[#64748B] truncate max-w-[120px]">{displayText}</span>
+        <span className="text-[#64748B] truncate max-w-[80px] sm:max-w-[100px] lg:max-w-[120px]">{displayText}</span>
         <ChevronDown 
           className={cn(
             "w-4 h-4 text-[#64748B] transition-transform duration-200",
@@ -118,7 +139,7 @@ const FilterDropdown = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.2, ease: EASE_CURVE }}
-            className="absolute top-full left-0 mt-2 w-64 bg-white border border-[#E2E8F0] rounded-lg shadow-lg z-50"
+            className="absolute top-full left-0 mt-1 w-48 sm:w-56 bg-white border border-[#E2E8F0] rounded-md shadow-lg z-50"
           >
             <div className="p-2 max-h-64 overflow-y-auto">
               {options.map((option) => (
@@ -143,7 +164,15 @@ const FilterDropdown = ({
   )
 }
 
-export const FilterSearchInterface = () => {
+export const FilterSearchInterface = ({ 
+  onFiltersChange, 
+  onSearchChange, 
+  onSortChange 
+}: {
+  onFiltersChange?: (filters: FilterState) => void
+  onSearchChange?: (search: string) => void
+  onSortChange?: (sort: string) => void
+}) => {
   const [filters, setFilters] = useState<FilterState>({
     service: ["All Services"],
     industry: ["All Industries"], 
@@ -165,17 +194,39 @@ export const FilterSearchInterface = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Notify parent components of changes
+  useEffect(() => {
+    onFiltersChange?.(filters)
+  }, [filters, onFiltersChange])
+
+  useEffect(() => {
+    onSearchChange?.(searchTerm)
+  }, [searchTerm, onSearchChange])
+
+  useEffect(() => {
+    onSortChange?.(sortBy)
+  }, [sortBy, onSortChange])
+
   const handleFilterChange = (key: string, values: string[]) => {
     setFilters(prev => ({ ...prev, [key]: values }))
   }
 
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value)
+  }
+
+  const handleSortChange = (value: string) => {
+    setSortBy(value)
+  }
+
   const clearAllFilters = () => {
-    setFilters({
+    const resetFilters = {
       service: ["All Services"],
       industry: ["All Industries"],
       size: ["All Sizes"], 
       result: ["All Results"]
-    })
+    }
+    setFilters(resetFilters)
     setSearchTerm("")
   }
 
@@ -194,19 +245,19 @@ export const FilterSearchInterface = () => {
         isSticky ? "sticky top-16 shadow-lg" : ""
       )}
     >
-      <SectionContainer padding="small" className="bg-[#F8FAFC]">
-        <div className="max-w-6xl mx-auto">
+      <SectionContainer padding="none" className="bg-[#F8FAFC] py-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Filters */}
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <motion.div
               variants={fadeUpVariants}
               initial="initial"
               animate="animate"
-              className="space-y-6"
+              className="space-y-3"
             >
               {/* Filter Categories Row */}
-              <div className="flex flex-wrap items-center gap-4">
-                <div className="text-sm font-semibold text-[#0A0A0B] mr-2">Filter by:</div>
+              <div className="flex flex-wrap items-center gap-2 lg:gap-3">
+                <div className="text-sm font-medium text-[#0A0A0B] mr-1">Filter:</div>
                 
                 <FilterDropdown
                   title="Service Type"
@@ -245,29 +296,29 @@ export const FilterSearchInterface = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     onClick={clearAllFilters}
-                    className="flex items-center gap-2 px-3 py-2 text-[#64748B] hover:text-[#FFC300] text-sm font-medium transition-colors duration-200"
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 text-[#64748B] hover:text-[#FFC300] text-sm font-medium transition-colors duration-200"
                   >
-                    <RotateCcw className="w-4 h-4" />
-                    Clear All
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    Clear
                   </motion.button>
                 )}
               </div>
 
               {/* Search and Sort Row */}
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 {/* Search Bar */}
-                <div className="flex-1 max-w-md relative">
+                <div className="flex-1 max-w-lg relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
                   <input
                     type="text"
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search projects by technology, outcome, or challenge..."
-                    className="w-full pl-10 pr-4 py-2.5 border border-[#E2E8F0] rounded-lg text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none transition-colors duration-200"
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    placeholder="Search projects by technology, outcome..."
+                    className="w-full pl-10 pr-4 py-2 border border-[#E2E8F0] rounded-md text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none transition-colors duration-200"
                   />
                   {searchTerm && (
                     <button
-                      onClick={() => setSearchTerm("")}
+                      onClick={() => handleSearchChange("")}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#0A0A0B]"
                     >
                       <X className="w-4 h-4" />
@@ -276,13 +327,13 @@ export const FilterSearchInterface = () => {
                 </div>
 
                 {/* Sort and Results */}
-                <div className="flex items-center gap-6">
+                <div className="flex items-center justify-between md:justify-start gap-3 md:gap-4">
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="text-[#64748B]">Sort by:</span>
+                    <span className="text-[#64748B] whitespace-nowrap">Sort:</span>
                     <select
                       value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="border border-[#E2E8F0] rounded-lg px-3 py-2 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white"
+                      onChange={(e) => handleSortChange(e.target.value)}
+                      className="border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white"
                     >
                       {sortOptions.map(option => (
                         <option key={option.value} value={option.value}>
@@ -292,38 +343,71 @@ export const FilterSearchInterface = () => {
                     </select>
                   </div>
 
-                  <div className="text-sm text-[#64748B] font-medium">
-                    Showing {resultsCount} of 50+ projects
+                  <div className="text-sm text-[#64748B] font-medium whitespace-nowrap">
+                    {resultsCount} of 50+
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Mobile Filter Toggle */}
-          <div className="lg:hidden">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search projects..."
-                  className="w-full pl-10 pr-4 py-2.5 border border-[#E2E8F0] rounded-lg text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none"
-                />
+          {/* Mobile/Tablet Filter Toggle */}
+          <div className="md:hidden">
+            <div className="space-y-3">
+              {/* Search and Filter Toggle Row */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    placeholder="Search projects..."
+                    className="w-full pl-10 pr-4 py-2 border border-[#E2E8F0] rounded-md text-sm placeholder:text-[#64748B] focus:border-[#FFC300] focus:ring-0 focus:outline-none"
+                  />
+                  {searchTerm && (
+                    <button
+                      onClick={() => handleSearchChange("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#0A0A0B]"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => setShowMobileFilters(!showMobileFilters)}
+                  className="flex items-center gap-1.5 px-3 py-2 border border-[#E2E8F0] rounded-md bg-white text-[#64748B] hover:border-[#FFC300] transition-colors duration-200 whitespace-nowrap flex-shrink-0"
+                >
+                  <Filter className="w-4 h-4" />
+                  <span className="hidden xs:inline">Filter</span>
+                  {hasActiveFilters && (
+                    <div className="w-1.5 h-1.5 bg-[#FFC300] rounded-full" />
+                  )}
+                </button>
               </div>
 
-              <button
-                onClick={() => setShowMobileFilters(!showMobileFilters)}
-                className="flex items-center gap-2 px-4 py-2.5 border border-[#E2E8F0] rounded-lg bg-white text-[#64748B] hover:border-[#FFC300] transition-colors duration-200"
-              >
-                <Filter className="w-4 h-4" />
-                Filters
-                {hasActiveFilters && (
-                  <div className="w-2 h-2 bg-[#FFC300] rounded-full" />
-                )}
-              </button>
+              {/* Sort and Results on Mobile */}
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#64748B]">Sort:</span>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => handleSortChange(e.target.value)}
+                    className="border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#0A0A0B] focus:border-[#FFC300] focus:outline-none text-sm bg-white"
+                  >
+                    {sortOptions.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="text-[#64748B] font-medium">
+                  {resultsCount} of 50+
+                </div>
+              </div>
             </div>
 
             {/* Mobile Filter Panel */}
@@ -334,21 +418,23 @@ export const FilterSearchInterface = () => {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: EASE_CURVE }}
-                  className="overflow-hidden mt-4 bg-white rounded-lg border border-[#E2E8F0] shadow-lg"
+                  className="overflow-hidden mt-3 bg-white rounded-md border border-[#E2E8F0] shadow-lg"
                 >
-                  <div className="p-4 space-y-4">
-                    {Object.entries(filterOptions).map(([key, options]) => (
-                      <FilterDropdown
-                        key={key}
-                        title={key.charAt(0).toUpperCase() + key.slice(1)}
-                        options={options}
-                        selected={filters[key as keyof FilterState]}
-                        onSelect={handleFilterChange}
-                        filterKey={key}
-                      />
-                    ))}
+                  <div className="p-3 sm:p-4 space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {Object.entries(filterOptions).map(([key, options]) => (
+                        <FilterDropdown
+                          key={key}
+                          title={key.charAt(0).toUpperCase() + key.slice(1)}
+                          options={options}
+                          selected={filters[key as keyof FilterState]}
+                          onSelect={handleFilterChange}
+                          filterKey={key}
+                        />
+                      ))}
+                    </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-[#E2E8F0]">
+                    <div className="flex items-center justify-between pt-3 border-t border-[#E2E8F0]">
                       <button
                         onClick={clearAllFilters}
                         className="text-[#64748B] hover:text-[#FFC300] text-sm font-medium"
@@ -356,7 +442,7 @@ export const FilterSearchInterface = () => {
                         Clear All
                       </button>
                       <div className="text-sm text-[#64748B]">
-                        {resultsCount} projects found
+                        {resultsCount} found
                       </div>
                     </div>
                   </div>
