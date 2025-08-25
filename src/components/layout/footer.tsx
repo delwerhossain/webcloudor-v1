@@ -78,7 +78,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+8801571060479',
+    value: '+8801571-060479',
     href: 'tel:+8801571060479'
   },
   {
