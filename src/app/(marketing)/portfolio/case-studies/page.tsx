@@ -382,7 +382,7 @@ const CaseStudiesPage = () => {
           </div>
 
           <div className="mt-8 text-foreground/60">
-            <p>hello@webcloudor.com • Response guaranteed within 24 hours</p>
+            <p>webcloudor@gmail.com • Response guaranteed within 24 hours</p>
           </div>
         </div>
       </section>
