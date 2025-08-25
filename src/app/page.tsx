@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import type { Metadata } from 'next'
 import { 
   HeroSection,
   TrustBarSection,
@@ -9,6 +10,37 @@ import {
   ClientTestimonialSection,
   StartProjectSection
 } from "@/components/sections/home"
+
+export const metadata: Metadata = {
+  title: "WebCloudor | AI-First Web Development Agency",
+  description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward. 50+ projects delivered, 99% on-time, tier-1/2 clients served.",
+  keywords: ["web development", "AI-first", "Next.js", "React", "conversion optimization", "web agency", "startup", "enterprise", "MVP development"],
+  openGraph: {
+    title: "WebCloudor | AI-First Web Development Agency",
+    description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward.",
+    url: "https://webcloudor.com",
+    siteName: "WebCloudor",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'WebCloudor - AI-First Web Development Agency',
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WebCloudor | AI-First Web Development Agency",
+    description: "Ship faster. Convert more. Scale with confidence. Modern web solutions that move your business forward.",
+    images: ['/og-image.jpg'],
+  },
+  alternates: {
+    canonical: "/",
+  },
+}
 
 // Loading component for dynamic imports
 const SectionSkeleton = () => (
