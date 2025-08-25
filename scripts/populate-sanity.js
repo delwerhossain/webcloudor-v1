@@ -111,7 +111,7 @@ const authors = [
   {
     _id: generateId('author-'),
     _type: 'author',
-    name: 'Syed Mir Habib',
+    name: 'Ahsan Habib Akik',
     slug: { _type: 'slug', current: 'syed-mir-habib' },
     shortBio: 'Cloud architect and DevOps engineer specializing in scalable infrastructure solutions.',
     bio: [
