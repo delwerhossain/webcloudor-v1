@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Cloud, Server, Shield, Zap, BarChart3, CheckCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Cloud, Server, Shield, Zap, BarChart3, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'Cloud Architecture Services | Scalable Infrastructure Solutions',
-  description: 'Enterprise-grade cloud architecture designed for growth. Auto-scaling infrastructure, 99.9% uptime guarantee, advanced security, and real-time monitoring.',
-  keywords: ['cloud architecture', 'scalable infrastructure', 'auto-scaling', 'cloud computing', 'enterprise architecture'],
+  title: "Cloud Architecture Services | Scalable Infrastructure Solutions",
+  description: "Enterprise-grade cloud architecture designed for growth. Auto-scaling infrastructure, 99.9% uptime guarantee, advanced security, and real-time monitoring.",
+  keywords: ["cloud architecture", "scalable infrastructure", "auto-scaling", "cloud computing", "enterprise architecture"],
   openGraph: {
-    title: 'Cloud Architecture Services | WebCloudor',
-    description: 'Infrastructure that scales seamlessly with your business growth',
-    type: 'website',
+    title: "Cloud Architecture Services | WebCloudor",
+    description: "Infrastructure that scales seamlessly with your business growth",
+    type: "website",
   },
 }
 
@@ -33,34 +33,34 @@ const CloudArchitecturePage = () => {
               Cloud Architecture Services
             </Badge>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
               Infrastructure{' '}
               <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 that scales with you
               </span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-foreground/80 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-8 leading-relaxed max-w-3xl mx-auto px-4">
               Enterprise-grade architecture designed for businesses that cannot afford downtime. 
               We build scalable, secure, and monitored systems that handle growth seamlessly 
               while maintaining peak performance.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 px-4">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                   Scale Your Infrastructure
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/portfolio/case-studies">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+              <Link href="/portfolio/case-studies" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                   View Architecture Projects
                 </Button>
               </Link>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-foreground/60">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-foreground/60 px-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span>99.9% Uptime</span>
@@ -82,15 +82,15 @@ const CloudArchitecturePage = () => {
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
-              What's Included
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              What&apos;s Included
             </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
               Comprehensive cloud solutions designed for enterprise reliability
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: <Zap className="w-6 h-6" />,
@@ -128,10 +128,10 @@ const CloudArchitecturePage = () => {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-3">
                     {feature.icon}
                   </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardTitle className="text-lg sm:text-xl">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-foreground/70">{feature.description}</p>
+                  <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
