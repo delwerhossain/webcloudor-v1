@@ -102,7 +102,7 @@ export const PricingPackages = () => {
 
   return (
     <SectionContainer 
-      id="pricing-packages"
+      
       background="white" 
       padding="large"
     >
