@@ -73,7 +73,7 @@ Get weekly insights delivered to your inbox
 - **Categories**: Technical, Business, Case Study, Tutorial, Opinion
 - **Tags**: React, Next.js, Performance, SEO, E-commerce, Startups
 - **Sort**: Latest, Most Popular, Most Shared
-- **Author**: Delwer Hossain, Syed Mir Habib, Guest Authors
+- **Author**: Delwer Hossain, Ahsan Habib Akik, Guest Authors
 
 **Post Card Structure**:
 - **Featured Image**: 16:9 aspect ratio, optimized WebP
