@@ -10,7 +10,7 @@ import {
 
 export const HeroSection = () => {
   return (
-    <section className="hero-section relative min-h-[100svh] sm:min-h-[100vh] max-h-none sm:max-h-[1000px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-16 sm:pt-20 lg:pt-24">
+    <section className="hero-section relative min-h-[600px] sm:min-h-[650px] lg:min-h-[700px] max-h-[800px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-16 sm:pt-20 lg:pt-24">
       {/* Enhanced multi-layer gradient background with mesh patterns */}
       <div className="absolute inset-0 z-0">
         {/* Animated mesh gradient base */}
@@ -78,7 +78,7 @@ export const HeroSection = () => {
       
       {/* Main content container with proper responsive padding */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-16">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6 sm:gap-8 lg:gap-16 xl:gap-20 items-center min-h-[500px] sm:min-h-[600px]">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
           
           {/* Left Column - Content */}
           <HeroAnimationWrapper className="flex flex-col justify-center space-y-4 sm:space-y-6 lg:space-y-8">
