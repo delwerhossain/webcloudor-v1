@@ -168,7 +168,7 @@ export const StartProjectSection = () => {
             className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20 hover:bg-white/20 transition-colors duration-300 cursor-pointer"
           >
             <Mail className="w-5 h-5 text-[#FFC300]" />
-            <span className="text-white font-medium">hello@webcloudor.com</span>
+            <span className="text-white font-medium">webcloudor@gmail.com</span>
           </motion.div>
 
           {/* Response Time */}
