@@ -107,7 +107,7 @@
    - Expertise: AWS, Cloud Architecture, DevOps, Kubernetes, Infrastructure as Code
    - Social Links:
      - Website: https://webcloudor.com
-     - LinkedIn: https://linkedin.com/in/syed-mir-habib
+     - LinkedIn: https://linkedin.com/in/ahsanhabibakik
 
 ### Blog Posts
 
