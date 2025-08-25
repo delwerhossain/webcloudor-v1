@@ -114,14 +114,15 @@ async function calculateAggregates(metricName: string, value: number) {
       p75: value,     // 75th percentile
       p90: value,     // 90th percentile
       count: 1,       // Total measurements
-      trend: 'stable' as 'improving' | 'stable' | 'declining'
+      trend: 'stable' as 'improving' | 'stable' | 'declining',
+      status: 'good' as 'good' | 'needs-improvement' | 'poor'
     }
   }
 
   // Performance thresholds for alerts
   const thresholds = {
     LCP: { good: 2500, poor: 4000 },
-    FID: { good: 100, poor: 300 },
+    INP: { good: 200, poor: 500 },
     CLS: { good: 0.1, poor: 0.25 },
     FCP: { good: 1800, poor: 3000 },
     TTFB: { good: 800, poor: 1800 }
