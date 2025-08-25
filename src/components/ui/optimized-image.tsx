@@ -130,7 +130,7 @@ const OptimizedImage = ({
       objectPosition,
       ...(style || {})
     },
-    ...props
+    ...rest
   }
 
   if (fill) {

@@ -6,7 +6,20 @@
 'use client'
 
 import { useEffect } from 'react'
-import { onCLS, onFCP, onLCP, onTTFB, onINP } from 'web-vitals'
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
+
+// Type declarations for global objects
+declare global {
+  interface Navigator {
+    connection?: {
+      effectiveType?: string
+    }
+  }
+  
+  interface Window {
+    gtag?: (...args: any[]) => void
+  }
+}
 
 interface VitalsMetric {
   name: string
@@ -21,16 +34,15 @@ const sendToAnalytics = (metric: VitalsMetric) => {
   const { name, value, id, delta, rating } = metric
   
   // Google Analytics 4
-  if (typeof window !== 'undefined' && 'gtag' in window) {
-    const gtag = (window as any).gtag
-    gtag('event', name, {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', name, {
       value: Math.round(name === 'CLS' ? delta * 1000 : delta),
       metric_id: id,
       metric_value: value,
       metric_delta: delta,
       metric_rating: rating,
       custom_parameter_1: window.location.pathname,
-      custom_parameter_2: (navigator as any).connection?.effectiveType || 'unknown'
+      custom_parameter_2: navigator.connection?.effectiveType || 'unknown'
     })
   }
 
@@ -96,7 +108,7 @@ const trackMetric = (metric: any) => {
 
 export const WebVitals = () => {
   useEffect(() => {
-    // Track Core Web Vitals (FID replaced by INP in web-vitals v5)
+    // Track Core Web Vitals
     onCLS(trackMetric)
     onINP(trackMetric) 
     onFCP(trackMetric)

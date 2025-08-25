@@ -270,7 +270,7 @@ doc/
 ## Rules
 
 ### PREVENT DUPLICATION
-Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. Avoid doc/old/ folder. Create new documentation in doc/others/. Testing scripts go in scripts/test/.
+Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. Avoid doc/old/ folder. Create new documentation in doc/others/. Testing scripts go in scripts/test/. always use pnpm.
 
 ## MCP (Model Context Protocol) Usage
 Available MCP tools - use as needed:
