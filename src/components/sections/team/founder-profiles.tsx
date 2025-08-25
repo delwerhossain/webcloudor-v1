@@ -76,7 +76,7 @@ const habibData = {
   ],
   contact: {
     email: "habib@webcloudor.com",
-    linkedin: "Professional profile link",
+    linkedin: "https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ahsanhabibakik",
     github: "Strategy portfolio and contributions",
     cta: "Book a strategy consultation",
   },
@@ -210,8 +210,11 @@ const FounderProfile = ({ data, imagePosition, delay = 0 }: FounderProfileProps)
             variant="outline" 
             size="sm"
             className="text-[#64748B] border-[#E2E8F0] hover:border-[#00A8E8] min-h-[44px] touch-manipulation"
+            asChild
           >
-            <span className="text-sm">LinkedIn</span>
+            <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer">
+              <span className="text-sm">LinkedIn</span>
+            </a>
           </Button>
           <Button 
             variant="outline" 
