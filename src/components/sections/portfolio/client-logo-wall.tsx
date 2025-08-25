@@ -277,7 +277,9 @@ export const ClientLogoWall = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <a
-                    href="/consultation"
+                    href="https://calendly.com/ahsanhabibakik/webcloudor"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-[#FFC300]/25 transition-all duration-300"
                   >
                     Start Your Project
