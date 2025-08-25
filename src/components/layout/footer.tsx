@@ -72,19 +72,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@webcloudor.com',
-    href: 'mailto:hello@webcloudor.com'
+    value: 'webcloudor@gmail.com',
+    href: 'mailto:webcloudor@gmail.com'
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567'
+    value: '+8801571060479',
+    href: 'tel:+8801571060479'
   },
   {
     icon: MapPin,
     label: 'Location',
-    value: 'San Francisco, CA',
+    value: 'Dhaka',
     href: '#'
   }
 ]
@@ -340,7 +340,7 @@ export const Footer = () => {
         <div className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-white/60 text-sm">
           <div className="mb-4 md:mb-0">
             <p>
-              © {currentYear} WebCloudor. All rights reserved. Made with ❤️ in San Francisco.
+              © {currentYear} WebCloudor. All rights reserved. Made with ❤️ in Dhaka.
             </p>
           </div>
           <div className="flex items-center space-x-6">
