@@ -93,7 +93,7 @@ export const TechnologyStack = () => {
 
   return (
     <SectionContainer 
-      id="technology-stack"
+      
       background="white" 
       padding="large"
     >
