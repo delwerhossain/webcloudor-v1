@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui'
 import { cn } from '@/lib/utils'
@@ -49,12 +50,21 @@ const navigationItems = [
 
 const MobileNavItem = ({ 
   item, 
-  onClose 
+  onClose,
+  pathname 
 }: { 
   item: typeof navigationItems[0]
-  onClose: () => void 
+  onClose: () => void
+  pathname: string
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  // Helper function to check if a menu item is active
+  const isActiveItem = (itemHref: string) => {
+    if (pathname === itemHref) return true
+    if (itemHref !== '/' && pathname.startsWith(itemHref)) return true
+    return false
+  }
 
   return (
     <div className="mb-2">
@@ -63,7 +73,12 @@ const MobileNavItem = ({
           <motion.button
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-between w-full px-4 py-3 text-left text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5 rounded-xl transition-all duration-200 group"
+            className={cn(
+              "flex items-center justify-between w-full px-4 py-3 text-left rounded-xl transition-all duration-200 group",
+              isActiveItem(item.href)
+                ? "text-[#00A8E8] bg-[#00A8E8]/10 border-l-4 border-[#00A8E8]"
+                : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5"
+            )}
           >
             <span className="font-medium">{item.name}</span>
             <ChevronDown 
@@ -107,7 +122,12 @@ const MobileNavItem = ({
         <Link
           href={item.href}
           onClick={onClose}
-          className="flex items-center px-4 py-3 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5 rounded-xl transition-all duration-200 group"
+          className={cn(
+            "flex items-center px-4 py-3 rounded-xl transition-all duration-200 group",
+            isActiveItem(item.href)
+              ? "text-[#00A8E8] bg-[#00A8E8]/10 border-l-4 border-[#00A8E8]"
+              : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/5"
+          )}
         >
           <span className="font-medium">{item.name}</span>
           <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-70 group-hover:translate-x-1 transition-all duration-200 text-[#00A8E8]" />
@@ -122,6 +142,20 @@ export const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const pathname = usePathname()
+
+  // Helper function to check if a menu item is active
+  const isActiveItem = (itemHref: string, itemName: string) => {
+    if (pathname === itemHref) return true
+    
+    // Check if current path starts with the item path (for sub-pages)
+    if (itemHref !== '/' && pathname.startsWith(itemHref)) return true
+    
+    // Special case for home page
+    if (itemHref === '/' && pathname === '/') return true
+    
+    return false
+  }
 
   // Handle scroll effect with better mobile detection and error handling
   useEffect(() => {
@@ -133,8 +167,14 @@ export const Navigation = () => {
 
     const handleScroll = () => {
       const scrollY = window.scrollY
-      // More sensitive scroll detection for mobile
-      setScrolled(scrollY > (isMobile ? 10 : 20))
+      const isHomePage = pathname === '/'
+      
+      // Special handling for home page - more sensitive detection
+      const scrollThreshold = isHomePage 
+        ? (isMobile ? 5 : 10) 
+        : (isMobile ? 10 : 20)
+      
+      setScrolled(scrollY > scrollThreshold)
       
       // Close dropdowns when scrolling
       if (activeDropdown) {
@@ -298,10 +338,14 @@ export const Navigation = () => {
                 <Link
                   href="/services"
                   className={cn(
-                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block",
-                    scrolled 
-                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
-                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block relative",
+                    isActiveItem("/services", "Services")
+                      ? scrolled
+                        ? "text-[#00A8E8] bg-[#00A8E8]/10 border-b-2 border-[#00A8E8]"
+                        : "text-[#00A8E8] bg-white/20 border-b-2 border-[#00A8E8]"
+                      : scrolled 
+                        ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
+                        : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
                   )}
                 >
                   Services
@@ -309,10 +353,14 @@ export const Navigation = () => {
                 <Link
                   href="/portfolio"
                   className={cn(
-                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block",
-                    scrolled 
-                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
-                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block relative",
+                    isActiveItem("/portfolio", "Portfolio")
+                      ? scrolled
+                        ? "text-[#00A8E8] bg-[#00A8E8]/10 border-b-2 border-[#00A8E8]"
+                        : "text-[#00A8E8] bg-white/20 border-b-2 border-[#00A8E8]"
+                      : scrolled 
+                        ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
+                        : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
                   )}
                 >
                   Portfolio
@@ -335,10 +383,14 @@ export const Navigation = () => {
                     <Link
                       href={item.href}
                       className={cn(
-                        "flex items-center space-x-2 rounded-full font-medium transition-all duration-300 hover:scale-105",
-                        scrolled 
-                          ? "px-3 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/30 backdrop-blur-sm text-sm"
-                          : "px-4 py-2.5 [#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/10 backdrop-blur-sm text-sm"
+                        "flex items-center space-x-2 rounded-full font-medium transition-all duration-300 hover:scale-105 relative",
+                        isActiveItem(item.href, item.name)
+                          ? scrolled
+                            ? "px-3 py-2 text-[#00A8E8] bg-[#00A8E8]/10 backdrop-blur-sm text-sm border border-[#00A8E8]/20"
+                            : "px-4 py-2.5 text-[#00A8E8] bg-white/20 backdrop-blur-sm text-sm border border-[#00A8E8]/30"
+                          : scrolled 
+                            ? "px-3 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/30 backdrop-blur-sm text-sm"
+                            : "px-4 py-2.5 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/10 backdrop-blur-sm text-sm"
                       )}
                     >
                       <span>{item.name}</span>
@@ -591,6 +643,7 @@ export const Navigation = () => {
                     <MobileNavItem
                       item={item}
                       onClose={() => setIsMobileMenuOpen(false)}
+                      pathname={pathname}
                     />
                   </motion.div>
                 ))}
