@@ -149,7 +149,7 @@ export const ServiceOverviewGrid = () => {
 
   return (
     <SectionContainer 
-      id="service-overview"
+      
       background="gray" 
       padding="large"
     >
