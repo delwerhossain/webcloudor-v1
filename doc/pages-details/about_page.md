@@ -159,7 +159,7 @@ clients achieve results they didn't think were possible."
 
 ---
 
-**Team Member 2: Syed Mir Habib**
+**Team Member 2: Ahsan Habib Akik**
 
 **Role**: "Founder & Strategy Lead"
 
