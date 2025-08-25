@@ -187,10 +187,10 @@ export const PricingPackages = () => {
                     </div>
                   </div>
 
-                  {/* What's Included */}
+                  {/* What is Included */}
                   <div className="flex-1 space-y-6">
                     <div className="space-y-3">
-                      <h4 className="font-bold text-[#0A0A0B]">What&apos;s Included:</h4>
+                      <h4 className="font-bold text-[#0A0A0B]">What is Included:</h4>
                       {pkg.includes.map((item, itemIndex) => (
                         <motion.div
                           key={itemIndex}
