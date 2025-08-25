@@ -136,7 +136,7 @@ const FAQItem = ({ item, index, isOpen, onToggle, isInView, shouldReduceMotion }
 export const TeamFAQ = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion() ?? false
   const [openItems, setOpenItems] = useState<Set<number>>(new Set())
 
   const toggleItem = (index: number) => {
