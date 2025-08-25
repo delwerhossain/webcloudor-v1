@@ -10,60 +10,100 @@ import {
 
 export const HeroSection = () => {
   return (
-    <section className="relative h-screen max-h-[1000px] min-h-[700px] flex items-center justify-center overflow-hidden bg-white pt-16">
-      {/* Enhanced multi-layer gradient background */}
+    <section className="relative h-screen max-h-[1000px] min-h-[700px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-16">
+      {/* Enhanced multi-layer gradient background with mesh patterns */}
       <div className="absolute inset-0 z-0">
-        {/* Base gradient layer */}
+        {/* Animated mesh gradient base */}
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-60"
           style={{
             background: `
-              radial-gradient(ellipse 120% 80% at 20% 40%, rgba(0, 168, 232, 0.12) 0%, transparent 60%),
-              radial-gradient(ellipse 100% 70% at 80% 30%, rgba(0, 119, 199, 0.08) 0%, transparent 50%),
-              radial-gradient(ellipse 80% 60% at 50% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 40%),
+              radial-gradient(ellipse 120% 80% at 20% 40%, rgba(0, 168, 232, 0.15) 0%, transparent 70%),
+              radial-gradient(ellipse 100% 70% at 80% 30%, rgba(0, 119, 199, 0.12) 0%, transparent 60%),
+              radial-gradient(ellipse 90% 60% at 50% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+              conic-gradient(from 45deg at 30% 70%, rgba(0, 168, 232, 0.1) 0deg, transparent 90deg),
               linear-gradient(135deg, 
-                rgba(0, 168, 232, 0.03) 0%, 
-                rgba(0, 119, 199, 0.06) 35%, 
-                rgba(255, 255, 255, 0.02) 70%,
-                rgba(27, 54, 93, 0.04) 100%
+                rgba(0, 168, 232, 0.04) 0%, 
+                rgba(0, 119, 199, 0.08) 35%, 
+                rgba(255, 255, 255, 0.03) 70%,
+                rgba(27, 54, 93, 0.06) 100%
               )
             `
           }}
         />
         
-        {/* Floating background orbs */}
-        <div className="absolute top-[15%] left-[15%] w-80 h-80 rounded-full opacity-25 blur-3xl animate-pulse">
+        {/* Dynamic grid pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0, 168, 232, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 168, 232, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(ellipse 80% 50% at 50% 20%, black 40%, transparent 70%)',
+            animation: 'gridShift 20s ease-in-out infinite alternate'
+          }}
+        />
+        
+        {/* Enhanced floating background orbs with better gradients */}
+        <div className="absolute top-[10%] left-[10%] w-96 h-96 rounded-full opacity-30 blur-3xl">
           <div
             style={{ 
-              background: 'radial-gradient(circle, #00A8E8 0%, #0077C7 70%, transparent 100%)',
-              animation: 'float 6s ease-in-out infinite'
+              background: 'radial-gradient(circle, #00A8E8 0%, #0077C7 40%, #1B365D 80%, transparent 100%)',
+              animation: 'floatSlow 8s ease-in-out infinite'
             }}
             className="w-full h-full"
           />
         </div>
         
-        <div className="absolute top-[60%] right-[20%] w-60 h-60 rounded-full opacity-20 blur-2xl animate-pulse">
+        <div className="absolute top-[50%] right-[15%] w-72 h-72 rounded-full opacity-25 blur-3xl">
           <div
             style={{ 
-              background: 'radial-gradient(circle, #FFD700 0%, #FF8C00 70%, transparent 100%)',
-              animation: 'float 8s ease-in-out infinite reverse',
-              animationDelay: '2s'
+              background: 'radial-gradient(circle, #FFD700 0%, #FF8C00 50%, #FF4500 80%, transparent 100%)',
+              animation: 'floatSlow 10s ease-in-out infinite reverse',
+              animationDelay: '3s'
             }}
             className="w-full h-full"
           />
         </div>
         
-        <div className="absolute top-[25%] right-[10%] w-40 h-40 rounded-full opacity-15 blur-xl animate-pulse">
+        <div className="absolute top-[20%] right-[5%] w-48 h-48 rounded-full opacity-20 blur-2xl">
           <div
             style={{ 
-              background: 'radial-gradient(circle, #0077C7 0%, #1B365D 70%, transparent 100%)',
-              animation: 'float 10s ease-in-out infinite',
-              animationDelay: '4s'
+              background: 'radial-gradient(circle, #0077C7 0%, #1B365D 60%, transparent 100%)',
+              animation: 'floatSlow 12s ease-in-out infinite',
+              animationDelay: '6s'
+            }}
+            className="w-full h-full"
+          />
+        </div>
+        
+        {/* Additional ambient orbs */}
+        <div className="absolute bottom-[30%] left-[5%] w-32 h-32 rounded-full opacity-15 blur-xl">
+          <div
+            style={{ 
+              background: 'radial-gradient(circle, #00A8E8 0%, transparent 100%)',
+              animation: 'floatSlow 15s ease-in-out infinite',
+              animationDelay: '1s'
             }}
             className="w-full h-full"
           />
         </div>
       </div>
+      
+      {/* Add custom CSS animations */}
+      <style jsx>{`
+        @keyframes floatSlow {
+          0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+          33% { transform: translateY(-20px) translateX(10px) scale(1.05); }
+          66% { transform: translateY(10px) translateX(-15px) scale(0.95); }
+        }
+        @keyframes gridShift {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(30px, 30px); }
+        }
+      `}</style>
       
       {/* Main content container with proper responsive padding */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
@@ -74,51 +114,116 @@ export const HeroSection = () => {
             
             {/* Main Headline */}
             <AnimatedContent>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1]">
-                <span className="block text-[#0A0A0B] mb-2">Your next breakthrough,</span>
-                <span 
-                  className="block bg-gradient-to-r from-[#00A8E8] via-[#0077C7] to-[#1B365D] bg-clip-text text-transparent font-extrabold"
-                  style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-                >
-                  powered by AI-first web
-                </span>
-              </h1>
+              <div className="relative">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
+                  <span className="block text-gray-900 mb-3 relative">
+                    Your next breakthrough,
+                    {/* Subtle underline accent */}
+                    <div className="absolute -bottom-1 left-0 w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-80"></div>
+                  </span>
+                  <span 
+                    className="block bg-gradient-to-r from-[#00A8E8] via-[#0077C7] to-[#1B365D] bg-clip-text text-transparent font-extrabold relative"
+                    style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+                  >
+                    powered by AI-first web
+                    {/* Glowing effect behind text */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#00A8E8]/20 via-[#0077C7]/20 to-[#1B365D]/20 blur-xl -z-10 opacity-50"></div>
+                  </span>
+                </h1>
+                {/* Decorative elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full opacity-60 animate-pulse"></div>
+                <div className="absolute top-1/2 -left-6 w-4 h-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-40 animate-bounce"></div>
+              </div>
             </AnimatedContent>
 
-            {/* Subheadline */}
+            {/* Enhanced Subheadline */}
             <AnimatedContent delay={0.2}>
-              <p className="text-lg sm:text-xl lg:text-2xl text-[#64748B] max-w-2xl leading-relaxed">
-                <span className="font-semibold text-[#0077C7] block mb-2">Ship faster. Convert more. Scale with confidence.</span>
-                <span className="text-[#64748B]">Modern web solutions that move your business forward.</span>
-              </p>
+              <div className="max-w-2xl space-y-4">
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 leading-tight">
+                  Ship faster. Convert more. Scale with confidence.
+                </p>
+                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
+                  Modern web solutions that move your business forward with 
+                  <span className="inline-block mx-2 px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-700 rounded-full text-base font-semibold">
+                    AI-powered efficiency
+                  </span>
+                  and proven results.
+                </p>
+              </div>
             </AnimatedContent>
 
-            {/* CTA Buttons */}
-            <AnimatedContent delay={0.4} className="flex flex-col sm:flex-row gap-4 lg:gap-6 pt-4">
+            {/* Enhanced CTA Buttons */}
+            <AnimatedContent delay={0.4} className="flex flex-col sm:flex-row gap-4 lg:gap-6 pt-6">
               <PulseButton>
-                <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-[#0A0A0B] bg-gradient-to-r from-[#FFD700] to-[#FF8C00] rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap">
-                  Get Free Consultation
+                <button className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-gray-900 bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-400 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden">
+                  {/* Animated shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  <span className="relative z-10 flex items-center gap-2">
+                    Get Free Consultation
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-50 blur-lg group-hover:opacity-70 transition-opacity duration-300 -z-10"></div>
                 </button>
               </PulseButton>
               
-              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-[#00A8E8] bg-transparent border-2 border-[#00A8E8] rounded-xl hover:bg-[#00A8E8] hover:text-white transition-all duration-300 whitespace-nowrap">
-                View Our Work
+              <button className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white/80 backdrop-blur-sm border-2 border-blue-200 rounded-2xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 whitespace-nowrap overflow-hidden shadow-sm hover:shadow-md">
+                {/* Subtle gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10 flex items-center gap-2">
+                  View Our Work
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </span>
               </button>
             </AnimatedContent>
 
-            {/* Trust Indicators */}
-            <AnimatedContent delay={0.6} className="flex flex-wrap gap-6 lg:gap-8 pt-6 lg:pt-8">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] rounded-full shadow-sm" />
-                <span className="text-[#64748B] font-medium text-sm lg:text-base">50+ Projects Delivered</span>
+            {/* Enhanced Trust Indicators */}
+            <AnimatedContent delay={0.6} className="pt-8 lg:pt-10">
+              <div className="flex flex-wrap gap-6 lg:gap-8">
+                <div className="flex items-center gap-3 group">
+                  <div className="relative">
+                    <div className="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full shadow-lg animate-pulse" />
+                    <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
+                  </div>
+                  <span className="text-slate-700 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
+                    50+ Projects Delivered
+                  </span>
+                </div>
+                
+                <div className="flex items-center gap-3 group">
+                  <div className="relative">
+                    <div className="w-4 h-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full shadow-lg animate-pulse" style={{animationDelay: '0.5s'}} />
+                    <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
+                  </div>
+                  <span className="text-slate-700 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
+                    99% On-Time
+                  </span>
+                </div>
+                
+                <div className="flex items-center gap-3 group">
+                  <div className="relative">
+                    <div className="w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full shadow-lg animate-pulse" style={{animationDelay: '1s'}} />
+                    <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
+                  </div>
+                  <span className="text-slate-700 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
+                    Tier-1/2 Clients Served
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full shadow-sm" />
-                <span className="text-[#64748B] font-medium text-sm lg:text-base">99% On-Time</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-gradient-to-r from-[#0077C7] to-[#1B365D] rounded-full shadow-sm" />
-                <span className="text-[#64748B] font-medium text-sm lg:text-base">Tier-1/2 Clients Served</span>
+              
+              {/* Social proof badges */}
+              <div className="flex items-center gap-4 mt-6 pt-6 border-t border-slate-200/50">
+                <span className="text-sm text-slate-500 font-medium">Trusted by teams at:</span>
+                <div className="flex items-center gap-4 opacity-60">
+                  <div className="h-6 w-16 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-50"></div>
+                  <div className="h-6 w-20 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-40"></div>
+                  <div className="h-6 w-14 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-30"></div>
+                </div>
               </div>
             </AnimatedContent>
             
