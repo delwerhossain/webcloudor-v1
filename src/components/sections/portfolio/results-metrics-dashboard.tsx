@@ -180,7 +180,7 @@ const metricsData: MetricData[] = [
 const AnimatedMetric = ({ metric, delay }: { metric: MetricData; delay: number }) => {
   const [displayValue, setDisplayValue] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.3 })
+  const isInView = useInView(ref, { once: true, margin: "-30%" })
 
   useEffect(() => {
     if (isInView) {
@@ -262,7 +262,7 @@ const AnimatedMetric = ({ metric, delay }: { metric: MetricData; delay: number }
 
 export const ResultsMetricsDashboard = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.05 })
+  const isInView = useInView(ref, { once: true, margin: "-5%" })
 
   return (
     <SectionContainer padding="large" background="blue">
