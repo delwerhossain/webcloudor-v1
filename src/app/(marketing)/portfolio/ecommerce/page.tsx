@@ -188,7 +188,7 @@ const EcommercePortfolioPage = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               Stores that{' '}
-              <span className="bg-gradient-to-r from-primary to-warm-orange bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 convert and scale
               </span>
             </h1>
@@ -200,7 +200,7 @@ const EcommercePortfolioPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-warm-orange hover:shadow-lg">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
                   Start Your Store
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -389,7 +389,7 @@ const EcommercePortfolioPage = () => {
       </section>
 
       {/* E-commerce Metrics */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-warm-orange to-signal-yellow text-white">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-primary-blue to-dark-blue text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
