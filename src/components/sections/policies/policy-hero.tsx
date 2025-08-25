@@ -20,7 +20,7 @@ export const PolicyHero = ({
     <SectionContainer
       background="white"
       padding="large"
-      className="min-h-[40vh] flex items-center"
+      className="min-h-[30vh] sm:min-h-[40vh] flex items-center"
     >
       <PolicyHeroContent
         title={title}
