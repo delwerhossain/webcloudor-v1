@@ -188,14 +188,14 @@ export const HeroSection = () => {
               </div>
               
               {/* Social proof badges */}
-              <div className="flex items-center gap-4 mt-6 pt-6 border-t border-slate-200/50">
+              {/* <div className="flex items-center gap-4 mt-6 pt-6 border-t border-slate-200/50">
                 <span className="text-sm text-gray-700 font-medium">Trusted by teams at:</span>
                 <div className="flex items-center gap-4 opacity-60">
                   <div className="h-6 w-16 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-50"></div>
                   <div className="h-6 w-20 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-40"></div>
                   <div className="h-6 w-14 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-30"></div>
                 </div>
-              </div>
+              </div> */}
             </AnimatedContent>
             
           </HeroAnimationWrapper>
