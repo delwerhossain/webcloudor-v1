@@ -102,15 +102,15 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
       <main className="min-h-screen bg-background">
         <BlogHeader />
         
-        <article className="container mx-auto px-4 py-8">
+        <article className="container mx-auto px-4 py-6 sm:py-8">
           <div className="max-w-4xl mx-auto">
             <BlogPostHeader post={post} />
             
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8">
               {post.tableOfContents && (
                 <aside className="lg:col-span-1 order-2 lg:order-1">
-                  <div className="sticky top-8">
-                    <Suspense fallback={<div className="animate-pulse bg-muted h-64 rounded-lg" />}>
+                  <div className="sticky top-4 sm:top-8 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg p-4 border border-border/50">
+                    <Suspense fallback={<div className="animate-pulse bg-muted h-48 sm:h-64 rounded-lg" />}>
                       <TableOfContents content={post.content} />
                     </Suspense>
                   </div>
@@ -120,27 +120,27 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
               <div className={`${post.tableOfContents ? 'lg:col-span-3' : 'lg:col-span-4'} order-1 lg:order-2`}>
                 <BlogPostContent content={post.content} />
                 
-                <div className="mt-12 pt-8 border-t">
+                <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t">
                   <ShareButtons 
                     title={post.title}
                     url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`}
                   />
                 </div>
                 
-                <div className="mt-8">
+                <div className="mt-6 sm:mt-8">
                   <AuthorCard author={post.author} />
                 </div>
                 
                 {relatedPosts.length > 0 && (
-                  <div className="mt-16">
-                    <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
+                  <div className="mt-12 sm:mt-16">
+                    <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 px-2 sm:px-0">Related Articles</h2>
                     <Suspense fallback={<BlogLoading />}>
                       <RelatedPosts posts={relatedPosts} />
                     </Suspense>
                   </div>
                 )}
                 
-                <div className="mt-16">
+                <div className="mt-12 sm:mt-16">
                   <CommentSection postSlug={slug} postTitle={post.title} />
                 </div>
               </div>

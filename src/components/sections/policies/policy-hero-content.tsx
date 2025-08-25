@@ -38,19 +38,19 @@ export const PolicyHeroContent = ({
       variants={staggerContainer}
       initial="initial"
       animate="animate"
-      className="w-full max-w-4xl mx-auto text-center"
+      className="w-full max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8"
     >
       {/* Title Section */}
       <motion.h1
         variants={fadeUpVariants}
-        className="text-4xl md:text-5xl font-bold text-[#1B365D] mb-6"
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B365D] mb-4 sm:mb-6 leading-tight"
       >
         {title}
       </motion.h1>
 
       <motion.p
         variants={fadeUpVariants}
-        className="text-lg text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+        className="text-base sm:text-lg text-slate-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed"
       >
         {subtitle}
       </motion.p>
@@ -59,22 +59,22 @@ export const PolicyHeroContent = ({
       {showControls && (
         <motion.div
           variants={fadeUpVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+          className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center mb-6 sm:mb-8"
         >
           <Button
             onClick={handleManagePreferences}
             variant="outline"
-            className="text-sm"
+            className="text-xs sm:text-sm min-h-[44px] touch-manipulation"
           >
             🍪 Manage Cookie Preferences
           </Button>
-          <Button onClick={handleAcceptAll} className="text-sm">
+          <Button onClick={handleAcceptAll} className="text-xs sm:text-sm min-h-[44px] touch-manipulation">
             ✅ Accept All Cookies
           </Button>
           <Button
             onClick={handleAcceptEssential}
             variant="outline"
-            className="text-sm"
+            className="text-xs sm:text-sm min-h-[44px] touch-manipulation"
           >
             ❌ Accept Only Essential
           </Button>
@@ -84,24 +84,24 @@ export const PolicyHeroContent = ({
       {/* Key Points */}
       <motion.div
         variants={fadeUpVariants}
-        className="bg-slate-50 rounded-xl p-6 mb-8"
+        className="bg-slate-50 rounded-xl p-4 sm:p-6 mb-6 sm:mb-8"
       >
-        <ul className="space-y-3 text-left max-w-2xl mx-auto">
+        <ul className="space-y-2 sm:space-y-3 text-left max-w-2xl mx-auto">
           {keyPoints.map((point, index) => (
             <motion.li
               key={index}
               variants={fadeUpVariants}
-              className="flex items-start gap-3 text-slate-700"
+              className="flex items-start gap-2 sm:gap-3 text-slate-700"
             >
-              <div className="w-2 h-2 rounded-full bg-[#1B365D] mt-2 flex-shrink-0" />
-              <span>{point}</span>
+              <div className="w-2 h-2 rounded-full bg-[#1B365D] mt-1.5 sm:mt-2 flex-shrink-0" />
+              <span className="text-sm sm:text-base leading-relaxed">{point}</span>
             </motion.li>
           ))}
         </ul>
       </motion.div>
 
       {/* Last Updated */}
-      <motion.p variants={fadeUpVariants} className="text-sm text-slate-500">
+      <motion.p variants={fadeUpVariants} className="text-xs sm:text-sm text-slate-500">
         {lastUpdated}
       </motion.p>
     </motion.div>

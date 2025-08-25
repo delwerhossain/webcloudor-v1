@@ -86,13 +86,13 @@ const FloatingProjectCard = ({ project, index }: { project: ProjectPreview; inde
           ease: "easeInOut",
           delay: index * 0.5
         }}
-        className={`bg-gradient-to-r ${project.color} rounded-2xl p-4 shadow-lg backdrop-blur-sm border border-white/20 min-w-[180px]`}
+        className={`bg-gradient-to-r ${project.color} rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur-sm border border-white/20 min-w-[140px] sm:min-w-[180px]`}
       >
-        <div className="flex items-center gap-3 text-white">
-          {project.icon}
+        <div className="flex items-center gap-2 sm:gap-3 text-white">
+          <div className="w-5 h-5 flex-shrink-0">{project.icon}</div>
           <div>
-            <div className="text-sm font-medium">{project.title}</div>
-            <div className="text-lg font-bold">{project.metric}</div>
+            <div className="text-xs sm:text-sm font-medium line-clamp-1">{project.title}</div>
+            <div className="text-sm sm:text-lg font-bold">{project.metric}</div>
           </div>
         </div>
       </motion.div>
@@ -130,10 +130,10 @@ const CounterMetric = ({ value, label, delay }: { value: string; label: string; 
       transition={{ duration: 0.6, ease: EASE_CURVE, delay }}
       className="text-center"
     >
-      <div className="text-2xl md:text-3xl font-bold text-[#1B365D]">
+      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1B365D]">
         {value.includes("+") ? "+" : ""}{count}{value.includes("M") ? "M+" : "+"}
       </div>
-      <div className="text-sm text-slate-600">{label}</div>
+      <div className="text-xs sm:text-sm text-slate-600">{label}</div>
     </motion.div>
   )
 }
@@ -177,27 +177,27 @@ export const PortfolioHero = () => {
         >
           {/* Main Headline */}
           <motion.div variants={fadeUpVariants} className="space-y-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-[#0A0A0B] leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#0A0A0B] leading-tight px-4">
               Results that speak{" "}
               <span className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] bg-clip-text text-transparent">
                 louder than words
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Real projects, real outcomes, real growth. See how we&apos;ve helped 50+ clients achieve breakthrough results.
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-4">
+              Real projects, real outcomes, real growth. See how we have helped 50+ clients achieve breakthrough results.
             </p>
           </motion.div>
 
           {/* Filter Pills */}
           <motion.div 
             variants={fadeUpVariants}
-            className="flex flex-wrap justify-center gap-3 py-4"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 py-4 px-4"
           >
             {filterCategories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 min-h-[44px] flex items-center ${
                   activeFilter === category
                     ? "bg-[#FFC300] text-[#0A0A0B] shadow-lg shadow-[#FFC300]/25"
                     : "bg-white/80 text-slate-700 hover:bg-[#FFC300]/20 hover:text-[#0A0A0B] border border-slate-200"
@@ -211,9 +211,9 @@ export const PortfolioHero = () => {
           {/* Trust Metrics Bar */}
           <motion.div 
             variants={fadeUpVariants}
-            className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 shadow-lg mx-4"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
               <CounterMetric value="50+" label="Projects Delivered" delay={0.3} />
               <CounterMetric value="25M+" label="Client Revenue Generated" delay={0.5} />
               <CounterMetric value="99%" label="Client Retention" delay={0.7} />
@@ -229,7 +229,7 @@ export const PortfolioHero = () => {
             >
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-xl hover:shadow-[#FFC300]/25 hover:scale-105 transition-all duration-300 font-semibold px-8 py-4"
+                className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-xl hover:shadow-[#FFC300]/25 hover:scale-105 transition-all duration-300 font-semibold px-6 sm:px-8 py-3 sm:py-4 min-h-[44px] w-full sm:w-auto"
               >
                 Discuss Your Project
                 <TrendingUp className="w-5 h-5 ml-2" />

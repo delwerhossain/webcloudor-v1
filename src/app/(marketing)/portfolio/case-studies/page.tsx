@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, BarChart3, TrendingUp, Users, Zap, CheckCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, BarChart3, TrendingUp, Users, Zap, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'Case Studies | Real Results from WebCloudor Projects',
-  description: 'Detailed case studies showing real business outcomes from our web development, e-commerce, and cloud architecture projects. See measurable results and client success stories.',
-  keywords: ['case studies', 'project results', 'client success', 'web development results', 'ROI'],
+  title: "Case Studies | Real Results from WebCloudor Projects",
+  description: "Detailed case studies showing real business outcomes from our web development, e-commerce, and cloud architecture projects. See measurable results and client success stories.",
+  keywords: ["case studies", "project results", "client success", "web development results", "ROI"],
   openGraph: {
-    title: 'Case Studies | WebCloudor',
-    description: 'Real projects, real outcomes, real growth. See how we have helped 50+ clients achieve breakthrough results.',
-    type: 'website',
+    title: "Case Studies | WebCloudor",
+    description: "Real projects, real outcomes, real growth. See how we have helped 50+ clients achieve breakthrough results.",
+    type: "website",
   },
 }
 
@@ -145,7 +145,7 @@ const CaseStudiesPage = () => {
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
-              Results that{' '}
+              Results that{" "}
               <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 speak louder than words
               </span>
@@ -157,14 +157,14 @@ const CaseStudiesPage = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                   Discuss Your Project
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/portfolio">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+              <Link href="/portfolio" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                   View All Projects
                 </Button>
               </Link>
@@ -205,8 +205,8 @@ const CaseStudiesPage = () => {
             </div>
 
             <Card className="bg-background border-border/60 shadow-lg">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start lg:items-center">
                   <div>
                     <div className="mb-6">
                       <Badge className="mb-2">E-commerce Solutions</Badge>
@@ -230,34 +230,34 @@ const CaseStudiesPage = () => {
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-green-600">+45%</div>
-                        <div className="text-sm text-foreground/60">Conversion Rate</div>
+                        <div className="text-xl sm:text-2xl font-bold text-green-600">+45%</div>
+                        <div className="text-xs sm:text-sm text-foreground/60">Conversion Rate</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">+89%</div>
-                        <div className="text-sm text-foreground/60">Mobile Orders</div>
+                        <div className="text-xl sm:text-2xl font-bold text-blue-600">+89%</div>
+                        <div className="text-xs sm:text-sm text-foreground/60">Mobile Orders</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-600">40%</div>
-                        <div className="text-sm text-foreground/60">Faster Checkout</div>
+                        <div className="text-xl sm:text-2xl font-bold text-purple-600">40%</div>
+                        <div className="text-xs sm:text-sm text-foreground/60">Faster Checkout</div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-primary/10 to-signal-yellow/10 rounded-lg p-8 text-center">
-                    <div className="mb-6">
-                      <div className="text-4xl font-bold text-primary mb-2">+127%</div>
-                      <div className="text-foreground/70">Overall Sales Growth</div>
+                  <div className="bg-gradient-to-br from-primary/10 to-signal-yellow/10 rounded-lg p-4 sm:p-6 lg:p-8 text-center">
+                    <div className="mb-4 sm:mb-6">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-2">+127%</div>
+                      <div className="text-sm sm:text-base text-foreground/70">Overall Sales Growth</div>
                     </div>
-                    <blockquote className="text-lg italic text-foreground/80 mb-4">
+                    <blockquote className="text-sm sm:text-base lg:text-lg italic text-foreground/80 mb-4">
                       "The results exceeded our expectations. WebCloudor did not just build us a better checkout—they 
                       transformed our entire mobile revenue stream."
                     </blockquote>
-                    <div className="text-foreground/70">
+                    <div className="text-sm sm:text-base text-foreground/70">
                       <div className="font-semibold">Sarah Chen</div>
-                      <div className="text-sm">Head of Digital, GlobalRetail Corp</div>
+                      <div className="text-xs sm:text-sm">Head of Digital, GlobalRetail Corp</div>
                     </div>
                   </div>
                 </div>
@@ -279,9 +279,9 @@ const CaseStudiesPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudies.slice(1).map((caseStudy) => (
-              <Card key={caseStudy.id} className="bg-gradient-to-br from-background to-muted/20 border-border/60 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+              <Card key={caseStudy.id} className="bg-gradient-to-br from-background to-muted/20 border-border/60 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] cursor-pointer flex flex-col h-full">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-3">
                     <Badge variant="outline" className="text-xs">
@@ -292,9 +292,9 @@ const CaseStudiesPage = () => {
                   <CardTitle className="text-lg leading-tight">{caseStudy.title}</CardTitle>
                   <div className="text-sm text-foreground/70">{caseStudy.industry}</div>
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent className="pt-0 flex-1 flex flex-col">
                   <div className="mb-4">
-                    <div className="text-2xl font-bold text-primary mb-1">{caseStudy.mainMetric}</div>
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-1">{caseStudy.mainMetric}</div>
                     <p className="text-sm text-foreground/70 line-clamp-2">{caseStudy.description}</p>
                   </div>
 
@@ -311,10 +311,12 @@ const CaseStudiesPage = () => {
                     <span className="font-medium">Challenge:</span> {caseStudy.challenge}
                   </div>
 
-                  <Button variant="ghost" size="sm" className="w-full hover:bg-primary/10 hover:text-primary">
-                    View Full Case Study
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  <div className="mt-auto">
+                    <Button variant="ghost" size="sm" className="w-full hover:bg-primary/10 hover:text-primary min-h-[44px]">
+                      View Full Case Study
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -366,14 +368,14 @@ const CaseStudiesPage = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                 Book Free Consultation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio">
-              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+            <Link href="/portfolio" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                 View All Projects
               </Button>
             </Link>

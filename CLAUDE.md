@@ -270,7 +270,18 @@ doc/
 ## Rules
 
 ### PREVENT DUPLICATION
-Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. and avoid the doc\old this files 
+Before creating anything, search codebase for existing similar code. Build upon existing patterns instead of creating new variations. Avoid doc/old/ folder. Create new documentation in doc/others/. Testing scripts go in scripts/test/.
+
+## MCP (Model Context Protocol) Usage
+Available MCP tools - use as needed:
+1.context7 - Context management
+2.filesystem - File operations
+3.github - Repository management
+4.memory - State persistence
+5.shadcn - UI component integration
+6.mongodb - Database operations
+7.(Avoid playwright MCP only base on command u can use)
+
 
 ### Success Criteria
 1. Design compliance with `/doc/` specs

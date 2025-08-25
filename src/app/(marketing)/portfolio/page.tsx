@@ -13,7 +13,7 @@ import { StartProjectCTA } from "@/components/sections/portfolio/start-project-c
 
 export const metadata: Metadata = {
   title: "Portfolio | WebCloudor",
-  description: "Real projects, real outcomes, real growth. See how we've helped 50+ clients achieve breakthrough results with web development, e-commerce, cloud architecture, and AI automation solutions.",
+  description: "Real projects, real outcomes, real growth. See how we have helped 50+ clients achieve breakthrough results with web development, e-commerce, cloud architecture, and AI automation solutions.",
   keywords: [
     "portfolio",
     "case studies", 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Portfolio - Results that speak louder than words | WebCloudor",
-    description: "See how we've helped 50+ clients achieve breakthrough results. Real projects, real outcomes, real growth.",
+    description: "See how we have helped 50+ clients achieve breakthrough results. Real projects, real outcomes, real growth.",
     type: "website",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Portfolio - Results that speak louder than words | WebCloudor",
-    description: "See how we've helped 50+ clients achieve breakthrough results. Real projects, real outcomes, real growth.",
+    description: "See how we have helped 50+ clients achieve breakthrough results. Real projects, real outcomes, real growth.",
     images: ["/portfolio-og.jpg"],
   },
   alternates: {

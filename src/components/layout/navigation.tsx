@@ -122,14 +122,30 @@ export const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
 
-  // Handle scroll effect
+  // Handle scroll effect with better mobile detection
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      const scrollY = window.scrollY
+      const isMobile = window.innerWidth < 1024
+      // More sensitive scroll detection for mobile
+      setScrolled(scrollY > (isMobile ? 10 : 20))
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    const handleScrollThrottled = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScrollThrottled, { passive: true })
+    handleScroll() // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScrollThrottled)
   }, [])
 
   // Close mobile menu on escape
@@ -170,16 +186,16 @@ export const Navigation = () => {
         {/* Navigation Container with WebCloudor Theme */}
         <motion.nav
           animate={{
-            marginLeft: scrolled ? 24 : 0,
-            marginRight: scrolled ? 24 : 0,
-            marginTop: scrolled ? 12 : 0,
-            borderRadius: scrolled ? 16 : 0,
+            marginLeft: scrolled ? (window.innerWidth >= 1024 ? 24 : 8) : 0,
+            marginRight: scrolled ? (window.innerWidth >= 1024 ? 24 : 8) : 0,
+            marginTop: scrolled ? (window.innerWidth >= 1024 ? 12 : 8) : 0,
+            borderRadius: scrolled ? (window.innerWidth >= 1024 ? 16 : 12) : 0,
           }}
-          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className={cn(
-            "transition-all duration-400 ease-out relative",
+            "transition-all duration-300 ease-out relative",
             scrolled
-              ? "bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl shadow-[#00A8E8]/5"
+              ? "bg-white/95 backdrop-blur-2xl border border-white/30 shadow-2xl shadow-[#00A8E8]/10"
               : "bg-transparent backdrop-blur-sm"
           )}
         >
@@ -200,16 +216,16 @@ export const Navigation = () => {
             }}
           />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div className={cn(
               "flex items-center justify-between transition-all duration-300",
-              scrolled ? "h-14" : "h-16"
+              scrolled ? "h-12 sm:h-14" : "h-14 sm:h-16"
             )}>
               
               {/* Logo */}
               <Link 
                 href="/" 
-                className="flex items-center space-x-3 group relative z-10"
+                className="flex items-center space-x-2 sm:space-x-3 group relative z-10 flex-shrink-0"
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -238,6 +254,32 @@ export const Navigation = () => {
                   </span>
                 </div>
               </Link>
+
+              {/* Mobile Quick Menu Items */}
+              <div className="flex items-center space-x-1 lg:hidden">
+                <Link
+                  href="/services"
+                  className={cn(
+                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block",
+                    scrolled 
+                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
+                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                  )}
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/portfolio"
+                  className={cn(
+                    "px-2 py-1.5 text-xs font-medium rounded-md transition-all duration-200 hidden sm:block",
+                    scrolled 
+                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30"
+                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                  )}
+                >
+                  Portfolio
+                </Link>
+              </div>
 
               {/* Enhanced Desktop Navigation */}
               <div className={cn(
@@ -271,64 +313,67 @@ export const Navigation = () => {
                       )}
                     </Link>
 
-                    {/* Enhanced Dropdown with Better Spacing */}
+                    {/* Modern Mega Dropdown inspired by example */}
                     {item.dropdown && (
                       <AnimatePresence>
                         {activeDropdown === item.name && (
                           <motion.div
-                            initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                            initial={{ opacity: 0, y: 8, scale: 0.96 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 12, scale: 0.95 }}
+                            exit={{ opacity: 0, y: 8, scale: 0.96 }}
                             transition={{ 
                               type: "spring",
-                              damping: 25,
-                              stiffness: 400,
-                              duration: 0.15 
+                              damping: 30,
+                              stiffness: 500,
+                              duration: 0.2 
                             }}
-                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 z-50"
+                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 z-50"
                           >
-                            {/* Dropdown Arrow */}
-                            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
-                              <div 
-                                className="w-3 h-3 rotate-45 border-l border-t"
-                                style={{
-                                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
-                                  borderColor: 'rgba(0, 168, 232, 0.1)'
-                                }}
-                              />
-                            </div>
-                            
-                            {/* Dropdown Content */}
-                            <div 
-                              className="bg-white/95 backdrop-blur-2xl rounded-xl border border-[#00A8E8]/10 shadow-2xl shadow-[#00A8E8]/5 overflow-hidden"
-                            >
-                              <div className="p-1">
-                                {item.dropdown.map((subItem, subIndex) => (
-                                  <motion.div
-                                    key={subItem.href}
-                                    initial={{ opacity: 0, x: -8 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: subIndex * 0.03 }}
-                                  >
-                                    <Link
-                                      href={subItem.href}
-                                      className="group flex items-center px-3 py-2.5 text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-gradient-to-r hover:from-[#00A8E8]/5 hover:to-[#0077C7]/5 rounded-lg transition-all duration-200 relative"
+                            {/* Modern Dropdown Container */}
+                            <div className="bg-white rounded-2xl border border-gray-200/50 shadow-2xl shadow-black/5 overflow-hidden min-w-[380px]">
+                              {/* Dropdown Content Grid */}
+                              <div className="p-6">
+                                <div className="grid grid-cols-1 gap-1">
+                                  {item.dropdown.map((subItem, subIndex) => (
+                                    <motion.div
+                                      key={subItem.href}
+                                      initial={{ opacity: 0, y: 4 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      transition={{ delay: subIndex * 0.05 }}
                                     >
-                                      <div className="flex items-center space-x-2.5 w-full">
-                                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-200" />
-                                        <span className="font-medium text-sm flex-1">{subItem.name}</span>
-                                        <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-70 group-hover:translate-x-0.5 transition-all duration-200 text-[#00A8E8]" />
+                                      <Link
+                                        href={subItem.href}
+                                        className="group flex items-center justify-between px-4 py-3 text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50/80 rounded-lg transition-all duration-200"
+                                      >
+                                        <span className="font-medium text-sm">{subItem.name}</span>
+                                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-60 group-hover:translate-x-1 transition-all duration-200 text-gray-400" />
+                                      </Link>
+                                    </motion.div>
+                                  ))}
+                                </div>
+
+                                {/* Featured Section */}
+                                <div className="mt-6 pt-6 border-t border-gray-100">
+                                  <div className="bg-gradient-to-r from-[#00A8E8]/5 to-[#0077C7]/5 rounded-xl p-4">
+                                    <div className="flex items-center justify-between">
+                                      <div>
+                                        <h4 className="font-semibold text-sm text-gray-800 mb-1">
+                                          {item.name === 'Services' ? 'Featured Service' : 
+                                           item.name === 'Portfolio' ? 'Latest Project' : 
+                                           'Latest Update'}
+                                        </h4>
+                                        <p className="text-xs text-gray-600">
+                                          {item.name === 'Services' ? 'Full-stack development solutions' :
+                                           item.name === 'Portfolio' ? 'E-commerce platform redesign' :
+                                           'Learn more about our story'}
+                                        </p>
                                       </div>
-                                    </Link>
-                                  </motion.div>
-                                ))}
-                              </div>
-                              
-                              {/* Dropdown Footer */}
-                              <div className="border-t border-[#00A8E8]/10 px-3 py-2 bg-gradient-to-r from-[#00A8E8]/3 to-[#0077C7]/3">
-                                <p className="text-xs text-[#0A0A0B]/60 text-center">
-                                  Explore our {item.name.toLowerCase()} solutions
-                                </p>
+                                      <div className="bg-[#00A8E8] text-white px-3 py-1 rounded-full text-xs font-medium">
+                                        View
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </motion.div>
@@ -369,41 +414,56 @@ export const Navigation = () => {
               </div>
 
               {/* Enhanced Mobile Menu Button */}
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={cn(
-                  "lg:hidden p-2 rounded-full transition-all duration-300",
-                  scrolled 
-                    ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30" 
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                )}
-                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              >
-                <AnimatePresence mode="wait">
-                  {isMobileMenuOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <X className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Menu className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
-                    </motion.div>
+              <div className="flex items-center space-x-2 lg:hidden">
+                {/* Mobile CTA Button */}
+                <Link
+                  href="/contact"
+                  className={cn(
+                    "hidden md:block px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 border",
+                    scrolled
+                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] border-[#00A8E8]/20 hover:border-[#00A8E8] hover:bg-white/50"
+                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] border-white/30 hover:border-white hover:bg-white/10"
                   )}
-                </AnimatePresence>
-              </motion.button>
+                >
+                  Quote
+                </Link>
+
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className={cn(
+                    "p-2 rounded-lg transition-all duration-300 relative",
+                    scrolled 
+                      ? "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/30" 
+                      : "text-[#0A0A0B]/70 hover:text-[#00A8E8] hover:bg-white/10"
+                  )}
+                  aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                >
+                  <AnimatePresence mode="wait">
+                    {isMobileMenuOpen ? (
+                      <motion.div
+                        key="close"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <X className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="menu"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Menu className={cn("transition-all duration-300", scrolled ? "w-4 h-4" : "w-5 h-5")} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              </div>
             </div>
           </div>
         </motion.nav>
@@ -434,7 +494,7 @@ export const Navigation = () => {
                 stiffness: 250,
                 duration: 0.4 
               }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white/95 backdrop-blur-2xl border-l border-[#00A8E8]/10 shadow-2xl shadow-[#00A8E8]/5 z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] sm:max-w-[75vw] bg-white/98 backdrop-blur-2xl border-l border-[#00A8E8]/20 shadow-2xl shadow-[#00A8E8]/10 z-50 lg:hidden overflow-y-auto"
             >
               {/* Gradient Background Overlay */}
               <div 

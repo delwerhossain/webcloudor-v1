@@ -82,18 +82,18 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
       <BlogHeader />
       
       {/* Main Content Container */}
-      <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16">
+      <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12 lg:py-16">
         {/* Featured Posts Section */}
         {showFeaturedSection && featuredPosts.length > 0 && (
-          <section className="mb-12 sm:mb-16 lg:mb-20">
-            <div className="text-center mb-8 sm:mb-12">
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-primary/10 to-signal-yellow/10 border border-primary/20 text-primary text-sm font-medium mb-4">
+          <section className="mb-8 sm:mb-12 md:mb-16 lg:mb-20">
+            <div className="text-center mb-6 sm:mb-8 md:mb-12">
+              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-signal-yellow/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
                 ✨ Featured Content
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance text-foreground">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-balance text-foreground px-4 sm:px-0">
                 Featured Articles
               </h2>
-              <p className="text-foreground/75 max-w-2xl mx-auto text-lg leading-relaxed">
+              <p className="text-foreground/75 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4 sm:px-0">
                 Our most popular and insightful articles on web development, cloud solutions, and digital innovation.
               </p>
             </div>
@@ -104,34 +104,34 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
         )}
 
         {/* Main Blog Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-12">
           {/* Articles Content */}
           <div className="lg:col-span-3 xl:col-span-3">
             {/* Section Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
-              <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-balance text-foreground">
+            <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="px-2 sm:px-0">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-balance text-foreground">
                   {getPageTitle()}
                 </h1>
-                <div className="flex items-center gap-4 text-foreground/70">
-                  <p>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-foreground/70">
+                  <p className="text-sm sm:text-base">
                     {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} found
                   </p>
                   {resolvedSearchParams.search && (
                     <a 
                       href="/blog"
-                      className="text-sm text-primary hover:text-primary/80 underline"
+                      className="text-sm text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
                     >
-                      Clear search
+                      ✕ Clear search
                     </a>
                   )}
                 </div>
               </div>
               
-              {/* Sort Options - Hidden on mobile, visible on larger screens */}
-              <div className="hidden md:flex items-center gap-2">
-                <span className="text-sm text-foreground/60">Sort by:</span>
-                <select className="text-sm bg-background border border-border rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground">
+              {/* Sort Options - Responsive */}
+              <div className="flex items-center justify-between sm:justify-end gap-2 px-2 sm:px-0">
+                <span className="text-xs sm:text-sm text-foreground/60">Sort by:</span>
+                <select className="text-xs sm:text-sm bg-background border border-border rounded-md px-2 sm:px-3 py-1 sm:py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground min-h-[32px] sm:min-h-[36px] touch-manipulation">
                   <option value="latest">Latest</option>
                   <option value="popular">Most Popular</option>
                   <option value="oldest">Oldest</option>
@@ -148,7 +148,7 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="mt-12 sm:mt-16 flex justify-center">
+                  <div className="mt-8 sm:mt-12 md:mt-16 flex justify-center px-4 sm:px-0">
                     <BlogPagination
                       currentPage={currentPage}
                       totalPages={totalPages}
@@ -159,15 +159,15 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
               </>
             ) : (
               /* No Results */
-              <div className="text-center py-16">
+              <div className="text-center py-12 sm:py-16 px-4">
                 <div className="max-w-md mx-auto">
-                  <div className="w-24 h-24 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center">
-                    <svg className="w-12 h-12 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 bg-muted rounded-full flex items-center justify-center">
+                    <svg className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">No articles found</h3>
-                  <p className="text-foreground/70 mb-6">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2 text-foreground">No articles found</h3>
+                  <p className="text-foreground/70 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     {resolvedSearchParams.search 
                       ? `No articles match "${resolvedSearchParams.search}". Try different keywords.`
                       : 'No articles found matching your filters. Try adjusting your criteria.'
@@ -175,7 +175,7 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                   </p>
                   <a 
                     href="/blog"
-                    className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors"
+                    className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors min-h-[44px] touch-manipulation"
                   >
                     View All Articles
                   </a>

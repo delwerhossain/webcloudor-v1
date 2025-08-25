@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, ShoppingCart, TrendingUp, CreditCard, BarChart3, Users, CheckCircle, DollarSign } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, ShoppingCart, TrendingUp, CreditCard, BarChart3, Users, CheckCircle, DollarSign } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'E-commerce Portfolio | High-Converting Online Stores',
-  description: 'Explore our e-commerce portfolio featuring high-converting online stores, payment integrations, and inventory management systems that drive sales growth.',
-  keywords: ['e-commerce portfolio', 'online stores', 'shopping platforms', 'e-commerce development', 'conversion optimization'],
+  title: "E-commerce Portfolio | High-Converting Online Stores",
+  description: "Explore our e-commerce portfolio featuring high-converting online stores, payment integrations, and inventory management systems that drive sales growth.",
+  keywords: ["e-commerce portfolio", "online stores", "shopping platforms", "e-commerce development", "conversion optimization"],
   openGraph: {
-    title: 'E-commerce Portfolio | WebCloudor',
-    description: 'High-converting e-commerce platforms that turn browsers into buyers',
-    type: 'website',
+    title: "E-commerce Portfolio | WebCloudor",
+    description: "High-converting e-commerce platforms that turn browsers into buyers",
+    type: "website",
   },
 }
 
@@ -187,8 +187,8 @@ const EcommercePortfolioPage = () => {
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
-              Stores that{' '}
-              <span className="bg-gradient-to-r from-primary to-warm-orange bg-clip-text text-transparent">
+              Stores that{" "}
+              <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 convert and scale
               </span>
             </h1>
@@ -199,14 +199,14 @@ const EcommercePortfolioPage = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-warm-orange hover:shadow-lg">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                   Start Your Store
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/services/ecommerce">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+              <Link href="/services/ecommerce" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                   E-commerce Services
                 </Button>
               </Link>
@@ -248,7 +248,7 @@ const EcommercePortfolioPage = () => {
 
             <Card className="bg-background border-border/60 shadow-lg">
               <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                   <div>
                     <div className="mb-6">
                       <div className="flex items-center gap-4 mb-4">
@@ -282,12 +282,12 @@ const EcommercePortfolioPage = () => {
                       </div>
                     </div>
 
-                    <div className="flex gap-4">
-                      <Button className="bg-primary hover:bg-primary/90">
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button className="bg-primary hover:bg-primary/90 min-h-[44px] w-full sm:w-auto">
                         View Case Study
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
-                      <Button variant="outline">
+                      <Button variant="outline" className="min-h-[44px] w-full sm:w-auto">
                         Live Demo
                       </Button>
                     </div>
@@ -330,22 +330,22 @@ const EcommercePortfolioPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.filter(p => !p.featured).map((project) => (
-              <Card key={project.id} className="bg-gradient-to-br from-background to-muted/20 border-border/60 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] group cursor-pointer">
-                <CardHeader>
+              <Card key={project.id} className="bg-gradient-to-br from-background to-muted/20 border-border/60 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] group cursor-pointer flex flex-col h-full">
+                <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-3">
                     <Badge variant="outline" className="text-xs">
                       {project.industry}
                     </Badge>
                     <div className="text-xs text-foreground/60">{project.timeline}</div>
                   </div>
-                  <CardTitle className="text-lg leading-tight line-clamp-2">{project.title}</CardTitle>
+                  <CardTitle className="text-base sm:text-lg leading-tight line-clamp-2">{project.title}</CardTitle>
                   <div className="text-sm text-foreground/70">{project.client}</div>
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent className="pt-0 flex-1 flex flex-col">
                   <div className="mb-4">
-                    <div className="text-xl font-bold text-primary mb-2">{project.mainResult}</div>
+                    <div className="text-lg sm:text-xl font-bold text-primary mb-2">{project.mainResult}</div>
                     <p className="text-sm text-foreground/70 line-clamp-2">{project.description}</p>
                   </div>
 
@@ -377,10 +377,12 @@ const EcommercePortfolioPage = () => {
                     </div>
                   </div>
 
-                  <Button variant="ghost" size="sm" className="w-full hover:bg-primary/10 hover:text-primary group-hover:bg-primary/10">
-                    View Project Details
-                    <ArrowRight className="w-3 h-3 ml-2" />
-                  </Button>
+                  <div className="mt-auto">
+                    <Button variant="ghost" size="sm" className="w-full hover:bg-primary/10 hover:text-primary group-hover:bg-primary/10 min-h-[44px]">
+                      View Project Details
+                      <ArrowRight className="w-3 h-3 ml-2" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -389,7 +391,7 @@ const EcommercePortfolioPage = () => {
       </section>
 
       {/* E-commerce Metrics */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-warm-orange to-signal-yellow text-white">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-primary-blue to-dark-blue text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -432,14 +434,14 @@ const EcommercePortfolioPage = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-warm-orange hover:shadow-lg">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-warm-orange hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                 Start Your E-commerce Project
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/services/ecommerce">
-              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+            <Link href="/services/ecommerce" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                 E-commerce Services
               </Button>
             </Link>

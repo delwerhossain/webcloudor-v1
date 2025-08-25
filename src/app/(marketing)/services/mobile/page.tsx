@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Smartphone, Download, Users, Zap, Shield, Globe } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Smartphone, Download, Users, Zap, Shield, Globe } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'Mobile App Development | iOS & Android Apps',
-  description: 'Expert mobile app development services for iOS and Android. Custom mobile solutions that engage users and drive business growth.',
-  keywords: ['mobile app development', 'iOS apps', 'Android apps', 'React Native', 'Flutter', 'mobile development'],
+  title: "Mobile App Development | iOS & Android Apps",
+  description: "Expert mobile app development services for iOS and Android. Custom mobile solutions that engage users and drive business growth.",
+  keywords: ["mobile app development", "iOS apps", "Android apps", "React Native", "Flutter", "mobile development"],
   openGraph: {
-    title: 'Mobile App Development | WebCloudor',
-    description: 'Custom mobile apps that delight users and drive business results',
-    type: 'website',
+    title: "Mobile App Development | WebCloudor",
+    description: "Custom mobile apps that delight users and drive business results",
+    type: "website",
   }
 }
 
@@ -69,22 +69,22 @@ export default function MobileServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-4">Mobile Development</Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Mobile Apps That 
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
                 Users Love
               </span>
             </h1>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-700 mb-8 leading-relaxed px-4">
               Custom iOS and Android apps that engage users and drive business growth. 
               From concept to App Store success.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 w-full sm:w-auto min-h-[44px]">
                 Start Your App Project
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button variant="outline" size="lg">View Mobile Portfolio</Button>
+              <Button variant="outline" size="lg" className="w-full sm:w-auto min-h-[44px]">View Mobile Portfolio</Button>
             </div>
           </div>
         </div>
@@ -95,23 +95,23 @@ export default function MobileServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Mobile Development Services</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Mobile Development Services</h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
                 Comprehensive mobile app development solutions for every business need
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {mobileServices.map((service, index) => (
                 <Card key={index} className="group hover:shadow-lg transition-all duration-300">
                   <CardHeader>
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
                       {service.icon}
                     </div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">{service.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {service.features.map((feature, i) => (
                         <Badge key={i} variant="outline" className="text-xs">
@@ -132,18 +132,18 @@ export default function MobileServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Mobile Development</h2>
-              <p className="text-xl text-gray-600">Built for performance, designed for users</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Why Choose Our Mobile Development</h2>
+              <p className="text-lg sm:text-xl text-gray-600 px-4">Built for performance, designed for users</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {benefits.map((benefit, index) => (
                 <div key={index} className="text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2">{benefit.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600">{benefit.description}</p>
                 </div>
               ))}
             </div>
@@ -154,17 +154,17 @@ export default function MobileServicesPage() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Build Your Mobile App?</h2>
-          <p className="text-xl mb-8 opacity-90">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Build Your Mobile App?</h2>
+          <p className="text-lg sm:text-xl mb-8 opacity-90 px-4">
             Let&apos;s discuss your mobile app vision and create something amazing together.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto min-h-[44px]">
               Get Free Consultation
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <Link href="/portfolio">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-700">
+            <Link href="/portfolio" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-700 w-full sm:w-auto min-h-[44px]">
                 View Our Work
               </Button>
             </Link>

@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Bot, Zap, MessageSquare, BarChart3, Users, CheckCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Bot, Zap, MessageSquare, BarChart3, Users, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'AI Integration Services | Smart Automation Solutions',
-  description: 'AI-powered automation that reduces manual work and increases efficiency. Custom chatbots, lead qualification, process optimization, and intelligent workflows.',
-  keywords: ['AI integration', 'automation', 'chatbots', 'machine learning', 'process optimization', 'AI development'],
+  title: "AI Integration Services | Smart Automation Solutions",
+  description: "AI-powered automation that reduces manual work and increases efficiency. Custom chatbots, lead qualification, process optimization, and intelligent workflows.",
+  keywords: ["AI integration", "automation", "chatbots", "machine learning", "process optimization", "AI development"],
   openGraph: {
-    title: 'AI Integration Services | WebCloudor',
-    description: 'Smart automation that works while you sleep',
-    type: 'website',
+    title: "AI Integration Services | WebCloudor",
+    description: "Smart automation that works while you sleep",
+    type: "website",
   },
 }
 
@@ -24,7 +24,7 @@ const AIIntegrationPage = () => {
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-signal-yellow/5" />
         <div className="absolute top-20 left-8 w-32 h-32 bg-gradient-to-r from-primary/10 to-signal-yellow/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-16 w-40 h-40 bg-gradient-to-r from-purple-500/8 to-primary/8 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute bottom-20 right-16 w-40 h-40 bg-gradient-to-r from-primary-blue/8 to-primary/8 rounded-full blur-3xl animate-pulse delay-1000" />
 
         <div className="container relative mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
@@ -35,7 +35,7 @@ const AIIntegrationPage = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               Smart systems{' '}
-              <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 that work while you sleep
               </span>
             </h1>
@@ -47,7 +47,7 @@ const AIIntegrationPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600 hover:shadow-lg">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
                   Automate Your Processes
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -324,7 +324,7 @@ const AIIntegrationPage = () => {
                 </div>
 
                 <Link href="/contact">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-purple-600 hover:shadow-lg">
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
                     Start AI Automation
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -336,7 +336,7 @@ const AIIntegrationPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-purple-600 to-dark-blue text-white">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-primary-blue to-dark-blue text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Ready to automate your business?

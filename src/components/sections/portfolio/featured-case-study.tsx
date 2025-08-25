@@ -95,10 +95,10 @@ const AnimatedMetric = ({ metric, delay }: { metric: Metric; delay: number }) =>
       <div className={`${metric.color} mb-3 flex justify-center`}>
         {metric.icon}
       </div>
-      <div className="text-3xl md:text-4xl font-bold text-[#0A0A0B] mb-2">
+      <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0A0A0B] mb-2">
         {formatValue(displayValue)}
       </div>
-      <div className="text-sm text-[#64748B] font-medium">
+      <div className="text-xs sm:text-sm text-[#64748B] font-medium text-center">
         {metric.label}
       </div>
     </motion.div>
@@ -109,41 +109,41 @@ const BeforeAfterSlider = () => {
   const [sliderValue, setSliderValue] = useState(50)
 
   return (
-    <div className="relative bg-[#F8FAFC] rounded-xl p-6 border border-[#E2E8F0]">
-      <div className="text-center mb-6">
-        <h4 className="text-lg font-semibold text-[#0A0A0B] mb-2">Mobile Checkout Flow</h4>
-        <p className="text-sm text-[#64748B]">7 steps → 3 steps transformation</p>
+    <div className="relative bg-[#F8FAFC] rounded-xl p-4 sm:p-6 border border-[#E2E8F0]">
+      <div className="text-center mb-4 sm:mb-6">
+        <h4 className="text-base sm:text-lg font-semibold text-[#0A0A0B] mb-2">Mobile Checkout Flow</h4>
+        <p className="text-xs sm:text-sm text-[#64748B]">7 steps → 3 steps transformation</p>
       </div>
 
       <div className="relative overflow-hidden rounded-lg">
         {/* Before/After Content */}
         <div className="flex">
           <div 
-            className="bg-red-50 p-8 transition-all duration-300"
+            className="bg-red-50 p-4 sm:p-6 lg:p-8 transition-all duration-300"
             style={{ width: `${sliderValue}%` }}
           >
             <div className="text-center">
-              <div className="text-red-600 font-semibold mb-4">BEFORE: 7 Steps</div>
-              <div className="space-y-2">
+              <div className="text-red-600 font-semibold mb-3 text-xs sm:text-sm">BEFORE: 7 Steps</div>
+              <div className="space-y-1 sm:space-y-2">
                 {[1,2,3,4,5,6,7].map(step => (
-                  <div key={step} className="h-3 bg-red-200 rounded mx-auto w-16"></div>
+                  <div key={step} className="h-2 sm:h-3 bg-red-200 rounded mx-auto w-12 sm:w-16"></div>
                 ))}
               </div>
-              <div className="mt-4 text-sm text-red-700">68% abandonment rate</div>
+              <div className="mt-3 text-xs sm:text-sm text-red-700">68% abandonment</div>
             </div>
           </div>
           <div 
-            className="bg-green-50 p-8 transition-all duration-300"
+            className="bg-green-50 p-4 sm:p-6 lg:p-8 transition-all duration-300"
             style={{ width: `${100 - sliderValue}%` }}
           >
             <div className="text-center">
-              <div className="text-green-600 font-semibold mb-4">AFTER: 3 Steps</div>
-              <div className="space-y-2">
+              <div className="text-green-600 font-semibold mb-3 text-xs sm:text-sm">AFTER: 3 Steps</div>
+              <div className="space-y-1 sm:space-y-2">
                 {[1,2,3].map(step => (
-                  <div key={step} className="h-3 bg-green-400 rounded mx-auto w-16"></div>
+                  <div key={step} className="h-2 sm:h-3 bg-green-400 rounded mx-auto w-12 sm:w-16"></div>
                 ))}
               </div>
-              <div className="mt-4 text-sm text-green-700">23% abandonment rate</div>
+              <div className="mt-3 text-xs sm:text-sm text-green-700">23% abandonment</div>
             </div>
           </div>
         </div>
@@ -188,10 +188,10 @@ export const FeaturedCaseStudy = () => {
         animate={isInView ? "animate" : "initial"}
         className="max-w-6xl mx-auto"
       >
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start lg:items-center">
           {/* Content Side */}
           <motion.div variants={fadeUpVariants} className="space-y-8">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <Badge variant="outline" className="bg-[#FFC300]/10 text-[#0A0A0B] border-[#FFC300]">
                 <Award className="w-4 h-4 mr-2" />
                 Featured Success Story
@@ -203,7 +203,7 @@ export const FeaturedCaseStudy = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-[#0A0A0B] mb-3">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#0A0A0B] mb-3">
                   Mobile Checkout Abandonment Crisis
                 </h3>
                 <p className="text-[#64748B] leading-relaxed">
@@ -214,7 +214,7 @@ export const FeaturedCaseStudy = () => {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-[#0A0A0B] mb-3">Our Solution</h4>
+                <h4 className="text-base sm:text-lg font-semibold text-[#0A0A0B] mb-3">Our Solution</h4>
                 <p className="text-[#64748B] leading-relaxed">
                   We rebuilt their entire mobile checkout experience with a streamlined 
                   3-step process, smart form validation, progress indicators, and optimized 
@@ -223,7 +223,7 @@ export const FeaturedCaseStudy = () => {
               </div>
 
               {/* Project Details */}
-              <div className="grid grid-cols-2 gap-4 p-4 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0]">
                 <div>
                   <div className="text-sm font-medium text-[#0A0A0B]">Timeline</div>
                   <div className="text-[#64748B]">8 weeks</div>
@@ -248,7 +248,7 @@ export const FeaturedCaseStudy = () => {
                   <div className="text-6xl text-[#FFC300] leading-none">&ldquo;</div>
                   <div>
                     <p className="text-[#0A0A0B] italic leading-relaxed mb-4">
-                      The results exceeded our expectations. WebCloudor didn&apos;t just build us 
+                      The results exceeded our expectations. WebCloudor did not just build us 
                       a better checkout—they transformed our entire mobile revenue stream.
                     </p>
                     <div className="text-sm">
@@ -260,12 +260,12 @@ export const FeaturedCaseStudy = () => {
               </Card>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-4">
-                <Button className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-lg hover:shadow-[#FFC300]/25">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button className="bg-gradient-to-r from-[#FFC300] to-[#FF8C00] text-[#0A0A0B] hover:shadow-lg hover:shadow-[#FFC300]/25 min-h-[44px] w-full sm:w-auto">
                   View Full Case Study
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-                <Button variant="outline" className="border-[#1B365D] text-[#1B365D] hover:bg-[#1B365D] hover:text-white">
+                <Button variant="outline" className="border-[#1B365D] text-[#1B365D] hover:bg-[#1B365D] hover:text-white min-h-[44px] w-full sm:w-auto">
                   Start Similar Project
                 </Button>
               </div>
@@ -275,7 +275,7 @@ export const FeaturedCaseStudy = () => {
           {/* Visual Side */}
           <motion.div variants={fadeUpVariants} className="space-y-8">
             {/* Results Grid */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {metrics.map((metric, index) => (
                 <AnimatedMetric
                   key={metric.label}
@@ -289,11 +289,11 @@ export const FeaturedCaseStudy = () => {
             <BeforeAfterSlider />
 
             {/* Additional Visual Elements */}
-            <div className="bg-gradient-to-r from-[#1B365D] to-[#2D4B73] rounded-xl p-6 text-white">
+            <div className="bg-gradient-to-r from-[#1B365D] to-[#2D4B73] rounded-xl p-4 sm:p-6 text-white">
               <div className="text-center">
-                <div className="text-2xl font-bold mb-2">75%</div>
-                <div className="text-sm opacity-90">Load Time Improvement</div>
-                <div className="mt-4 h-2 bg-white/20 rounded-full overflow-hidden">
+                <div className="text-xl sm:text-2xl font-bold mb-2">75%</div>
+                <div className="text-xs sm:text-sm opacity-90">Load Time Improvement</div>
+                <div className="mt-3 sm:mt-4 h-2 bg-white/20 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={isInView ? { width: "75%" } : { width: 0 }}
