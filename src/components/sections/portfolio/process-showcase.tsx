@@ -6,7 +6,7 @@ import {
   Search, 
   Palette, 
   Code, 
-  Rocket, 
+  Send, 
   FileText, 
   BarChart3, 
   Users, 
@@ -85,7 +85,7 @@ const timelinePhases: TimelinePhase[] = [
     id: "4",
     week: "Week 8",
     title: "Launch & Optimization",
-    icon: <Rocket className="w-6 h-6" />,
+    icon: <Send className="w-6 h-6" />,
     color: "from-amber-400 to-orange-500",
     deliverables: [
       "Production deployment", 
