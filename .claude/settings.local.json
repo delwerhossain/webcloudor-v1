@@ -181,7 +181,13 @@
       "Bash(pnpm build:*)",
       "Bash(grep:*)",
       "Bash(timeout 30 pnpm build)",
-      "Bash(timeout 60 pnpm build)"
+      "Bash(timeout 60 pnpm build)",
+      "Bash(npx tsc:*)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(sed:*)",
+      "Bash(done)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
