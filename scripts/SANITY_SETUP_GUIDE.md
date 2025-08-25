@@ -37,7 +37,7 @@
 
    **👥 Authors (Create 2):**
    - Delwer Hossain
-   - Syed Mir Habib
+   - Ahsan Habib Akik
 
    **📝 Blog Posts (Create 3):**
    - "The Future of Web Development: Next.js 15 and Beyond"
@@ -101,7 +101,7 @@
      - LinkedIn: https://linkedin.com/in/delwer-hossain
      - GitHub: https://github.com/delwerhossain
 
-2. **Syed Mir Habib**
+2. **Ahsan Habib Akik**
    - Slug: `syed-mir-habib`
    - Short Bio: "Cloud architect and DevOps engineer specializing in scalable infrastructure solutions."
    - Expertise: AWS, Cloud Architecture, DevOps, Kubernetes, Infrastructure as Code
@@ -124,7 +124,7 @@
 2. **"Cloud Architecture Best Practices for Modern Applications"**
    - Slug: `cloud-architecture-best-practices`
    - Excerpt: "Learn essential cloud architecture patterns and best practices for building scalable, reliable applications that can handle enterprise-level traffic."
-   - Author: Syed Mir Habib
+   - Author: Ahsan Habib Akik
    - Category: Cloud Computing
    - Tags: Cloud, Architecture, AWS, Scalability
    - Featured: ✅
