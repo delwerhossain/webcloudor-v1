@@ -170,7 +170,7 @@ export const GetStartedCTA = () => {
             <div className="grid md:grid-cols-3 gap-6 text-center">
               {/* Email */}
               <motion.a
-                href="mailto:hello@webcloudor.com"
+                href="mailto:webcloudor@gmail.com"
                 whileHover={{ y: -2 }}
                 className="group cursor-pointer"
               >
@@ -181,7 +181,7 @@ export const GetStartedCTA = () => {
                   </svg>
                 </div>
                 <div className="font-semibold text-white group-hover:text-[#FFD700] transition-colors duration-300">
-                  hello@webcloudor.com
+                  webcloudor@gmail.com
                 </div>
                 <div className="text-sm text-[#E2E8F0] mt-1">Drop us a line</div>
               </motion.a>
@@ -198,7 +198,7 @@ export const GetStartedCTA = () => {
                   </svg>
                 </div>
                 <div className="font-semibold text-white group-hover:text-[#00A8E8] transition-colors duration-300">
-                  +1 (555) 123-4567
+                  +8801571060479
                 </div>
                 <div className="text-sm text-[#E2E8F0] mt-1">Call us directly</div>
               </motion.a>
