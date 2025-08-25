@@ -304,7 +304,7 @@ const ProjectExample = ({ stack }: { stack: TechnologyStack }) => {
 export const TechnologyApproach = () => {
   const [activeStack, setActiveStack] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
 
   return (
     <SectionContainer padding="large" className="bg-white">
