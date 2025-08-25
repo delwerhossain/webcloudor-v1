@@ -53,7 +53,7 @@ const OptimizedImage = ({
   onLoad,
   onError,
   style,
-  ...props
+  ...rest
 }: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
@@ -130,7 +130,7 @@ const OptimizedImage = ({
       objectPosition,
       ...(style || {})
     },
-    ...props
+  ...rest
   }
 
   if (fill) {
