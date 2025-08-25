@@ -1,0 +1,6 @@
+export { PolicyHero } from "./policy-hero"
+export { PolicyTableOfContents } from "./policy-table-of-contents"
+export { PolicySection } from "./policy-section"
+export { PolicyContent } from "./policy-content"
+export { PolicyHeroContent } from "./policy-hero-content"
+export { PolicyTOCContent } from "./policy-toc-content"
