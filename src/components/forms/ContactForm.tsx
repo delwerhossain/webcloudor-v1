@@ -179,20 +179,21 @@ export const ContactForm = ({ source = "contact-page", className = "" }: Contact
 
       {/* Services Interest */}
       <div className="space-y-3">
-        <Label>Services You're Interested In (Optional)</Label>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <Label className="text-sm sm:text-base">Services You&apos;re Interested In (Optional)</Label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 max-h-40 sm:max-h-none overflow-y-auto sm:overflow-visible">
           {serviceOptions.map((service) => (
-            <div key={service} className="flex items-center space-x-2">
+            <div key={service} className="flex items-center space-x-2 p-2 sm:p-0 hover:bg-gray-50 sm:hover:bg-transparent rounded">
               <Checkbox
                 id={service}
                 checked={selectedServices.includes(service)}
                 onCheckedChange={(checked) => 
                   handleServiceChange(service, checked === true)
                 }
+                className="min-w-[16px] min-h-[16px]"
               />
               <Label
                 htmlFor={service}
-                className="text-sm font-normal cursor-pointer"
+                className="text-xs sm:text-sm font-normal cursor-pointer leading-tight flex-1"
               >
                 {serviceLabels[service]}
               </Label>
@@ -203,13 +204,13 @@ export const ContactForm = ({ source = "contact-page", className = "" }: Contact
 
       {/* Message */}
       <div className="space-y-2">
-        <Label htmlFor="message">Message *</Label>
+        <Label htmlFor="message" className="text-sm sm:text-base">Message *</Label>
         <textarea
           id="message"
           {...register("message")}
           placeholder="Tell us about your project, timeline, budget, or any questions you have..."
-          rows={6}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B365D] focus:border-transparent resize-none"
+          rows={5}
+          className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B365D] focus:border-transparent resize-none text-sm sm:text-base min-h-[120px] sm:min-h-[140px]"
         />
         {errors.message && (
           <p className="text-sm text-red-600">{errors.message.message}</p>
@@ -221,26 +222,26 @@ export const ContactForm = ({ source = "contact-page", className = "" }: Contact
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full md:w-auto px-8 py-3 h-auto text-base font-medium"
+          className="w-full sm:w-auto px-6 sm:px-8 py-3 h-auto text-sm sm:text-base font-medium min-h-[48px] touch-manipulation"
         >
           {isSubmitting ? (
             <>
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-              Sending Message...
+              <span className="text-sm sm:text-base">Sending Message...</span>
             </>
           ) : (
-            "Send Message"
+            <span className="text-sm sm:text-base">Send Message</span>
           )}
         </Button>
       </div>
 
       {/* Privacy Note */}
-      <p className="text-sm text-gray-600">
+      <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
         By submitting this form, you agree to our{" "}
         <a href="/privacy-policy" className="text-[#1B365D] hover:underline">
           Privacy Policy
         </a>
-        . We'll never share your information with third parties.
+        . We&apos;ll never share your information with third parties.
       </p>
     </form>
   )
