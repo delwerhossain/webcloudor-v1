@@ -54,18 +54,27 @@ export const ClientTestimonialSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         className="max-w-4xl mx-auto text-center"
       >
-        {/* Quote Marks */}
+        {/* Enhanced Quote Marks */}
         <motion.div
           variants={scaleVariants}
           transition={{ duration: 0.6, ease: EASE_CURVE }}
-          className="mb-8"
+          className="mb-12"
         >
           <motion.div
-            animate={{ rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: EASE_CURVE }}
-            className="inline-flex items-center justify-center w-16 h-16 bg-[#FFC300] rounded-full shadow-lg"
+            animate={{ 
+              rotate: [0, 3, -3, 0],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity, 
+              ease: EASE_CURVE 
+            }}
+            className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-400 rounded-full shadow-xl"
           >
-            <Quote className="w-8 h-8 text-[#0A0A0B]" fill="currentColor" />
+            <Quote className="w-10 h-10 text-gray-900" fill="currentColor" />
+            {/* Glow effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400 opacity-30 blur-lg scale-150 animate-pulse"></div>
           </motion.div>
         </motion.div>
 
