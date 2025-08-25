@@ -1,5 +1,6 @@
 export { Button } from './button'
 export { SectionContainer } from './section-container'
+export { OptimizedImage } from './optimized-image'
 export {
   Dialog,
   DialogPortal,
