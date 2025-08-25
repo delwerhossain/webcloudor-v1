@@ -165,18 +165,18 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         variants={cardHoverVariants}
         initial="rest"
         whileHover="hover"
-        className="group"
+        className="group h-full"
       >
-        <Card className="overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#FFC300] hover:shadow-xl hover:shadow-[#FFC300]/10 transition-all duration-300">
+        <Card className="overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#FFC300] hover:shadow-xl hover:shadow-[#FFC300]/10 transition-all duration-300 h-full flex flex-col">
           {/* Cover Image */}
-          <div className="relative aspect-video overflow-hidden">
+          <div className="relative aspect-[4/3] sm:aspect-video overflow-hidden">
             <div className="w-full h-full bg-gradient-to-br from-[#F8FAFC] via-[#E2E8F0] to-[#CBD5E0] flex items-center justify-center">
               {/* Placeholder for project screenshot */}
-              <div className="text-[#64748B] text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${project.badge.color} rounded-xl flex items-center justify-center text-white">
+              <div className="text-[#64748B] text-center px-4">
+                <div className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br ${project.badge.color} rounded-xl flex items-center justify-center text-white`}>
                   {project.badge.icon}
                 </div>
-                <div className="text-sm font-medium">{project.title}</div>
+                <div className="text-xs sm:text-sm font-medium line-clamp-2">{project.title}</div>
                 <div className="text-xs opacity-70 mt-1">Project Screenshot</div>
               </div>
             </div>
@@ -193,7 +193,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
               <Button 
                 size="sm" 
-                className="bg-white text-[#0A0A0B] hover:bg-[#FFC300] hover:text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+                className="bg-white text-[#0A0A0B] hover:bg-[#FFC300] hover:text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 min-h-[44px]"
               >
                 View Details
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -202,10 +202,10 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           </div>
 
           {/* Card Content */}
-          <div className="p-6 space-y-4">
+          <div className="p-4 sm:p-6 space-y-4 flex-1 flex flex-col">
             {/* Header */}
             <div>
-              <h3 className="text-lg font-semibold text-[#0A0A0B] group-hover:text-[#1B365D] transition-colors duration-200 line-clamp-2 mb-2">
+              <h3 className="text-base sm:text-lg font-semibold text-[#0A0A0B] group-hover:text-[#1B365D] transition-colors duration-200 line-clamp-2 mb-2 leading-tight">
                 {project.title}
               </h3>
               <div className="text-sm text-[#64748B] font-medium">
@@ -215,7 +215,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
             {/* Key Metric */}
             <div className="text-center py-3">
-              <div className={`text-2xl font-bold bg-gradient-to-r ${project.badge.color} bg-clip-text text-transparent`}>
+              <div className={`text-xl sm:text-2xl font-bold bg-gradient-to-r ${project.badge.color} bg-clip-text text-transparent`}>
                 {project.keyMetric}
               </div>
             </div>
@@ -231,13 +231,13 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             </div>
 
             {/* Meta Information */}
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#E2E8F0]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-4 border-t border-[#E2E8F0]">
               <div>
                 <div className="flex items-center gap-2 text-xs text-[#64748B] mb-1">
                   <Building className="w-3 h-3" />
                   Industry
                 </div>
-                <div className="text-sm font-medium text-[#0A0A0B]">
+                <div className="text-sm font-medium text-[#0A0A0B] line-clamp-1">
                   {project.industry}
                 </div>
               </div>
@@ -258,11 +258,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             </p>
 
             {/* CTA */}
-            <div className="pt-2">
+            <div className="pt-2 mt-auto">
               <Link href={project.link}>
                 <Button 
                   variant="outline" 
-                  className="w-full border-[#FFC300]/50 text-[#0A0A0B] hover:bg-[#FFC300] hover:border-[#FFC300] hover:text-white group/btn"
+                  className="w-full border-[#FFC300]/50 text-[#0A0A0B] hover:bg-[#FFC300] hover:border-[#FFC300] hover:text-white group/btn min-h-[44px] text-sm sm:text-base"
                 >
                   View Project Details
                   <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
@@ -301,7 +301,7 @@ export const ProjectGrid = () => {
         </motion.div>
 
         {/* Project Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
