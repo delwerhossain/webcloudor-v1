@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Code, Smartphone, Zap, Shield, BarChart3, CheckCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Code, Smartphone, Zap, Shield, BarChart3, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'Web Development Services | Modern, Scalable Web Solutions',
-  description: 'Professional web development services using React, Next.js, and modern frameworks. Build responsive, fast, and scalable web applications that grow with your business.',
-  keywords: ['web development', 'React', 'Next.js', 'responsive design', 'web applications'],
+  title: "Web Development Services | Modern, Scalable Web Solutions",
+  description: "Professional web development services using React, Next.js, and modern frameworks. Build responsive, fast, and scalable web applications that grow with your business.",
+  keywords: ["web development", "React", "Next.js", "responsive design", "web applications"],
   openGraph: {
-    title: 'Web Development Services | WebCloudor',
-    description: 'Modern web development solutions that scale with your business',
-    type: 'website',
+    title: "Web Development Services | WebCloudor",
+    description: "Modern web development solutions that scale with your business",
+    type: "website",
   },
 }
 
@@ -33,34 +33,34 @@ const WebDevelopmentPage = () => {
               Web Development Services
             </Badge>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
               Modern foundations{' '}
               <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 built for growth
               </span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-foreground/80 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-8 leading-relaxed max-w-3xl mx-auto px-4">
               We build responsive websites and web applications using cutting-edge frameworks that ensure 
               your digital presence stays ahead of the competition. Every project is crafted with performance, 
               security, and scalability in mind.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 px-4">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg w-full sm:w-auto min-h-[44px]">
                   Start Your Project
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/portfolio/web-apps">
-                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+              <Link href="/portfolio/web-apps" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto min-h-[44px]">
                   View Web Projects
                 </Button>
               </Link>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-foreground/60">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-foreground/60 px-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span>React & Next.js</span>
@@ -82,15 +82,15 @@ const WebDevelopmentPage = () => {
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
-              What's Included
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              What&apos;s Included
             </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
               Comprehensive web development services designed for modern businesses
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: <Code className="w-6 h-6" />,
@@ -144,15 +144,15 @@ const WebDevelopmentPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
                 Perfect For
               </h2>
-              <p className="text-lg text-foreground/70">
+              <p className="text-base sm:text-lg text-foreground/70 px-4">
                 Web development solutions for businesses at every stage
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {[
                 {
                   title: "Growing Businesses",
@@ -173,8 +173,8 @@ const WebDevelopmentPage = () => {
               ].map((item, index) => (
                 <Card key={index} className="bg-background border-border/60 hover:border-primary/30 transition-colors">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-3 text-foreground">{item.title}</h3>
-                    <p className="text-foreground/70">{item.description}</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-3 text-foreground">{item.title}</h3>
+                    <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{item.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -187,43 +187,43 @@ const WebDevelopmentPage = () => {
       <section className="py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Investment & Timeline
             </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
               Transparent pricing for professional web development services
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto">
             <Card className="bg-gradient-to-br from-background via-primary/[0.02] to-signal-yellow/[0.05] border-primary/20 shadow-lg">
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-6 sm:p-8 text-center">
                 <div className="mb-6">
-                  <div className="text-4xl font-bold text-primary mb-2">From $8,000</div>
-                  <div className="text-foreground/60">Starting price for web development projects</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">From $8,000</div>
+                  <div className="text-sm sm:text-base text-foreground/60">Starting price for web development projects</div>
                 </div>
                 
                 <div className="mb-6">
-                  <div className="text-2xl font-semibold text-foreground mb-2">4-8 weeks</div>
-                  <div className="text-foreground/60">Typical project timeline</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-foreground mb-2">4-8 weeks</div>
+                  <div className="text-sm sm:text-base text-foreground/60">Typical project timeline</div>
                 </div>
 
                 <div className="space-y-3 text-left mb-8">
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-foreground/80">Custom responsive design</span>
+                    <span className="text-sm sm:text-base text-foreground/80">Custom responsive design</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-foreground/80">Modern framework development</span>
+                    <span className="text-sm sm:text-base text-foreground/80">Modern framework development</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-foreground/80">SEO optimization included</span>
+                    <span className="text-sm sm:text-base text-foreground/80">SEO optimization included</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-foreground/80">3 months free maintenance</span>
+                    <span className="text-sm sm:text-base text-foreground/80">3 months free maintenance</span>
                   </div>
                 </div>
 
@@ -242,29 +242,29 @@ const WebDevelopmentPage = () => {
       {/* CTA Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-primary via-primary-blue to-dark-blue text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             Ready to build something extraordinary?
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl mb-8 opacity-90 max-w-2xl mx-auto px-4">
             Book a free consultation to discuss your project goals and get a detailed proposal
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-signal-yellow text-ink-black hover:bg-signal-yellow/90">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" className="bg-signal-yellow text-ink-black hover:bg-signal-yellow/90 w-full sm:w-auto min-h-[44px]">
                 Book Free Consultation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio/web-apps">
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
+            <Link href="/portfolio/web-apps" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto min-h-[44px]">
                 View Web Projects
               </Button>
             </Link>
           </div>
 
-          <div className="mt-8 text-white/80">
-            <p>hello@webcloudor.com • Response guaranteed within 24 hours</p>
+          <div className="mt-8 text-white/80 px-4">
+            <p className="text-sm sm:text-base">hello@webcloudor.com • Response guaranteed within 24 hours</p>
           </div>
         </div>
       </section>
