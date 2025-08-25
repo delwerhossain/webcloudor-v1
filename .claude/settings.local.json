@@ -200,7 +200,11 @@
       "Bash(node:*)",
       "Bash(npm run sanity:start:*)",
       "Bash(pnpm install:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npx sanity:*)",
+      "Bash(pnpm add:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
