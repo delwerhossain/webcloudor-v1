@@ -16,7 +16,6 @@ export const GetStartedCTA = () => {
 
   return (
     <SectionContainer 
-      id="get-started-cta"
       background="gradient" 
       padding="large"
       className="text-white relative overflow-hidden"
@@ -67,7 +66,7 @@ export const GetStartedCTA = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1B365D]/80 via-[#1B365D]/60 to-[#0F1B2F]/80" />
       </div>
 
-      <div ref={ref} className="relative z-10 text-center max-w-4xl mx-auto">
+      <div id="get-started-cta" ref={ref} className="relative z-10 text-center max-w-4xl mx-auto">
         <motion.div
           variants={fadeUpVariants}
           initial="initial"
