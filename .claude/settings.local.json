@@ -188,7 +188,10 @@
       "Bash(echo:*)",
       "Bash(sed:*)",
       "Bash(done)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pnpm run:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
