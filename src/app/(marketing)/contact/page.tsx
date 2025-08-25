@@ -160,8 +160,8 @@ const ContactPage = () => {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="font-medium text-[#1B365D] text-sm sm:text-base">Email</p>
-                      <a href="mailto:hello@webcloudor.com" className="text-slate-600 hover:text-[#1B365D] text-sm sm:text-base break-all">
-                        hello@webcloudor.com
+                      <a href="mailto:webcloudor@gmail.com" className="text-slate-600 hover:text-[#1B365D] text-sm sm:text-base break-all">
+                        webcloudor@gmail.com
                       </a>
                     </div>
                   </div>
