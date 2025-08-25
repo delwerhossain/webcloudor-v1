@@ -113,7 +113,7 @@ const FloatingElement = ({
 
 export const StartProjectCTA = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
   const { scrollY } = useScroll()
   const yParallax = useTransform(scrollY, [0, 1000], [0, -50])
 
