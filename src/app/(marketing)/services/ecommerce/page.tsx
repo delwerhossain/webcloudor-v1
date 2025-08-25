@@ -24,7 +24,7 @@ const EcommercePage = () => {
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-signal-yellow/5" />
         <div className="absolute top-20 left-8 w-32 h-32 bg-gradient-to-r from-primary/10 to-signal-yellow/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-16 w-40 h-40 bg-gradient-to-r from-warm-orange/8 to-signal-yellow/8 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute bottom-20 right-16 w-40 h-40 bg-gradient-to-r from-primary-blue/8 to-primary/8 rounded-full blur-3xl animate-pulse delay-1000" />
 
         <div className="container relative mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
@@ -35,7 +35,7 @@ const EcommercePage = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               Storefronts{' '}
-              <span className="bg-gradient-to-r from-primary to-warm-orange bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 designed to convert
               </span>
             </h1>
@@ -48,7 +48,7 @@ const EcommercePage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-warm-orange hover:shadow-lg">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
                   Start Your Store
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -268,7 +268,7 @@ const EcommercePage = () => {
                 </div>
 
                 <Link href="/contact">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-warm-orange hover:shadow-lg">
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-primary-blue hover:shadow-lg">
                     Start Your E-commerce Store
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
