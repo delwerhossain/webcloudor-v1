@@ -13,6 +13,7 @@ import { ClientSuccessStories } from "@/components/sections/services/client-succ
 import { TechnologyStack } from "@/components/sections/services/technology-stack"
 import { ServicesFAQ } from "@/components/sections/services/services-faq"
 import { GetStartedCTA } from "@/components/sections/services/get-started-cta"
+import { ConsultationCTA } from "@/components/conversion/ConsultationCTA"
 
 export const metadata: Metadata = {
   title: "Services - WebCloudor | Web Development, Cloud Architecture & AI Solutions",
@@ -58,6 +59,19 @@ const ServicesPage = () => {
       <FastMVPDetail />
       <ProcessDeepDive />
       <PricingPackages />
+      
+      {/* Strategic consultation CTA after pricing */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <ConsultationCTA 
+            variant="primary"
+            context="services"
+            showBenefits={true}
+            showUrgency={true}
+          />
+        </div>
+      </section>
+      
       <ClientSuccessStories />
       <TechnologyStack />
       <ServicesFAQ />
