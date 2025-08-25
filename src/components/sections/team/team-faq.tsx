@@ -209,7 +209,7 @@ export const TeamFAQ = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                 <motion.a
-                  href="mailto:hello@webcloudor.com"
+                  href="mailto:webcloudor@gmail.com"
                   whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                   whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
                   className="inline-flex items-center gap-2 bg-[#00A8E8] hover:bg-[#00A8E8]/90 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300"
