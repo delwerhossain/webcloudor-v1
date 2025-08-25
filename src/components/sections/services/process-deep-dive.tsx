@@ -105,7 +105,7 @@ export const ProcessDeepDive = () => {
 
   return (
     <SectionContainer 
-      id="process-deep-dive"
+      
       background="blue" 
       padding="large"
       className="text-white"
