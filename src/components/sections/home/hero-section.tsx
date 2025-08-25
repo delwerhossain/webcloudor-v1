@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui"
+import Link from "next/link"
 import { 
   HeroAnimationWrapper, 
   AnimatedContent, 
@@ -77,11 +78,11 @@ export const HeroSection = () => {
       
       
       {/* Main content container with proper responsive padding */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
           
           {/* Left Column - Content */}
-          <HeroAnimationWrapper className="flex flex-col justify-center space-y-4 sm:space-y-6 lg:space-y-8">
+          <HeroAnimationWrapper className="flex flex-col justify-center space-y-3 sm:space-y-4 lg:space-y-5">
             
             {/* Main Headline */}
             <AnimatedContent>
@@ -123,38 +124,39 @@ export const HeroSection = () => {
               </div>
             </AnimatedContent>
 
-            {/* Enhanced CTA Buttons */}
-            <AnimatedContent delay={0.4} className="hero-cta-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 pt-4 sm:pt-6">
+            {/* Enhanced CTA Buttons - More prominent like Ahsan's design */}
+            <AnimatedContent delay={0.4} className="hero-cta-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3">
               <PulseButton>
-                <button className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold text-gray-900 bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-400 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[44px]">
-                  {/* Animated shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  <span className="relative z-10 flex items-center gap-2">
-                    Get Free Consultation
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </span>
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-50 blur-lg group-hover:opacity-70 transition-opacity duration-300 -z-10"></div>
-                </button>
+                <Link href="/contact?source=hero-cta">
+                  <button className="group relative inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[56px] sm:min-h-[64px]">
+                    {/* Animated shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      Get a Free Consultation
+                      <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-blue-600 opacity-50 blur-xl group-hover:opacity-70 transition-opacity duration-300 -z-10"></div>
+                  </button>
+                </Link>
               </PulseButton>
               
-              <button className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-blue-600 bg-white/80 backdrop-blur-sm border-2 border-blue-200 rounded-xl sm:rounded-2xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 whitespace-nowrap overflow-hidden shadow-sm hover:shadow-md min-h-[44px]">
-                {/* Subtle gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative z-10 flex items-center gap-2">
-                  View Our Work
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </span>
-              </button>
+              <Link href="/portfolio">
+                <button className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-blue-700 bg-white/90 backdrop-blur-sm border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 whitespace-nowrap overflow-hidden shadow-sm hover:shadow-md min-h-[48px]">
+                  <span className="relative z-10 flex items-center gap-2">
+                    See Client Results
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H9a2 2 0 01-2-2z" />
+                    </svg>
+                  </span>
+                </button>
+              </Link>
             </AnimatedContent>
 
             {/* Enhanced Trust Indicators */}
-            <AnimatedContent delay={0.6} className="pt-6 sm:pt-8 lg:pt-10">
+            <AnimatedContent delay={0.6} className="pt-4 sm:pt-5 lg:pt-6">
               <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8">
                 <div className="flex items-center gap-3 group">
                   <div className="relative">
