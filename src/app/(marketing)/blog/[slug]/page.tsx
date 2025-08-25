@@ -15,13 +15,14 @@ import { TableOfContents } from '@/components/blog/TableOfContents'
 import { BlogLoading } from '@/components/blog/BlogLoading'
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug)
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
   
   if (!post) {
     return {
@@ -59,14 +60,15 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
-  const post = await getBlogPostBySlug(params.slug)
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
   
   if (!post) {
     notFound()
   }
 
-  const categoryIds = post.categories?.map(cat => cat._id) || []
-  const relatedPosts = await getRelatedBlogPosts(post._id, categoryIds, post.tags || [])
+  const categoryIds = post.categories?.map((cat: any) => cat._id) || []
+  const relatedPosts = await getRelatedBlogPosts(post._id, categoryIds)
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -121,7 +123,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
                 <div className="mt-12 pt-8 border-t">
                   <ShareButtons 
                     title={post.title}
-                    url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug.current}`}
+                    url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`}
                   />
                 </div>
                 
@@ -139,7 +141,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
                 )}
                 
                 <div className="mt-16">
-                  <CommentSection postSlug={post.slug.current} postTitle={post.title} />
+                  <CommentSection postSlug={slug} postTitle={post.title} />
                 </div>
               </div>
             </div>

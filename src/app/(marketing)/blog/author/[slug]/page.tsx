@@ -10,16 +10,17 @@ import { BlogPagination } from '@/components/blog/BlogPagination'
 import { BlogLoading } from '@/components/blog/BlogLoading'
 
 interface AuthorPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
-  searchParams: {
+  }>
+  searchParams: Promise<{
     page?: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: AuthorPageProps): Promise<Metadata> {
-  const author = await getAuthorBySlug(params.slug)
+  const { slug } = await params
+  const author = await getAuthorBySlug(slug)
   
   if (!author) {
     return {
@@ -43,10 +44,12 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
 }
 
 const AuthorPage = async ({ params, searchParams }: AuthorPageProps) => {
-  const currentPage = Number(searchParams.page) || 1
+  const { slug } = await params
+  const resolvedSearchParams = await searchParams
+  const currentPage = Number(resolvedSearchParams.page) || 1
   const postsPerPage = 12
   
-  const author = await getAuthorBySlug(params.slug)
+  const author = await getAuthorBySlug(slug)
   
   if (!author) {
     notFound()
@@ -81,8 +84,8 @@ const AuthorPage = async ({ params, searchParams }: AuthorPageProps) => {
               <BlogPagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                searchParams={searchParams}
-                basePath={`/blog/author/${params.slug}`}
+                searchParams={resolvedSearchParams}
+                basePath={`/blog/author/${slug}`}
               />
             </div>
           )}

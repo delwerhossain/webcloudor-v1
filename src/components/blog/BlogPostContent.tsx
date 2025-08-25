@@ -71,11 +71,11 @@ const portableTextComponents = {
         {children}
       </code>
     ),
-    link: ({ value, children }: { value: any; children: any }) => (
+    link: ({ value, children }: { value?: any; children: any }) => (
       <a
-        href={value.href}
-        target={value.href.startsWith('http') ? '_blank' : '_self'}
-        rel={value.href.startsWith('http') ? 'noopener noreferrer' : ''}
+        href={value?.href}
+        target={value?.href?.startsWith('http') ? '_blank' : '_self'}
+        rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : ''}
         className="text-primary hover:underline font-medium"
       >
         {children}

@@ -9,16 +9,17 @@ import { BlogPagination } from '@/components/blog/BlogPagination'
 import { BlogLoading } from '@/components/blog/BlogLoading'
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
-  searchParams: {
+  }>
+  searchParams: Promise<{
     page?: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = await getCategoryBySlug(params.slug)
+  const { slug } = await params
+  const category = await getCategoryBySlug(slug)
   
   if (!category) {
     return {
@@ -39,10 +40,12 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
-  const currentPage = Number(searchParams.page) || 1
+  const { slug } = await params
+  const resolvedSearchParams = await searchParams
+  const currentPage = Number(resolvedSearchParams.page) || 1
   const postsPerPage = 12
   
-  const category = await getCategoryBySlug(params.slug)
+  const category = await getCategoryBySlug(slug)
   
   if (!category) {
     notFound()
@@ -73,8 +76,8 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
               <BlogPagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                searchParams={searchParams}
-                basePath={`/blog/category/${params.slug}`}
+                searchParams={resolvedSearchParams}
+                basePath={`/blog/category/${slug}`}
               />
             </div>
           )}

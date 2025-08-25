@@ -44,29 +44,21 @@ export const BlogHeader = () => {
             </div>
             
             <div className="flex items-center gap-3">
-              <Button 
-                variant="outline" 
-                size="default"
-                className="bg-background/80 hover:bg-background border-border/60 hover:border-border shadow-sm"
-                asChild
+              <Link 
+                href="/blog?featured=true"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-md border bg-background/80 hover:bg-background border-border/60 hover:border-border shadow-sm transition-colors"
               >
-                <Link href="/blog?featured=true">
-                  <TrendingUp className="w-4 h-4 mr-2.5" />
-                  <span>Featured</span>
-                </Link>
-              </Button>
+                <TrendingUp className="w-4 h-4 mr-2.5" />
+                <span>Featured</span>
+              </Link>
               
-              <Button 
-                variant="outline" 
-                size="default"
-                className="bg-background/80 hover:bg-background border-border/60 hover:border-border shadow-sm"
-                asChild
+              <Link 
+                href="/blog/categories"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-md border bg-background/80 hover:bg-background border-border/60 hover:border-border shadow-sm transition-colors"
               >
-                <Link href="/blog/categories">
-                  <Filter className="w-4 h-4 mr-2.5" />
-                  <span>Categories</span>
-                </Link>
-              </Button>
+                <Filter className="w-4 h-4 mr-2.5" />
+                <span>Categories</span>
+              </Link>
               
               <ThemeToggle />
             </div>

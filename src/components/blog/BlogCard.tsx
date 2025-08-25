@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { urlFor, formatDate } from '@/sanity/lib/utils'
-import { BlogPost } from '@/sanity/lib/types'
+import { BlogPost, Author, TeamMember } from '@/sanity/lib/types'
 import { CategoryBadge } from './CategoryBadge'
 
 interface BlogCardProps {
@@ -21,6 +21,9 @@ export const BlogCard = ({
   showAuthor = true,
   showStats = true 
 }: BlogCardProps) => {
+  const isAuthor = (author: Author | TeamMember): author is Author => {
+    return 'expertise' in author
+  }
   const imageUrl = post.featuredImage 
     ? urlFor(post.featuredImage).width(600).height(400).url() 
     : '/placeholder-blog.jpg'
@@ -134,10 +137,14 @@ export const BlogCard = ({
               href={`/blog/author/${post.author.slug.current}`}
               className="flex items-center gap-2 hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 rounded-sm"
             >
-              {post.author.avatar && (
+              {((isAuthor(post.author) && post.author.avatar) || (!isAuthor(post.author) && post.author.profileImage)) && (
                 <div className="relative w-5 h-5 rounded-full overflow-hidden bg-muted">
                   <Image
-                    src={urlFor(post.author.avatar).width(20).height(20).url()}
+                    src={isAuthor(post.author) && post.author.avatar 
+                      ? urlFor(post.author.avatar).width(20).height(20).url()
+                      : !isAuthor(post.author) && post.author.profileImage
+                      ? urlFor(post.author.profileImage).width(20).height(20).url()
+                      : '/default-avatar.png'}
                     alt={post.author.name}
                     fill
                     className="object-cover"
@@ -167,19 +174,13 @@ export const BlogCard = ({
 
       <CardFooter className="p-6 pt-2">
         <div className="flex items-center justify-between w-full">
-          <Button 
-            variant="ghost" 
-            className="flex-1 justify-start group/btn hover:bg-primary/5 transition-all duration-300" 
-            asChild
+          <Link 
+            href={`/blog/${post.slug.current}`}
+            className="flex-1 justify-start group/btn hover:bg-primary/5 transition-all duration-300 inline-flex items-center justify-center px-4 py-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
-            <Link 
-              href={`/blog/${post.slug.current}`}
-              className="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            >
-              <span className="font-medium">Read Article</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/card:translate-x-2" />
-            </Link>
-          </Button>
+            <span className="font-medium">Read Article</span>
+            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/card:translate-x-2" />
+          </Link>
 
           {/* Action Buttons - Only show on hover for featured */}
           {variant === 'featured' && (

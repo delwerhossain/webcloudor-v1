@@ -19,17 +19,18 @@ export const metadata: Metadata = {
 }
 
 interface BlogPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string
     category?: string
     tag?: string
     search?: string
     featured?: string
-  }
+  }>
 }
 
 const BlogPage = async ({ searchParams }: BlogPageProps) => {
-  const currentPage = Number(searchParams.page) || 1
+  const resolvedSearchParams = await searchParams
+  const currentPage = Number(resolvedSearchParams.page) || 1
   const postsPerPage = 12
   
   const [blogPosts, featuredPosts, categories] = await Promise.all([
@@ -38,22 +39,22 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
     getCategories(),
   ])
 
-  const filteredPosts = blogPosts.filter(post => {
-    if (searchParams.featured === 'true' && !post.featured) {
+  const filteredPosts = blogPosts.filter((post: any) => {
+    if (resolvedSearchParams.featured === 'true' && !post.featured) {
       return false
     }
-    if (searchParams.category && !post.categories?.some(cat => cat.slug.current === searchParams.category)) {
+    if (resolvedSearchParams.category && !post.categories?.some((cat: any) => cat.slug.current === resolvedSearchParams.category)) {
       return false
     }
-    if (searchParams.tag && !post.tags?.includes(searchParams.tag)) {
+    if (resolvedSearchParams.tag && !post.tags?.includes(resolvedSearchParams.tag)) {
       return false
     }
-    if (searchParams.search) {
-      const searchTerm = searchParams.search.toLowerCase()
+    if (resolvedSearchParams.search) {
+      const searchTerm = resolvedSearchParams.search.toLowerCase()
       return (
         post.title.toLowerCase().includes(searchTerm) ||
         post.excerpt.toLowerCase().includes(searchTerm) ||
-        post.tags?.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+        post.tags?.some((tag: any) => tag.toLowerCase().includes(searchTerm)) ||
         post.author?.name.toLowerCase().includes(searchTerm)
       )
     }
@@ -67,14 +68,14 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
   )
 
   const getPageTitle = () => {
-    if (searchParams.featured === 'true') return 'Featured Articles'
-    if (searchParams.category) return `Category: ${searchParams.category}`
-    if (searchParams.tag) return `Tag: ${searchParams.tag}`
-    if (searchParams.search) return `Search: "${searchParams.search}"`
+    if (resolvedSearchParams.featured === 'true') return 'Featured Articles'
+    if (resolvedSearchParams.category) return `Category: ${resolvedSearchParams.category}`
+    if (resolvedSearchParams.tag) return `Tag: ${resolvedSearchParams.tag}`
+    if (resolvedSearchParams.search) return `Search: "${resolvedSearchParams.search}"`
     return 'Latest Articles'
   }
 
-  const showFeaturedSection = currentPage === 1 && !searchParams.category && !searchParams.tag && !searchParams.search && !searchParams.featured
+  const showFeaturedSection = currentPage === 1 && !resolvedSearchParams.category && !resolvedSearchParams.tag && !resolvedSearchParams.search && !resolvedSearchParams.featured
 
   return (
     <main className="min-h-screen bg-background">
@@ -116,7 +117,7 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                   <p>
                     {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} found
                   </p>
-                  {searchParams.search && (
+                  {resolvedSearchParams.search && (
                     <button 
                       onClick={() => window.history.back()}
                       className="text-sm text-primary hover:text-primary/80 underline"
@@ -151,7 +152,7 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                     <BlogPagination
                       currentPage={currentPage}
                       totalPages={totalPages}
-                      searchParams={searchParams}
+                      searchParams={resolvedSearchParams}
                     />
                   </div>
                 )}
@@ -167,8 +168,8 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">No articles found</h3>
                   <p className="text-muted-foreground mb-6">
-                    {searchParams.search 
-                      ? `No articles match "${searchParams.search}". Try different keywords.`
+                    {resolvedSearchParams.search 
+                      ? `No articles match "${resolvedSearchParams.search}". Try different keywords.`
                       : 'No articles found matching your filters. Try adjusting your criteria.'
                     }
                   </p>

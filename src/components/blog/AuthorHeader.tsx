@@ -16,9 +16,9 @@ export const AuthorHeader = ({ author, postCount }: AuthorHeaderProps) => {
     return 'expertise' in author
   }
 
-  const avatarUrl = author.avatar 
+  const avatarUrl = isAuthor(author) && author.avatar 
     ? urlFor(author.avatar).width(150).height(150).url() 
-    : author.profileImage
+    : !isAuthor(author) && author.profileImage
     ? urlFor(author.profileImage).width(150).height(150).url()
     : '/default-avatar.png'
 
@@ -77,60 +77,52 @@ export const AuthorHeader = ({ author, postCount }: AuthorHeaderProps) => {
           
           {socialLinks && (
             <div className="flex gap-2">
-              {socialLinks.website && (
-                <Button variant="outline" size="sm" asChild>
-                  <a 
-                    href={socialLinks.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Globe className="w-4 h-4" />
-                    Website
-                  </a>
-                </Button>
+              {((isAuthor(author) && (socialLinks as any).website) || (!isAuthor(author) && (socialLinks as any).portfolio)) && (
+                <a 
+                  href={isAuthor(author) ? (socialLinks as any).website : (socialLinks as any).portfolio}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors gap-2 text-sm"
+                >
+                  <Globe className="w-4 h-4" />
+                  Website
+                </a>
               )}
               
               {socialLinks.twitter && (
-                <Button variant="outline" size="sm" asChild>
-                  <a 
-                    href={socialLinks.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Twitter className="w-4 h-4" />
-                    Twitter
-                  </a>
-                </Button>
+                <a 
+                  href={socialLinks.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors gap-2 text-sm"
+                >
+                  <Twitter className="w-4 h-4" />
+                  Twitter
+                </a>
               )}
               
               {socialLinks.linkedin && (
-                <Button variant="outline" size="sm" asChild>
-                  <a 
-                    href={socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn
-                  </a>
-                </Button>
+                <a 
+                  href={socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors gap-2 text-sm"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
               )}
               
               {socialLinks.github && (
-                <Button variant="outline" size="sm" asChild>
-                  <a 
-                    href={socialLinks.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Github className="w-4 h-4" />
-                    GitHub
-                  </a>
-                </Button>
+                <a 
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors gap-2 text-sm"
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </a>
               )}
             </div>
           )}
