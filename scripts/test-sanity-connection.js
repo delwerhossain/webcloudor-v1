@@ -8,9 +8,9 @@ const envPath = path.resolve('.env.local')
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf8')
   envContent.split('\n').forEach(line => {
-    const [key, ...values] = line.split('=')
-    if (key && values.length) {
-      process.env[key] = values.join('=')
+    const [key, ...values] = line.trim().split('=')
+    if (key && values.length && !line.startsWith('#')) {
+      process.env[key.trim()] = values.join('=').trim()
     }
   })
 }
@@ -26,10 +26,16 @@ const client = createClient({
 async function testConnection() {
   try {
     console.log('Testing Sanity connection...')
-    console.log('Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID)
-    console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET)
-    console.log('API Version:', process.env.NEXT_PUBLIC_SANITY_API_VERSION)
+    console.log('Project ID:', JSON.stringify(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID))
+    console.log('Dataset:', JSON.stringify(process.env.NEXT_PUBLIC_SANITY_DATASET))
+    console.log('API Version:', JSON.stringify(process.env.NEXT_PUBLIC_SANITY_API_VERSION))
     console.log('Token length:', process.env.SANITY_API_TOKEN?.length || 'Not set')
+    
+    // Validate project ID format
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+    if (!projectId || !/^[a-z0-9-]+$/.test(projectId)) {
+      throw new Error(`Invalid project ID format: ${JSON.stringify(projectId)}`)
+    }
     
     // Test basic connection
     const datasets = await client.datasets.list()
