@@ -232,7 +232,9 @@
       "mcp__filesystem__read_multiple_files",
       "Bash(npm run lint)",
       "Bash(npx biome check:*)",
-      "Bash(timeout 10 npm run dev)"
+      "Bash(timeout 10 npm run dev)",
+      "Bash(git pull:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
