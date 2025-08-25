@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* Responsive breakpoints following mobile-first approach */
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
   /* Typography */
   --font-sans: var(--font-inter);
   
@@ -119,6 +127,28 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
+/* Touch-friendly design improvements */
+@media (hover: none) {
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  .hover\:scale-\[1\.02\]:hover {
+    transform: none;
+  }
+  
+  /* Larger touch targets on touch devices */
+  button, 
+  [role="button"],
+  a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* Skip link for screen readers */
 .skip-link {
   position: absolute;
@@ -151,6 +181,36 @@ img {
 ::-moz-selection {
   background: var(--signal-yellow);
   color: var(--ink-black);
+}
+
+/* Custom responsive utilities */
+@media (max-width: 374px) {
+  .text-responsive {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 375px) {
+  .xs\:inline {
+    display: inline;
+  }
+  
+  .xs\:hidden {
+    display: none;
+  }
+  
+  .xs\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .xs\:aspect-\[4\/3\] {
+    aspect-ratio: 4 / 3;
+  }
+  
+  .xs\:aspect-\[1\/1\] {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 /* Performance optimizations for animations */
