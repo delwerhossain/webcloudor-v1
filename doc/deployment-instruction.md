@@ -498,7 +498,7 @@ export const seedDatabase = async () => {
   })
 
   await User.create({
-    name: 'Syed Mir Habib',
+    name: 'Ahsan Habib Akik',
     email: 'habib@webcloudor.com',
     role: 'admin',
     isVerified: true
