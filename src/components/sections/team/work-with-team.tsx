@@ -3,6 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { SectionContainer } from "@/components/ui/section-container"
 import { Card } from "@/components/ui/card"
@@ -260,12 +261,18 @@ export const WorkWithTeam = () => {
             transition={{ duration: 0.6, delay: 1.4, ease: [0.4, 0, 0.2, 1] }}
             className="text-center space-y-4"
           >
-            <Button 
-              size="lg"
-              className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-bold shadow-2xl hover:shadow-[#FFD700]/20 transition-all duration-300 text-lg px-8 py-4"
+            <Link
+              href="https://calendly.com/ahsanhabibakik/webcloudor"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Book Team Consultation
-            </Button>
+              <Button 
+                size="lg"
+                className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-bold shadow-2xl hover:shadow-[#FFD700]/20 transition-all duration-300 text-lg px-8 py-4"
+              >
+                Book Team Consultation
+              </Button>
+            </Link>
             
             <div className="text-white/60 text-sm">
               hello@webcloudor.com • Response within 4 hours
