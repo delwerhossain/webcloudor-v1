@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Mail, Clock } from "lucide-react"
 import { useRef } from "react"
+import Link from "next/link"
 import { Button, SectionContainer } from "@/components/ui"
 import { fadeUpVariants, staggerContainer, EASE_CURVE } from "@/lib/utils/animations"
 
@@ -120,19 +121,25 @@ export const StartProjectSection = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <Button 
-              variant="primary" 
-              size="lg" 
-              className="group min-w-[240px] text-lg font-semibold shadow-2xl"
+            <Link
+              href="https://calendly.com/ahsanhabibakik/webcloudor"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Book Free Consultation
-              <motion.div
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+              <Button 
+                variant="primary" 
+                size="lg" 
+                className="group min-w-[240px] text-lg font-semibold shadow-2xl"
               >
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-              </motion.div>
-            </Button>
+                Book Free Consultation
+                <motion.div
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </motion.div>
+              </Button>
+            </Link>
           </motion.div>
           
           <motion.div
