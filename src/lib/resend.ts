@@ -11,7 +11,7 @@ export const sendEmail = async ({
   subject,
   html,
   text,
-  from = process.env.FROM_EMAIL || 'hello@webcloudor.com'
+  from = process.env.FROM_EMAIL || 'webcloudor@gmail.com'
 }: {
   to: string | string[]
   subject: string
@@ -187,7 +187,7 @@ export const sendContactFormEmail = async ({
 
   // Send to admin
   const adminEmail = sendEmail({
-    to: process.env.FROM_EMAIL || 'hello@webcloudor.com',
+    to: process.env.FROM_EMAIL || 'webcloudor@gmail.com',
     subject: `New Contact: ${name} from ${company || 'Individual'}`,
     html: emailTemplates.base(content),
   })
@@ -287,7 +287,7 @@ export const sendConsultationBookingEmail = async ({
 
   // Send to admin
   const adminEmail = sendEmail({
-    to: process.env.FROM_EMAIL || 'hello@webcloudor.com',
+    to: process.env.FROM_EMAIL || 'webcloudor@gmail.com',
     subject: `Consultation Request: ${projectType} - ${name}`,
     html: emailTemplates.base(content),
   })
@@ -394,7 +394,7 @@ export const sendProjectInquiryEmail = async ({
 
   // Send detailed inquiry to admin
   const adminEmail = sendEmail({
-    to: process.env.FROM_EMAIL || 'hello@webcloudor.com',
+    to: process.env.FROM_EMAIL || 'webcloudor@gmail.com',
     subject: `Project Inquiry: ${projectType} - ${budget} Budget`,
     html: emailTemplates.base(content),
   })
