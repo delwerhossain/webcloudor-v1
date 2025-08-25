@@ -275,7 +275,7 @@ export const WorkWithTeam = () => {
             </Link>
             
             <div className="text-white/60 text-sm">
-              hello@webcloudor.com • Response within 4 hours
+              webcloudor@gmail.com • Response within 4 hours
             </div>
           </motion.div>
 
