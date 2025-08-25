@@ -3,6 +3,8 @@ import { Inter } from "next/font/google"
 import { Navigation, Footer } from "@/components/layout"
 import { GoogleTagManager } from "@/components/analytics/GoogleTagManager"
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics"
+import { Hotjar } from "@/components/analytics/Hotjar"
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity"
 import { Toaster } from 'sonner'
 import "./globals.css"
 
@@ -79,6 +81,8 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <GoogleAnalytics />
+        <Hotjar />
+        <MicrosoftClarity />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <meta name="theme-color" content="#1B365D" />
