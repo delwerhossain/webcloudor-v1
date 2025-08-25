@@ -46,7 +46,7 @@ const delwerData = {
 }
 
 const habibData = {
-  name: "Syed Mir Habib",
+  name: "Ahsan Habib Akik",
   role: "Co-Founder & Strategy Lead",
   bio: "Habib bridges the gap between business objectives and technical execution. With 7+ years in digital strategy and growth, he ensures every project delivers measurable business outcomes, not just beautiful interfaces. His approach combines user psychology, market research, and conversion optimization to create web experiences that actually move business metrics.",
   expertise: [
