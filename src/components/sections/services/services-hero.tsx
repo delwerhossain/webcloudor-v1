@@ -55,7 +55,7 @@ export const ServicesHero = () => {
             <motion.h1
               variants={fadeUpVariants}
               transition={{ duration: 0.6, ease: EASE_CURVE }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0A0A0B] leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#0A0A0B] leading-tight"
             >
               Services that scale with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A8E8] to-[#0077C7]">
@@ -66,7 +66,7 @@ export const ServicesHero = () => {
             <motion.p
               variants={fadeUpVariants}
               transition={{ duration: 0.6, delay: 0.2, ease: EASE_CURVE }}
-              className="text-lg md:text-xl text-[#64748B] max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-[#64748B] max-w-3xl mx-auto leading-relaxed px-4"
             >
               From rapid MVP development to enterprise architecture.{" "}
               <br className="hidden md:block" />
@@ -78,7 +78,7 @@ export const ServicesHero = () => {
           <motion.div
             variants={fadeUpVariants}
             transition={{ duration: 0.6, delay: 0.4, ease: EASE_CURVE }}
-            className="flex flex-wrap justify-center gap-3 md:gap-4"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4"
           >
             {servicePills.map((pill, index) => (
               <motion.button
@@ -89,8 +89,8 @@ export const ServicesHero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`
-                  px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-medium
-                  transition-all duration-300 border-2
+                  px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full text-xs sm:text-sm md:text-base font-medium
+                  transition-all duration-300 border-2 min-h-[44px] flex items-center justify-center
                   ${activePill === pill.id || index === 0
                     ? "bg-[#00A8E8] text-white border-[#00A8E8] shadow-lg"
                     : "bg-white text-[#64748B] border-[#E2E8F0] hover:border-[#00A8E8] hover:text-[#00A8E8]"
@@ -106,7 +106,7 @@ export const ServicesHero = () => {
           <motion.div
             variants={fadeUpVariants}
             transition={{ duration: 0.6, delay: 0.6, ease: EASE_CURVE }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 text-[#64748B] text-sm md:text-base"
+            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 md:gap-8 text-[#64748B] text-sm md:text-base px-4"
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#00A8E8]" />
@@ -130,7 +130,7 @@ export const ServicesHero = () => {
             <Button 
               onClick={scrollToConsultation}
               size="lg"
-              className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-semibold shadow-lg hover:shadow-xl"
+              className="bg-[#FFD700] hover:bg-[#FFD700]/90 text-[#0A0A0B] font-semibold shadow-lg hover:shadow-xl min-h-[44px] w-full sm:w-auto"
             >
               Book Free Consultation
             </Button>
