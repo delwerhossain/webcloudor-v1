@@ -19,7 +19,7 @@ const images = [
   // Team images
   { path: 'images/team/team-hero.jpg', width: 800, height: 600, text: 'WebCloudor Team', type: 'jpg' },
   { path: 'images/team/delwer-hossain.jpg', width: 400, height: 400, text: 'Delwer Hossain', type: 'jpg' },
-  { path: 'images/team/syed-mir-habib.jpg', width: 400, height: 400, text: 'Ahsan Habib Akik', type: 'jpg' },
+  { path: 'images/team/ahsan-habib-akik.jpg', width: 400, height: 400, text: 'Ahsan Habib Akik', type: 'jpg' },
   { path: 'images/team/team-og.jpg', width: 1200, height: 630, text: 'WebCloudor Team Page', type: 'jpg' },
   { path: 'images/team/team-twitter.jpg', width: 1200, height: 630, text: 'Meet the WebCloudor Team', type: 'jpg' },
   
@@ -38,9 +38,9 @@ const images = [
   { path: 'images/about/team-og.jpg', width: 1200, height: 630, text: 'About WebCloudor', type: 'jpg' },
   { path: 'images/about/team-twitter.jpg', width: 1200, height: 630, text: 'About WebCloudor', type: 'jpg' },
   { path: 'images/about/delwer-hossain.jpg', width: 400, height: 400, text: 'Delwer Hossain', type: 'jpg' },
-  { path: 'images/about/syed-mir-habib.jpg', width: 400, height: 400, text: 'Ahsan Habib Akik', type: 'jpg' },
+  { path: 'images/about/ahsan-habib-akik.jpg', width: 400, height: 400, text: 'Ahsan Habib Akik', type: 'jpg' },
   { path: 'images/about/delwer-hossain-sm.jpg', width: 200, height: 200, text: 'DH', type: 'jpg' },
-  { path: 'images/about/syed-mir-habib-sm.jpg', width: 200, height: 200, text: 'SMH', type: 'jpg' },
+  { path: 'images/about/ahsan-habib-akik-sm.jpg', width: 200, height: 200, text: 'AHA', type: 'jpg' },
   { path: 'images/about/office-workspace.jpg', width: 600, height: 400, text: 'Office Workspace', type: 'jpg' },
   { path: 'images/about/office-collaboration.jpg', width: 600, height: 400, text: 'Office Collaboration', type: 'jpg' },
   { path: 'images/about/office-overview.jpg', width: 800, height: 600, text: 'Office Overview', type: 'jpg' },
