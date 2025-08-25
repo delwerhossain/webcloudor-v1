@@ -23,7 +23,7 @@ const mockBlogPosts = [
     publishedAt: "2024-12-10",
     featured: true,
     tags: ["Cloud", "Architecture", "AWS", "Scalability"],
-    author: { name: "Syed Mir Habib", slug: { current: "syed-mir-habib" } },
+    author: { name: "Ahsan Habib Akik", slug: { current: "ahsan-habib-akik" } },
     categories: [{ title: "Cloud Computing", slug: { current: "cloud-computing" } }],
     status: "published"
   },
