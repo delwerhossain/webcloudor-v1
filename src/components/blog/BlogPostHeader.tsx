@@ -4,7 +4,7 @@ import { Calendar, Clock, Eye, User, ArrowLeft } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { urlFor, formatDate } from '@/sanity/lib/utils'
-import { BlogPost } from '@/sanity/lib/types'
+import { BlogPost, Author, TeamMember } from '@/sanity/lib/types'
 import { CategoryBadge } from './CategoryBadge'
 
 interface BlogPostHeaderProps {
@@ -12,6 +12,9 @@ interface BlogPostHeaderProps {
 }
 
 export const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
+  const isAuthor = (author: Author | TeamMember): author is Author => {
+    return 'expertise' in author
+  }
   const imageUrl = post.featuredImage 
     ? urlFor(post.featuredImage).width(1200).height(630).url()
     : '/placeholder-blog.jpg'
@@ -39,12 +42,13 @@ export const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
       </div>
 
       {/* Back Button */}
-      <Button variant="ghost" size="sm" asChild>
-        <Link href="/blog" className="gap-2">
-          <ArrowLeft className="w-4 h-4" />
-          Back to Blog
-        </Link>
-      </Button>
+      <Link 
+        href="/blog" 
+        className="inline-flex items-center justify-center px-3 py-1.5 rounded-md hover:bg-gray-100 transition-colors gap-2 text-sm"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to Blog
+      </Link>
 
       {/* Categories */}
       {post.categories && post.categories.length > 0 && (
@@ -75,10 +79,14 @@ export const BlogPostHeader = ({ post }: BlogPostHeaderProps) => {
             href={`/blog/author/${post.author.slug.current}`}
             className="flex items-center gap-3 hover:text-primary transition-colors"
           >
-            {post.author.avatar && (
+            {((isAuthor(post.author) && post.author.avatar) || (!isAuthor(post.author) && post.author.profileImage)) && (
               <div className="relative w-10 h-10 rounded-full overflow-hidden">
                 <Image
-                  src={urlFor(post.author.avatar).width(40).height(40).url()}
+                  src={isAuthor(post.author) && post.author.avatar 
+                    ? urlFor(post.author.avatar).width(40).height(40).url()
+                    : !isAuthor(post.author) && post.author.profileImage
+                    ? urlFor(post.author.profileImage).width(40).height(40).url()
+                    : '/default-avatar.png'}
                   alt={post.author.name}
                   fill
                   className="object-cover"
