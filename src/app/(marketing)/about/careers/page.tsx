@@ -83,7 +83,7 @@ const CareersPage = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
               Build the future{' '}
-              <span className="bg-gradient-to-r from-primary to-signal-yellow bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-primary-blue bg-clip-text text-transparent">
                 with us
               </span>
             </h1>
@@ -251,7 +251,7 @@ const CareersPage = () => {
               }
             ].map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary to-signal-yellow rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                   {step.step}
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
