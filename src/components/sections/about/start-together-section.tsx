@@ -150,8 +150,8 @@ export const StartTogether = () => {
             </div>
             <div className="w-12 h-12 relative rounded-full border-2 border-white overflow-hidden">
               <Image
-                src="/images/about/syed-mir-habib-sm.jpg"
-                alt="Syed Mir Habib"
+                src="/images/about/ahsan-habib-akik-sm.jpg"
+                alt="Ahsan Habib Akik"
                 fill
                 className="object-cover"
                 sizes="48px"
