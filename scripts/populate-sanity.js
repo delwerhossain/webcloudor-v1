@@ -131,7 +131,7 @@ const authors = [
     expertise: ['AWS', 'Cloud Architecture', 'DevOps', 'Kubernetes', 'Infrastructure as Code'],
     socialLinks: {
       website: 'https://webcloudor.com',
-      linkedin: 'https://linkedin.com/in/syed-mir-habib'
+      linkedin: 'https://linkedin.com/in/ahsanhabibakik'
     },
     isActive: true,
     featured: true
