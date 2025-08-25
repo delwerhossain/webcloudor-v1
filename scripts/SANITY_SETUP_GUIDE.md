@@ -102,7 +102,7 @@
      - GitHub: https://github.com/delwerhossain
 
 2. **Ahsan Habib Akik**
-   - Slug: `syed-mir-habib`
+   - Slug: `ahsan-habib-akik`
    - Short Bio: "Cloud architect and DevOps engineer specializing in scalable infrastructure solutions."
    - Expertise: AWS, Cloud Architecture, DevOps, Kubernetes, Infrastructure as Code
    - Social Links:
