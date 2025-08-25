@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Server, GitBranch, Shield, Gauge, Workflow, Cloud } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Server, GitBranch, Shield, Gauge, Workflow, Cloud } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'DevOps & Deployment Services | CI/CD & Cloud Infrastructure',
-  description: 'Professional DevOps services including CI/CD pipelines, cloud deployment, monitoring, and infrastructure automation for scalable applications.',
-  keywords: ['DevOps services', 'CI/CD', 'cloud deployment', 'Docker', 'Kubernetes', 'infrastructure automation'],
+  title: "DevOps & Deployment Services | CI/CD & Cloud Infrastructure",
+  description: "Professional DevOps services including CI/CD pipelines, cloud deployment, monitoring, and infrastructure automation for scalable applications.",
+  keywords: ["DevOps services", "CI/CD", "cloud deployment", "Docker", "Kubernetes", "infrastructure automation"],
   openGraph: {
-    title: 'DevOps & Deployment Services | WebCloudor',
-    description: 'Streamline your development workflow with expert DevOps solutions',
-    type: 'website',
+    title: "DevOps & Deployment Services | WebCloudor",
+    description: "Streamline your development workflow with expert DevOps solutions",
+    type: "website",
   }
 }
 
@@ -84,22 +84,22 @@ export default function DevOpsServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-4">DevOps & Deployment</Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Streamline Your 
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
                 Development Workflow
               </span>
             </h1>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-700 mb-8 leading-relaxed px-4">
               Professional DevOps services that accelerate development, improve reliability, 
               and scale your infrastructure with confidence.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 w-full sm:w-auto min-h-[44px]">
                 Get DevOps Audit
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button variant="outline" size="lg">View Case Studies</Button>
+              <Button variant="outline" size="lg" className="w-full sm:w-auto min-h-[44px]">View Case Studies</Button>
             </div>
           </div>
         </div>
@@ -110,23 +110,23 @@ export default function DevOpsServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">DevOps Services</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">DevOps Services</h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
                 End-to-end DevOps solutions for modern development teams
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {devopsServices.map((service, index) => (
                 <Card key={index} className="group hover:shadow-lg transition-all duration-300 h-full">
                   <CardHeader>
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
                       {service.icon}
                     </div>
-                    <CardTitle className="text-lg">{service.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1">
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">{service.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {service.features.map((feature, i) => (
                         <Badge key={i} variant="outline" className="text-xs">
@@ -147,17 +147,17 @@ export default function DevOpsServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">DevOps Impact</h2>
-              <p className="text-xl text-gray-600">Measurable improvements for your development process</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">DevOps Impact</h2>
+              <p className="text-lg sm:text-xl text-gray-600 px-4">Measurable improvements for your development process</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {benefits.map((benefit, index) => (
                 <Card key={index} className="text-center p-6">
-                  <div className="text-4xl font-bold text-purple-600 mb-2">{benefit.metric}</div>
-                  <div className="text-sm text-gray-500 mb-4">{benefit.label}</div>
-                  <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+                  <div className="text-3xl sm:text-4xl font-bold text-purple-600 mb-2">{benefit.metric}</div>
+                  <div className="text-sm sm:text-base text-gray-500 mb-4">{benefit.label}</div>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2">{benefit.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600">{benefit.description}</p>
                 </Card>
               ))}
             </div>
@@ -169,9 +169,9 @@ export default function DevOpsServicesPage() {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Our DevOps Process</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8">Our DevOps Process</h2>
             
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { step: "1", title: "Assessment", desc: "Audit current infrastructure and processes" },
                 { step: "2", title: "Strategy", desc: "Design optimized DevOps workflows" },
@@ -182,8 +182,8 @@ export default function DevOpsServicesPage() {
                   <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                     {phase.step}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{phase.title}</h3>
-                  <p className="text-gray-600 text-sm">{phase.desc}</p>
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">{phase.title}</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm">{phase.desc}</p>
                   
                   {index < 3 && (
                     <div className="hidden md:block absolute top-6 left-[calc(100%-1.5rem)] w-6 h-0.5 bg-purple-200"></div>
@@ -198,17 +198,17 @@ export default function DevOpsServicesPage() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Accelerate Your Development?</h2>
-          <p className="text-xl mb-8 opacity-90">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Accelerate Your Development?</h2>
+          <p className="text-lg sm:text-xl mb-8 opacity-90 px-4">
             Get a free DevOps assessment and discover how we can optimize your workflow.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto min-h-[44px]">
               Schedule Free Assessment
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-700">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-700 w-full sm:w-auto min-h-[44px]">
                 Contact Our Team
               </Button>
             </Link>
