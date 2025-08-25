@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui'
 
 export default function NotFound() {
   return (
@@ -37,14 +36,11 @@ export default function NotFound() {
         </p>
 
         <div className="space-y-4">
-          <Link href="/">
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full sm:w-auto"
-            >
-              Back to Homepage
-            </Button>
+          <Link 
+            href="/"
+            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] font-semibold rounded-lg shadow-lg hover:shadow-xl hover:from-[#FFD700]/90 hover:to-[#FF8C00]/90 transition-all duration-300"
+          >
+            Back to Homepage
           </Link>
           
           <div className="text-center">
