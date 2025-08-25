@@ -1,18 +1,18 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Bot, Zap, MessageSquare, BarChart3, Users, CheckCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight, Bot, Zap, MessageSquare, BarChart3, Users, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: 'AI Integration Services | Smart Automation Solutions',
-  description: 'AI-powered automation that reduces manual work and increases efficiency. Custom chatbots, lead qualification, process optimization, and intelligent workflows.',
-  keywords: ['AI integration', 'automation', 'chatbots', 'machine learning', 'process optimization', 'AI development'],
+  title: "AI Integration Services | Smart Automation Solutions",
+  description: "AI-powered automation that reduces manual work and increases efficiency. Custom chatbots, lead qualification, process optimization, and intelligent workflows.",
+  keywords: ["AI integration", "automation", "chatbots", "machine learning", "process optimization", "AI development"],
   openGraph: {
-    title: 'AI Integration Services | WebCloudor',
-    description: 'Smart automation that works while you sleep',
-    type: 'website',
+    title: "AI Integration Services | WebCloudor",
+    description: "Smart automation that works while you sleep",
+    type: "website",
   },
 }
 
