@@ -77,8 +77,8 @@ const habibData = {
   contact: {
     email: "habib@webcloudor.com",
     linkedin: "Professional profile link",
-    calendar: "Book a strategy consultation",
-    speaking: "Available for conferences and workshops",
+    github: "Strategy portfolio and contributions",
+    cta: "Book a strategy consultation",
   },
 }
 
@@ -202,7 +202,7 @@ const FounderProfile = ({ data, imagePosition, delay = 0 }: FounderProfileProps)
             size="sm" 
             className="bg-[#00A8E8] hover:bg-[#00A8E8]/90 text-white"
           >
-            {data.contact.cta || data.contact.calendar}
+            {data.contact.cta}
           </Button>
           <Button 
             variant="outline" 
@@ -227,11 +227,10 @@ const FounderProfile = ({ data, imagePosition, delay = 0 }: FounderProfileProps)
 export const FounderProfiles = () => {
   return (
     <SectionContainer 
-      id="founder-profiles"
       background="gray" 
       padding="large"
     >
-      <div className="space-y-20">
+      <div id="founder-profiles" className="space-y-20">
         {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
