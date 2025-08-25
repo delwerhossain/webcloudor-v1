@@ -51,18 +51,6 @@ const CookiePolicyPage = () => {
           "Clear explanations for every cookie type we use",
         ]}
         showControls={true}
-        onManagePreferences={() => {
-          // Implementation for cookie preference center
-          console.log("Manage preferences clicked")
-        }}
-        onAcceptAll={() => {
-          // Implementation for accepting all cookies
-          console.log("Accept all clicked")
-        }}
-        onAcceptEssential={() => {
-          // Implementation for accepting only essential cookies
-          console.log("Accept essential clicked")
-        }}
       />
 
       <PolicyTableOfContents sections={cookieSections} />
