@@ -310,7 +310,7 @@ export const PricingPackages = () => {
                         </td>
                       )
                     })}
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
