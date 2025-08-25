@@ -19,11 +19,10 @@ export const CloudArchitectureDetail = () => {
 
   return (
     <SectionContainer 
-      id="cloud-architecture"
       background="gray" 
       padding="large"
     >
-      <div ref={ref} className="grid lg:grid-cols-5 gap-16 items-center">
+      <div id="cloud-architecture" ref={ref} className="grid lg:grid-cols-5 gap-16 items-center">
         {/* Visual Left - 40% */}
         <div className="lg:col-span-2 relative order-2 lg:order-1">
           <motion.div
