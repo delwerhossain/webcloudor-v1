@@ -78,15 +78,24 @@ export const ClientTestimonialSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Quote Text */}
+        {/* Enhanced Quote Text */}
         <motion.div
           variants={fadeUpVariants}
           transition={{ duration: 0.8, ease: EASE_CURVE, delay: 0.3 }}
-          className="mb-12"
+          className="mb-16 relative"
         >
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#0A0A0B] leading-tight">
-            <TypewriterText text={testimonial.quote} delay={0.5} />
-          </blockquote>
+          <div className="relative bg-white/60 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-white/30">
+            <blockquote className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-relaxed">
+              <TypewriterText text={testimonial.quote} delay={0.5} />
+            </blockquote>
+            
+            {/* Quote decoration */}
+            <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full opacity-60"></div>
+            <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-60"></div>
+            
+            {/* Background pattern */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-50/50 via-transparent to-yellow-50/50 pointer-events-none"></div>
+          </div>
         </motion.div>
 
         {/* Author Section */}
@@ -103,35 +112,55 @@ export const ClientTestimonialSection = () => {
             <motion.div
               animate={{ 
                 boxShadow: [
-                  "0 0 20px rgba(255, 195, 0, 0.3)",
-                  "0 0 30px rgba(255, 195, 0, 0.5)",
-                  "0 0 20px rgba(255, 195, 0, 0.3)"
+                  "0 0 20px rgba(59, 130, 246, 0.4)",
+                  "0 0 30px rgba(59, 130, 246, 0.6)",
+                  "0 0 20px rgba(59, 130, 246, 0.4)"
                 ]
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg"
+              className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-2xl"
             >
-              {/* Placeholder avatar - replace with actual image */}
-              <div className="w-full h-full bg-gradient-to-br from-[#1B365D] to-[#0F1B2F] flex items-center justify-center">
+              {/* Enhanced avatar with better gradient */}
+              <div className="w-full h-full bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">
                   {testimonial.author.name.split(' ').map(n => n[0]).join('')}
                 </span>
               </div>
+              
+              {/* Ring decoration */}
+              <div className="absolute -inset-2 rounded-full border-2 border-blue-200/30 animate-pulse"></div>
             </motion.div>
           </motion.div>
 
-          {/* Author Info */}
+          {/* Enhanced Author Info */}
           <motion.div
             variants={fadeUpVariants}
             transition={{ duration: 0.6, ease: EASE_CURVE, delay: 1 }}
-            className="space-y-2"
+            className="space-y-3"
           >
-            <h4 className="text-xl font-semibold text-[#0A0A0B]">
+            <h4 className="text-2xl font-bold text-gray-900">
               {testimonial.author.name}
             </h4>
-            <p className="text-[#64748B] text-lg">
+            <p className="text-slate-600 text-lg font-medium">
               {testimonial.author.title}
             </p>
+            {/* Rating stars */}
+            <div className="flex justify-center items-center gap-1 pt-2">
+              {[...Array(5)].map((_, i) => (
+                <motion.svg
+                  key={i}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1.2 + (i * 0.1), duration: 0.3 }}
+                  className="w-5 h-5 text-yellow-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </motion.svg>
+              ))}
+            </div>
           </motion.div>
 
           {/* Company Logo */}
