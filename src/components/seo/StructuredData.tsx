@@ -19,7 +19,10 @@ export const StructuredData = ({ data }: StructuredDataProps) => {
           key={index}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema, null, 0) // Minified for production
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              ...schema as object
+            }, null, 0) // Minified for production
           }}
         />
       ))}

@@ -137,6 +137,135 @@ const MobileNavItem = ({
   )
 }
 
+
+const MobileDropdownBar = ({ 
+  isOpen, 
+  onClose, 
+  pathname 
+}: { 
+  isOpen: boolean
+  onClose: () => void
+  pathname: string
+}) => {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+
+  // Helper function to check if a menu item is active
+  const isActiveItem = (itemHref: string) => {
+    if (pathname === itemHref) return true
+    if (itemHref !== '/' && pathname.startsWith(itemHref)) return true
+    return false
+  }
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0  bg-black/20 z-40 lg:hidden"
+            onClick={onClose}
+          />
+          
+          {/* Dropdown Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="fixed top-20 left-4 right-4 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-100 z-50 lg:hidden overflow-hidden"
+          >
+            <div className="p-4 max-h-[80vh] overflow-y-auto">
+              <nav className="space-y-1">
+                {navigationItems.map((item) => (
+                  <div key={item.name}>
+                    {item.dropdown ? (
+                      <>
+                        <motion.button
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                          className={cn(
+                            "flex  w-full px-4 py-3 text-left rounded-lg transition-all duration-200 group",
+                            isActiveItem(item.href)
+                              ? "text-[#00A8E8] bg-[#00A8E8]/8 font-medium"
+                              : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50"
+                          )}
+                        >
+                          <span className="font-medium">{item.name}</span>
+                          <ArrowRight className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                        </motion.button>
+                        
+                        <AnimatePresence>
+                          {openDropdown === item.name && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden ml-4 mt-2"
+                            >
+                              {item.dropdown.map((subItem) => (
+                                <Link
+                                  key={subItem.href}
+                                  href={subItem.href}
+                                  onClick={onClose}
+                                  className="block px-4 py-2 text-gray-600 hover:text-[#00A8E8] hover:bg-gray-50 rounded-md transition-colors"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={onClose}
+                        className={cn(
+                          "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group",
+                          isActiveItem(item.href)
+                            ? "text-[#00A8E8] bg-[#00A8E8]/8 font-medium"
+                            : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50"
+                        )}
+                      >
+                        <span className="font-medium">{item.name}</span>
+                        <ArrowRight className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </nav>
+
+              {/* CTA Buttons */}
+              <div className="mt-6 pt-6 border-t border-gray-100 space-y-3">
+                <Link
+                  href="/contact"
+                  onClick={onClose}
+                  className="flex items-center justify-center w-full px-4 py-3 text-[#00A8E8] border border-[#00A8E8] rounded-lg font-medium transition-colors hover:bg-[#00A8E8]/5"
+                >
+                  Get Quote
+                </Link>
+                <Link
+                  href="https://calendly.com/ahsanhabibakik/webcloudor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-lg font-semibold transition-transform hover:scale-105"
+                >
+                  Free Consultation
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  )
+}
+
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
@@ -642,117 +771,12 @@ export const Navigation = () => {
       </motion.header>
 
       {/* Enhanced Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Enhanced Backdrop with WebCloudor Theme */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#0A0A0B]/60 backdrop-blur-md z-40 lg:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-
-            {/* Enhanced Mobile Menu with Theme Colors */}
-            <motion.div
-              initial={{ x: '100%', opacity: 0, scale: 0.98 }}
-              animate={{ x: 0, opacity: 1, scale: 1 }}
-              exit={{ x: '100%', opacity: 0, scale: 0.98 }}
-              transition={{ 
-                type: 'spring', 
-                damping: 30, 
-                stiffness: 300,
-                duration: 0.35 
-              }}
-              className="fixed top-0 right-0 h-full w-full max-w-[320px] sm:max-w-[360px] bg-white/98 backdrop-blur-2xl border-l border-[#00A8E8]/20 shadow-2xl shadow-[#00A8E8]/15 z-50 lg:hidden overflow-y-auto"
-            >
-              {/* Gradient Background Overlay */}
-              <div 
-                className="absolute inset-0"
-                style={{
-                  background: `
-                    linear-gradient(135deg, 
-                      rgba(0, 168, 232, 0.03) 0%, 
-                      rgba(0, 119, 199, 0.02) 50%, 
-                      rgba(255, 255, 255, 0.95) 100%
-                    )
-                  `
-                }}
-              />
-
-              {/* Enhanced Mobile Menu Header */}
-              <div className="relative z-10 flex items-center justify-between p-4 sm:p-6 border-b border-[#00A8E8]/10">
-                <Link 
-                  href="/" 
-                  className="flex items-center space-x-3 group"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-[#00A8E8] to-[#0077C7] p-2 shadow-lg">
-                    <OptimizedImage
-                      src="/logo.png"
-                      alt="WebCloudor"
-                      width={24}
-                      height={24}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <span className="text-lg font-bold text-[#0A0A0B] group-hover:text-[#00A8E8] transition-colors">
-                    WebCloudor
-                  </span>
-                </Link>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center min-h-[44px] min-w-[44px] p-2.5 hover:bg-[#00A8E8]/10 rounded-xl transition-colors text-[#0A0A0B]/70 hover:text-[#00A8E8] touch-manipulation"
-                >
-                  <X className="w-5 h-5" />
-                </motion.button>
-              </div>
-
-              {/* Enhanced Mobile Menu Items */}
-              <div className="relative z-10 py-4 px-3 sm:px-4">
-                <nav className="space-y-1">
-                  {navigationItems.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.08, duration: 0.3 }}
-                    >
-                      <MobileNavItem
-                        item={item}
-                        onClose={() => setIsMobileMenuOpen(false)}
-                        pathname={pathname}
-                      />
-                    </motion.div>
-                  ))}
-                </nav>
-              </div>
-
-              {/* Enhanced Mobile CTAs */}
-              <div className="relative z-10 p-4 sm:p-6 border-t border-[#00A8E8]/10 mt-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <Link
-                    href="https://calendly.com/ahsanhabibakik/webcloudor"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center w-full min-h-[52px] px-6 py-3 text-center bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-full font-semibold transition-all duration-200 hover:scale-105 shadow-lg shadow-[#FFD700]/25 touch-manipulation"
-                  >
-                    <span>Free Consultation</span>
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+   {/* Mobile Dropdown Bar */}
+      <MobileDropdownBar
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        pathname={pathname}
+      />
     </>
   )
 }

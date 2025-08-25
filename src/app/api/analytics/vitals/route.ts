@@ -106,26 +106,38 @@ export async function POST(request: NextRequest) {
 async function calculateAggregates(metricName: string, value: number) {
   // In a real implementation, you'd calculate these from stored data
   // This is a simplified version for demonstration
-  
-  const aggregates = {
+
+  type Rating = 'good' | 'needs-improvement' | 'poor'
+  type Trend = 'improving' | 'stable' | 'declining'
+  interface AggregateMetric {
+    current: number
+    average: number
+    p75: number
+    p90: number
+    count: number
+    trend: Trend
+    status?: Rating
+  }
+
+  const aggregates: Record<string, AggregateMetric> = {
     [metricName]: {
       current: value,
       average: value, // Would be calculated from historical data
       p75: value,     // 75th percentile
       p90: value,     // 90th percentile
       count: 1,       // Total measurements
-      trend: 'stable' as 'improving' | 'stable' | 'declining'
+      trend: 'stable'
     }
   }
 
   // Performance thresholds for alerts
   const thresholds = {
     LCP: { good: 2500, poor: 4000 },
-    FID: { good: 100, poor: 300 },
+    INP: { good: 200, poor: 500 },
     CLS: { good: 0.1, poor: 0.25 },
     FCP: { good: 1800, poor: 3000 },
     TTFB: { good: 800, poor: 1800 }
-  }
+  } as const
 
   const threshold = thresholds[metricName as keyof typeof thresholds]
   if (threshold) {

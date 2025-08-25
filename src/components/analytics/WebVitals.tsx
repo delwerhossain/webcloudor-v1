@@ -6,7 +6,20 @@
 'use client'
 
 import { useEffect } from 'react'
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals'
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
+
+// Type declarations for global objects
+declare global {
+  interface Navigator {
+    connection?: {
+      effectiveType?: string
+    }
+  }
+  
+  interface Window {
+    gtag?: (...args: any[]) => void
+  }
+}
 
 interface VitalsMetric {
   name: string
@@ -21,8 +34,8 @@ const sendToAnalytics = (metric: VitalsMetric) => {
   const { name, value, id, delta, rating } = metric
   
   // Google Analytics 4
-  if (typeof gtag !== 'undefined') {
-    gtag('event', name, {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', name, {
       value: Math.round(name === 'CLS' ? delta * 1000 : delta),
       metric_id: id,
       metric_value: value,
@@ -67,8 +80,8 @@ const getVitalsRating = (name: string, value: number): 'good' | 'needs-improveme
   switch (name) {
     case 'LCP':
       return value <= 2500 ? 'good' : value <= 4000 ? 'needs-improvement' : 'poor'
-    case 'FID':
-      return value <= 100 ? 'good' : value <= 300 ? 'needs-improvement' : 'poor'
+    case 'INP':
+      return value <= 200 ? 'good' : value <= 500 ? 'needs-improvement' : 'poor'
     case 'CLS':
       return value <= 0.1 ? 'good' : value <= 0.25 ? 'needs-improvement' : 'poor'
     case 'FCP':
@@ -96,11 +109,11 @@ const trackMetric = (metric: any) => {
 export const WebVitals = () => {
   useEffect(() => {
     // Track Core Web Vitals
-    getCLS(trackMetric)
-    getFID(trackMetric) 
-    getFCP(trackMetric)
-    getLCP(trackMetric)
-    getTTFB(trackMetric)
+    onCLS(trackMetric)
+    onINP(trackMetric) 
+    onFCP(trackMetric)
+    onLCP(trackMetric)
+    onTTFB(trackMetric)
 
     // Track additional performance metrics
     if (typeof window !== 'undefined' && window.performance) {
