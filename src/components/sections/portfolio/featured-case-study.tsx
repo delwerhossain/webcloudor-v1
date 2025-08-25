@@ -50,7 +50,7 @@ const metrics: Metric[] = [
 const AnimatedMetric = ({ metric, delay }: { metric: Metric; delay: number }) => {
   const [displayValue, setDisplayValue] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.3 })
+  const isInView = useInView(ref, { once: true, margin: "-30%" })
 
   useEffect(() => {
     if (isInView) {
@@ -177,7 +177,7 @@ const BeforeAfterSlider = () => {
 
 export const FeaturedCaseStudy = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.1 })
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
 
   return (
     <SectionContainer padding="large" className="bg-white">
