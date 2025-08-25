@@ -160,7 +160,7 @@ export const ServiceOverviewGrid = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
             transition={{ duration: 0.6, ease: EASE_CURVE }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0A0B] mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0A0B] mb-6"
           >
             Choose what you need today,{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A8E8] to-[#0077C7]">
@@ -170,7 +170,7 @@ export const ServiceOverviewGrid = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -180,7 +180,7 @@ export const ServiceOverviewGrid = () => {
               animate={isInView ? "animate" : "initial"}
               className="h-full"
             >
-              <Card className="p-8 h-full flex flex-col bg-white border border-[#E2E8F0] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
+              <Card className="p-6 sm:p-8 h-full flex flex-col bg-white border border-[#E2E8F0] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
                 <motion.div
                   variants={cardHoverVariants}
                   initial="rest"
@@ -197,13 +197,13 @@ export const ServiceOverviewGrid = () => {
                   {/* Content */}
                   <div className="flex-1 space-y-4">
                     <div>
-                      <h3 className="text-xl font-bold text-[#0A0A0B] mb-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#0A0A0B] mb-2">
                         {service.title}
                       </h3>
                       <p className="text-[#00A8E8] font-medium text-sm mb-3">
                         {service.tagline}
                       </p>
-                      <p className="text-[#64748B] leading-relaxed">
+                      <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
                         {service.description}
                       </p>
                     </div>
@@ -213,7 +213,7 @@ export const ServiceOverviewGrid = () => {
                       {service.benefits.map((benefit, benefitIndex) => (
                         <div key={benefitIndex} className="flex items-center gap-3">
                           <div className="w-2 h-2 rounded-full bg-[#10B981] flex-shrink-0" />
-                          <span className="text-sm text-[#64748B]">{benefit}</span>
+                          <span className="text-xs sm:text-sm text-[#64748B]">{benefit}</span>
                         </div>
                       ))}
                     </div>
@@ -222,10 +222,10 @@ export const ServiceOverviewGrid = () => {
                     <div className="pt-4 border-t border-[#E2E8F0]">
                       <div className="flex items-center justify-between mb-4">
                         <div>
-                          <div className="text-2xl font-bold text-[#0A0A0B]">
+                          <div className="text-xl sm:text-2xl font-bold text-[#0A0A0B]">
                             {service.startingPrice}
                           </div>
-                          <div className="text-sm text-[#64748B]">
+                          <div className="text-xs sm:text-sm text-[#64748B]">
                             {service.timeline}
                           </div>
                         </div>
@@ -246,7 +246,7 @@ export const ServiceOverviewGrid = () => {
                         onClick={() => scrollToSection(service.id)}
                         variant="outline"
                         size="sm"
-                        className="w-full border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8] hover:text-white"
+                        className="w-full border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8] hover:text-white min-h-[44px]"
                       >
                         {service.ctaText}
                       </Button>
