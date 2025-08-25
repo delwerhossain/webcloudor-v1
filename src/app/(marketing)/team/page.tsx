@@ -8,6 +8,8 @@ import { IndustryRecognition } from "@/components/sections/team/industry-recogni
 import { TeamOutsideWork } from "@/components/sections/team/team-outside-work"
 import { WorkWithTeam } from "@/components/sections/team/work-with-team"
 import { TeamFAQ } from "@/components/sections/team/team-faq"
+import StructuredData from '@/components/seo/StructuredData'
+import { schemas, generateBreadcrumbSchema } from '@/lib/seo/schema'
 
 export const metadata: Metadata = {
   title: "Meet Our Team - WebCloudor | Expert Founders Delwer & Habib",
@@ -41,8 +43,19 @@ export const metadata: Metadata = {
 }
 
 const TeamPage = () => {
+  const breadcrumbs = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://webcloudor.com' },
+    { name: 'Team', url: 'https://webcloudor.com/team' }
+  ])
+
   return (
     <>
+      <StructuredData data={[
+        schemas.organization,
+        schemas.delwerHossain,
+        schemas.ahsanHabib,
+        breadcrumbs
+      ]} />
       <TeamHero />
       <FounderProfiles />
       <TeamWorkingStyle />
