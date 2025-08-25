@@ -86,7 +86,7 @@ export const FeaturedCaseStudySection = () => {
           setInView(true)
         }
       },
-      { margin: "-30%" }
+      { rootMargin: "-30%" }
     )
 
     if (mockupRef.current) {
