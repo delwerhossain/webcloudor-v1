@@ -118,12 +118,12 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                     {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''} found
                   </p>
                   {resolvedSearchParams.search && (
-                    <button 
-                      onClick={() => window.history.back()}
+                    <a 
+                      href="/blog"
                       className="text-sm text-primary hover:text-primary/80 underline"
                     >
                       Clear search
-                    </button>
+                    </a>
                   )}
                 </div>
               </div>
@@ -173,12 +173,12 @@ const BlogPage = async ({ searchParams }: BlogPageProps) => {
                       : 'No articles found matching your filters. Try adjusting your criteria.'
                     }
                   </p>
-                  <button 
-                    onClick={() => window.location.href = '/blog'}
+                  <a 
+                    href="/blog"
                     className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
                     View All Articles
-                  </button>
+                  </a>
                 </div>
               </div>
             )}
