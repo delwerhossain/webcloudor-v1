@@ -499,7 +499,7 @@ const WebAppsPortfolioPage = () => {
           </div>
 
           <div className="mt-8 text-white/80">
-            <p>hello@webcloudor.com • Response guaranteed within 24 hours</p>
+            <p>webcloudor@gmail.com • Response guaranteed within 24 hours</p>
           </div>
         </div>
       </section>
