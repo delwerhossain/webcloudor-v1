@@ -53,9 +53,9 @@ const TeamPage = () => {
       <StructuredData data={[
         schemas.organization,
         schemas.delwerHossain,
-        schemas.ahsanHabib,
-        breadcrumbs
+        schemas.ahsanHabib
       ]} />
+      <StructuredData data={breadcrumbs} />
       <TeamHero />
       <FounderProfiles />
       <TeamWorkingStyle />
