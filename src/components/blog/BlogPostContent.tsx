@@ -35,47 +35,47 @@ const portableTextComponents = {
     ),
   },
   block: {
-    normal: ({ children }: { children: any }) => (
+    normal: ({ children }: { children?: any }) => (
       <p className="mb-4 leading-relaxed">{children}</p>
     ),
-    h2: ({ children }: { children: any }) => (
+    h2: ({ children }: { children?: any }) => (
       <h2 className="text-3xl font-bold mt-12 mb-6 scroll-mt-20" id={generateId(children)}>
         {children}
       </h2>
     ),
-    h3: ({ children }: { children: any }) => (
+    h3: ({ children }: { children?: any }) => (
       <h3 className="text-2xl font-semibold mt-10 mb-4 scroll-mt-20" id={generateId(children)}>
         {children}
       </h3>
     ),
-    h4: ({ children }: { children: any }) => (
+    h4: ({ children }: { children?: any }) => (
       <h4 className="text-xl font-semibold mt-8 mb-3 scroll-mt-20" id={generateId(children)}>
         {children}
       </h4>
     ),
-    blockquote: ({ children }: { children: any }) => (
+    blockquote: ({ children }: { children?: any }) => (
       <blockquote className="border-l-4 border-primary pl-6 my-6 italic text-lg">
         {children}
       </blockquote>
     ),
   },
   marks: {
-    strong: ({ children }: { children: any }) => (
+    strong: ({ children }: { children?: any }) => (
       <strong className="font-semibold">{children}</strong>
     ),
-    em: ({ children }: { children: any }) => (
+    em: ({ children }: { children?: any }) => (
       <em className="italic">{children}</em>
     ),
-    code: ({ children }: { children: any }) => (
+    code: ({ children }: { children?: any }) => (
       <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">
         {children}
       </code>
     ),
-    link: ({ value, children }: { value: any; children: any }) => (
+    link: ({ value, children }: { value?: any; children?: any }) => (
       <a
-        href={value.href}
-        target={value.href.startsWith('http') ? '_blank' : '_self'}
-        rel={value.href.startsWith('http') ? 'noopener noreferrer' : ''}
+        href={value?.href}
+        target={value?.href?.startsWith('http') ? '_blank' : '_self'}
+        rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : ''}
         className="text-primary hover:underline font-medium"
       >
         {children}
@@ -83,18 +83,18 @@ const portableTextComponents = {
     ),
   },
   list: {
-    bullet: ({ children }: { children: any }) => (
+    bullet: ({ children }: { children?: any }) => (
       <ul className="list-disc list-outside ml-6 mb-4 space-y-2">{children}</ul>
     ),
-    number: ({ children }: { children: any }) => (
+    number: ({ children }: { children?: any }) => (
       <ol className="list-decimal list-outside ml-6 mb-4 space-y-2">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: { children: any }) => (
+    bullet: ({ children }: { children?: any }) => (
       <li className="leading-relaxed">{children}</li>
     ),
-    number: ({ children }: { children: any }) => (
+    number: ({ children }: { children?: any }) => (
       <li className="leading-relaxed">{children}</li>
     ),
   },

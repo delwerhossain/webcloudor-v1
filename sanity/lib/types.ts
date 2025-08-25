@@ -1,8 +1,9 @@
-import { type SanityImageAsset, type SanityReference } from '@sanity/image-url/lib/types/types'
-
 export interface SanityImage {
   _type: 'image'
-  asset: SanityReference<SanityImageAsset>
+  asset: {
+    _ref: string
+    _type: 'reference'
+  }
   alt?: string
   caption?: string
 }

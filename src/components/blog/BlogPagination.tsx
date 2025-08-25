@@ -78,25 +78,20 @@ export const BlogPagination = ({
   return (
     <nav className="flex items-center justify-center gap-1" aria-label="Pagination">
       {/* Previous Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        asChild={currentPage > 1}
-        disabled={currentPage <= 1}
-        className="gap-2"
-      >
-        {currentPage > 1 ? (
-          <Link href={createUrl(currentPage - 1)}>
-            <ChevronLeft className="w-4 h-4" />
-            Previous
-          </Link>
-        ) : (
-          <>
-            <ChevronLeft className="w-4 h-4" />
-            Previous
-          </>
-        )}
-      </Button>
+      {currentPage > 1 ? (
+        <Link 
+          href={createUrl(currentPage - 1)}
+          className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors gap-2 text-sm"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          Previous
+        </Link>
+      ) : (
+        <div className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 bg-gray-50 text-gray-400 gap-2 text-sm">
+          <ChevronLeft className="w-4 h-4" />
+          Previous
+        </div>
+      )}
 
       {/* Page Numbers */}
       <div className="hidden sm:flex items-center gap-1">
@@ -118,23 +113,22 @@ export const BlogPagination = ({
           const pageNumber = page as number
           const isCurrentPage = pageNumber === currentPage
 
-          return (
-            <Button
+          return isCurrentPage ? (
+            <div
               key={pageNumber}
-              variant={isCurrentPage ? 'default' : 'outline'}
-              size="sm"
-              asChild={!isCurrentPage}
-              className="w-10 h-10 p-0"
-              aria-current={isCurrentPage ? 'page' : undefined}
+              className="inline-flex items-center justify-center w-10 h-10 p-0 rounded-md bg-primary text-primary-foreground text-sm font-medium"
+              aria-current="page"
             >
-              {isCurrentPage ? (
-                pageNumber
-              ) : (
-                <Link href={createUrl(pageNumber)}>
-                  {pageNumber}
-                </Link>
-              )}
-            </Button>
+              {pageNumber}
+            </div>
+          ) : (
+            <Link
+              key={pageNumber}
+              href={createUrl(pageNumber)}
+              className="inline-flex items-center justify-center w-10 h-10 p-0 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors text-sm"
+            >
+              {pageNumber}
+            </Link>
           )
         })}
       </div>
@@ -147,25 +141,20 @@ export const BlogPagination = ({
       </div>
 
       {/* Next Button */}
-      <Button
-        variant="outline"
-        size="sm"
-        asChild={currentPage < totalPages}
-        disabled={currentPage >= totalPages}
-        className="gap-2"
-      >
-        {currentPage < totalPages ? (
-          <Link href={createUrl(currentPage + 1)}>
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </Link>
-        ) : (
-          <>
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </>
-        )}
-      </Button>
+      {currentPage < totalPages ? (
+        <Link 
+          href={createUrl(currentPage + 1)}
+          className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors gap-2 text-sm"
+        >
+          Next
+          <ChevronRight className="w-4 h-4" />
+        </Link>
+      ) : (
+        <div className="inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-gray-300 bg-gray-50 text-gray-400 gap-2 text-sm">
+          Next
+          <ChevronRight className="w-4 h-4" />
+        </div>
+      )}
     </nav>
   )
 }

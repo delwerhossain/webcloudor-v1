@@ -216,7 +216,7 @@ export const NewsletterForm = ({
                 <Checkbox
                   id={interest.id}
                   checked={selectedInterests.includes(interest.id)}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked: any) => 
                     handleInterestChange(interest.id, checked as boolean)
                   }
                 />

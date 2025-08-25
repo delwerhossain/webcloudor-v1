@@ -17,9 +17,9 @@ export const AuthorCard = ({ author }: AuthorCardProps) => {
     return 'expertise' in author
   }
 
-  const avatarUrl = author.avatar 
+  const avatarUrl = isAuthor(author) && author.avatar 
     ? urlFor(author.avatar).width(80).height(80).url() 
-    : author.profileImage
+    : !isAuthor(author) && author.profileImage
     ? urlFor(author.profileImage).width(80).height(80).url()
     : '/default-avatar.png'
 
@@ -65,56 +65,52 @@ export const AuthorCard = ({ author }: AuthorCardProps) => {
             
             {socialLinks && (
               <div className="flex gap-2">
-                {socialLinks.website && (
-                  <Button variant="ghost" size="sm" asChild>
-                    <a 
-                      href={socialLinks.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Website"
-                    >
-                      <Globe className="w-4 h-4" />
-                    </a>
-                  </Button>
+                {((isAuthor(author) && (socialLinks as any).website) || (!isAuthor(author) && (socialLinks as any).portfolio)) && (
+                  <a 
+                    href={isAuthor(author) ? (socialLinks as any).website : (socialLinks as any).portfolio}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Website"
+                    className="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 transition-colors"
+                  >
+                    <Globe className="w-4 h-4" />
+                  </a>
                 )}
                 
                 {socialLinks.twitter && (
-                  <Button variant="ghost" size="sm" asChild>
-                    <a 
-                      href={socialLinks.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Twitter"
-                    >
-                      <Twitter className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <a 
+                    href={socialLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
+                    className="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 transition-colors"
+                  >
+                    <Twitter className="w-4 h-4" />
+                  </a>
                 )}
                 
                 {socialLinks.linkedin && (
-                  <Button variant="ghost" size="sm" asChild>
-                    <a 
-                      href={socialLinks.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <a 
+                    href={socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 transition-colors"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
                 )}
                 
                 {socialLinks.github && (
-                  <Button variant="ghost" size="sm" asChild>
-                    <a 
-                      href={socialLinks.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="GitHub"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <a 
+                    href={socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 transition-colors"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
                 )}
               </div>
             )}

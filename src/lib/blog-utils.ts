@@ -97,7 +97,7 @@ export const estimateReadingTimeFromBlocks = (blocks: any[]): number => {
       const text = block.children
         ?.map((child: any) => child.text || '')
         .join(' ') || ''
-      wordCount += text.split(/\s+/).filter(word => word.length > 0).length
+      wordCount += text.split(/\s+/).filter((word: string) => word.length > 0).length
     }
   })
   
