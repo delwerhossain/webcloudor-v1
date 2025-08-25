@@ -10,9 +10,6 @@ interface PolicyHeroContentProps {
   lastUpdated: string
   keyPoints: string[]
   showControls?: boolean
-  onManagePreferences?: () => void
-  onAcceptAll?: () => void
-  onAcceptEssential?: () => void
 }
 
 export const PolicyHeroContent = ({
@@ -21,10 +18,21 @@ export const PolicyHeroContent = ({
   lastUpdated,
   keyPoints,
   showControls = false,
-  onManagePreferences,
-  onAcceptAll,
-  onAcceptEssential,
 }: PolicyHeroContentProps) => {
+  const handleManagePreferences = () => {
+    // Implementation for cookie preference center
+    console.log("Manage preferences clicked")
+  }
+
+  const handleAcceptAll = () => {
+    // Implementation for accepting all cookies
+    console.log("Accept all clicked")
+  }
+
+  const handleAcceptEssential = () => {
+    // Implementation for accepting only essential cookies
+    console.log("Accept essential clicked")
+  }
   return (
     <motion.div
       variants={staggerContainer}
@@ -54,17 +62,17 @@ export const PolicyHeroContent = ({
           className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
         >
           <Button
-            onClick={onManagePreferences}
+            onClick={handleManagePreferences}
             variant="outline"
             className="text-sm"
           >
             🍪 Manage Cookie Preferences
           </Button>
-          <Button onClick={onAcceptAll} className="text-sm">
+          <Button onClick={handleAcceptAll} className="text-sm">
             ✅ Accept All Cookies
           </Button>
           <Button
-            onClick={onAcceptEssential}
+            onClick={handleAcceptEssential}
             variant="outline"
             className="text-sm"
           >
