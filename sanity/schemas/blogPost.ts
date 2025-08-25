@@ -86,8 +86,57 @@ export const blogPost = defineType({
           ]
         },
         {
-          type: 'code',
-          title: 'Code Block'
+          type: 'object',
+          name: 'codeBlock',
+          title: 'Code Block',
+          fields: [
+            {
+              name: 'language',
+              title: 'Language',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'JavaScript', value: 'javascript' },
+                  { title: 'TypeScript', value: 'typescript' },
+                  { title: 'JSON', value: 'json' },
+                  { title: 'CSS', value: 'css' },
+                  { title: 'HTML', value: 'html' },
+                  { title: 'Python', value: 'python' },
+                  { title: 'Bash', value: 'bash' },
+                  { title: 'SQL', value: 'sql' },
+                  { title: 'YAML', value: 'yaml' },
+                  { title: 'Markdown', value: 'markdown' },
+                  { title: 'Plain Text', value: 'text' }
+                ]
+              },
+              initialValue: 'javascript'
+            },
+            {
+              name: 'filename',
+              title: 'Filename (optional)',
+              type: 'string'
+            },
+            {
+              name: 'code',
+              title: 'Code',
+              type: 'text',
+              rows: 10
+            }
+          ],
+          preview: {
+            select: {
+              title: 'filename',
+              subtitle: 'language',
+              code: 'code'
+            },
+            prepare({ title, subtitle, code }) {
+              return {
+                title: title || 'Code Block',
+                subtitle: `${subtitle || 'text'} • ${code?.length || 0} characters`,
+                media: () => '💻'
+              }
+            }
+          }
         }
       ]
     }),
