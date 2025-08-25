@@ -191,7 +191,9 @@
       "Bash(git push:*)",
       "Bash(pnpm run:*)",
       "Bash(npm run build:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(node:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits",
