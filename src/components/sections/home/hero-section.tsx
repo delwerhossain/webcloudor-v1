@@ -113,9 +113,9 @@ export const HeroSection = () => {
                 <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 leading-tight">
                   Ship faster. Convert more. Scale with confidence.
                 </p>
-                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
+                <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
                   Modern web solutions that move your business forward with 
-                  <span className="inline-block mx-2 px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-700 rounded-full text-base font-semibold">
+                  <span className="inline-block mx-2 px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-800 rounded-full text-base font-semibold">
                     AI-powered efficiency
                   </span>
                   and proven results.
@@ -161,7 +161,7 @@ export const HeroSection = () => {
                     <div className="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full shadow-lg animate-pulse" />
                     <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
                   </div>
-                  <span className="text-slate-700 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
+                  <span className="text-gray-800 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
                     50+ Projects Delivered
                   </span>
                 </div>
@@ -171,7 +171,7 @@ export const HeroSection = () => {
                     <div className="w-4 h-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full shadow-lg animate-pulse" style={{animationDelay: '0.5s'}} />
                     <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
                   </div>
-                  <span className="text-slate-700 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
+                  <span className="text-gray-800 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
                     99% On-Time
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export const HeroSection = () => {
                     <div className="w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full shadow-lg animate-pulse" style={{animationDelay: '1s'}} />
                     <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
                   </div>
-                  <span className="text-slate-700 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
+                  <span className="text-gray-800 font-semibold text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
                     Tier-1/2 Clients Served
                   </span>
                 </div>
@@ -189,7 +189,7 @@ export const HeroSection = () => {
               
               {/* Social proof badges */}
               <div className="flex items-center gap-4 mt-6 pt-6 border-t border-slate-200/50">
-                <span className="text-sm text-slate-500 font-medium">Trusted by teams at:</span>
+                <span className="text-sm text-gray-700 font-medium">Trusted by teams at:</span>
                 <div className="flex items-center gap-4 opacity-60">
                   <div className="h-6 w-16 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-50"></div>
                   <div className="h-6 w-20 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-40"></div>
