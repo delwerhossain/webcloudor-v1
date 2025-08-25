@@ -72,47 +72,63 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           ease: EASE_CURVE,
           delay: service.delay
         }}
-        className="bg-white rounded-xl p-8 border border-[#E2E8F0] shadow-sm group-hover:shadow-xl transition-shadow duration-300 h-full"
+        className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-slate-200/50 shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 h-full group-hover:border-blue-200 group-hover:-translate-y-2 group-hover:bg-white/90"
       >
-        {/* Icon */}
+        {/* Enhanced Icon */}
         <motion.div
-          className="inline-flex items-center justify-center w-12 h-12 bg-[#1B365D]/10 rounded-lg mb-6 group-hover:bg-[#1B365D]/20 transition-colors duration-300"
+          className="relative inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl mb-6 group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300 shadow-sm group-hover:shadow-md"
           whileHover={{ scale: 1.1, rotate: 5 }}
         >
-          <service.icon className="w-6 h-6 text-[#1B365D]" />
+          <service.icon className="w-8 h-8 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" />
+          {/* Glow effect */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </motion.div>
 
         {/* Content */}
         <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-[#0A0A0B] group-hover:text-[#1B365D] transition-colors duration-300">
+          <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors duration-300 leading-tight">
             {service.title}
           </h3>
           
-          <p className="text-[#64748B] leading-relaxed">
+          <p className="text-slate-600 leading-relaxed text-base font-medium">
             {service.description}
           </p>
           
-          {/* Metric */}
-          <div className="pt-4 border-t border-[#E2E8F0] group-hover:border-[#1B365D]/20 transition-colors duration-300">
+          {/* Enhanced Metric */}
+          <div className="pt-6 border-t border-slate-200/70 group-hover:border-blue-200/50 transition-colors duration-300">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: service.delay + 0.3, duration: 0.4 }}
-              className="flex items-baseline gap-2"
+              className="flex items-center gap-3"
             >
-              <span className="text-2xl font-bold text-[#FFC300]">
-                {service.metric}
-              </span>
-              <span className="text-sm text-[#64748B] font-medium">
-                {service.metricLabel}
-              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500">
+                  {service.metric}
+                </span>
+                <span className="text-sm text-slate-500 font-semibold">
+                  {service.metricLabel}
+                </span>
+              </div>
+              <div className="flex-1 flex justify-end">
+                <div className="w-8 h-8 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 rounded-lg flex items-center justify-center group-hover:from-yellow-400/30 group-hover:to-orange-400/30 transition-colors duration-300">
+                  <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Hover glow effect */}
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#1B365D]/5 via-transparent to-[#FFC300]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        {/* Enhanced hover glow effect */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 via-transparent to-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        
+        {/* Subtle border highlight on hover */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-200/20 via-blue-300/20 to-yellow-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(34, 197, 94, 0.05) 50%, rgba(251, 191, 36, 0.1) 100%)'
+        }} />
       </motion.div>
     </motion.div>
   )
@@ -128,18 +144,37 @@ export const WhatWeDoSection = () => {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-6xl mx-auto"
       >
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
         <motion.div
           variants={fadeUpVariants}
           transition={{ duration: 0.6, ease: EASE_CURVE }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A0A0B] mb-4">
-            What We Do
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-100 rounded-full mb-6">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            <span className="text-blue-700 font-semibold text-sm uppercase tracking-wider">Our Services</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
+            <span className="block">What We</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
+              Deliver
+            </span>
           </h2>
-          <p className="text-lg md:text-xl text-[#64748B] max-w-2xl mx-auto">
-            Ship faster with modern web solutions designed for growth
+          
+          <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
+            Ship faster with modern web solutions designed for growth.
+            <span className="block mt-2 text-lg text-slate-500">
+              Every project engineered for performance, conversion, and scale.
+            </span>
           </p>
+          
+          {/* Decorative elements */}
+          <div className="flex justify-center items-center gap-4 mt-8">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-300"></div>
+            <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+            <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-blue-300"></div>
+          </div>
         </motion.div>
 
         {/* Service Cards Grid */}
