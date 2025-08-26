@@ -84,55 +84,68 @@ export const HeroSection = () => {
           {/* Left Column - Content */}
           <HeroAnimationWrapper className="flex flex-col justify-center space-y-3 sm:space-y-4 lg:space-y-5">
             
-            {/* Main Headline */}
+            {/* Results-Focused Headline */}
             <AnimatedContent>
               <div className="relative">
+                {/* Expertise Indicator Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-full text-blue-700 font-semibold text-sm sm:text-base mb-4">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span>Modern web solutions that drive business growth</span>
+                </div>
+                
                 <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
                   <span className="block text-gray-900 mb-2 sm:mb-3 relative">
-                    Your next breakthrough,
-                    {/* Subtle underline accent */}
-                    <div className="absolute -bottom-1 left-0 w-16 sm:w-20 lg:w-24 h-0.5 sm:h-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-80"></div>
+                    Ship faster, scale better
+                    {/* Accent underline */}
+                    <div className="absolute -bottom-1 left-0 w-20 sm:w-24 lg:w-28 h-1 sm:h-1.5 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full opacity-80"></div>
                   </span>
                   <span 
                     className="block bg-gradient-to-r from-[#00A8E8] via-[#0077C7] to-[#1B365D] bg-clip-text text-transparent font-extrabold relative"
                     style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
                   >
-                    powered by AI-first web
+                    with modern web solutions
                     {/* Glowing effect behind text */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#00A8E8]/20 via-[#0077C7]/20 to-[#1B365D]/20 blur-xl -z-10 opacity-50"></div>
                   </span>
                 </h1>
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full opacity-60 animate-pulse"></div>
-                <div className="absolute top-1/2 -left-6 w-4 h-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-40 animate-bounce"></div>
+                {/* Success indicators */}
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-80 animate-pulse"></div>
+                <div className="absolute top-1/2 -left-4 w-3 h-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-60 animate-bounce"></div>
               </div>
             </AnimatedContent>
 
-            {/* Enhanced Subheadline */}
+            {/* Results-Focused Subheadline */}
             <AnimatedContent delay={0.2}>
-              <div className="max-w-2xl space-y-2 sm:space-y-3 lg:space-y-4">
-                <p className="subheading text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 leading-tight">
-                  Ship faster. Convert more. Scale with confidence.
+              <div className="max-w-2xl space-y-3 sm:space-y-4">
+                <p className="subheading text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 leading-tight">
+                  Built for performance, designed for growth
                 </p>
-                <p className="description text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed font-medium">
-                  Modern web solutions that move your business forward with 
-                  <span className="inline-block mx-1 sm:mx-2 px-2 sm:px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-800 rounded-full text-sm sm:text-base font-semibold">
-                    AI-powered efficiency
-                  </span>
-                  and proven results.
-                </p>
+                <div className="flex flex-wrap gap-4 sm:gap-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-slate-700 font-semibold text-sm sm:text-base">Modern architecture</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-slate-700 font-semibold text-sm sm:text-base">Conversion-optimized</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span className="text-slate-700 font-semibold text-sm sm:text-base">Enterprise-ready</span>
+                  </div>
+                </div>
               </div>
             </AnimatedContent>
 
-            {/* Enhanced CTA Buttons - More prominent like Ahsan's design */}
-            <AnimatedContent delay={0.4} className="hero-cta-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3">
+            {/* Single-Focus CTA */}
+            <AnimatedContent delay={0.4} className="hero-cta-buttons pt-4 sm:pt-6">
               <PulseButton>
-                <Link href="/contact?source=hero-cta">
-                  <button className="group relative inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[56px] sm:min-h-[64px]">
+                <Link href="/contact?source=hero-primary">
+                  <button className="group relative inline-flex items-center justify-center px-10 sm:px-12 py-5 sm:py-6 text-xl sm:text-2xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 rounded-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[64px] sm:min-h-[72px]">
                     {/* Animated shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                    <span className="relative z-10 flex items-center gap-2">
-                      Get a Free Consultation
+                    <span className="relative z-10 flex items-center gap-3">
+                      Start Your Project
                       <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
@@ -143,61 +156,44 @@ export const HeroSection = () => {
                 </Link>
               </PulseButton>
               
-              <Link href="/portfolio">
-                <button className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-blue-700 bg-white/90 backdrop-blur-sm border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 whitespace-nowrap overflow-hidden shadow-sm hover:shadow-md min-h-[48px]">
-                  <span className="relative z-10 flex items-center gap-2">
-                    See Client Results
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H9a2 2 0 01-2-2z" />
-                    </svg>
-                  </span>
-                </button>
-              </Link>
+              {/* Secondary link */}
+              <div className="mt-4 text-center">
+                <Link href="/portfolio?source=hero-secondary" className="text-slate-600 hover:text-slate-800 underline text-sm font-medium transition-colors">
+                  View our work →
+                </Link>
+              </div>
             </AnimatedContent>
 
-            {/* Enhanced Trust Indicators */}
-            <AnimatedContent delay={0.6} className="pt-4 sm:pt-5 lg:pt-6">
-              <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8">
-                <div className="flex items-center gap-3 group">
-                  <div className="relative">
-                    <div className="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full shadow-lg animate-pulse" />
-                    <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
-                  </div>
-                  <span className="text-gray-800 font-semibold text-sm sm:text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
-                    50+ Projects Delivered
-                  </span>
+            {/* Results-Focused Trust Indicators */}
+            <AnimatedContent delay={0.6} className="pt-6 sm:pt-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">50+</div>
+                  <div className="text-gray-700 font-medium text-xs sm:text-sm">Projects Delivered</div>
                 </div>
                 
-                <div className="flex items-center gap-3 group">
-                  <div className="relative">
-                    <div className="w-4 h-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full shadow-lg animate-pulse" style={{animationDelay: '0.5s'}} />
-                    <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
-                  </div>
-                  <span className="text-gray-800 font-semibold text-sm sm:text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
-                    99% On-Time
-                  </span>
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
+                  <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">99%</div>
+                  <div className="text-gray-700 font-medium text-xs sm:text-sm">On-Time Delivery</div>
                 </div>
                 
-                <div className="flex items-center gap-3 group">
-                  <div className="relative">
-                    <div className="w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full shadow-lg animate-pulse" style={{animationDelay: '1s'}} />
-                    <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full opacity-30 group-hover:scale-150 transition-transform duration-500" />
-                  </div>
-                  <span className="text-gray-800 font-semibold text-sm sm:text-base lg:text-lg group-hover:text-slate-900 transition-colors duration-300">
-                    Tier-1/2 Clients Served
-                  </span>
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 sm:col-span-1 col-span-2">
+                  <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">2-4 Weeks</div>
+                  <div className="text-gray-700 font-medium text-xs sm:text-sm">Typical Timeline</div>
                 </div>
               </div>
               
-              {/* Social proof badges */}
-              {/* <div className="flex items-center gap-4 mt-6 pt-6 border-t border-slate-200/50">
-                <span className="text-sm text-gray-700 font-medium">Trusted by teams at:</span>
-                <div className="flex items-center gap-4 opacity-60">
-                  <div className="h-6 w-16 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-50"></div>
-                  <div className="h-6 w-20 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-40"></div>
-                  <div className="h-6 w-14 bg-gradient-to-r from-slate-300 to-slate-400 rounded opacity-30"></div>
+              {/* Quality Assurance */}
+              <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="text-blue-800 font-semibold text-sm">Free Consultation • Transparent Pricing • Quality Guarantee</span>
                 </div>
-              </div> */}
+              </div>
             </AnimatedContent>
             
           </HeroAnimationWrapper>
@@ -206,65 +202,70 @@ export const HeroSection = () => {
           <FloatingVisual className="hidden lg:flex items-center justify-center relative">
             <div className="relative w-full max-w-md">
               
-              {/* Main Card */}
+              {/* Main Technology Card */}
               <FloatingCard className="relative z-30 w-full">
                 <div 
-                  className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-10 shadow-2xl border border-white/20"
+                  className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 lg:p-10 shadow-2xl border border-white/30"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
-                    boxShadow: '0 20px 40px rgba(0, 168, 232, 0.1), 0 10px 20px rgba(0, 0, 0, 0.1)'
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95))',
+                    boxShadow: '0 25px 50px rgba(0, 168, 232, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)'
                   }}
                 >
-                  <div className="text-center">
+                  <div className="text-center space-y-2">
+                    <div className="text-xs text-blue-600 font-semibold uppercase tracking-wide">Modern Stack</div>
                     <div 
-                      className="text-4xl lg:text-5xl font-bold mb-3 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] bg-clip-text text-transparent"
+                      className="text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
                       style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
                     >
-                      +45%
+                      Next.js 15
                     </div>
-                    <div className="text-[#64748B] font-medium text-base">conversion uplift</div>
+                    <div className="text-[#64748B] font-medium text-sm">React & TypeScript</div>
+                    <div className="flex items-center justify-center gap-2 mt-3 pt-3 border-t border-gray-200">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="text-xs text-gray-600 font-medium">Production-ready</div>
+                    </div>
                   </div>
                 </div>
               </FloatingCard>
 
-              {/* Secondary Cards */}
+              {/* Technology Cards */}
               <FloatingCard 
                 delay={0.5}
-                className="absolute -top-4 -left-8  z-30 w-32"
+                className="absolute -top-4 -left-8 z-30 w-36"
               >
                 <div 
                   className="rounded-xl p-4 lg:p-5 shadow-xl backdrop-blur-sm"
-                  style={{ background: 'linear-gradient(135deg, #FFD700, #FF8C00)' }}
+                  style={{ background: 'linear-gradient(135deg, #10B981, #059669)' }}
                 >
-                  <div className="text-center text-[#0A0A0B]">
-                    <div className="text-xl lg:text-2xl font-bold">3×</div>
-                    <div className="text-xs lg:text-sm font-medium">faster deployment</div>
+                  <div className="text-center text-white">
+                    <div className="text-xl lg:text-2xl font-bold">99.9%</div>
+                    <div className="text-xs lg:text-sm font-medium">uptime</div>
                   </div>
                 </div>
               </FloatingCard>
 
               <FloatingCard
                 delay={1}
-                className="absolute -bottom-4 -right-8  z-30 w-28"
+                className="absolute -bottom-4 -right-8 z-30 w-32"
               >
                 <div 
                   className="rounded-xl p-4 lg:p-5 shadow-xl backdrop-blur-sm text-white"
-                  style={{ background: 'linear-gradient(135deg, #0077C7, #1B365D)' }}
+                  style={{ background: 'linear-gradient(135deg, #3B82F6, #1E40AF)' }}
                 >
                   <div className="text-center">
-                    <div className="text-xl lg:text-2xl font-bold">Zero</div>
-                    <div className="text-xs lg:text-sm font-medium">downtime</div>
+                    <div className="text-xl lg:text-2xl font-bold"><90</div>
+                    <div className="text-xs lg:text-sm font-medium">lighthouse score</div>
                   </div>
                 </div>
               </FloatingCard>
 
-              {/* Background glow effect */}
+              {/* Technology-focused background glow */}
               <div 
                 className="absolute inset-0 scale-110 rounded-3xl blur-3xl opacity-30 -z-10"
                 style={{
                   background: `
-                    radial-gradient(ellipse 60% 50% at 40% 40%, rgba(0, 168, 232, 0.4) 0%, transparent 70%),
-                    radial-gradient(ellipse 50% 60% at 70% 70%, rgba(255, 215, 0, 0.3) 0%, transparent 70%)
+                    radial-gradient(ellipse 60% 50% at 40% 40%, rgba(59, 130, 246, 0.4) 0%, transparent 70%),
+                    radial-gradient(ellipse 50% 60% at 70% 70%, rgba(99, 102, 241, 0.3) 0%, transparent 70%)
                   `
                 }}
               />

@@ -8,26 +8,29 @@ import { fadeUpVariants, staggerContainer, cardHoverVariants, EASE_CURVE, create
 const services = [
   {
     icon: Code,
-    title: "Web & App Development",
-    description: "Modern websites and applications with smart automations built in. Launch faster, maintain easier.",
-    metric: "2-4×",
-    metricLabel: "faster development",
+    title: "Modern Web Development",
+    description: "High-performance websites and applications built with the latest technologies. Optimized for speed, accessibility, and user experience.",
+    metric: "Next.js 15",
+    metricLabel: "latest framework",
+    result: "Production-ready architecture",
     delay: 0,
   },
   {
     icon: ShoppingCart,
     title: "E-commerce Solutions",
-    description: "High-converting storefronts with secure payments and growth analytics. Built to scale.",
-    metric: "+20-60%",
-    metricLabel: "conversion",
+    description: "Complete online stores with secure payments, inventory management, and analytics. Built to scale with your business growth.",
+    metric: "Shopify+",
+    metricLabel: "platform integration",
+    result: "Full-featured online stores",
     delay: 0.15,
   },
   {
     icon: Cloud,
-    title: "Scalable Architecture",
-    description: "Future-ready infrastructure that grows with your business. Reliable, secure, optimized.",
-    metric: "99.9%",
-    metricLabel: "uptime",
+    title: "Cloud Infrastructure",
+    description: "Scalable architecture using AWS, Vercel, and modern DevOps practices. Reliable hosting with automated deployments.",
+    metric: "AWS",
+    metricLabel: "cloud platform",
+    result: "Enterprise-grade reliability",
     delay: 0.3,
   },
 ]
@@ -90,9 +93,13 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
             {service.title}
           </h3>
           
-          <p className="text-slate-600 leading-relaxed text-base font-medium">
+          <p className="text-slate-600 leading-relaxed text-base font-medium mb-3">
             {service.description}
           </p>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
+            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+            <span className="text-green-700 font-semibold text-sm">{service.result}</span>
+          </div>
           
           {/* Enhanced Metric */}
           <div className="pt-6 border-t border-slate-200/70 group-hover:border-blue-200/50 transition-colors duration-300">
@@ -157,15 +164,15 @@ export const WhatWeDoSection = () => {
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
             <span className="block">What We</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
-              Deliver
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600">
+              Build
             </span>
           </h2>
           
           <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
-            Ship faster with modern web solutions designed for growth.
+            Modern web solutions designed for performance and growth.
             <span className="block mt-2 text-lg text-slate-500">
-              Every project engineered for performance, conversion, and scale.
+              Built with the latest technologies and best practices.
             </span>
           </p>
           
@@ -192,12 +199,20 @@ export const WhatWeDoSection = () => {
           transition={{ delay: 1, duration: 0.6 }}
           className="text-center mt-16"
         >
-          <p className="text-[#64748B]">
-            Ready to accelerate your project?{' '}
-            <span className="text-[#1B365D] font-medium cursor-pointer hover:underline">
-              Let's talk
-            </span>
-          </p>
+          <div className="space-y-3">
+            <p className="text-slate-700 font-semibold text-lg">
+              Ready to start your project?
+            </p>
+            <a 
+              href="/contact?source=services-cta" 
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Get a Free Consultation
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
         </motion.div>
       </motion.div>
     </SectionContainer>

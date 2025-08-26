@@ -6,11 +6,11 @@ import { SectionContainer } from "@/components/ui"
 import { fadeUpVariants, staggerContainer, scaleVariants, EASE_CURVE } from "@/lib/utils/animations"
 
 const testimonial = {
-  quote: "WebCloudor delivered exactly what they promised, on time and on budget. Our new platform increased conversions by 45% in the first month.",
+  quote: "WebCloudor delivered a high-quality website that exceeded our expectations. The team was professional, responsive, and delivered on time. We're very satisfied with the results.",
   author: {
-    name: "Sarah Chen",
-    title: "Head of Digital",
-    company: "RetailCorp",
+    name: "Sarah Johnson",
+    title: "Marketing Director",
+    company: "Growing Business",
     image: "/testimonial-avatar.jpg", // Placeholder - would be replaced with actual image
   }
 }

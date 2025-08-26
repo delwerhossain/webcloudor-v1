@@ -10,40 +10,29 @@ import { cn } from "@/lib/utils";
 
 const navigationItems = [
   {
-    name: "Services",
-    href: "/services",
-    dropdown: [
-      { name: "Web Development", href: "/services/web-development" },
-      { name: "E-commerce Solutions", href: "/services/ecommerce" },
-      { name: "Cloud Architecture", href: "/services/cloud" },
-      { name: "AI Integration", href: "/services/ai" },
-    ],
-  },
-  {
-    name: "Portfolio",
+    name: "Work",
     href: "/portfolio",
-    dropdown: [
-      { name: "Case Studies", href: "/portfolio/case-studies" },
-      { name: "Web Applications", href: "/portfolio/web-apps" },
-      { name: "E-commerce Projects", href: "/portfolio/ecommerce" },
-    ],
+    description: "Case studies & results"
   },
   {
-    name: "About",
-    href: "/about",
-    dropdown: [
-      { name: "Our Story", href: "/about/story" },
-      { name: "Our Team", href: "/about/team" },
-      { name: "Careers", href: "/about/careers" },
-    ],
+    name: "Services", 
+    href: "/services",
+    description: "How we drive growth"
+  },
+  {
+    name: "Team",
+    href: "/about/team",
+    description: "Meet the founders"
   },
   {
     name: "Blog",
     href: "/blog",
+    description: "Insights & strategies"
   },
   {
     name: "Contact",
     href: "/contact",
+    description: "Start your project"
   },
 ];
 
@@ -56,8 +45,6 @@ const _MobileNavItem = ({
   onClose: () => void;
   pathname: string;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   // Helper function to check if a menu item is active
   const isActiveItem = (itemHref: string) => {
     if (pathname === itemHref) return true;
@@ -67,71 +54,29 @@ const _MobileNavItem = ({
 
   return (
     <div className="mb-1">
-      {item.dropdown ? (
-        <>
-          <motion.button
-            whileTap={{ scale: 0.98 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className={cn(
-              "flex items-center justify-between w-full min-h-[48px] px-4 py-3 text-left rounded-xl transition-all duration-200 group touch-manipulation",
-              isActiveItem(item.href)
-                ? "text-[#00A8E8] bg-[#00A8E8]/15 border-l-4 border-[#00A8E8] font-semibold"
-                : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/8 hover:scale-105",
-            )}
-          >
-            <span className="font-medium">{item.name}</span>
-            <ChevronDown
-              className={cn(
-                "w-4 h-4 transition-transform duration-300 text-[#0A0A0B]/60 group-hover:text-[#00A8E8]",
-                isOpen && "rotate-180",
-              )}
-            />
-          </motion.button>
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                className="overflow-hidden ml-4 mt-2 space-y-1"
-              >
-                {item.dropdown.map((subItem, index) => (
-                  <motion.div
-                    key={subItem.href}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      href={subItem.href}
-                      onClick={onClose}
-                      className="flex items-center px-4 py-2.5 text-[#0A0A0B]/60 hover:text-[#00A8E8] hover:bg-gradient-to-r hover:from-[#00A8E8]/5 hover:to-[#0077C7]/3 rounded-lg transition-all duration-200 group"
-                    >
-                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                      <span className="text-sm">{subItem.name}</span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </>
-      ) : (
+      <motion.div
+        whileTap={{ scale: 0.98 }}
+        className={cn(
+          "rounded-xl transition-all duration-200 touch-manipulation",
+          isActiveItem(item.href)
+            ? "bg-[#00A8E8]/15 border-l-4 border-[#00A8E8]"
+            : "hover:bg-[#00A8E8]/8 hover:scale-105",
+        )}
+      >
         <Link
           href={item.href}
           onClick={onClose}
           className={cn(
-            "flex items-center min-h-[48px] px-4 py-3 rounded-xl transition-all duration-200 group touch-manipulation",
+            "flex flex-col justify-center w-full min-h-[56px] px-4 py-3 rounded-xl transition-colors duration-200",
             isActiveItem(item.href)
-              ? "text-[#00A8E8] bg-[#00A8E8]/15 border-l-4 border-[#00A8E8] font-semibold"
-              : "text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-[#00A8E8]/8 hover:scale-105",
+              ? "text-[#00A8E8] font-semibold"
+              : "text-[#0A0A0B]/80 hover:text-[#00A8E8]",
           )}
         >
-          <span className="font-medium">{item.name}</span>
-          <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-70 group-hover:translate-x-1 transition-all duration-200 text-[#00A8E8]" />
+          <span className="font-medium text-base">{item.name}</span>
+          <span className="text-sm text-[#64748B] mt-0.5">{item.description}</span>
         </Link>
-      )}
+      </motion.div>
     </div>
   );
 };
@@ -626,29 +571,22 @@ export const Navigation = () => {
                 )}
               >
                 {navigationItems.map((item, _index) => (
-                  <div
-                    key={item.name}
-                    className="relative group"
-                    data-dropdown-container
-                    onMouseEnter={() =>
-                      item.dropdown && setActiveDropdown(item.name)
-                    }
-                    onMouseLeave={() => setActiveDropdown(null)}
-                  >
+                  <div key={item.name} className="relative group">
                     <Link
                       href={item.href}
                       className={cn(
-                        "flex items-center space-x-2 rounded-full font-medium transition-all duration-300 hover:scale-105 relative",
+                        "flex flex-col items-center justify-center rounded-xl font-medium transition-all duration-300 hover:scale-105 relative min-h-[44px] touch-manipulation",
                         isActiveItem(item.href, item.name)
                           ? scrolled
-                            ? "px-3 py-2 text-[#00A8E8] bg-[#00A8E8]/10 backdrop-blur-sm text-sm border border-[#00A8E8]/20"
-                            : "px-4 py-2.5 text-[#00A8E8] bg-white/20 backdrop-blur-sm text-sm border border-[#00A8E8]/30"
+                            ? "px-4 py-2 text-[#00A8E8] bg-[#00A8E8]/10 backdrop-blur-sm border border-[#00A8E8]/20"
+                            : "px-4 py-2 text-[#00A8E8] bg-white/20 backdrop-blur-sm border border-[#00A8E8]/30"
                           : scrolled
-                            ? "px-3 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/30 backdrop-blur-sm text-sm"
-                            : "px-4 py-2.5 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/10 backdrop-blur-sm text-sm",
+                            ? "px-4 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/30 backdrop-blur-sm"
+                            : "px-4 py-2 text-[#0A0A0B]/80 hover:text-[#00A8E8] hover:bg-white/10 backdrop-blur-sm",
                       )}
                     >
-                      <span>{item.name}</span>
+                      <span className="text-sm font-medium">{item.name}</span>
+                      <span className="text-xs opacity-70">{item.description}</span>
                       {item.dropdown && (
                         <ChevronDown
                           className={cn(
