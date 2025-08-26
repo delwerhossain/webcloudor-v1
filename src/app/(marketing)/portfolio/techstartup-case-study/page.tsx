@@ -35,11 +35,11 @@ export default function ComingSoonPage() {
             <div className="text-sm text-gray-500">
               Interested in working with us?
             </div>
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700" asChild>
-              <Link href="/contact">
+            <Link href="/contact">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
                 Start Your Project
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </SectionContainer>
