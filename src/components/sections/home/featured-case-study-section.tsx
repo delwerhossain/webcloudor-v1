@@ -105,11 +105,11 @@ export const FeaturedCaseStudySection = () => {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-6xl mx-auto"
       >
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16 items-center">
           {/* Left Column - Content */}
           <motion.div
             variants={staggerContainer}
-            className="space-y-8"
+            className="space-y-4 sm:space-y-8"
           >
             {/* Badge */}
             <motion.div
@@ -135,7 +135,7 @@ export const FeaturedCaseStudySection = () => {
             <motion.div
               variants={fadeUpVariants}
               transition={{ duration: 0.6, ease: EASE_CURVE, delay: 0.2 }}
-              className="space-y-4"
+              className="space-y-2 sm:space-y-4"
             >
               <h4 className="text-xl font-semibold text-[#FFC300]">
                 The Challenge
@@ -150,7 +150,7 @@ export const FeaturedCaseStudySection = () => {
             <motion.div
               variants={fadeUpVariants}
               transition={{ duration: 0.6, ease: EASE_CURVE, delay: 0.3 }}
-              className="space-y-4"
+              className="space-y-2 sm:space-y-4"
             >
               <h4 className="text-xl font-semibold text-[#FFC300]">
                 Our Solution
@@ -165,43 +165,43 @@ export const FeaturedCaseStudySection = () => {
             <motion.div
               variants={fadeUpVariants}
               transition={{ duration: 0.6, ease: EASE_CURVE, delay: 0.4 }}
-              className="space-y-6"
+              className="space-y-3 sm:space-y-6"
             >
               <h4 className="text-xl font-semibold text-[#FFC300]">
                 The Results
               </h4>
               
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 gap-2 sm:gap-6">
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#FFC300] mb-1">
+                  <div className="text-xl sm:text-3xl md:text-4xl font-bold text-[#FFC300] mb-1">
                     {inView ? (
                       <AnimatedCounter value={45} prefix="+" suffix="%" duration={1.5} />
                     ) : "+45%"}
                   </div>
-                  <div className="text-sm text-white/70">
+                  <div className="text-xs sm:text-sm text-white/70">
                     Checkout Completion
                   </div>
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#FFC300] mb-1">
+                  <div className="text-xl sm:text-3xl md:text-4xl font-bold text-[#FFC300] mb-1">
                     {inView ? (
                       <AnimatedCounter value={40} prefix="-" suffix="%" duration={1.5} delay={0.3} />
                     ) : "-40%"}
                   </div>
-                  <div className="text-sm text-white/70">
+                  <div className="text-xs sm:text-sm text-white/70">
                     Cart Abandonment
                   </div>
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#FFC300] mb-1">
+                  <div className="text-xl sm:text-3xl md:text-4xl font-bold text-[#FFC300] mb-1">
                     {inView ? (
                       <AnimatedCounter value={3} suffix="×" duration={1.5} delay={0.6} />
                     ) : "3×"}
                   </div>
-                  <div className="text-sm text-white/70">
-                    Faster Page Load
+                  <div className="text-xs sm:text-sm text-white/70">
+                    Faster Load
                   </div>
                 </div>
               </div>
@@ -236,17 +236,17 @@ export const FeaturedCaseStudySection = () => {
                 whileHover={{ rotate: -3, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="bg-gray-100 rounded-2xl w-48 h-96 relative overflow-hidden">
+                <div className="bg-gray-100 rounded-2xl w-32 sm:w-48 h-64 sm:h-96 relative overflow-hidden">
                   <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-400 rounded-full" />
-                  <div className="p-6 space-y-4 mt-8">
-                    <div className="h-4 bg-gray-300 rounded w-3/4" />
-                    <div className="h-4 bg-gray-300 rounded w-1/2" />
-                    <div className="space-y-2 mt-8">
-                      <div className="h-8 bg-gray-300 rounded" />
-                      <div className="h-8 bg-gray-300 rounded" />
-                      <div className="h-8 bg-gray-300 rounded" />
+                  <div className="p-3 sm:p-6 space-y-2 sm:space-y-4 mt-4 sm:mt-8">
+                    <div className="h-2 sm:h-4 bg-gray-300 rounded w-3/4" />
+                    <div className="h-2 sm:h-4 bg-gray-300 rounded w-1/2" />
+                    <div className="space-y-1 sm:space-y-2 mt-4 sm:mt-8">
+                      <div className="h-4 sm:h-8 bg-gray-300 rounded" />
+                      <div className="h-4 sm:h-8 bg-gray-300 rounded" />
+                      <div className="h-4 sm:h-8 bg-gray-300 rounded" />
                     </div>
-                    <div className="h-10 bg-red-200 rounded mt-8" />
+                    <div className="h-6 sm:h-10 bg-red-200 rounded mt-4 sm:mt-8" />
                   </div>
                   <div className="absolute bottom-6 left-6 text-xs text-gray-600 font-medium">
                     BEFORE
@@ -260,17 +260,17 @@ export const FeaturedCaseStudySection = () => {
                 whileHover={{ rotate: 3, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl w-48 h-96 relative overflow-hidden">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl w-32 sm:w-48 h-64 sm:h-96 relative overflow-hidden">
                   <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-400 rounded-full" />
-                  <div className="p-6 space-y-4 mt-8">
-                    <div className="h-4 bg-[#1B365D] rounded w-3/4" />
-                    <div className="h-4 bg-gray-300 rounded w-2/3" />
-                    <div className="space-y-3 mt-8">
-                      <div className="h-6 bg-white rounded shadow-sm" />
-                      <div className="h-6 bg-white rounded shadow-sm" />
+                  <div className="p-3 sm:p-6 space-y-2 sm:space-y-4 mt-4 sm:mt-8">
+                    <div className="h-2 sm:h-4 bg-[#1B365D] rounded w-3/4" />
+                    <div className="h-2 sm:h-4 bg-gray-300 rounded w-2/3" />
+                    <div className="space-y-1 sm:space-y-3 mt-4 sm:mt-8">
+                      <div className="h-3 sm:h-6 bg-white rounded shadow-sm" />
+                      <div className="h-3 sm:h-6 bg-white rounded shadow-sm" />
                     </div>
-                    <div className="h-10 bg-[#FFC300] rounded mt-8 flex items-center justify-center">
-                      <Smartphone className="w-4 h-4 text-[#0A0A0B]" />
+                    <div className="h-6 sm:h-10 bg-[#FFC300] rounded mt-4 sm:mt-8 flex items-center justify-center">
+                      <Smartphone className="w-3 h-3 sm:w-4 sm:h-4 text-[#0A0A0B]" />
                     </div>
                   </div>
                   <div className="absolute bottom-6 left-6 text-xs text-[#1B365D] font-medium">
@@ -280,18 +280,20 @@ export const FeaturedCaseStudySection = () => {
               </motion.div>
             </div>
 
-            {/* Floating Metrics */}
-            <FloatingBadge delay={0.8} color="yellow">
-              <span className="absolute -top-8 -left-12">
-                +45% Conversion
-              </span>
-            </FloatingBadge>
+            {/* Floating Metrics - Hidden on mobile */}
+            <div className="hidden sm:block">
+              <FloatingBadge delay={0.8} color="yellow">
+                <span className="absolute -top-8 -left-12">
+                  +45% Conversion
+                </span>
+              </FloatingBadge>
 
-            <FloatingBadge delay={1.2} color="blue">
-              <span className="absolute -bottom-8 -right-12">
-                3× Faster Loading
-              </span>
-            </FloatingBadge>
+              <FloatingBadge delay={1.2} color="blue">
+                <span className="absolute -bottom-8 -right-12">
+                  3× Faster Loading
+                </span>
+              </FloatingBadge>
+            </div>
 
             {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#FFC300]/20 via-transparent to-[#FFC300]/10 rounded-3xl blur-3xl -z-10" />

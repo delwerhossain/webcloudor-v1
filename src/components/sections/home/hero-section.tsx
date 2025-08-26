@@ -11,7 +11,7 @@ import {
 
 export const HeroSection = () => {
   return (
-    <section className="hero-section relative min-h-[600px] sm:min-h-[650px] lg:min-h-[700px] max-h-[800px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-16 sm:pt-20 lg:pt-24">
+    <section className="hero-section relative min-h-[100vh] sm:min-h-[650px] lg:min-h-[700px] max-h-[800px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-24 sm:pt-20 lg:pt-24">
       {/* Enhanced multi-layer gradient background with mesh patterns */}
       <div className="absolute inset-0 z-0">
         {/* Animated mesh gradient base */}
@@ -93,7 +93,7 @@ export const HeroSection = () => {
                   <span>Modern web solutions that drive business growth</span>
                 </div>
                 
-                <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
+                <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight">
                   <span className="block text-gray-900 mb-2 sm:mb-3 relative">
                     Ship faster, scale better
                     {/* Accent underline */}
@@ -141,7 +141,7 @@ export const HeroSection = () => {
             <AnimatedContent delay={0.4} className="hero-cta-buttons pt-4 sm:pt-6">
               <PulseButton>
                 <Link href="/contact?source=hero-primary">
-                  <button className="group relative inline-flex items-center justify-center px-10 sm:px-12 py-5 sm:py-6 text-xl sm:text-2xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 rounded-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[64px] sm:min-h-[72px]">
+                  <button className="group relative inline-flex items-center justify-center px-6 sm:px-12 py-3 sm:py-6 text-base sm:text-2xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 rounded-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[48px] sm:min-h-[72px]">
                     {/* Animated shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                     <span className="relative z-10 flex items-center gap-3">
@@ -165,33 +165,33 @@ export const HeroSection = () => {
             </AnimatedContent>
 
             {/* Results-Focused Trust Indicators */}
-            <AnimatedContent delay={0.6} className="pt-6 sm:pt-8">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
-                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">50+</div>
-                  <div className="text-gray-700 font-medium text-xs sm:text-sm">Projects Delivered</div>
+            <AnimatedContent delay={0.6} className="pt-4 sm:pt-8">
+              <div className="grid grid-cols-3 gap-2 sm:gap-6">
+                <div className="text-center p-2 sm:p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
+                  <div className="text-lg sm:text-3xl font-bold text-blue-600 mb-1">50+</div>
+                  <div className="text-gray-700 font-medium text-[10px] sm:text-sm">Projects</div>
                 </div>
                 
-                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
-                  <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">99%</div>
-                  <div className="text-gray-700 font-medium text-xs sm:text-sm">On-Time Delivery</div>
+                <div className="text-center p-2 sm:p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
+                  <div className="text-lg sm:text-3xl font-bold text-green-600 mb-1">99%</div>
+                  <div className="text-gray-700 font-medium text-[10px] sm:text-sm">On-Time</div>
                 </div>
                 
-                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 sm:col-span-1 col-span-2">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">2-4 Weeks</div>
-                  <div className="text-gray-700 font-medium text-xs sm:text-sm">Typical Timeline</div>
+                <div className="text-center p-2 sm:p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
+                  <div className="text-lg sm:text-3xl font-bold text-purple-600 mb-1">2-4w</div>
+                  <div className="text-gray-700 font-medium text-[10px] sm:text-sm">Timeline</div>
                 </div>
               </div>
               
               {/* Quality Assurance */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <div className="mt-3 sm:mt-6 p-2 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-2 h-2 sm:w-3 sm:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span className="text-blue-800 font-semibold text-sm">Free Consultation • Transparent Pricing • Quality Guarantee</span>
+                  <span className="text-blue-800 font-semibold text-xs sm:text-sm">Free Consultation • Quality Guarantee</span>
                 </div>
               </div>
             </AnimatedContent>

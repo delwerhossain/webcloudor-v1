@@ -94,10 +94,12 @@ export default function HomePage() {
       {/* What We Do - Core services */}
       <WhatWeDoSection />
       
-      {/* Process Overview - How we work */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <DynamicProcessOverview />
-      </Suspense>
+      {/* Process Overview - How we work (hidden on mobile) */}
+      <div className="hidden sm:block">
+        <Suspense fallback={<SectionSkeleton />}>
+          <DynamicProcessOverview />
+        </Suspense>
+      </div>
       
       {/* Featured Case Study - Social proof with results */}
       <FeaturedCaseStudySection />

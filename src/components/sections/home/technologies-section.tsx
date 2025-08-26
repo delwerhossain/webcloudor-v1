@@ -76,15 +76,15 @@ const TechLogo = ({
         delay,
         ease: EASE_CURVE 
       }}
-      className="group flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white/50 transition-colors duration-200"
+      className="group flex flex-col items-center gap-1 sm:gap-2 p-2 sm:p-3 rounded-lg hover:bg-white/50 transition-colors duration-200"
     >
       <div 
-        className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-sm"
+        className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white font-bold text-xs sm:text-sm shadow-sm"
         style={{ backgroundColor: tech.color }}
       >
         {tech.name.split(' ').map(word => word[0]).join('').toUpperCase()}
       </div>
-      <span className="text-xs font-medium text-[#64748B] group-hover:text-[#1B365D] transition-colors duration-200">
+      <span className="text-[10px] sm:text-xs font-medium text-[#64748B] group-hover:text-[#1B365D] transition-colors duration-200 text-center">
         {tech.name}
       </span>
     </motion.div>
@@ -106,23 +106,23 @@ const CategoryCard = ({
         ease: EASE_CURVE,
         delay: index * 0.15
       }}
-      className="bg-white rounded-2xl p-8 border border-[#E2E8F0] shadow-sm hover:shadow-lg transition-shadow duration-300 group"
+      className="bg-white rounded-2xl p-4 sm:p-8 border border-[#E2E8F0] shadow-sm hover:shadow-lg transition-shadow duration-300 group h-full"
     >
       {/* Icon & Title */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-3 mb-4 sm:mb-6">
         <motion.div
           whileHover={{ rotate: 5, scale: 1.1 }}
           className="w-12 h-12 bg-[#1B365D]/10 rounded-xl flex items-center justify-center group-hover:bg-[#1B365D]/20 transition-colors duration-300"
         >
           <category.icon className="w-6 h-6 text-[#1B365D]" />
         </motion.div>
-        <h3 className="text-xl font-semibold text-[#0A0A0B] group-hover:text-[#1B365D] transition-colors duration-300">
+        <h3 className="text-lg sm:text-xl font-semibold text-[#0A0A0B] group-hover:text-[#1B365D] transition-colors duration-300">
           {category.title}
         </h3>
       </div>
 
       {/* Technology Logos */}
-      <div className="grid grid-cols-4 gap-3 mb-6">
+      <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-6">
         {category.technologies.map((tech, techIndex) => (
           <TechLogo 
             key={tech.name} 
@@ -201,8 +201,27 @@ export const TechnologiesSection = () => {
           </p>
         </motion.div>
 
-        {/* Technology Categories Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        {/* Technology Categories - Mobile: Horizontal Scroll, Desktop: Grid */}
+        
+        {/* Mobile Horizontal Scroll */}
+        <div className="block lg:hidden mb-16 -mx-4">
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4 pb-4">
+            {techCategories.map((category, index) => (
+              <div key={category.title} className="flex-shrink-0 w-80">
+                <CategoryCard 
+                  category={category}
+                  index={index}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-4">
+            <p className="text-xs text-[#64748B]/60">Swipe to explore tech stack →</p>
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-16">
           {techCategories.map((category, index) => (
             <CategoryCard 
               key={category.title}
