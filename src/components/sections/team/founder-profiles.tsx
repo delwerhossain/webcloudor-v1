@@ -206,16 +206,15 @@ const FounderProfile = ({ data, imagePosition, delay = 0 }: FounderProfileProps)
           >
             <span className="text-sm">{data.contact.cta}</span>
           </Button>
-          <Button 
-            variant="outline" 
-            size="sm"
-            className="text-[#64748B] border-[#E2E8F0] hover:border-[#00A8E8] min-h-[44px] touch-manipulation"
-            asChild
-          >
-            <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer">
+          <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer">
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="text-[#64748B] border-[#E2E8F0] hover:border-[#00A8E8] min-h-[44px] touch-manipulation"
+            >
               <span className="text-sm">LinkedIn</span>
-            </a>
-          </Button>
+            </Button>
+          </a>
           <Button 
             variant="outline" 
             size="sm"
