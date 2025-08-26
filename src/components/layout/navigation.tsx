@@ -452,7 +452,7 @@ export const Navigation = () => {
                     className="w-full h-full object-contain"
                   />
                 </motion.div>
-                <div className="hidden sm:block">
+                <div className="block">
                   <span
                     className={cn(
                       "font-bold transition-all duration-300 group-hover:text-[#00A8E8]",
