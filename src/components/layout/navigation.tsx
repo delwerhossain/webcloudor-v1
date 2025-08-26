@@ -124,81 +124,19 @@ const MobileDropdownBar = ({
               <nav className="space-y-1">
                 {navigationItems.map((item) => (
                   <div key={item.name}>
-                    {item.dropdown ? (
-                      <>
-                        <motion.button
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() =>
-                            setOpenDropdown(
-                              openDropdown === item.name ? null : item.name,
-                            )
-                          }
-                          className={cn(
-                            "flex items-center justify-between w-full px-4 py-3 text-left rounded-lg transition-all duration-200 group",
-                            isActiveItem(item.href)
-                              ? "text-[#00A8E8] bg-[#00A8E8]/15 font-medium border-l-4 border-[#00A8E8]"
-                              : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50 hover:scale-[1.02]",
-                          )}
-                        >
-                          <span className="font-medium">{item.name}</span>
-                          <ChevronDown
-                            className={cn(
-                              "w-4 h-4 transition-all duration-300",
-                              openDropdown === item.name
-                                ? "rotate-180 text-[#00A8E8]"
-                                : "opacity-60 group-hover:opacity-100",
-                            )}
-                          />
-                        </motion.button>
-
-                        <AnimatePresence>
-                          {openDropdown === item.name && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden ml-4 mt-2"
-                            >
-                              {item.dropdown.map((subItem, idx) => (
-                                <motion.div
-                                  key={subItem.href}
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: idx * 0.1 }}
-                                >
-                                  <Link
-                                    href={subItem.href}
-                                    onClick={onClose}
-                                    className="flex items-center px-6 py-3 text-gray-600 hover:text-[#00A8E8] hover:bg-gradient-to-r hover:from-[#00A8E8]/10 hover:to-[#0077C7]/5 rounded-lg transition-all duration-200 group ml-2"
-                                  >
-                                    <div className="w-2 h-2 bg-gradient-to-r from-[#00A8E8] to-[#0077C7] rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                                    <span className="text-sm font-medium">
-                                      {subItem.name}
-                                    </span>
-                                    <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-60 group-hover:translate-x-1 transition-all duration-200" />
-                                  </Link>
-                                </motion.div>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={onClose}
-                        className={cn(
-                          "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group hover:scale-[1.02]",
-                          isActiveItem(item.href)
-                            ? "text-[#00A8E8] bg-[#00A8E8]/15 font-medium border-l-4 border-[#00A8E8]"
-                            : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50",
-                        )}
-                      >
-                        <span className="font-medium">{item.name}</span>
-                        <ArrowRight className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
-                      </Link>
-                    )}
+                    <Link
+                      href={item.href}
+                      onClick={onClose}
+                      className={cn(
+                        "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group hover:scale-[1.02]",
+                        isActiveItem(item.href)
+                          ? "text-[#00A8E8] bg-[#00A8E8]/15 font-medium border-l-4 border-[#00A8E8]"
+                          : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50",
+                      )}
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <ArrowRight className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
+                    </Link>
                   </div>
                 ))}
               </nav>
@@ -587,91 +525,7 @@ export const Navigation = () => {
                     >
                       <span className="text-sm font-medium">{item.name}</span>
                       <span className="text-xs opacity-70">{item.description}</span>
-                      {item.dropdown && (
-                        <ChevronDown
-                          className={cn(
-                            "w-3.5 h-3.5 transition-transform duration-300",
-                            activeDropdown === item.name && "rotate-180",
-                          )}
-                        />
-                      )}
                     </Link>
-
-                    {/* Modern Mega Dropdown inspired by example */}
-                    {item.dropdown && (
-                      <AnimatePresence>
-                        {activeDropdown === item.name && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                            transition={{
-                              type: "spring",
-                              damping: 30,
-                              stiffness: 500,
-                              duration: 0.2,
-                            }}
-                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 z-[9999]"
-                          >
-                            {/* Modern Dropdown Container */}
-                            <div className="bg-white/98 backdrop-blur-xl rounded-2xl border border-gray-200/50 shadow-2xl shadow-black/10 overflow-hidden min-w-[380px] relative">
-                              {/* Dropdown Arrow */}
-                              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200/50"></div>
-                              {/* Dropdown Content Grid */}
-                              <div className="p-6">
-                                <div className="grid grid-cols-1 gap-1">
-                                  {item.dropdown.map((subItem, subIndex) => (
-                                    <motion.div
-                                      key={subItem.href}
-                                      initial={{ opacity: 0, y: 4 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      transition={{ delay: subIndex * 0.05 }}
-                                    >
-                                      <Link
-                                        href={subItem.href}
-                                        className="group flex items-center justify-between px-4 py-3 text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50/80 rounded-lg transition-all duration-200"
-                                      >
-                                        <span className="font-medium text-sm">
-                                          {subItem.name}
-                                        </span>
-                                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-60 group-hover:translate-x-1 transition-all duration-200 text-gray-400" />
-                                      </Link>
-                                    </motion.div>
-                                  ))}
-                                </div>
-
-                                {/* Featured Section */}
-                                <div className="mt-6 pt-6 border-t border-gray-100">
-                                  <div className="bg-gradient-to-r from-[#00A8E8]/5 to-[#0077C7]/5 rounded-xl p-4">
-                                    <div className="flex items-center justify-between">
-                                      <div>
-                                        <h4 className="font-semibold text-sm text-gray-800 mb-1">
-                                          {item.name === "Services"
-                                            ? "Featured Service"
-                                            : item.name === "Portfolio"
-                                              ? "Latest Project"
-                                              : "Latest Update"}
-                                        </h4>
-                                        <p className="text-xs text-gray-600">
-                                          {item.name === "Services"
-                                            ? "Full-stack development solutions"
-                                            : item.name === "Portfolio"
-                                              ? "E-commerce platform redesign"
-                                              : "Learn more about our story"}
-                                        </p>
-                                      </div>
-                                      <div className="bg-[#00A8E8] text-white px-3 py-1 rounded-full text-xs font-medium">
-                                        View
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    )}
                   </div>
                 ))}
               </div>
