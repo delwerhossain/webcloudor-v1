@@ -115,11 +115,11 @@ export const Footer = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Newsletter Section */}
-        <div className="pt-16 pb-12 border-b border-white/10">
-          <div className="grid lg:grid-cols-[1fr_400px] gap-12 items-center">
+        {/* Newsletter Section - Simplified on mobile */}
+        <div className="pt-8 sm:pt-16 pb-6 sm:pb-12 border-b border-white/10">
+          <div className="grid lg:grid-cols-[1fr_400px] gap-6 sm:gap-12 items-center">
             <div>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+              <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4">
                 Stay ahead with{' '}
                 <span 
                   className="bg-gradient-to-r from-[#00A8E8] to-[#FFD700] bg-clip-text text-transparent"
@@ -128,11 +128,10 @@ export const Footer = () => {
                   cutting-edge insights
                 </span>
               </h3>
-              <p className="text-lg text-white/80 mb-6">
-                Get weekly technical deep-dives, industry trends, and exclusive case studies 
-                delivered to your inbox.
+              <p className="text-sm sm:text-lg text-white/80 mb-3 sm:mb-6">
+                Get weekly tech insights and case studies.
               </p>
-              <div className="flex items-center space-x-4 text-sm text-white/70">
+              <div className="hidden sm:flex items-center space-x-4 text-sm text-white/70">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-[#00A8E8]" />
                   <span>No spam, ever</span>
@@ -148,8 +147,8 @@ export const Footer = () => {
               </div>
             </div>
             
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <form className="space-y-4">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
+              <form className="space-y-3 sm:space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
                     Email Address
@@ -174,8 +173,8 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Main Footer Content */}
-        <div className="py-16 grid lg:grid-cols-[300px_1fr] gap-12">
+        {/* Main Footer Content - Compact on mobile */}
+        <div className="py-8 sm:py-16 grid lg:grid-cols-[300px_1fr] gap-6 sm:gap-12">
           
           {/* Company Info */}
           <div>
@@ -204,20 +203,20 @@ export const Footer = () => {
               and AI-powered applications. Your trusted partner for digital growth.
             </p>
 
-            {/* Contact Info */}
-            <div className="space-y-4 mb-8">
-              {contactInfo.map((contact) => (
+            {/* Contact Info - Simplified on mobile */}
+            <div className="space-y-2 sm:space-y-4 mb-6 sm:mb-8">
+              {contactInfo.slice(0, 2).map((contact) => (
                 <Link
                   key={contact.label}
                   href={contact.href}
-                  className="flex items-center space-x-3 text-white/70 hover:text-[#00A8E8] transition-colors group"
+                  className="flex items-center space-x-2 sm:space-x-3 text-white/70 hover:text-[#00A8E8] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#00A8E8]/10 transition-colors">
-                    <contact.icon className="w-5 h-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#00A8E8]/10 transition-colors">
+                    <contact.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-white/50">{contact.label}</div>
-                    <div className="font-medium">{contact.value}</div>
+                    <div className="text-xs text-white/50 hidden sm:block">{contact.label}</div>
+                    <div className="font-medium text-sm sm:text-base">{contact.value}</div>
                   </div>
                 </Link>
               ))}
@@ -243,18 +242,18 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Footer Links */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Footer Links - Simplified for mobile */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             
             {/* Services */}
             <div>
-              <h4 className="text-lg font-semibold mb-6">Services</h4>
-              <ul className="space-y-3">
-                {footerLinks.services.map((link) => (
+              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-6">Services</h4>
+              <ul className="space-y-2 sm:space-y-3">
+                {footerLinks.services.slice(0, 4).map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-[#00A8E8] transition-colors hover:translate-x-1 transform duration-200 inline-block"
+                      className="text-sm sm:text-base text-white/70 hover:text-[#00A8E8] transition-colors hover:translate-x-1 transform duration-200 inline-block"
                     >
                       {link.name}
                     </Link>
@@ -265,13 +264,13 @@ export const Footer = () => {
 
             {/* Company */}
             <div>
-              <h4 className="text-lg font-semibold mb-6">Company</h4>
-              <ul className="space-y-3">
-                {footerLinks.company.map((link) => (
+              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-6">Company</h4>
+              <ul className="space-y-2 sm:space-y-3">
+                {footerLinks.company.slice(0, 4).map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-[#00A8E8] transition-colors hover:translate-x-1 transform duration-200 inline-block"
+                      className="text-sm sm:text-base text-white/70 hover:text-[#00A8E8] transition-colors hover:translate-x-1 transform duration-200 inline-block"
                     >
                       {link.name}
                     </Link>
@@ -280,11 +279,11 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* Resources */}
-            <div>
+            {/* Resources - Hidden on mobile */}
+            <div className="hidden sm:block">
               <h4 className="text-lg font-semibold mb-6">Resources</h4>
               <ul className="space-y-3">
-                {footerLinks.resources.map((link) => (
+                {footerLinks.resources.slice(0, 4).map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
@@ -297,11 +296,11 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* Legal & Trust */}
-            <div>
+            {/* Legal & Trust - Simplified on mobile */}
+            <div className="hidden sm:block">
               <h4 className="text-lg font-semibold mb-6">Legal</h4>
-              <ul className="space-y-3 mb-8">
-                {footerLinks.legal.map((link) => (
+              <ul className="space-y-3">
+                {footerLinks.legal.slice(0, 3).map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
@@ -312,38 +311,18 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-
-              {/* Certifications */}
-              <div>
-                <h5 className="text-sm font-medium text-white/80 mb-4">Certified & Trusted</h5>
-                <div className="grid grid-cols-2 gap-2">
-                  {certifications.map((cert) => (
-                    <div
-                      key={cert.name}
-                      className="bg-white/5 rounded-lg p-2 hover:bg-white/10 transition-colors"
-                      title={cert.name}
-                    >
-                      <div className="w-full h-8 bg-white/10 rounded flex items-center justify-center">
-                        <span className="text-xs text-white/60 font-medium">
-                          {cert.name}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-white/60 text-sm">
-          <div className="mb-4 md:mb-0">
+        {/* Bottom Bar - Simplified on mobile */}
+        <div className="py-4 sm:py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-white/60 text-xs sm:text-sm">
+          <div className="mb-2 md:mb-0">
             <p>
-              © {currentYear} WebCloudor. All rights reserved. Made with ❤️ in Dhaka.
+              © {currentYear} WebCloudor. All rights reserved.
             </p>
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="hidden sm:flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
               <span>All systems operational</span>
