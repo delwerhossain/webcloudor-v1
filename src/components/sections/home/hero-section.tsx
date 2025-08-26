@@ -253,7 +253,7 @@ export const HeroSection = () => {
                   style={{ background: 'linear-gradient(135deg, #3B82F6, #1E40AF)' }}
                 >
                   <div className="text-center">
-                    <div className="text-xl lg:text-2xl font-bold"><90</div>
+                    <div className="text-xl lg:text-2xl font-bold">90</div>
                     <div className="text-xs lg:text-sm font-medium">lighthouse score</div>
                   </div>
                 </div>
