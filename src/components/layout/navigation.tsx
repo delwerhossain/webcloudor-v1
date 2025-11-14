@@ -112,41 +112,44 @@ const MobileDropdownBar = ({
             onClick={onClose}
           />
 
-          {/* Dropdown Bar */}
+          {/* Dropdown Bar - Enhanced Mobile Design */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed top-[88px] left-4 right-4 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/20 border border-gray-200/60 z-[9998] lg:hidden overflow-hidden"
+            className="fixed top-[72px] sm:top-[88px] left-3 right-3 sm:left-4 sm:right-4 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/20 border border-gray-200/60 z-[9998] lg:hidden overflow-hidden"
           >
-            <div className="p-4 max-h-[80vh] overflow-y-auto">
-              <nav className="space-y-1">
+            <div className="p-3 sm:p-4 max-h-[calc(100vh-100px)] overflow-y-auto overscroll-contain">
+              <nav className="space-y-1.5">
                 {navigationItems.map((item) => (
                   <div key={item.name}>
                     <Link
                       href={item.href}
                       onClick={onClose}
                       className={cn(
-                        "flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group hover:scale-[1.02]",
+                        "flex items-center justify-between px-4 py-3.5 sm:py-3 rounded-xl transition-all duration-200 group hover:scale-[1.01] active:scale-[0.99] min-h-[52px] touch-manipulation",
                         isActiveItem(item.href)
-                          ? "text-[#00A8E8] bg-[#00A8E8]/15 font-medium border-l-4 border-[#00A8E8]"
-                          : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50",
+                          ? "text-[#00A8E8] bg-[#00A8E8]/15 font-semibold border-l-4 border-[#00A8E8] shadow-sm"
+                          : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-50/80",
                       )}
                     >
-                      <span className="font-medium">{item.name}</span>
-                      <ArrowRight className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-base">{item.name}</span>
+                        <span className="text-xs text-gray-500 mt-0.5">{item.description}</span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 flex-shrink-0 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
                     </Link>
                   </div>
                 ))}
               </nav>
 
-              {/* CTA Buttons */}
-              <div className="mt-6 pt-6 border-t border-gray-100 space-y-3">
+              {/* CTA Buttons - Enhanced Touch Targets */}
+              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100 space-y-3">
                 <Link
                   href="/contact"
                   onClick={onClose}
-                  className="flex items-center justify-center w-full px-4 py-3 text-[#00A8E8] border border-[#00A8E8] rounded-lg font-medium transition-colors hover:bg-[#00A8E8]/5"
+                  className="flex items-center justify-center w-full px-5 py-3.5 text-[#00A8E8] border-2 border-[#00A8E8] rounded-xl font-semibold text-base transition-all duration-200 hover:bg-[#00A8E8]/5 active:scale-[0.98] min-h-[52px] touch-manipulation"
                 >
                   Get Quote
                 </Link>
@@ -155,7 +158,7 @@ const MobileDropdownBar = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onClose}
-                  className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-lg font-semibold transition-transform hover:scale-105"
+                  className="flex items-center justify-center w-full px-5 py-3.5 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] rounded-xl font-bold text-base transition-all duration-200 hover:shadow-lg active:scale-[0.98] min-h-[52px] touch-manipulation shadow-md"
                 >
                   Free Consultation
                 </Link>
@@ -428,13 +431,13 @@ export const Navigation = () => {
             <div
               className={cn(
                 "flex items-center justify-between transition-all duration-300",
-                scrolled ? "h-14 sm:h-14" : "h-16 sm:h-16",
+                scrolled ? "h-16 sm:h-14" : "h-20 sm:h-16",
               )}
             >
-              {/* Logo */}
+              {/* Logo - Enhanced Mobile Touch Target */}
               <Link
                 href="/"
-                className="flex items-center space-x-2 sm:space-x-3 group relative z-10 flex-shrink-0"
+                className="flex items-center space-x-2 sm:space-x-3 group relative z-10 flex-shrink-0 min-h-[48px] touch-manipulation"
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -466,13 +469,12 @@ export const Navigation = () => {
                 </div>
               </Link>
 
-              {/* Mobile Quick Menu Items - Improved Layout */}
-              <div className="flex items-center space-x-2 lg:hidden">
-                {/* Only show on tablet+ sizes to avoid crowding */}
+              {/* Mobile Quick Menu Items - Hidden on small screens for cleaner mobile UI */}
+              <div className="hidden md:flex lg:hidden items-center space-x-2">
                 <Link
                   href="/services"
                   className={cn(
-                    "hidden md:flex items-center justify-center min-w-[60px] min-h-[44px] px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 relative touch-manipulation",
+                    "flex items-center justify-center min-w-[68px] min-h-[44px] px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative touch-manipulation",
                     isActiveItem("/services", "Services")
                       ? scrolled
                         ? "text-[#00A8E8] bg-[#00A8E8]/15 ring-1 ring-[#00A8E8]/30"
@@ -487,7 +489,7 @@ export const Navigation = () => {
                 <Link
                   href="/portfolio"
                   className={cn(
-                    "hidden md:flex items-center justify-center min-w-[64px] min-h-[44px] px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 relative touch-manipulation",
+                    "flex items-center justify-center min-w-[72px] min-h-[44px] px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative touch-manipulation",
                     isActiveItem("/portfolio", "Portfolio")
                       ? scrolled
                         ? "text-[#00A8E8] bg-[#00A8E8]/15 ring-1 ring-[#00A8E8]/30"
@@ -563,33 +565,33 @@ export const Navigation = () => {
 
               {/* Enhanced Mobile Menu Button Area */}
               <div className="flex items-center lg:hidden">
-                <div className="flex items-center space-x-3">
-                  {/* Mobile CTA Button - Better Touch Target */}
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  {/* Mobile CTA Button - Enhanced Touch Target */}
                   <Link
                     href="https://calendly.com/ahsanhabibakik/webcloudor"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      "hidden sm:flex items-center justify-center min-h-[44px] px-4 py-2.5 text-xs font-semibold rounded-full transition-all duration-200 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/30 touch-manipulation",
+                      "hidden sm:flex items-center justify-center min-h-[48px] px-4 py-3 text-sm font-bold rounded-full transition-all duration-200 bg-gradient-to-r from-[#FFD700] to-[#FF8C00] text-[#0A0A0B] hover:scale-[1.03] active:scale-[0.98] hover:shadow-lg hover:shadow-[#FFD700]/30 touch-manipulation whitespace-nowrap",
                       scrolled
-                        ? "shadow-md min-w-[72px]"
-                        : "shadow-lg min-w-[80px]",
+                        ? "shadow-md min-w-[80px]"
+                        : "shadow-lg min-w-[88px]",
                     )}
                   >
-                    <span className="whitespace-nowrap">Consult</span>
+                    Consult
                   </Link>
 
-                  {/* Improved Menu Button with better visibility */}
+                  {/* Improved Menu Button with better visibility and touch target */}
                   <motion.button
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.92 }}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     className={cn(
-                      "flex items-center justify-center min-h-[44px] min-w-[44px] p-3 rounded-xl transition-all duration-300 relative touch-manipulation z-10",
+                      "flex items-center justify-center min-h-[48px] min-w-[48px] p-3 rounded-xl transition-all duration-300 relative touch-manipulation z-10 active:scale-95",
                       scrolled
-                        ? "text-[#0A0A0B] bg-white/90 border border-gray-200/50 hover:text-[#00A8E8] hover:bg-white hover:scale-105 shadow-lg"
-                        : "text-[#0A0A0B] bg-white/20 backdrop-blur-sm border border-white/30 hover:text-[#00A8E8] hover:bg-white/40 hover:scale-105",
+                        ? "text-[#0A0A0B] bg-white/95 border border-gray-200/60 hover:text-[#00A8E8] hover:bg-white hover:scale-[1.02] shadow-lg"
+                        : "text-[#0A0A0B] bg-white/25 backdrop-blur-sm border border-white/40 hover:text-[#00A8E8] hover:bg-white/50 hover:scale-[1.02]",
                       isMobileMenuOpen &&
-                        "bg-[#00A8E8] text-white border-[#00A8E8]",
+                        "bg-[#00A8E8] text-white border-[#00A8E8] shadow-xl",
                     )}
                     aria-label={
                       isMobileMenuOpen
@@ -604,9 +606,9 @@ export const Navigation = () => {
                           initial={{ rotate: -45, opacity: 0 }}
                           animate={{ rotate: 0, opacity: 1 }}
                           exit={{ rotate: 45, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <X className="w-5 h-5" />
+                          <X className="w-6 h-6" />
                         </motion.div>
                       ) : (
                         <motion.div
@@ -614,9 +616,9 @@ export const Navigation = () => {
                           initial={{ rotate: 45, opacity: 0 }}
                           animate={{ rotate: 0, opacity: 1 }}
                           exit={{ rotate: -45, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <Menu className="w-5 h-5" />
+                          <Menu className="w-6 h-6" />
                         </motion.div>
                       )}
                     </AnimatePresence>

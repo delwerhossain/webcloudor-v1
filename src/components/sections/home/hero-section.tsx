@@ -11,7 +11,7 @@ import {
 
 export const HeroSection = () => {
   return (
-    <section className="hero-section relative min-h-[100vh] sm:min-h-[650px] lg:min-h-[700px] max-h-[800px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-24 sm:pt-20 lg:pt-24">
+    <section className="hero-section relative min-h-[100vh] sm:min-h-[680px] lg:min-h-[700px] max-h-[900px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-24 pb-12 sm:pt-20 sm:pb-8 lg:pt-24 lg:pb-8">
       {/* Enhanced multi-layer gradient background with mesh patterns */}
       <div className="absolute inset-0 z-0">
         {/* Animated mesh gradient base */}
@@ -76,10 +76,10 @@ export const HeroSection = () => {
         </div>
       </div>
       
-      
-      {/* Main content container with proper responsive padding */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
+
+      {/* Main content container with enhanced mobile spacing */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center min-h-[500px] sm:min-h-[480px] lg:min-h-[500px]">
           
           {/* Left Column - Content */}
           <HeroAnimationWrapper className="flex flex-col justify-center space-y-3 sm:space-y-4 lg:space-y-5">
@@ -87,19 +87,19 @@ export const HeroSection = () => {
             {/* Results-Focused Headline */}
             <AnimatedContent>
               <div className="relative">
-                {/* Expertise Indicator Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-full text-blue-700 font-semibold text-sm sm:text-base mb-4">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  <span>Modern web solutions that drive business growth</span>
+                {/* Expertise Indicator Badge - Mobile Optimized */}
+                <div className="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-full text-blue-700 font-semibold text-xs sm:text-sm lg:text-base mb-4 sm:mb-5 max-w-full">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse flex-shrink-0"></div>
+                  <span className="leading-tight">Modern web solutions that drive business growth</span>
                 </div>
-                
-                <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight">
-                  <span className="block text-gray-900 mb-2 sm:mb-3 relative">
+
+                <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] sm:leading-[1.1] tracking-tight">
+                  <span className="block text-gray-900 mb-3 sm:mb-3 relative">
                     Ship faster, scale better
                     {/* Accent underline */}
-                    <div className="absolute -bottom-1 left-0 w-20 sm:w-24 lg:w-28 h-1 sm:h-1.5 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full opacity-80"></div>
+                    <div className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-24 sm:w-28 lg:w-32 h-1 sm:h-1.5 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full opacity-80"></div>
                   </span>
-                  <span 
+                  <span
                     className="block bg-gradient-to-r from-[#00A8E8] via-[#0077C7] to-[#1B365D] bg-clip-text text-transparent font-extrabold relative"
                     style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
                   >
@@ -108,45 +108,45 @@ export const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-[#00A8E8]/20 via-[#0077C7]/20 to-[#1B365D]/20 blur-xl -z-10 opacity-50"></div>
                   </span>
                 </h1>
-                {/* Success indicators */}
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-80 animate-pulse"></div>
-                <div className="absolute top-1/2 -left-4 w-3 h-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-60 animate-bounce"></div>
+                {/* Success indicators - Hidden on very small screens */}
+                <div className="hidden sm:block absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-80 animate-pulse"></div>
+                <div className="hidden sm:block absolute top-1/2 -left-4 w-3 h-3 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-60 animate-bounce"></div>
               </div>
             </AnimatedContent>
 
-            {/* Results-Focused Subheadline */}
+            {/* Results-Focused Subheadline - Mobile Optimized */}
             <AnimatedContent delay={0.2}>
               <div className="max-w-2xl space-y-3 sm:space-y-4">
-                <p className="subheading text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 leading-tight">
+                <p className="subheading text-xl xs:text-2xl sm:text-2xl lg:text-3xl font-bold text-slate-800 leading-tight">
                   Built for performance, designed for growth
                 </p>
-                <div className="flex flex-wrap gap-4 sm:gap-6">
+                <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-blue-500 rounded-full flex-shrink-0"></div>
                     <span className="text-slate-700 font-semibold text-sm sm:text-base">Modern architecture</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-green-500 rounded-full flex-shrink-0"></div>
                     <span className="text-slate-700 font-semibold text-sm sm:text-base">Conversion-optimized</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-purple-500 rounded-full flex-shrink-0"></div>
                     <span className="text-slate-700 font-semibold text-sm sm:text-base">Enterprise-ready</span>
                   </div>
                 </div>
               </div>
             </AnimatedContent>
 
-            {/* Single-Focus CTA */}
-            <AnimatedContent delay={0.4} className="hero-cta-buttons pt-4 sm:pt-6">
+            {/* Single-Focus CTA - Mobile Optimized */}
+            <AnimatedContent delay={0.4} className="hero-cta-buttons pt-5 sm:pt-6">
               <PulseButton>
-                <Link href="/contact?source=hero-primary">
-                  <button className="group relative inline-flex items-center justify-center px-6 sm:px-12 py-3 sm:py-6 text-base sm:text-2xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 rounded-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[48px] sm:min-h-[72px]">
+                <Link href="/contact?source=hero-primary" className="block w-full sm:w-auto">
+                  <button className="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-2xl font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 rounded-xl sm:rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 whitespace-nowrap overflow-hidden min-h-[56px] sm:min-h-[72px] touch-manipulation">
                     {/* Animated shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                    <span className="relative z-10 flex items-center gap-3">
-                      Start Your Project
-                      <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                      <span>Start Your Project</span>
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </span>
@@ -155,43 +155,44 @@ export const HeroSection = () => {
                   </button>
                 </Link>
               </PulseButton>
-              
-              {/* Secondary link */}
-              <div className="mt-4 text-center">
-                <Link href="/portfolio?source=hero-secondary" className="text-slate-600 hover:text-slate-800 underline text-sm font-medium transition-colors">
-                  View our work →
+
+              {/* Secondary link - Better mobile spacing */}
+              <div className="mt-5 sm:mt-4 text-center">
+                <Link href="/portfolio?source=hero-secondary" className="inline-flex items-center gap-1 text-slate-600 hover:text-slate-800 underline text-base sm:text-sm font-medium transition-colors min-h-[44px] sm:min-h-0 touch-manipulation">
+                  <span>View our work</span>
+                  <span>→</span>
                 </Link>
               </div>
             </AnimatedContent>
 
-            {/* Results-Focused Trust Indicators */}
-            <AnimatedContent delay={0.6} className="pt-4 sm:pt-8">
-              <div className="grid grid-cols-3 gap-2 sm:gap-6">
-                <div className="text-center p-2 sm:p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
-                  <div className="text-lg sm:text-3xl font-bold text-blue-600 mb-1">50+</div>
-                  <div className="text-gray-700 font-medium text-[10px] sm:text-sm">Projects</div>
+            {/* Results-Focused Trust Indicators - Mobile Optimized */}
+            <AnimatedContent delay={0.6} className="pt-5 sm:pt-8">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6">
+                <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">50+</div>
+                  <div className="text-gray-700 font-semibold text-xs sm:text-sm">Projects</div>
                 </div>
-                
-                <div className="text-center p-2 sm:p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
-                  <div className="text-lg sm:text-3xl font-bold text-green-600 mb-1">99%</div>
-                  <div className="text-gray-700 font-medium text-[10px] sm:text-sm">On-Time</div>
+
+                <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm">
+                  <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">99%</div>
+                  <div className="text-gray-700 font-semibold text-xs sm:text-sm">On-Time</div>
                 </div>
-                
-                <div className="text-center p-2 sm:p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40">
-                  <div className="text-lg sm:text-3xl font-bold text-purple-600 mb-1">2-4w</div>
-                  <div className="text-gray-700 font-medium text-[10px] sm:text-sm">Timeline</div>
+
+                <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm">
+                  <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">2-4w</div>
+                  <div className="text-gray-700 font-semibold text-xs sm:text-sm">Timeline</div>
                 </div>
               </div>
-              
-              {/* Quality Assurance */}
-              <div className="mt-3 sm:mt-6 p-2 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-2 h-2 sm:w-3 sm:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+
+              {/* Quality Assurance - Enhanced Mobile Display */}
+              <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl shadow-sm">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-5 h-5 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 sm:w-3 sm:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span className="text-blue-800 font-semibold text-xs sm:text-sm">Free Consultation • Quality Guarantee</span>
+                  <span className="text-blue-800 font-bold text-sm sm:text-sm leading-tight">Free Consultation • Quality Guarantee</span>
                 </div>
               </div>
             </AnimatedContent>
